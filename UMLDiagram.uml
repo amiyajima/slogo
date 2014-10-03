@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_1lqo0EqxEeScHfjRRUBRfA" name="NewModel">
   <packagedElement xmi:type="uml:Package" xmi:id="_-tyZAEqzEeScHfjRRUBRfA" name="frontEnd">
-    <packagedElement xmi:type="uml:Class" xmi:id="_OfpvQEq0EeScHfjRRUBRfA" name="View"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_OfpvQEq0EeScHfjRRUBRfA" name="View">
+      <ownedOperation xmi:id="_5PadEEq5EeScHfjRRUBRfA" name="run"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_C7M_MEq1EeScHfjRRUBRfA" name="viewsToMains" memberEnd="_C7NmQEq1EeScHfjRRUBRfA _C7ONUkq1EeScHfjRRUBRfA" navigableOwnedEnd="_C7NmQEq1EeScHfjRRUBRfA _C7ONUkq1EeScHfjRRUBRfA">
       <ownedEnd xmi:id="_C7NmQEq1EeScHfjRRUBRfA" name="views" type="_OfpvQEq0EeScHfjRRUBRfA" association="_C7M_MEq1EeScHfjRRUBRfA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_C7ONUEq1EeScHfjRRUBRfA"/>
@@ -20,6 +22,70 @@
       <ownedEnd xmi:id="_dDnSgkq1EeScHfjRRUBRfA" name="models" type="_Qtk_YEq0EeScHfjRRUBRfA" association="_dDmrcEq1EeScHfjRRUBRfA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dDn5kEq1EeScHfjRRUBRfA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dDn5kUq1EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_jiDYwEq5EeScHfjRRUBRfA" name="Loop" visibility="package">
+      <ownedOperation xmi:id="_C_YlgEq-EeScHfjRRUBRfA" name="animate" visibility="package"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_mCU9IEq5EeScHfjRRUBRfA" name="Drawer" visibility="package">
+      <ownedOperation xmi:id="_FXoPQEq-EeScHfjRRUBRfA" name="draw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_CFGrYEq6EeScHfjRRUBRfA" name="viewsToLoops" memberEnd="_CFGrYUq6EeScHfjRRUBRfA _CFGrZEq6EeScHfjRRUBRfA" navigableOwnedEnd="_CFGrYUq6EeScHfjRRUBRfA _CFGrZEq6EeScHfjRRUBRfA">
+      <ownedEnd xmi:id="_CFGrYUq6EeScHfjRRUBRfA" name="views" type="_OfpvQEq0EeScHfjRRUBRfA" association="_CFGrYEq6EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CFGrYkq6EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CFGrY0q6EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_CFGrZEq6EeScHfjRRUBRfA" name="loops" type="_jiDYwEq5EeScHfjRRUBRfA" association="_CFGrYEq6EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CFGrZUq6EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CFHScEq6EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_DLH4QEq6EeScHfjRRUBRfA" name="viewsToDrawers" memberEnd="_DLH4QUq6EeScHfjRRUBRfA _DLH4REq6EeScHfjRRUBRfA" navigableOwnedEnd="_DLH4QUq6EeScHfjRRUBRfA _DLH4REq6EeScHfjRRUBRfA">
+      <ownedEnd xmi:id="_DLH4QUq6EeScHfjRRUBRfA" name="views" type="_OfpvQEq0EeScHfjRRUBRfA" association="_DLH4QEq6EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DLH4Qkq6EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DLH4Q0q6EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_DLH4REq6EeScHfjRRUBRfA" name="drawers" type="_mCU9IEq5EeScHfjRRUBRfA" association="_DLH4QEq6EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DLH4RUq6EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DLH4Rkq6EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_EXZWwEq9EeScHfjRRUBRfA" name="NodeFactory" visibility="package">
+      <ownedOperation xmi:id="_IqxQcEq9EeScHfjRRUBRfA" name="buildNode"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ahZTwEq9EeScHfjRRUBRfA" name="Node" visibility="package"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_gsMpIEq9EeScHfjRRUBRfA" name="nodeFactorysToNodes" memberEnd="_gsNQMEq9EeScHfjRRUBRfA _gsNQM0q9EeScHfjRRUBRfA" navigableOwnedEnd="_gsNQMEq9EeScHfjRRUBRfA _gsNQM0q9EeScHfjRRUBRfA">
+      <ownedEnd xmi:id="_gsNQMEq9EeScHfjRRUBRfA" name="nodeFactorys" type="_EXZWwEq9EeScHfjRRUBRfA" association="_gsMpIEq9EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gsNQMUq9EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gsNQMkq9EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_gsNQM0q9EeScHfjRRUBRfA" name="nodes" type="_ahZTwEq9EeScHfjRRUBRfA" association="_gsMpIEq9EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gsNQNEq9EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gsNQNUq9EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_j5qDoEq9EeScHfjRRUBRfA" clientDependency="_6ANEAEq9EeScHfjRRUBRfA" name="Line" visibility="package">
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_y_MfYEq9EeScHfjRRUBRfA" name="CommandFactory">
+        <ownedOperation xmi:id="_y_MfYUq9EeScHfjRRUBRfA" name="buildCommand"/>
+      </nestedClassifier>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_y_MfYkq9EeScHfjRRUBRfA" name="TurtleCommand"/>
+      <nestedClassifier xmi:type="uml:Interface" xmi:id="_y_MfY0q9EeScHfjRRUBRfA" name="Command"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_OJb4kEq9EeScHfjRRUBRfA" clientDependency="_4qyJMEq9EeScHfjRRUBRfA" name="TurtleSprite" visibility="package"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zpMeoEq9EeScHfjRRUBRfA" clientDependency="_8AFREEq9EeScHfjRRUBRfA" name="Text" visibility="package"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_4qyJMEq9EeScHfjRRUBRfA" client="_OJb4kEq9EeScHfjRRUBRfA" supplier="_ahZTwEq9EeScHfjRRUBRfA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_6ANEAEq9EeScHfjRRUBRfA" client="_j5qDoEq9EeScHfjRRUBRfA" supplier="_ahZTwEq9EeScHfjRRUBRfA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_8AFREEq9EeScHfjRRUBRfA" client="_zpMeoEq9EeScHfjRRUBRfA" supplier="_ahZTwEq9EeScHfjRRUBRfA"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_-kS6QEq9EeScHfjRRUBRfA" clientDependency="_AhFXEEq-EeScHfjRRUBRfA" name="ImageView" visibility="package"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_AhFXEEq-EeScHfjRRUBRfA" client="_-kS6QEq9EeScHfjRRUBRfA" supplier="_ahZTwEq9EeScHfjRRUBRfA"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_J-TfcEq-EeScHfjRRUBRfA" name="drawersToNodeFactorys" memberEnd="_J-UGgEq-EeScHfjRRUBRfA _J-UGg0q-EeScHfjRRUBRfA" navigableOwnedEnd="_J-UGgEq-EeScHfjRRUBRfA _J-UGg0q-EeScHfjRRUBRfA">
+      <ownedEnd xmi:id="_J-UGgEq-EeScHfjRRUBRfA" name="drawers" type="_mCU9IEq5EeScHfjRRUBRfA" association="_J-TfcEq-EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_J-UGgUq-EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_J-UGgkq-EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_J-UGg0q-EeScHfjRRUBRfA" name="nodeFactorys" type="_EXZWwEq9EeScHfjRRUBRfA" association="_J-TfcEq-EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_J-UGhEq-EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_J-UGhUq-EeScHfjRRUBRfA" value="*"/>
       </ownedEnd>
     </packagedElement>
   </packagedElement>
@@ -86,8 +152,69 @@
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_jDYxsEq3EeScHfjRRUBRfA" name="Command Factory" visibility="package"/>
-    <packagedElement xmi:type="uml:Package" xmi:id="_sAKfcEq3EeScHfjRRUBRfA" name="Commands" visibility="package">
-      <packagedElement xmi:type="uml:Class" xmi:id="_vPVKIEq3EeScHfjRRUBRfA" name="CommandFactory"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_jKbYYEq4EeScHfjRRUBRfA" clientDependency="_5m4-YEq4EeScHfjRRUBRfA" name="TurtleCommand" visibility="package">
+      <interfaceRealization xmi:id="_5m4-YEq4EeScHfjRRUBRfA" client="_jKbYYEq4EeScHfjRRUBRfA" supplier="_jLIjAEq4EeScHfjRRUBRfA" contract="_jLIjAEq4EeScHfjRRUBRfA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_jLGt0Eq4EeScHfjRRUBRfA" name="CommandFactory" visibility="package">
+      <ownedOperation xmi:id="_jLGt0Uq4EeScHfjRRUBRfA" name="buildCommand" visibility="package"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_jLIjAEq4EeScHfjRRUBRfA" name="Command" visibility="package"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_qdU-QEq4EeScHfjRRUBRfA" name="commandFactorysToCommands" memberEnd="_qdU-QUq4EeScHfjRRUBRfA _qdVlUkq4EeScHfjRRUBRfA" navigableOwnedEnd="_qdU-QUq4EeScHfjRRUBRfA _qdVlUkq4EeScHfjRRUBRfA">
+      <ownedEnd xmi:id="_qdU-QUq4EeScHfjRRUBRfA" name="commandFactorys" type="_jLGt0Eq4EeScHfjRRUBRfA" association="_qdU-QEq4EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdVlUEq4EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qdVlUUq4EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_qdVlUkq4EeScHfjRRUBRfA" name="commands" type="_jLIjAEq4EeScHfjRRUBRfA" association="_qdU-QEq4EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdVlU0q4EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qdVlVEq4EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_tgfNQEq4EeScHfjRRUBRfA" name="scriptManagersToCommandFactorys" memberEnd="_tgfNQUq4EeScHfjRRUBRfA _tgfNREq4EeScHfjRRUBRfA" navigableOwnedEnd="_tgfNQUq4EeScHfjRRUBRfA _tgfNREq4EeScHfjRRUBRfA">
+      <ownedEnd xmi:id="_tgfNQUq4EeScHfjRRUBRfA" name="scriptManagers" type="_n8mDsEq0EeScHfjRRUBRfA" association="_tgfNQEq4EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tgfNQkq4EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tgfNQ0q4EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_tgfNREq4EeScHfjRRUBRfA" name="commandFactorys" type="_jLGt0Eq4EeScHfjRRUBRfA" association="_tgfNQEq4EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tgf0UEq4EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tgf0UUq4EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_8NoXIEq4EeScHfjRRUBRfA" clientDependency="_ARwT4Eq5EeScHfjRRUBRfA" name="TurtleQuery" visibility="package">
+      <interfaceRealization xmi:id="_ARwT4Eq5EeScHfjRRUBRfA" client="_8NoXIEq4EeScHfjRRUBRfA" supplier="_jLIjAEq4EeScHfjRRUBRfA" contract="_jLIjAEq4EeScHfjRRUBRfA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_GHafsEq5EeScHfjRRUBRfA" clientDependency="_Sh8twEq5EeScHfjRRUBRfA" name="MathOperation" visibility="package">
+      <interfaceRealization xmi:id="_Sh8twEq5EeScHfjRRUBRfA" client="_GHafsEq5EeScHfjRRUBRfA" supplier="_L6w-YEq5EeScHfjRRUBRfA" contract="_L6w-YEq5EeScHfjRRUBRfA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_L6w-YEq5EeScHfjRRUBRfA" name="Operation" visibility="package"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_W_ugoEq5EeScHfjRRUBRfA" name="operationsToCommands" memberEnd="_W_ugoUq5EeScHfjRRUBRfA _W_ugpEq5EeScHfjRRUBRfA" navigableOwnedEnd="_W_ugoUq5EeScHfjRRUBRfA _W_ugpEq5EeScHfjRRUBRfA">
+      <ownedEnd xmi:id="_W_ugoUq5EeScHfjRRUBRfA" name="operations" type="_L6w-YEq5EeScHfjRRUBRfA" association="_W_ugoEq5EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_W_ugokq5EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_W_ugo0q5EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_W_ugpEq5EeScHfjRRUBRfA" name="commands" type="_jLIjAEq4EeScHfjRRUBRfA" association="_W_ugoEq5EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_W_vHsEq5EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_W_vHsUq5EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_EqTzEEq6EeScHfjRRUBRfA" clientDependency="_JDs1MEq6EeScHfjRRUBRfA" name="BooleanOperation" visibility="package">
+      <interfaceRealization xmi:id="_JDs1MEq6EeScHfjRRUBRfA" client="_EqTzEEq6EeScHfjRRUBRfA" supplier="_L6w-YEq5EeScHfjRRUBRfA" contract="_L6w-YEq5EeScHfjRRUBRfA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_RTgLYEq-EeScHfjRRUBRfA" name="FlowControl" visibility="package"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_WHthQEq-EeScHfjRRUBRfA" name="flowControlsToCommands" memberEnd="_WHthQUq-EeScHfjRRUBRfA _WHuIUkq-EeScHfjRRUBRfA" navigableOwnedEnd="_WHthQUq-EeScHfjRRUBRfA _WHuIUkq-EeScHfjRRUBRfA">
+      <ownedEnd xmi:id="_WHthQUq-EeScHfjRRUBRfA" name="flowControls" type="_RTgLYEq-EeScHfjRRUBRfA" association="_WHthQEq-EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WHuIUEq-EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WHuIUUq-EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_WHuIUkq-EeScHfjRRUBRfA" name="commands" type="_jLIjAEq4EeScHfjRRUBRfA" association="_WHthQEq-EeScHfjRRUBRfA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WHuIU0q-EeScHfjRRUBRfA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WHuIVEq-EeScHfjRRUBRfA" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ZGzvoEq-EeScHfjRRUBRfA" clientDependency="_dmEwQEq-EeScHfjRRUBRfA" name="ForLoop" visibility="package">
+      <interfaceRealization xmi:id="_dmEwQEq-EeScHfjRRUBRfA" client="_ZGzvoEq-EeScHfjRRUBRfA" supplier="_RTgLYEq-EeScHfjRRUBRfA" contract="_RTgLYEq-EeScHfjRRUBRfA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_et2QoEq-EeScHfjRRUBRfA" clientDependency="_ka2PsEq-EeScHfjRRUBRfA" name="IfStatement" visibility="package">
+      <interfaceRealization xmi:id="_ka2PsEq-EeScHfjRRUBRfA" client="_et2QoEq-EeScHfjRRUBRfA" supplier="_RTgLYEq-EeScHfjRRUBRfA" contract="_RTgLYEq-EeScHfjRRUBRfA"/>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_C16E8Eq0EeScHfjRRUBRfA" name="main">
