@@ -5,7 +5,7 @@ import backEnd.Controller;
 
 abstract class Panel extends Node {
 	
-	public Panel(Node root, Controller controller) {
+	Panel(Node root, Controller controller) {
 	}
 
 }

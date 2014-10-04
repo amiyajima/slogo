@@ -1,6 +1,7 @@
 package backEnd;
 
 import java.util.Collection;
+import java.util.List;
 import commands.Command;
 import commands.CommandFactory;
 
@@ -38,20 +39,20 @@ class Parser {
      *        Raw input from the user (always error free)
      * @return A list of commands to be sent to the ScriptManager
      */
-    Collection<Command> parseScript (String script) {
+    List<Command> parseScript (String script) {
         System.out.println(script);
         String[] inputArray = script.split("\\s+");
         for (int i = 0; i < inputArray.length; i++) {
             System.out.println(inputArray[i]);
         }
-        
+
         CommandFactory myFactory = new CommandFactory();
-        
+
         for (String input : inputArray)
         {
-            
-        }
 
+        }
         return null;
     }
+
 }
