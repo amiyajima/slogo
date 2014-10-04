@@ -1,6 +1,8 @@
 package backEnd;
 
-public class Model {
+import java.util.Observable;
+
+public class Model extends Observable {
 	
 	public Model() {
 		
