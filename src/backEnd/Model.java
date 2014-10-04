@@ -1,6 +1,7 @@
 package backEnd;
 
 import java.util.List;
+import java.util.Queue;
 
 import commands.Command;
 import commands.TurtleCommand;
@@ -37,7 +38,7 @@ public class Model {
         }
 
         List<Command> commands = myParser.parseScript(script);
-        List<TurtleCommand> executables = myScriptManager.compileScript(commands);
+        Queue<TurtleCommand> executables = myScriptManager.compileScript(commands);
         myTurtle.executeCommands(executables);
 
         return 0;
