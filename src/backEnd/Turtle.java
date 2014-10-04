@@ -1,6 +1,6 @@
 package backEnd;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Observable;
 
 import commands.TurtleCommand;
@@ -18,7 +18,7 @@ public class Turtle extends Observable {
 	 * 
 	 * @param commands Most likely a stack of executable Turtle Commands
 	 */
-	void executeCommands(Collection<TurtleCommand> commands) {
+	void executeCommands(List<TurtleCommand> commands) {
 		return;
 	}
 }

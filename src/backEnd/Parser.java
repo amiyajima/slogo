@@ -1,6 +1,6 @@
 package backEnd;
 
-import java.util.Collection;
+import java.util.List;
 
 import commands.Command;
 
@@ -34,7 +34,7 @@ class Parser {
 	 *            Raw input from the user (always error free)
 	 * @return A list of commands to be sent to the ScriptManager
 	 */
-	Collection<Command> parseScript(String script) {
+	List<Command> parseScript(String script) {
 		System.out.println(script);
 		return null;
 	}

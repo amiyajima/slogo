@@ -20,7 +20,7 @@ class ScriptPanel extends Pane {
 		runButton.setPrefSize(borderPane.getPrefWidth()/4, borderPane.getPrefHeight()/5);
 		
 		runButton.setOnAction(event -> controller.runScript(textField.getText()));
-		textField.setOnAction(event -> controller.runScript(textField.getText()));
+//		textField.setOnAction(event -> controller.runScript(textField.getText()));
 		
 		hbox.getChildren().addAll(textField, runButton);
 		
