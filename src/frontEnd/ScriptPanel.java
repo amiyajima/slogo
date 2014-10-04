@@ -10,7 +10,7 @@ import backEnd.Controller;
 
 class ScriptPanel extends Pane {
 
-	public ScriptPanel(BorderPane borderPane, Controller controller) {
+	ScriptPanel(BorderPane borderPane, Controller controller) {
 		HBox hbox = new HBox();
 		
 		TextField textField = new TextField("Enter commands here");
