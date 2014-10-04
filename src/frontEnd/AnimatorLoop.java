@@ -12,7 +12,7 @@ class AnimatorLoop {
 	/**
 	 * To be implemented later if we need to animate the turtle moving
 	 */
-	public AnimatorLoop() {
+	AnimatorLoop() {
 	}
 	
 	private EventHandler<ActionEvent> oneFrame = new EventHandler<ActionEvent>() {
@@ -22,7 +22,7 @@ class AnimatorLoop {
 		}
 	};
 	
-	public KeyFrame start() {
+	KeyFrame start() {
 		frame = new KeyFrame(Duration.millis(1000 / 60), oneFrame);
 		return frame;
 	}
