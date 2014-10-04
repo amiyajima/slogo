@@ -2,20 +2,35 @@ package backEnd;
 
 import java.util.List;
 import java.util.Queue;
+import javafx.geometry.Point2D;
 
 import commands.Command;
-import commands.TurtleCommand;
+import frontEnd.View;
 
+/**
+ * A model that performs all of the logic on user input. Creates a parser,
+ * script manager, and turtle that work sequentially to translate the input into
+ * visual changes that need to be made on the front end.
+ * 
+ * @author Brian Bolze
+ * @author Ethan Chang
+ * @author Eli Lichtenberg
+ * @author Anna Miyajima
+ * 
+ */
 public class Model {
 
     private Parser myParser;
     private ScriptManager myScriptManager;
     private Turtle myTurtle;
 
+    /**
+     * Create a new Model to control back end logic.
+     */
     public Model () {
         myParser = new Parser();
-        myScriptManager = new ScriptManager();
-        myTurtle = new Turtle();
+        myScriptManager = new ScriptManager("");
+        myTurtle = new Turtle(new Point2D(0,0));
     }
 
     /**
@@ -38,14 +53,19 @@ public class Model {
         }
 
         List<Command> commands = myParser.parseScript(script);
-        Queue<TurtleCommand> executables = myScriptManager.compileScript(commands);
+        Queue<Command> executables = myScriptManager.compileScript(commands);
         myTurtle.executeCommands(executables);
 
         return 0;
     }
 
-    public Turtle getTurtle () {
-        return myTurtle;
+    /**
+     * Sets an observer on the model's turtle object to allow immediate update
+     * of the view for changes in the turtle
+     * @param view     The program's view
+     *     
+     */
+    public void setTurtleObserver(View view) {
+        myTurtle.addObserver(view);
     }
-
 }
