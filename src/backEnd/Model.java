@@ -5,6 +5,7 @@ import java.util.Queue;
 
 import commands.Command;
 import commands.TurtleCommand;
+import frontEnd.View;
 
 public class Model {
 
@@ -43,9 +44,9 @@ public class Model {
 
         return 0;
     }
-
-    public Turtle getTurtle () {
-        return myTurtle;
+    
+    public void setTurtleObserver(View view) {
+    	myTurtle.addObserver(view);
     }
 
 }

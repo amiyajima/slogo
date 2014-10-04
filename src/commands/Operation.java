@@ -1,6 +1,6 @@
 package commands;
 
-public interface Operation {
+public interface Operation extends Command {
 	public int evaluate(int arg0);
 	public int evaluate(int arg0, int arg1);
 	public int evaluate(int arg0, Command arg1);

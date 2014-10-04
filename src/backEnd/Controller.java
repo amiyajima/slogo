@@ -10,7 +10,7 @@ public class Controller {
 	public Controller(Model model, View view) {
 		myModel = model;
 		myView = view;
-		myModel.getTurtle().addObserver(view);
+		myModel.setTurtleObserver(view);
 	}
 	
 	public void runScript(String script) {

@@ -22,7 +22,7 @@ public class CommandFactory {
      * @return
      */
     public Command buildCommand (String type) {
-        Command newCommany = new ForwardCommand();
+        Command newCommand = new ForwardCommand();
         return null;
     }
 
