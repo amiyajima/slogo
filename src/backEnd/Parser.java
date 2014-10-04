@@ -6,7 +6,7 @@ import commands.Command;
 
 class Parser {
 
-	Parser() {
+	public Parser() {
 	}
 
 	/**
@@ -20,7 +20,7 @@ class Parser {
 	 * @return
 	 * 
 	 */
-	int checkScript(String script) {
+	public int checkScript(String script) {
 		return 0;
 	}
 

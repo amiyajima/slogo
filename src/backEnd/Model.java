@@ -7,9 +7,9 @@ import commands.TurtleCommand;
 
 public class Model {
 
-	Parser myParser;
-	ScriptManager myScriptManager;
-	Turtle myTurtle;
+	private Parser myParser;
+	private ScriptManager myScriptManager;
+	private Turtle myTurtle;
 
 	public Model() {
 		myParser = new Parser();
@@ -30,7 +30,7 @@ public class Model {
 	 *         types of syntax errors.
 	 *         
 	 */
-	int runScript(String script) {
+	public int runScript(String script) {
 		int errorStatus = myParser.checkScript(script);
 		if (errorStatus != 0) return errorStatus;
 		
@@ -39,6 +39,10 @@ public class Model {
 		myTurtle.executeCommands(executables);
 		
 		return 0;
+	}
+	
+	public Turtle getTurtle() {
+	    return myTurtle;
 	}
 
 }

@@ -7,7 +7,7 @@ import commands.TurtleCommand;
 
 class ScriptManager {
 
-	ScriptManager() {
+	public ScriptManager() {
 	}
 
 	/**
@@ -20,7 +20,7 @@ class ScriptManager {
 	 * @return
 	 * 			  List of executable TurtleCommands to be passed to the Turtle
 	 */
-	Collection<TurtleCommand> compileScript(Collection<Command> commands) {
+	public Collection<TurtleCommand> compileScript(Collection<Command> commands) {
 		return null;
 	}
 

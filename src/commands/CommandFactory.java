@@ -10,7 +10,7 @@ public class CommandFactory {
 	 * @param type
 	 * @return
 	 */
-	Command buildCommand(String type) {
+	public Command buildCommand(String type) {
 		return null;
 	}
 	

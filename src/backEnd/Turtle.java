@@ -7,7 +7,7 @@ import commands.TurtleCommand;
 
 public class Turtle extends Observable {
 
-	Turtle() {
+	public Turtle() {
 	}
 
 	/**
