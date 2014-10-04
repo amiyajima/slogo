@@ -1,9 +1,11 @@
 package backEnd;
 
 import java.util.Collection;
-import java.util.Observable;
 
-public class Model extends Observable {
+import commands.Command;
+import commands.TurtleCommand;
+
+public class Model {
 
 	Parser myParser;
 	ScriptManager myScriptManager;

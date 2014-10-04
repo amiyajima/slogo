@@ -15,12 +15,11 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		Model model = new Model();
-		View view = new View(stage, "English");
-		model.addObserver(view);
-		
+		View view = new View("English");	
 		Controller controller = new Controller(model, view);
 		view.addController(controller);
 		
+		view.setupGui(stage);	
 		stage.show();
 	}
 
