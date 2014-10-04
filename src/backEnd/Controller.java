@@ -12,4 +12,10 @@ public class Controller {
 		myView = view;
 	}
 	
+	public void runScript(String script) {
+		if (script != null) {
+			myModel.runScript(script);
+		}
+	}
+	
 }

@@ -26,6 +26,7 @@ public class Model extends Observable {
 	 * @return Returns 0 if the input is valid. Returns 1 if there is a syntax
 	 *         error. Can be extended to return different integers for different
 	 *         types of syntax errors.
+	 *         
 	 */
 	int runScript(String script) {
 		int errorStatus = myParser.checkScript(script);

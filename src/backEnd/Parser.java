@@ -12,6 +12,7 @@ class Parser {
 	}
 	
 	Collection<Command> parseScript(String script){
+		System.out.println(script);
 		return null;
 	}
 	
