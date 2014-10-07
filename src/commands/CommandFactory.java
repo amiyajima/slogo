@@ -15,43 +15,51 @@ public class CommandFactory {
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
     public static final ResourceBundle myCommandResources = 
             ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "Commands");
-    public static final String doubleRegex = "[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?";
     private ResourceBundle myLanguageResources;
     private String classKey;
 
 
-
+    /**
+     * Initializes a command factory
+     * @param language The language commands are being put into the text field
+     */
     public CommandFactory (String language) {
         myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE 
                 + "languages/" + language);
 
     }
 
-    
-    private String checkLanguage(String type) {
+    /**
+     * Searches to see if the command given is can be found in the selected
+     * language properties file. If it can, return true, if not false.
+     * @param type command type being checked
+     * @return Return true if the command is valid
+     */
+    private boolean checkLanguage(String type) {
         for(String s : myLanguageResources.keySet()) {
             String[] possibilities = myLanguageResources.getString(s).split(",");
             for(String possibility : possibilities) {
                 if(type.equals(possibility)) {
                     classKey=s;
-                    return possibility;
+                    return true;
                 }
             }
         }
-        return null;
+        return false;
     }
 
     /**
-     * 
-     * @param type
-     * @return
+     * If a command is valid, create an instance of that command and return it.
+     * If it is a constant, return a constant command instead. If it is invalid, return
+     * an error
+     * @param type Command being tested
+     * @return Either the type of command requested, or an exception
      */
     public Command buildCommand (String type) {
-        if(checkLanguage(type) != null){
+        if(checkLanguage(type)){
             try {
                 Command newCommand = (Command) Class.forName
                         (myCommandResources.getString(classKey)).newInstance();
-                System.out.println("hello");
 
                 return newCommand;
             } catch (InstantiationException e) {
@@ -69,7 +77,6 @@ public class CommandFactory {
                 return new ConstantCommand(type);
 
             } catch (NumberFormatException e2) {
-                System.out.println("Not a double");
                 return null;
             }
         }
