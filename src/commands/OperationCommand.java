@@ -2,8 +2,8 @@ package commands;
 
 import java.util.List;
 
+public abstract class OperationCommand extends Command {
 
-public abstract class TurtleCommand extends Command{
     private List<Command> myChildren;
 
     public abstract Double execute();
@@ -11,5 +11,5 @@ public abstract class TurtleCommand extends Command{
     protected List<Command> getMyChildren() {
         return myChildren;
     }
-
+    
 }

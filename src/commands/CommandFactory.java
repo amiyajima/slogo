@@ -1,5 +1,9 @@
 package commands;
 
+import java.util.ResourceBundle;
+
+import commands.turtle_commands.ForwardCommand;
+
 /**
  * This factory is part of the command pattern implementation.
  * It contains a method called buildCommand which takes in a 
@@ -8,8 +12,15 @@ package commands;
  *
  */
 public class CommandFactory {
+    public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
+    private ResourceBundle myLanguageResources;
+    public static final ResourceBundle myCommandResources = 
+            ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "Commands");
 
-    public CommandFactory () {
+    public CommandFactory (String language) {
+        myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE 
+                + "languages/" + language);
+
     }
     
     public void checkLanguages(){
