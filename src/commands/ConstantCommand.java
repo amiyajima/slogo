@@ -1,14 +1,19 @@
 package commands;
 
 public class ConstantCommand extends Command {
-    private double myValue;
+    private String myValue;
 
-    public ConstantCommand (int value) {
+    public ConstantCommand (String value) {
         myValue = value;
     }
 
     @Override
     public Double execute () {
+        return Double.parseDouble(myValue);
+    }
+
+    @Override
+    public String toString () {
         return myValue;
     }
 

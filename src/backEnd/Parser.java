@@ -46,7 +46,7 @@ class Parser {
             System.out.println(inputArray[i]);
         }
 
-        CommandFactory myFactory = new CommandFactory();
+        CommandFactory myFactory = new CommandFactory("English");
 
         for (String input : inputArray)
         {

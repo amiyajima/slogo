@@ -9,4 +9,9 @@ public class SumCommand extends OperationCommand{
         return getMyChildren().get(0).execute() + getMyChildren().get(1).execute();
     }
 
+    @Override
+    public String toString () {
+        return null;
+    }
+
 }
