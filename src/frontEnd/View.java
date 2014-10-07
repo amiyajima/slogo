@@ -3,6 +3,7 @@ package frontEnd;
 import java.util.Observable;
 import java.util.Observer;
 
+import panels.PanelFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -15,6 +16,7 @@ public class View implements Observer {
 	private static final double HEIGHT = 700; 
 	
 	private BorderPane myBorderPane;
+	private PanelFactory myPanelFactory;
 	private String myLanguage;
 	private Controller myController;
 	
@@ -51,7 +53,11 @@ public class View implements Observer {
 	}
 	
 	private void setupGuiElements() {
-		new ScriptPanel(myBorderPane, myController);
+		
+		myPanelFactory = new PanelFactory();
+		myPanelFactory.buildAllPanels(myBorderPane, myController);
+		
+		//new ScriptPanel(myBorderPane, myController);
 		//setupMenuBar();
 		/*
 		 * More GUI setups here -- will move to PanelFactory later
