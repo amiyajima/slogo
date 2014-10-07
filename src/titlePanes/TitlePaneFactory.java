@@ -28,7 +28,7 @@ public class TitlePaneFactory {
 		if (!implementedTitlePanes.containsKey(type)) {
 			throw new Exception("TitleFrame not implemented!");
 		} else {
-			Class<?> c = Class.forName("Panels." + type);
+			Class<?> c = Class.forName("titlePanes." + type);
 			Constructor<?>[] constr = c.getDeclaredConstructors();
 			return (TitledPane)constr[0].newInstance(contr);
 		}

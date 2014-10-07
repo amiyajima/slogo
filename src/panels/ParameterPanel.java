@@ -8,18 +8,19 @@ import backEnd.Controller;
 
 class ParameterPanel extends Panel {
 
-	public ParameterPanel(BorderPane borderPane, Controller controller) {
+	ParameterPanel(BorderPane borderPane, Controller controller) {
 		
 		super(borderPane, controller);
 		
 		Accordion root = new Accordion();
-		root.setPrefSize(borderPane.getPrefWidth()/4, borderPane.getPrefHeight()/5);
+		root.setPrefWidth(borderPane.getPrefWidth()/4);
 		
 		TitlePaneFactory factory = new TitlePaneFactory();
 		
 		//Pen color
 		//Background color
 		//Turtle image
+		
 		for (TitledPane tp : factory.buildAllTitleFrames(controller)) {		
 			root.getPanes().add(tp);
 		}
