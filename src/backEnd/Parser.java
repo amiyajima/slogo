@@ -3,13 +3,13 @@ package backEnd;
 import java.util.Collection;
 import java.util.List;
 import commands.Command;
-import commands.CommandFactory;
+import commands.NodeFactory;
 
 
 class Parser {
 
     private String myString;
-
+    private static final String WHITESPACE = "\\s";
     Parser () {
 
     }
@@ -26,6 +26,12 @@ class Parser {
      * 
      */
     int checkScript (String script) {
+       /* try{
+            
+        }
+        catch(){
+      
+        }*/
         return 0;
     }
 
@@ -41,17 +47,21 @@ class Parser {
      */
     List<Command> parseScript (String script) {
         System.out.println(script);
-        String[] inputArray = script.split("\\s+");
+        String[] inputArray = script.split(WHITESPACE);
         for (int i = 0; i < inputArray.length; i++) {
             System.out.println(inputArray[i]);
         }
 
-        CommandFactory myFactory = new CommandFactory();
-
+        NodeFactory myFactory = new NodeFactory();
+        CommandTree tree = new CommandTree();
+        
         for (String input : inputArray)
         {
-
+            Command c = myFactory.buildCommand(input);
+            tree.addNode(c);
         }
+        
+        //make command tree figure out where to put the command 
         return null;
     }
 

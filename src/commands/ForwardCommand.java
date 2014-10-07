@@ -2,6 +2,10 @@ package commands;
 
 public class ForwardCommand implements TurtleCommand {
 
+    public ForwardCommand(){
+        
+    }
+    
     @Override
     public void compile () {
         // TODO Auto-generated method stub
@@ -11,7 +15,7 @@ public class ForwardCommand implements TurtleCommand {
     @Override
     public void execute () {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
