@@ -3,7 +3,7 @@ package backEnd;
 import java.util.Observable;
 import java.util.Queue;
 
-import commands.TurtleCommand;
+import commands.*;
 
 public class Turtle extends Observable {
 
@@ -18,7 +18,7 @@ public class Turtle extends Observable {
 	 * 
 	 * @param commands Most likely a stack of executable Turtle Commands
 	 */
-	void executeCommands(Queue<TurtleCommand> commands) {
+	void executeCommands(Queue<Command> commands) {
 		return;
 	}
 }

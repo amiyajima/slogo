@@ -3,13 +3,14 @@ package backEnd;
 import java.util.Collection;
 import java.util.List;
 import commands.Command;
-import commands.NodeFactory;
+import commands.CommandFactory;
 
 
 class Parser {
 
     private String myString;
     private static final String WHITESPACE = "\\s";
+
     Parser () {
 
     }
@@ -26,12 +27,14 @@ class Parser {
      * 
      */
     int checkScript (String script) {
-       /* try{
-            
-        }
-        catch(){
-      
-        }*/
+        /*
+         * try{
+         * 
+         * }
+         * catch(){
+         * 
+         * }
+         */
         return 0;
     }
 
@@ -52,16 +55,18 @@ class Parser {
             System.out.println(inputArray[i]);
         }
 
-        NodeFactory myFactory = new NodeFactory();
         CommandTree tree = new CommandTree();
-        
+
+        CommandFactory myFactory = new CommandFactory("English");
+
         for (String input : inputArray)
         {
             Command c = myFactory.buildCommand(input);
+            System.out.println(input + " node created");
             tree.addNode(c);
         }
-        
-        //make command tree figure out where to put the command 
+
+        // make command tree figure out where to put the command
         return null;
     }
 

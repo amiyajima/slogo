@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Queue;
 
 import commands.Command;
-import commands.TurtleCommand;
+import commands.*;
 import frontEnd.View;
 
 public class Model {
@@ -39,7 +39,7 @@ public class Model {
         }
 
         List<Command> commands = myParser.parseScript(script);
-        Queue<TurtleCommand> executables = myScriptManager.compileScript(commands);
+        Queue<Command> executables = myScriptManager.compileScript(commands);
         myTurtle.executeCommands(executables);
 
         return 0;
