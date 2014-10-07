@@ -1,5 +1,6 @@
 package backEnd;
 
+import javafx.scene.paint.Color;
 import frontEnd.View;
 
 public class Controller {
@@ -17,6 +18,10 @@ public class Controller {
 		if (script != null) {
 			myModel.runScript(script);
 		}
+	}
+	
+	public void changeBackgroundColor(Color c) {
+		myView.myCanvas.changeBackgroundColor(c);
 	}
 	
 }
