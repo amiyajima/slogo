@@ -12,7 +12,9 @@ public class ForwardCommand extends TurtleCommand {
     
     @Override
     public Double execute() {
-        return getMyChildren().get(0).execute();
+        double value = getMyChildren().get(0).execute();
+        executeTurtleCommand();
+        return value
     }
 
     @Override
