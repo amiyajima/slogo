@@ -1,8 +1,12 @@
 package tests;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
+
 import java.util.LinkedList;
+
+import backEnd.Model;
 import backEnd.Parser;
 import commands.Command;
 import commands.CommandFactory;
@@ -11,8 +15,9 @@ import commands.CommandFactory;
 public class ParserTest {
     @Test
     public void testTreeCreation () {
-        CommandFactory factory = new CommandFactory("English");
-        Parser parser = new Parser();
+        Model myModel = new Model();
+        CommandFactory factory = new CommandFactory("English", myModel);
+        Parser parser = new Parser(myModel);
         LinkedList<String> testList = new LinkedList();
         testList.add("forward");
         testList.add("50");

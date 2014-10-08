@@ -3,12 +3,13 @@ package commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import backEnd.Model;
+
 
 public abstract class Command {
 
     private List<Command> myChildren;
     private int myNumChildren;
-    private Command myParent;
 
     public Command () {
         myChildren = new ArrayList<>();
@@ -33,14 +34,8 @@ public abstract class Command {
     public int getNumChildren () {
         return myNumChildren;
     }
-
-    public void setParent (Command current) {
-        // TODO Auto-generated method stub
-        myParent = current;
-    }
-
-    public Command getParent () {
-        return myParent;
-    }
+    
+    
+    public abstract void initializeCommand(Model m);
 
 }

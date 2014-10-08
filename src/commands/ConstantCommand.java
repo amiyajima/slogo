@@ -1,5 +1,7 @@
 package commands;
 
+import backEnd.Model;
+
 public class ConstantCommand extends Command {
     private String myValue;
 
@@ -15,6 +17,10 @@ public class ConstantCommand extends Command {
     @Override
     public String toString () {
         return myValue;
+    }
+
+    @Override
+    public void initializeCommand (Model m) {
     }
 
 }

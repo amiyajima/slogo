@@ -14,9 +14,9 @@ public class Model {
     private Turtle myTurtle;
 
     public Model () {
-        myParser = new Parser();
+        myParser = new Parser(this);
         myScriptManager = new ScriptManager();
-        myTurtle = new Turtle();
+        myTurtle = new Turtle(0, 0);
     }
 
     /**
@@ -49,6 +49,10 @@ public class Model {
     
     public void setTurtleObserver(View view) {
     	myTurtle.addObserver(view);
+    }
+    
+    public Turtle getTurtle() {
+        return myTurtle;
     }
 
 }

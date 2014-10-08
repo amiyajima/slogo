@@ -16,9 +16,10 @@ public class Parser {
     private static final String WHITESPACE = "\\s";
     private String[] inputArray;
     private CommandFactory myFactory;
+    private Model myModel;
 
-    public Parser () {
-
+    public Parser (Model m) {
+        myModel = m;
     }
 
     /**
@@ -56,7 +57,7 @@ public class Parser {
      */
     Command parseScript (String script) {
         inputArray = script.split(WHITESPACE);
-        myFactory = new CommandFactory("English");
+        myFactory = new CommandFactory("English", myModel);
         LinkedList commandsList = enqueue(inputArray);
         return makeTree(commandsList);
     }
