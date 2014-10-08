@@ -2,28 +2,29 @@ package commands;
 
 import java.util.ResourceBundle;
 
+
 /**
- * This factory is part of the command pattern implementation. It contains a
- * method called buildCommand which takes in a String type and uses this String
- * to create the type of command requested.
+ * This factory is part of the command pattern implementation.
+ * It contains a method called buildCommand which takes in a
+ * String type and uses this String to create the type of command
+ * requested.
  *
  */
 public class CommandFactory {
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
-    public static final ResourceBundle myCommandResources = ResourceBundle
-            .getBundle(DEFAULT_RESOURCE_PACKAGE + "Commands");
+    public static final ResourceBundle myCommandResources =
+            ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "Commands");
     private ResourceBundle myLanguageResources;
     private String classKey;
 
     /**
      * Initializes a command factory
      * 
-     * @param language
-     *            The language commands are being put into the text field
+     * @param language The language commands are being put into the text field
      */
     public CommandFactory (String language) {
-        myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "languages/"
-                + language);
+        myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE
+                                                       + "languages/" + language);
 
     }
 
@@ -31,8 +32,7 @@ public class CommandFactory {
      * Searches to see if the command given is can be found in the selected
      * language properties file. If it can, return true, if not false.
      * 
-     * @param type
-     *            command type being checked
+     * @param type command type being checked
      * @return Return true if the command is valid
      */
     private boolean checkLanguage (String type) {
@@ -50,27 +50,26 @@ public class CommandFactory {
 
     /**
      * If a command is valid, create an instance of that command and return it.
-     * If it is a constant, return a constant command instead. If it is invalid,
-     * return an error
+     * If it is a constant, return a constant command instead. If it is invalid, return
+     * an error
      * 
-     * @param type
-     *            Command being tested
+     * @param type Command being tested
      * @return Either the type of command requested, or an exception
      */
     public Command buildCommand (String type) {
         if (checkLanguage(type)) {
             try {
-                Command newCommand = (Command)Class
-                        .forName(myCommandResources.getString(classKey)).newInstance();
-
+                Command newCommand = (Command) Class.forName
+                        (myCommandResources.getString(classKey)).newInstance();
+                System.out.println("created forward command");
                 return newCommand;
-            } 
+            }
             catch (InstantiationException e) {
                 e.printStackTrace();
-            } 
+            }
             catch (IllegalAccessException e) {
                 e.printStackTrace();
-            } 
+            }
             catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -78,10 +77,10 @@ public class CommandFactory {
 
         else {
             try {
-                Double.parseDouble(type);
+                Double constant = Double.parseDouble(type);
                 return new ConstantCommand(type);
 
-            } 
+            }
             catch (NumberFormatException e2) {
                 return null;
             }
