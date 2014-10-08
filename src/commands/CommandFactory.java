@@ -61,7 +61,6 @@ public class CommandFactory {
             try {
                 Command newCommand = (Command) Class.forName
                         (myCommandResources.getString(classKey)).newInstance();
-                System.out.println("created forward command");
                 return newCommand;
             }
             catch (InstantiationException e) {
