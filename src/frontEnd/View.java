@@ -42,9 +42,9 @@ public class View implements Observer {
 		
 		stage.setTitle("SLogo");
 		setupBorderPane();
+		setupCanvas();
 		setupMenuBar();
 		setupGuiElements();	
-		setupCanvas();
 		
 		Scene scene = new Scene(myBorderPane);
 		stage.setScene(scene);

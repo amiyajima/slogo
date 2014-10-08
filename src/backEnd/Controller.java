@@ -24,4 +24,11 @@ public class Controller {
 		myView.myCanvas.changeBackgroundColor(c);
 	}
 	
+	/*
+	 * TEMPORARY - For view.canvas testing
+	 */
+	public void changeXPos(double x) {
+		myView.myCanvas.setTurtleX(x);
+	}
+	
 }

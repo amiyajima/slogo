@@ -1,5 +1,7 @@
 package frontEnd;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -9,16 +11,15 @@ import backEnd.Controller;
 
 public class TurtleCanvas extends Group {
 	
-	private double myWidth;
-	private double myHeight;
+	private DoubleProperty myWidth, myHeight;
 	Rectangle myBackground;
 	ImageView turtleView;
 
 	public TurtleCanvas(double width, double height, Controller controller) {
 		super();
 		
-		myWidth = 3.*width/4.;
-		myHeight = 4.*height/5.;
+		myWidth = new SimpleDoubleProperty(3.*width/4.);
+		myHeight = new SimpleDoubleProperty(4.*height/5.);
 		
 		addBackground();
 		addTurtle();
@@ -38,17 +39,18 @@ public class TurtleCanvas extends Group {
 
 	private void addBackground() {
 		myBackground = new Rectangle();
-		myBackground.setWidth(myWidth);
-		myBackground.setHeight(myHeight);
+		myBackground.setWidth(myWidth.doubleValue());
+		myBackground.setHeight(myHeight.doubleValue());
 		myBackground.setFill(Color.WHITE);
 		myBackground.setStroke(Color.BLACK);
+		
 		getChildren().add(myBackground);
 	}
 	
 	private void addTurtle() {
 		turtleView = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
-		turtleView.setX(myWidth/2 - turtleView.getImage().getWidth()/2);
-		turtleView.setY(myHeight/2 - turtleView.getImage().getHeight()/2);
+		turtleView.setX(myWidth.doubleValue()/2 - turtleView.getImage().getWidth()/2);
+		turtleView.setY(myHeight.doubleValue()/2 - turtleView.getImage().getHeight()/2);
 		getChildren().add(turtleView);
 	}
 
