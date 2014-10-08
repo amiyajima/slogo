@@ -14,7 +14,7 @@ public class Controller {
 		myModel.setTurtleObserver(view);
 	}
 	
-	public void runScript(String script) {
+	public void runScript(String script) throws Exception {
 		if (script != null) {
 			myModel.runScript(script);
 		}
