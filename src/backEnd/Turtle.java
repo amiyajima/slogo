@@ -5,7 +5,7 @@ import java.util.Queue;
 import commands.*;
 
 
-class Turtle extends Observable {
+public class Turtle extends Observable {
 
     public Turtle () {
     }

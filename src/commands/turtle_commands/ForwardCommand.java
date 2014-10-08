@@ -1,5 +1,6 @@
 package commands.turtle_commands;
 
+import backEnd.Turtle;
 import commands.TurtleCommand;
 
 
@@ -19,6 +20,12 @@ public class ForwardCommand extends TurtleCommand {
     @Override
     public String toString () {
         return "Forward: " + getMyChildren().get(0).execute();
+    }
+
+    @Override
+    public void executeTurtleCommand (Turtle t) {
+        // TODO Auto-generated method stub
+        
     }
 
 
