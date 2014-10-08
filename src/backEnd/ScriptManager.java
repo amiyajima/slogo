@@ -42,12 +42,12 @@ class ScriptManager {
         // check typ
 
         // base case
-        if (root.getNumChildren() == 0) {
+        if (root.getNumChildrenNeeded() == 0) {
             // take into account type of command
             root.execute();
         }
         else {
-            int numChildren = root.getNumChildren();
+            int numChildren = root.getNumChildrenNeeded();
             List<Double> arguments = new ArrayList<Double>();
             /*
              * Iterator iter = getChildIterator();

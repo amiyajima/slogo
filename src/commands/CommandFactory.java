@@ -84,8 +84,8 @@ public class CommandFactory {
                 return null;
             }
         }
+        return new NullCommand();
 
-        return null;
     }
 
 }

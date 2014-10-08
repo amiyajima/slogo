@@ -29,7 +29,7 @@ public abstract class Command {
         myChildren.add(c);
     }
 
-    public int getNumChildren () {
+    public int getNumChildrenNeeded () {
         return myNumChildren - myChildren.size();
     }
 

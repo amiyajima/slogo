@@ -40,7 +40,6 @@ public class Model {
 
         List<Command> rootCommands = myParser.parseScript(script);
         System.out.println(rootCommands);
-        //System.out.println(rootCommand.getNumChildren());
         Queue<Command> executables = myScriptManager.compileScript(rootCommands);
         myTurtle.executeCommands(executables);
 
