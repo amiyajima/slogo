@@ -8,7 +8,6 @@ public abstract class Command {
 
     private List<Command> myChildren;
     private int myNumChildren;
-    private Command myParent;
 
     public Command () {
         myChildren = new ArrayList<>();
@@ -22,7 +21,7 @@ public abstract class Command {
         return myChildren;
     }
 
-    protected void setNumChildren (int numChildren) {
+    public void setNumChildren (int numChildren) {
         myNumChildren = numChildren;
     }
 
@@ -31,16 +30,7 @@ public abstract class Command {
     }
 
     public int getNumChildren () {
-        return myNumChildren;
-    }
-
-    public void setParent (Command current) {
-        // TODO Auto-generated method stub
-        myParent = current;
-    }
-
-    public Command getParent () {
-        return myParent;
+        return myNumChildren - myChildren.size();
     }
 
 }
