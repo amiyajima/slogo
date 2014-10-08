@@ -9,8 +9,8 @@ import commands.CommandFactory;
 
 
 public class ParserTest {
-    @Test
-    public void testTreeCreation () {
+    //@Test
+   /* public void testTreeCreation () {
         CommandFactory factory = new CommandFactory("English");
         Parser parser = new Parser();
         LinkedList<String> testList = new LinkedList();
@@ -18,5 +18,5 @@ public class ParserTest {
         testList.add("50");
         Command root = parser.makeTree(testList);
         //assertEquals(root.getNumChildren(), 1);
-    }
+    }*/
 }

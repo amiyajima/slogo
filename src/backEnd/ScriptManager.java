@@ -20,7 +20,7 @@ class ScriptManager {
      *            List of commands to be evaluated and broken down
      * @return List of executable TurtleCommands to be passed to the Turtle
      */
-    public Queue<Command> compileScript (Command root) {
+    public Queue<Command> compileScript (List<Command> roots) {
         return null;
     }
 

@@ -6,6 +6,7 @@ import commands.TurtleCommand;
 
 public class ForwardCommand extends TurtleCommand {
     public ForwardCommand() {
+        
         super();
         setNumChildren(1);
     }

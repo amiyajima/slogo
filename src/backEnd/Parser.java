@@ -1,23 +1,30 @@
-// CLASS AND CONSTRUCTOR PUBLIC FOR TESTING PURPOSES
 package backEnd;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
+import java.util.StringTokenizer;
 import commands.Command;
 import commands.CommandFactory;
 import commands.ConstantCommand;
 
 
-public class Parser {
+// contain hashmap for variables, replace mapped value for variable
+//
+
+class Parser {
 
     private String myString;
-    private static final String WHITESPACE = "\\s";
-    private String[] inputArray;
+    private static final String WHITESPACE = "\\s+";
+    private static final String NEWLINE = "\n";
     private CommandFactory myFactory;
+    private StringTokenizer myCommands;
+    private Map<String, Command> myVarMap;
 
-    public Parser () {
+    Parser () {
 
     }
 
@@ -54,39 +61,33 @@ public class Parser {
      *        Raw input from the user (always error free)
      * @return A list of commands to be sent to the ScriptManager
      */
-    Command parseScript (String script) {
-        inputArray = script.split(WHITESPACE);
+    List<Command> parseScript (String script) {
+        List<Command> myRoots = new ArrayList<Command>();
         myFactory = new CommandFactory("English");
-        LinkedList commandsList = enqueue(inputArray);
-        return makeTree(commandsList);
+        myCommands = new StringTokenizer(script);
+
+        myRoots.add(makeTree(myCommands.nextToken()));
+
+        return myRoots;
     }
 
-    LinkedList enqueue (String[] input) {
-        LinkedList<String> commandQueue = new LinkedList<String>();
-        int i = 0;
-        while (i < input.length) {
-            commandQueue.add(input[i]);
-            i++;
-        }
-        return commandQueue;
+    /**
+     * Creates commands from strings and inserts them as children of existing commands
+     * Recursive method, returns root of the tree 
+     * 
+     * @param command
+     * @return
+     * @throws RuntimeException
+     */
+    Command makeTree (String command) throws RuntimeException {
 
-    }
-
-    // the list NEEDS to be linked list in order to poll
-    public Command makeTree (LinkedList<String> commands) throws RuntimeException {
-        // case in which the number of parameters isn't correct
-        if (commands.size() < 1) {
-            throw new RuntimeException();
-        }
-
-        System.out.println("creating command");
-        Command c = myFactory.buildCommand(commands.poll());
+        System.out.println(command);
+        Command c = myFactory.buildCommand(command);
         if (c instanceof ConstantCommand) { return c; }
-        for (int i = 0; i < c.getNumChildren(); i++) {
-
-            c.addChild(makeTree(commands));
+        System.out.println(c.getNumChildren());
+        while (c.getNumChildren() > 0) {
+            c.addChild(makeTree(myCommands.nextToken()));
         }
         return c;
-
     }
 }
