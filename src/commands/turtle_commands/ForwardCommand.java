@@ -6,7 +6,12 @@ import commands.TurtleCommand;
 
 
 public class ForwardCommand extends TurtleCommand {
-        
+
+    public ForwardCommand() {
+        super();
+        setNumChildren(1);
+    }
+    
     @Override
     public Double execute() {
         double value = getMyChildren().get(0).execute();
@@ -21,7 +26,7 @@ public class ForwardCommand extends TurtleCommand {
 
     @Override
     public void executeTurtleCommand (Turtle t) {
-        
+
     }
 
 

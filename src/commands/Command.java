@@ -23,7 +23,7 @@ public abstract class Command {
         return myChildren;
     }
 
-    protected void setNumChildren (int numChildren) {
+    public void setNumChildren (int numChildren) {
         myNumChildren = numChildren;
     }
 
@@ -32,10 +32,10 @@ public abstract class Command {
     }
 
     public int getNumChildren () {
-        return myNumChildren;
+        return myNumChildren - myChildren.size();
     }
     
-    
     public abstract void initializeCommand(Model m);
+
 
 }

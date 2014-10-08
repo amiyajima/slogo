@@ -68,7 +68,6 @@ public class CommandFactory {
                 if(newCommand instanceof TurtleCommand) {
                     newCommand.initializeCommand(myModel);
                 }
-                System.out.println("created forward command");
                 return newCommand;
             }
             catch (InstantiationException e) {

@@ -38,11 +38,10 @@ public class Model {
             return errorStatus;
         }
 
-        Command rootCommand = myParser.parseScript(script);
-        System.out.println(rootCommand);
+        List<Command> rootCommands = myParser.parseScript(script);
+        System.out.println(rootCommands);
         //System.out.println(rootCommand.getNumChildren());
-        Queue<Command> executables = myScriptManager.compileScript(rootCommand);
-        myTurtle.executeCommands(executables);
+        Queue<Command> executables = myScriptManager.compileScript(rootCommands);
 
         return 0;
     }
