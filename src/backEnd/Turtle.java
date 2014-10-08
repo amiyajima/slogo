@@ -1,18 +1,24 @@
 package backEnd;
-
-import java.util.Observable;
-import java.util.Queue;
 import javafx.geometry.Point2D;
-import commands.*;
 
+public class Turtle extends AbstractTurtle {
 
-public class Turtle extends Observable {
+    public Turtle (double x, double y) {
+        super(x, y);
+    }
+
+    @Override
+    public void moveTurtle (double distance) {
+        Point2D currentPosition = getPosition();
+        Point2D newPosition = currentPosition.add(0,distance);
+        setPosition(newPosition);
+    }
+
+    @Override
+    public void turnTurtle (double change) {
+        setOrientation(getOrientation() + change); 
+    }
     
-    private boolean isPenDown;
-    private Point2D myPosition;
     
-    
-	public Turtle(double x, double y) {
-	    myPosition = new Point2D(x,y);
-	}
+
 }

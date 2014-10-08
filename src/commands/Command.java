@@ -10,6 +10,7 @@ public abstract class Command {
 
     private List<Command> myChildren;
     private int myNumChildren;
+    private double myValue;
 
     public Command () {
         myChildren = new ArrayList<>();
@@ -23,8 +24,16 @@ public abstract class Command {
         return myChildren;
     }
 
-    public void setNumChildren (int numChildren) {
+    protected void setNumChildren (int numChildren) {
         myNumChildren = numChildren;
+    }
+    
+    protected void setValue(Double value) {
+        myValue = value;
+    }
+    
+    protected double getValue() {
+        return myValue;
     }
 
     public void addChild (Command c) {

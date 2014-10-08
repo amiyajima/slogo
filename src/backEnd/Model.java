@@ -4,14 +4,13 @@ import java.util.List;
 import java.util.Queue;
 
 import commands.Command;
-import commands.*;
 import frontEnd.View;
 
 public class Model {
 
     private Parser myParser;
     private ScriptManager myScriptManager;
-    private Turtle myTurtle;
+    private AbstractTurtle myTurtle;
 
     public Model () {
         myParser = new Parser(this);
@@ -50,7 +49,7 @@ public class Model {
     	myTurtle.addObserver(view);
     }
     
-    public Turtle getTurtle() {
+    public AbstractTurtle getTurtle() {
         return myTurtle;
     }
 

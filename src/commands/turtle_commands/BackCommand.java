@@ -1,13 +1,12 @@
 package commands.turtle_commands;
 
-import backEnd.AbstractTurtle;
 import commands.TurtleCommand;
 
+import backEnd.AbstractTurtle;
 
-
-public class ForwardCommand extends TurtleCommand {
-
-    public ForwardCommand() {
+public class BackCommand extends TurtleCommand {
+    
+    public BackCommand() {
         super();
         setNumChildren(1);
     }
@@ -27,8 +26,7 @@ public class ForwardCommand extends TurtleCommand {
 
     @Override
     public void executeTurtleCommand (AbstractTurtle t) {
-        t.moveTurtle(getValue());
+        t.moveTurtle(-getValue());
     }
-
 
 }

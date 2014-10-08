@@ -1,19 +1,19 @@
 package commands;
 
 import backEnd.Model;
-import backEnd.Turtle;
+import backEnd.AbstractTurtle;
 
 public abstract class TurtleCommand extends Command {
-    private Turtle myTurtle;
+    private AbstractTurtle myTurtle;
 
 
-    public abstract void executeTurtleCommand(Turtle t);
+    public abstract void executeTurtleCommand(AbstractTurtle t);
 
-    protected Turtle getMyTurtle() {
+    protected AbstractTurtle getMyTurtle() {
         return myTurtle;
     }
 
-    protected void setTurtle(Turtle t) {
+    protected void setTurtle(AbstractTurtle t) {
         myTurtle = t;
     }
 
