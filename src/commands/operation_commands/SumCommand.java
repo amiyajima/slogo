@@ -6,7 +6,6 @@ import commands.OperationCommand;
 public class SumCommand extends OperationCommand {
 
     public SumCommand () {
-        super();
         setNumChildren(2);
     }
 

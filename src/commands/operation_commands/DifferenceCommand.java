@@ -2,11 +2,11 @@ package commands.operation_commands;
 
 import commands.OperationCommand;
 
+
 public class DifferenceCommand extends OperationCommand {
     public static final int NUM_CHILDREN = 2;
-    
-    public DifferenceCommand() {
-        super();
+
+    public DifferenceCommand () {
         setNumChildren(NUM_CHILDREN);
     }
 

@@ -2,11 +2,11 @@ package commands.operation_commands;
 
 import commands.OperationCommand;
 
+
 public class ProductCommand extends OperationCommand {
-public static final int NUM_CHILDREN = 2;
-    
-    public ProductCommand() {
-        super();
+    public static final int NUM_CHILDREN = 2;
+
+    public ProductCommand () {
         setNumChildren(NUM_CHILDREN);
     }
 
@@ -19,6 +19,4 @@ public static final int NUM_CHILDREN = 2;
     public String toString () {
         return "mult: " + getMyChildren().get(0).execute() + " " + getMyChildren().get(1).execute();
     }
-
-
 }

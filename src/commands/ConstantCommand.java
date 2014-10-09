@@ -2,6 +2,7 @@ package commands;
 
 import backEnd.Model;
 
+
 public class ConstantCommand extends Command {
     private String myValue;
 

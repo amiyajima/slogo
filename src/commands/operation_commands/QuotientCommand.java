@@ -8,7 +8,6 @@ public class QuotientCommand extends OperationCommand {
     public static final int NUM_CHILDREN = 2;
 
     public QuotientCommand () {
-        super();
         setNumChildren(NUM_CHILDREN);
     }
 
