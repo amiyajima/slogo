@@ -25,7 +25,7 @@ public class LeftCommand extends TurtleCommand {
 
     @Override
     public String toString () {
-        return null;
+        return "Left: " + getMyChildren().get(0).execute();
     }
 
 }
