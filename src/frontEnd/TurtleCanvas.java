@@ -92,8 +92,9 @@ public class TurtleCanvas extends Group implements Observer {
 	
 	private void addTurtle() {
 		turtleView = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
-		turtleView.setX(turtleView.getImage().getWidth()/2);
-		turtleView.setY(turtleView.getImage().getHeight()/2);
+        turtleView.setX(myWidth.doubleValue()/2 - turtleView.getImage().getWidth()/2);
+        turtleView.setY(myHeight.doubleValue()/2 - turtleView.getImage().getHeight()/2);
+
 		
 		// + myHeight.doubleValue()/2
 		

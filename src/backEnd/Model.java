@@ -1,7 +1,10 @@
 package backEnd;
 
+import java.awt.Dimension;
 import java.util.List;
 import java.util.Queue;
+
+import javafx.geometry.Point2D;
 import commands.Command;
 import frontEnd.View;
 
@@ -11,11 +14,12 @@ public class Model {
     private Parser myParser;
     private ScriptManager myScriptManager;
     private AbstractTurtle myTurtle;
+    public static final Dimension CANVAS_DIMENSIONS = new Dimension(657, 524);
 
     public Model () {
         myParser = new Parser(this);
         myScriptManager = new ScriptManager();
-        setUpTurtle(0, 0);
+        setUpTurtle(CANVAS_DIMENSIONS.getWidth(), CANVAS_DIMENSIONS.getHeight());
     }
 
     public void setUpTurtle (double x, double y) {
