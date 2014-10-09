@@ -11,7 +11,7 @@ public class MakeCommand extends VariableCommand {
     }
 
     @Override
-    public Double execute () {
+    public double execute () {
         return getMyChildren().get(0).execute();
     }
 

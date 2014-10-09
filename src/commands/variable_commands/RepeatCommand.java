@@ -12,7 +12,7 @@ public class RepeatCommand extends Command {
     }
 
     @Override
-    public Double execute () {
+    public double execute () {
         Double result = 0.0;
         for (int i = 0; i < getMyChildren().get(0).execute(); i++) {
             result += getMyChildren().get(1).execute();

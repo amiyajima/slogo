@@ -6,9 +6,9 @@ import backEnd.Model;
 public class NullCommand extends Command {
 
     @Override
-    public Double execute () {
+    public double execute () {
         // TODO Auto-generated method stub
-        return null;
+        return 0.0;
     }
 
     @Override
