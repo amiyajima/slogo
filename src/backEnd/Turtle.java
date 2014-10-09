@@ -17,6 +17,7 @@ public class Turtle extends AbstractTurtle {
     @Override
     public void turnTurtle (double change) {
         setOrientation(getOrientation() + change); 
+        System.out.println("turtle turned by " + change);
     }
     
     
