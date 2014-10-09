@@ -15,11 +15,11 @@ public class Model {
     public Model () {
         myParser = new Parser(this);
         myScriptManager = new ScriptManager();
-        createTurtle(0,0);
+        setUpTurtle(0, 0);
     }
 
-    public void createTurtle (int x, int y) {
-        myTurtle = new Turtle(x,y);
+    public void setUpTurtle (double x, double y) {
+        myTurtle = new Turtle(x, y);
     }
 
     /**
