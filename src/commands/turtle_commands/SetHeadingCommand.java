@@ -15,7 +15,7 @@ public class SetHeadingCommand extends TurtleCommand {
     }
 
     @Override
-    public Double execute () {
+    public double execute () {
         AbstractTurtle myTurtle = getMyTurtle();
         double value = getMyChildren().get(0).execute() - myTurtle.getOrientation();
         System.out.println("set heading return value: " + value);

@@ -2,15 +2,15 @@ package commands.boolean_commands;
 
 import commands.BooleanCommand;
 
+
 public class LessThanCommand extends BooleanCommand {
-    
-    public LessThanCommand() {
-        super();
+
+    public LessThanCommand () {
         setNumChildren(2);
     }
-    
+
     @Override
-    public Double execute () {
+    public double execute () {
         return (getMyChildren().get(0).execute() < getMyChildren().get(1).execute()) ? 1.0 : 0.0;
     }
 

@@ -10,16 +10,13 @@ public abstract class Command {
     private List<Command> myChildren;
     private int myNumChildren;
     private double myValue;
-    
 
     public Command () {
         myChildren = new ArrayList<>();
         System.out.println(this.getClass().getName() + " created");
     }
 
-    
-
-    public abstract Double execute ();
+    public abstract double execute ();
 
     public abstract String toString ();
 
