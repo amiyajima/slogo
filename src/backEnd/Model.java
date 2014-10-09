@@ -2,10 +2,9 @@ package backEnd;
 
 import java.util.List;
 import java.util.Queue;
-
 import commands.Command;
-
 import frontEnd.View;
+
 
 public class Model {
 
@@ -16,7 +15,11 @@ public class Model {
     public Model () {
         myParser = new Parser(this);
         myScriptManager = new ScriptManager();
-        myTurtle = new Turtle(0, 0);
+        setUpTurtle(0, 0);
+    }
+
+    public void setUpTurtle (double x, double y) {
+        myTurtle = new Turtle(x, y);
     }
 
     /**
@@ -25,7 +28,7 @@ public class Model {
      * package also
      * 
      * @param script
-     *            The input string of syntax from the text-field
+     *        The input string of syntax from the text-field
      * 
      * @return Returns 0 if the input is valid. Returns 1 if there is a syntax
      *         error. Can be extended to return different integers for different
@@ -34,21 +37,19 @@ public class Model {
      */
     int runScript (String script) throws Exception {
         int errorStatus = myParser.checkScript(script);
-        if (errorStatus != 0) {
-            return errorStatus;
-        }
+        if (errorStatus != 0) { return errorStatus; }
 
         List<Command> rootCommands = myParser.parseScript(script);
         Queue<Command> executables = myScriptManager.compileScript(rootCommands);
 
         return 0;
     }
-    
-    public void setTurtleObserver(View view) {
-    	myTurtle.addObserver(view);
+
+    public void setTurtleObserver (View view) {
+        myTurtle.addObserver(view);
     }
-    
-    public AbstractTurtle getTurtle() {
+
+    public AbstractTurtle getTurtle () {
         return myTurtle;
     }
 
