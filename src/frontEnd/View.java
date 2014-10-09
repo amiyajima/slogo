@@ -56,7 +56,7 @@ public class View implements Observer {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		
+		myCanvas.update(o, arg);
 	}
 	
 	private void setupMenuBar() {

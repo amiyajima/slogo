@@ -1,24 +1,24 @@
 package backEnd;
+import javafx.geometry.Point2D;
 
-import java.util.Observable;
-import java.util.Queue;
+public class Turtle extends AbstractTurtle {
 
-import commands.TurtleCommand;
+    public Turtle (double x, double y) {
+        super(x, y);
+    }
 
-public class Turtle extends Observable {
+    @Override
+    public void moveTurtle (double distance) {
+        Point2D currentPosition = getPosition();
+        Point2D newPosition = currentPosition.add(0,distance);
+        setPosition(newPosition);
+    }
 
-	public Turtle() {
-	}
+    @Override
+    public void turnTurtle (double change) {
+        setOrientation(getOrientation() + change); 
+    }
+    
+    
 
-	/**
-	 * Called by the model to execute a list of turtle commands that may or may
-	 * not alter the View. A lot of the data in Turtle will be observable by the
-	 * view, so when it changes the view will update the GUI accordingly via its
-	 * update(Observable o, Object arg) method
-	 * 
-	 * @param commands Most likely a stack of executable Turtle Commands
-	 */
-	void executeCommands(Queue<TurtleCommand> commands) {
-		return;
-	}
 }

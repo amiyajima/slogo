@@ -15,7 +15,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		Model model = new Model();
-		View view = new View("English");	
+		View view = new View("English");
 		Controller controller = new Controller(model, view);
 		view.addController(controller);
 		

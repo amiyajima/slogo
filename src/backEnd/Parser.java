@@ -1,17 +1,32 @@
 package backEnd;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.StringTokenizer;
 import commands.Command;
 import commands.CommandFactory;
+import commands.ConstantCommand;
 
+
+// contain hashmap for variables, replace mapped value for variable
+//
 
 class Parser {
 
     private String myString;
+    private static final String WHITESPACE = "\\s+";
+    private static final String NEWLINE = "\n";
+    private CommandFactory myFactory;
+    private StringTokenizer myCommands;
+    private Map<String, Command> myVarMap;
+    private Model myModel;
 
-    Parser () {
-
+    Parser (Model model) {
+        myModel = model;
     }
 
     /**
@@ -26,6 +41,14 @@ class Parser {
      * 
      */
     int checkScript (String script) {
+        /*
+         * try{
+         * 
+         * }
+         * catch(){
+         * 
+         * }
+         */
         return 0;
     }
 
@@ -40,19 +63,32 @@ class Parser {
      * @return A list of commands to be sent to the ScriptManager
      */
     List<Command> parseScript (String script) {
-        System.out.println(script);
-        String[] inputArray = script.split("\\s+");
-        for (int i = 0; i < inputArray.length; i++) {
-            System.out.println(inputArray[i]);
-        }
+        List<Command> myRoots = new ArrayList<Command>();
+        myFactory = new CommandFactory("English", myModel);
+        myCommands = new StringTokenizer(script);
 
-        CommandFactory myFactory = new CommandFactory();
+        myRoots.add(makeTree(myCommands.nextToken()));
 
-        for (String input : inputArray)
-        {
-
-        }
-        return null;
+        return myRoots;
     }
 
+    /**
+     * Creates commands from strings and inserts them as children of existing commands
+     * Recursive method, returns root of the tree 
+     * 
+     * @param command
+     * @return
+     * @throws RuntimeException
+     */
+    Command makeTree (String command) throws RuntimeException {
+
+        System.out.println(command);
+        Command c = myFactory.buildCommand(command);
+        if (c instanceof ConstantCommand) { return c; }
+        System.out.println(c.getNumChildren());
+        while (c.getNumChildren() > 0) {
+            c.addChild(makeTree(myCommands.nextToken()));
+        }
+        return c;
+    }
 }

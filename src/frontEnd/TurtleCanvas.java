@@ -1,5 +1,8 @@
 package frontEnd;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Group;
@@ -7,11 +10,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+
+import javax.vecmath.Point2d;
+
 import backEnd.Controller;
 
-public class TurtleCanvas extends Group {
+public class TurtleCanvas extends Group implements Observer {
 	
 	private DoubleProperty myWidth, myHeight;
+	private Point2d turtleLocation;
 	Rectangle myBackground;
 	ImageView turtleView;
 
@@ -52,6 +59,16 @@ public class TurtleCanvas extends Group {
 		turtleView.setX(myWidth.doubleValue()/2 - turtleView.getImage().getWidth()/2);
 		turtleView.setY(myHeight.doubleValue()/2 - turtleView.getImage().getHeight()/2);
 		getChildren().add(turtleView);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		if (arg instanceof Point2d) {
+			turtleLocation = (Point2d)arg;
+			setTurtleX(turtleLocation.x);
+			setTurtleY(turtleLocation.y);
+		}
+		
 	}
 
 }

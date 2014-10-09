@@ -1,8 +1,25 @@
 package commands;
 
+import backEnd.Model;
+import backEnd.AbstractTurtle;
 
-public interface TurtleCommand extends Command {
-	public void execute();
-	public void execute(int arg0);
-	public void execute(int arg0, int arg1);
+public abstract class TurtleCommand extends Command {
+    private AbstractTurtle myTurtle;
+
+
+    public abstract void executeTurtleCommand(AbstractTurtle t);
+
+    protected AbstractTurtle getMyTurtle() {
+        return myTurtle;
+    }
+
+    protected void setTurtle(AbstractTurtle t) {
+        myTurtle = t;
+    }
+
+    @Override
+    public void initializeCommand(Model model) {
+        myTurtle = model.getTurtle();
+    }
 }
+

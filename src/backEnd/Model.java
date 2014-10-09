@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Queue;
 
 import commands.Command;
-import commands.TurtleCommand;
 
 import frontEnd.View;
 
@@ -12,12 +11,12 @@ public class Model {
 
     private Parser myParser;
     private ScriptManager myScriptManager;
-    private Turtle myTurtle;
+    private AbstractTurtle myTurtle;
 
     public Model () {
-        myParser = new Parser();
+        myParser = new Parser(this);
         myScriptManager = new ScriptManager();
-        myTurtle = new Turtle();
+        myTurtle = new Turtle(0, 0);
     }
 
     /**
@@ -39,15 +38,20 @@ public class Model {
             return errorStatus;
         }
 
-        List<Command> commands = myParser.parseScript(script);
-        Queue<TurtleCommand> executables = myScriptManager.compileScript(commands);
-        myTurtle.executeCommands(executables);
+        List<Command> rootCommands = myParser.parseScript(script);
+        System.out.println(rootCommands);
+        //System.out.println(rootCommand.getNumChildren());
+        Queue<Command> executables = myScriptManager.compileScript(rootCommands);
 
         return 0;
     }
     
     public void setTurtleObserver(View view) {
     	myTurtle.addObserver(view);
+    }
+    
+    public AbstractTurtle getTurtle() {
+        return myTurtle;
     }
 
 }
