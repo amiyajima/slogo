@@ -10,7 +10,7 @@ public class ConstantCommand extends Command {
     }
 
     @Override
-    public Double execute () {
+    public double execute () {
         return Double.parseDouble(myValue);
     }
 

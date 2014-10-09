@@ -14,7 +14,7 @@ public class Variable extends Command {
     }
 
     @Override
-    public Double execute () {
+    public double execute () {
         return getMyChildren().get(0).execute();
     }
 

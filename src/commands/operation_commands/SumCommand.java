@@ -11,7 +11,7 @@ public class SumCommand extends OperationCommand {
     }
 
     @Override
-    public Double execute () {
+    public double execute () {
         return getMyChildren().get(0).execute() + getMyChildren().get(1).execute();
     }
 

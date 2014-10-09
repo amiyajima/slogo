@@ -10,7 +10,7 @@ public class LessThanCommand extends BooleanCommand {
     }
     
     @Override
-    public Double execute () {
+    public double execute () {
         return (getMyChildren().get(0).execute() < getMyChildren().get(1).execute()) ? 1.0 : 0.0;
     }
 
