@@ -8,16 +8,14 @@ import java.util.StringTokenizer;
 import commands.Command;
 import commands.CommandFactory;
 import commands.ConstantCommand;
+import exceptions.*;
 
 
 // contain hashmap for variables, replace mapped value for variable
-//
 
 class Parser {
 
     private String myString;
-    private static final String WHITESPACE = "\\s+";
-    private static final String NEWLINE = "\n";
     private CommandFactory myFactory;
     private StringTokenizer myCommands;
     private Map<String, Command> myVarMap;
@@ -65,14 +63,16 @@ class Parser {
         myFactory = new CommandFactory("English", myModel);
         myCommands = new StringTokenizer(script);
 
-        myRoots.add(makeTree(myCommands.nextToken()));
-
+        while (myCommands.hasMoreTokens()) {
+            myRoots.add(makeTree(myCommands.nextToken()));
+            System.out.println(myRoots);
+        }
         return myRoots;
     }
 
     /**
      * Creates commands from strings and inserts them as children of existing commands
-     * Recursive method, returns root of the tree 
+     * Recursive method, returns root of the tree
      * 
      * @param command
      * @return
@@ -84,7 +84,7 @@ class Parser {
         Command c = myFactory.buildCommand(command);
         if (c instanceof ConstantCommand) { return c; }
         //System.out.println(c.getNumChildren());
-        while (c.getNumChildren() > 0) {
+        while (c.getNumChildrenNeeded() > 0) {
             c.addChild(makeTree(myCommands.nextToken()));
         }
         return c;

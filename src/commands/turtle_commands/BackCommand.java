@@ -21,7 +21,7 @@ public class BackCommand extends TurtleCommand {
 
     @Override
     public String toString () {
-        return "Forward: " + getMyChildren().get(0).execute();
+        return "Backward: " + getMyChildren().get(0).execute();
     }
 
     @Override
