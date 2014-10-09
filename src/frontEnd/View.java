@@ -1,6 +1,5 @@
 package frontEnd;
 
-import java.awt.Desktop;
 import java.io.File;
 import java.util.Observable;
 import java.util.Observer;
@@ -29,8 +28,6 @@ public class View implements Observer {
 	private PanelFactory myPanelFactory;
 	private String myLanguage;
 	private Controller myController;
-
-	private Desktop desktop = Desktop.getDesktop();
 	
 	public View(String language) {
 		myLanguage = language;

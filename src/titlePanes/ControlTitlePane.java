@@ -1,5 +1,7 @@
 package titlePanes;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -42,6 +44,34 @@ class ControlTitlePane extends TitledPane {
 		setSize(leftButton);
 		setSize(rightButton);
 		setSize(downButton);
+		
+		upButton.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					contr.runScript("back 10");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.toString());
+				}
+			}
+			
+		});
+		
+		downButton.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					contr.runScript("forward 10");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.toString());
+				}
+			}
+			
+		});
 		
 		hbox.getChildren().addAll(leftButton, downButton, rightButton);
 		

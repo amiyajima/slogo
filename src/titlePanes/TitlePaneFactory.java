@@ -19,6 +19,7 @@ public class TitlePaneFactory {
 		implementTitlePane("DisplayTitlePane", DisplayTitlePane.class);
 		implementTitlePane("HistoryTitlePane", HistoryTitlePane.class);
 		implementTitlePane("ControlTitlePane", ControlTitlePane.class);
+		implementTitlePane("CommandTitlePane", CommandTitlePane.class);
 	}
 
 	void implementTitlePane(String type, Class<?> panelClass) {
