@@ -16,24 +16,24 @@ import backEnd.Controller;
 
 public class TurtleCanvas extends Group implements Observer {
 	
-	public double boundingWidth, boundingHeight;
+	public double boundingWidth, boundingHeight, myPadding;
 	
 	private DoubleProperty myWidth, myHeight;
-	private double PADDING = 25;
 	private Point2D turtleLocation;
 	private Color penColor;
 	Rectangle myBackground;
 	Group myGridLines;
 	ImageView turtleView;
 
-	public TurtleCanvas(double width, double height, Controller controller) {
+	public TurtleCanvas(double width, double height, double padding, Controller controller) {
 		super();
 		
 		myWidth = new SimpleDoubleProperty(3.*width/4.);
 		myHeight = new SimpleDoubleProperty(3.*height/4.);
-				
-		boundingWidth = myWidth.get() - 2*PADDING;
-		boundingHeight = myHeight.get() - 2*PADDING;
+		myPadding = padding;	
+		
+		boundingWidth = myWidth.get() - 2*myPadding;
+		boundingHeight = myHeight.get() - 2*myPadding;
 		
 		penColor = Color.BLACK;
 		
@@ -44,11 +44,13 @@ public class TurtleCanvas extends Group implements Observer {
 	
 	public void setTurtleX(double x) {
 		
-		turtleView.setX(x - turtleView.getImage().getWidth()/2 + myWidth.doubleValue()/2);
+		turtleView.setX(x - turtleView.getImage().getWidth()/2);
+		// + myWidth.doubleValue()/2
 	}
 	
 	public void setTurtleY(double y) {
-		turtleView.setY(y - turtleView.getImage().getWidth()/2 + myHeight.doubleValue()/2);
+		turtleView.setY(y - turtleView.getImage().getWidth()/2);
+		// + myHeight.doubleValue()/2
 	}
 	
 	public void changeBackgroundColor(Color c) {
@@ -82,16 +84,18 @@ public class TurtleCanvas extends Group implements Observer {
 		myBackground.setHeight(boundingHeight);
 		myBackground.setFill(Color.WHITE);
 		myBackground.setStroke(Color.BLACK);
-		myBackground.setX(PADDING);
-		myBackground.setY(PADDING);
+		myBackground.setX(myPadding);
+		myBackground.setY(myPadding);
 		
 		getChildren().addAll(container, myBackground);
 	}
 	
 	private void addTurtle() {
 		turtleView = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
-		turtleView.setX(myWidth.doubleValue()/2 - turtleView.getImage().getWidth()/2);
-		turtleView.setY(myHeight.doubleValue()/2 - turtleView.getImage().getHeight()/2);
+		turtleView.setX(turtleView.getImage().getWidth()/2);
+		turtleView.setY(turtleView.getImage().getHeight()/2);
+		
+		// + myHeight.doubleValue()/2
 		
 		getChildren().add(turtleView);
 	}
@@ -112,8 +116,8 @@ public class TurtleCanvas extends Group implements Observer {
 		for (int row = 0; row < 20; row++) {
 			for (int col = 0; col < 20; col++) {
 				Rectangle rect = new Rectangle(boundingWidth/20., boundingHeight/20.);
-				rect.setTranslateX(PADDING + rect.getWidth()*col);
-				rect.setTranslateY(PADDING + rect.getHeight()*row);
+				rect.setTranslateX(myPadding + rect.getWidth()*col);
+				rect.setTranslateY(myPadding + rect.getHeight()*row);
 				rect.setStroke(Color.LIGHTGRAY);
 				rect.setStrokeWidth(.4);
 				rect.setFill(null);

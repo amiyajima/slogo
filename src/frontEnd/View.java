@@ -20,6 +20,7 @@ public class View implements Observer {
 
 	private static final double WIDTH = 900;
 	private static final double HEIGHT = 700;
+	private static final double PADDING = 20;
 
 	public TurtleCanvas myCanvas;
 
@@ -54,6 +55,14 @@ public class View implements Observer {
 
 		Scene scene = new Scene(myBorderPane);
 		myStage.setScene(scene);
+	}
+	
+	public double getCanvasWidth() {
+		return myCanvas.boundingWidth;
+	}
+	
+	public double getCanvasHeight() {
+		return myCanvas.boundingHeight;
 	}
 
 	/**
@@ -91,7 +100,7 @@ public class View implements Observer {
 	}
 
 	private void setupCanvas() {
-		myCanvas = new TurtleCanvas(WIDTH, HEIGHT, myController);
+		myCanvas = new TurtleCanvas(WIDTH, HEIGHT, PADDING, myController);
 		myBorderPane.setCenter(myCanvas);
 	}
 

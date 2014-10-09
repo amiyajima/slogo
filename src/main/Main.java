@@ -20,6 +20,8 @@ public class Main extends Application {
 		view.addController(controller);
 		
 		view.setupGui(stage);	
+		model.setupTurtle(view.getCanvasWidth(), view.getCanvasHeight());
+		
 		stage.show();
 	}
 
