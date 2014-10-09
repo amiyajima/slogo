@@ -34,6 +34,10 @@ public class Controller {
 		myView.myCanvas.changeTurtleImage(f);
 	}
 	
+	public void toggleGridLines() {
+		myView.myCanvas.toggleGridLines();
+	}
+	
 	/*
 	 * TEMPORARY - For view.canvas testing
 	 */
