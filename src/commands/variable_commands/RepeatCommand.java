@@ -22,7 +22,7 @@ public class RepeatCommand extends Command {
 
     @Override
     public String toString () {
-        return "repeat" + getMyChildren().get(1).execute() + " " + getMyChildren().get(0).execute() + " times." ;
+        return "repeat " + getMyChildren().get(1).toString() + " " + getMyChildren().get(0).execute() + " times." ;
     }
 
     @Override

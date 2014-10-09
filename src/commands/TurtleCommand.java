@@ -2,6 +2,7 @@ package commands;
 
 import backEnd.Model;
 import backEnd.AbstractTurtle;
+import backEnd.Turtle;
 
 
 public abstract class TurtleCommand extends Command {
@@ -13,7 +14,7 @@ public abstract class TurtleCommand extends Command {
         return myTurtle;
     }
 
-    protected void setTurtle (AbstractTurtle t) {
+    protected void setTurtle (Turtle t) {
         myTurtle = t;
     }
 
