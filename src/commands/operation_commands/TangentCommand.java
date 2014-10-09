@@ -13,7 +13,7 @@ public class TangentCommand extends OperationCommand {
 
     @Override
     public double execute () {
-        return Math.tan(getMyChildren().get(0).execute());
+        return Math.tan(Math.toRadians(getMyChildren().get(0).execute()));
     }
 
     @Override

@@ -12,7 +12,7 @@ public class SineCommand extends OperationCommand {
 
     @Override
     public double execute () {
-        return Math.sin(getMyChildren().get(0).execute());
+        return Math.sin(Math.toRadians(getMyChildren().get(0).execute()));
     }
 
     @Override
