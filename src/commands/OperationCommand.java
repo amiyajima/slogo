@@ -1,9 +1,11 @@
 package commands;
 
-public abstract class OperationCommand extends Command {
+import backEnd.Model;
 
-    public OperationCommand() {
-        super();
-    }
+public abstract class OperationCommand extends Command {
     
+    @Override
+    public void initializeCommand (Model m) {
+    }
+
 }

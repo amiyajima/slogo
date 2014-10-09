@@ -1,5 +1,7 @@
 package commands;
 
+import backEnd.Model;
+
 public class VariableCommand extends Command {
 
     @Override
@@ -12,6 +14,12 @@ public class VariableCommand extends Command {
     public String toString () {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public void initializeCommand (Model m) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

@@ -21,9 +21,10 @@ class Parser {
     private CommandFactory myFactory;
     private StringTokenizer myCommands;
     private Map<String, Command> myVarMap;
+    private Model myModel;
 
-    Parser () {
-
+    Parser (Model model) {
+        myModel = model;
     }
 
     /**
@@ -61,7 +62,7 @@ class Parser {
      */
     List<Command> parseScript (String script) {
         List<Command> myRoots = new ArrayList<Command>();
-        myFactory = new CommandFactory("English");
+        myFactory = new CommandFactory("English", myModel);
         myCommands = new StringTokenizer(script);
 
         myRoots.add(makeTree(myCommands.nextToken()));

@@ -2,6 +2,8 @@ package commands;
 
 import java.util.ResourceBundle;
 
+import backEnd.Model;
+
 
 /**
  * This factory is part of the command pattern implementation.
@@ -16,15 +18,17 @@ public class CommandFactory {
             ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "Commands");
     private ResourceBundle myLanguageResources;
     private String classKey;
+    private Model myModel;
 
     /**
      * Initializes a command factory
      * 
      * @param language The language commands are being put into the text field
      */
-    public CommandFactory (String language) {
+    public CommandFactory (String language, Model model) {
         myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE
                                                        + "languages/" + language);
+        myModel = model;
 
     }
 
@@ -61,6 +65,9 @@ public class CommandFactory {
             try {
                 Command newCommand = (Command) Class.forName
                         (myCommandResources.getString(classKey)).newInstance();
+                if(newCommand instanceof TurtleCommand) {
+                    newCommand.initializeCommand(myModel);
+                }
                 return newCommand;
             }
             catch (InstantiationException e) {
@@ -76,7 +83,7 @@ public class CommandFactory {
 
         else {
             try {
-                Double constant = Double.parseDouble(type);
+                Double.parseDouble(type);
                 return new ConstantCommand(type);
 
             }
