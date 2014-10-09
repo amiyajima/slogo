@@ -1,5 +1,6 @@
 package commands.variable_commands;
 
+import java.util.ArrayList;
 import backEnd.Model;
 import commands.Command;
 
@@ -8,12 +9,13 @@ public class Variable extends Command {
     private String myValue;
 
     public Variable (String value) {
-       myValue = value;
+        myValue = value;
+        setNumChildren(1);
     }
 
     @Override
     public Double execute () {
-        return 0.0;
+        return getMyChildren().get(0).execute();
     }
 
     @Override

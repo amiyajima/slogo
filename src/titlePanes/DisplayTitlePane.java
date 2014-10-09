@@ -4,20 +4,22 @@ import javafx.scene.Node;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import backEnd.Controller;
 
-class BackgroundTitlePane extends TitledPane {
+class DisplayTitlePane extends TitledPane {
 
-	public BackgroundTitlePane(Controller contr) {
+	public DisplayTitlePane(Controller contr) {
 
-		setText("Background");
+		setText("Display");
 
 		VBox root = new VBox();
 
 		root.getChildren().add(makeBackgroundColorBox(contr));
 		root.getChildren().add(makePenColorBox(contr));
+		root.getChildren().add(makeGridLinesBox(contr));
 
 		setContent(root);
 
@@ -52,6 +54,20 @@ class BackgroundTitlePane extends TitledPane {
 		colorPicker.setOnAction(event -> contr.changePenColor(colorPicker
 				.getValue()));
 
+		return vbox;
+	}
+	
+	private Node makeGridLinesBox(Controller contr) {
+		VBox vbox = new VBox();
+
+		Label label = new Label("Grid lines (on/off): ");
+		
+		ToggleButton tb = new ToggleButton();
+		
+		tb.setOnAction(event -> contr.toggleGridLines());
+		
+		vbox.getChildren().addAll(label, tb);
+		
 		return vbox;
 	}
 

@@ -10,11 +10,14 @@ public abstract class Command {
     private List<Command> myChildren;
     private int myNumChildren;
     private double myValue;
+    
 
     public Command () {
         myChildren = new ArrayList<>();
-        System.out.println( this.getClass().getName() +" created");
+        System.out.println(this.getClass().getName() + " created");
     }
+
+    
 
     public abstract Double execute ();
 
@@ -27,12 +30,12 @@ public abstract class Command {
     protected void setNumChildren (int numChildren) {
         myNumChildren = numChildren;
     }
-    
-    protected void setValue(Double value) {
+
+    protected void setValue (Double value) {
         myValue = value;
     }
-    
-    protected double getValue() {
+
+    protected double getValue () {
         return myValue;
     }
 
@@ -43,8 +46,7 @@ public abstract class Command {
     public int getNumChildrenNeeded () {
         return myNumChildren - myChildren.size();
     }
-    
-    public abstract void initializeCommand(Model m);
 
+    public abstract void initializeCommand (Model m);
 
 }

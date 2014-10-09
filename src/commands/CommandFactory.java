@@ -1,6 +1,9 @@
 package commands;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
+import commands.variable_commands.Variable;
 import backEnd.Model;
 
 
@@ -28,7 +31,6 @@ public class CommandFactory {
         myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE
                                                        + "languages/" + language);
         myModel = model;
-
     }
 
     /**
@@ -49,6 +51,13 @@ public class CommandFactory {
             }
         }
         return false;
+    }
+
+    private boolean checkVar (String type) {
+        if (type.startsWith(":")) {
+            return true;
+        }
+        else return false;
     }
 
     /**
@@ -93,6 +102,10 @@ public class CommandFactory {
         }
 
         else {
+            if (checkVar(type)) {
+                Command varCommand = new Variable(type);
+                return varCommand;
+            }
             try {
                 Double.parseDouble(type);
                 return new ConstantCommand(type);
@@ -105,5 +118,4 @@ public class CommandFactory {
         return new NullCommand();
 
     }
-
 }

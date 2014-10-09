@@ -1,5 +1,6 @@
 package frontEnd;
 
+import java.io.File;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -15,10 +16,14 @@ import backEnd.Controller;
 
 public class TurtleCanvas extends Group implements Observer {
 	
+	public double boundingWidth, boundingHeight;
+	
 	private DoubleProperty myWidth, myHeight;
+	private double PADDING = 25;
 	private Point2D turtleLocation;
 	private Color penColor;
 	Rectangle myBackground;
+	Group myGridLines;
 	ImageView turtleView;
 
 	public TurtleCanvas(double width, double height, Controller controller) {
@@ -26,18 +31,24 @@ public class TurtleCanvas extends Group implements Observer {
 		
 		myWidth = new SimpleDoubleProperty(3.*width/4.);
 		myHeight = new SimpleDoubleProperty(3.*height/4.);
+				
+		boundingWidth = myWidth.get() - 2*PADDING;
+		boundingHeight = myHeight.get() - 2*PADDING;
+		
 		penColor = Color.BLACK;
 		
 		addBackground();
+		addGridLines();
 		addTurtle();
 	}
 	
 	public void setTurtleX(double x) {
-		turtleView.setX(x - turtleView.getImage().getWidth()/2);
+		
+		turtleView.setX(x - turtleView.getImage().getWidth()/2 + myWidth.doubleValue()/2);
 	}
 	
 	public void setTurtleY(double y) {
-		turtleView.setY(y - turtleView.getImage().getWidth()/2);
+		turtleView.setY(y - turtleView.getImage().getWidth()/2 + myHeight.doubleValue()/2);
 	}
 	
 	public void changeBackgroundColor(Color c) {
@@ -47,23 +58,41 @@ public class TurtleCanvas extends Group implements Observer {
 	public void changePenColor(Color c) {
 		penColor = c;
 	}
+	
+	public void changeTurtleImage(File f) {
+		turtleView.setImage(new Image("file:"+f.getAbsolutePath()));
+	}
+	
+	public void toggleGridLines() {
+		myGridLines.setVisible(!myGridLines.isVisible());
+	}
 
 	private void addBackground() {
+		
+		Rectangle container = new Rectangle();
+		container.setWidth(myWidth.doubleValue());
+		container.setHeight(myHeight.doubleValue());
+		container.setFill(Color.WHITE);
+		container.setStroke(Color.BLACK);
+		container.setX(0);
+		container.setY(0);
+		
 		myBackground = new Rectangle();
-		myBackground.setWidth(myWidth.doubleValue());
-		myBackground.setHeight(myHeight.doubleValue());
+		myBackground.setWidth(boundingWidth);
+		myBackground.setHeight(boundingHeight);
 		myBackground.setFill(Color.WHITE);
 		myBackground.setStroke(Color.BLACK);
-		myBackground.setX(0);
-		myBackground.setY(0);
+		myBackground.setX(PADDING);
+		myBackground.setY(PADDING);
 		
-		getChildren().add(myBackground);
+		getChildren().addAll(container, myBackground);
 	}
 	
 	private void addTurtle() {
 		turtleView = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
 		turtleView.setX(myWidth.doubleValue()/2 - turtleView.getImage().getWidth()/2);
 		turtleView.setY(myHeight.doubleValue()/2 - turtleView.getImage().getHeight()/2);
+		
 		getChildren().add(turtleView);
 	}
 
@@ -75,6 +104,23 @@ public class TurtleCanvas extends Group implements Observer {
 			setTurtleY(turtleLocation.getY());
 		}
 		
+	}
+	
+	private void addGridLines() {
+		
+		myGridLines = new Group();
+		for (int row = 0; row < 20; row++) {
+			for (int col = 0; col < 20; col++) {
+				Rectangle rect = new Rectangle(boundingWidth/20., boundingHeight/20.);
+				rect.setTranslateX(PADDING + rect.getWidth()*col);
+				rect.setTranslateY(PADDING + rect.getHeight()*row);
+				rect.setStroke(Color.LIGHTGRAY);
+				rect.setStrokeWidth(.4);
+				rect.setFill(null);
+				myGridLines.getChildren().add(rect);
+			}
+		}
+		getChildren().add(myGridLines);
 	}
 
 }

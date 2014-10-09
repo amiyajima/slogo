@@ -1,5 +1,7 @@
 package backEnd;
 
+import java.io.File;
+
 import javafx.scene.paint.Color;
 import frontEnd.View;
 
@@ -22,6 +24,18 @@ public class Controller {
 	
 	public void changeBackgroundColor(Color c) {
 		myView.myCanvas.changeBackgroundColor(c);
+	}
+	
+	public void changePenColor(Color c) {
+		myView.myCanvas.changePenColor(c);
+	}
+	
+	public void changeTurtleImage(File f) {
+		myView.myCanvas.changeTurtleImage(f);
+	}
+	
+	public void toggleGridLines() {
+		myView.myCanvas.toggleGridLines();
 	}
 	
 	/*

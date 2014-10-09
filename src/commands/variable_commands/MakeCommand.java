@@ -6,17 +6,17 @@ public class MakeCommand extends VariableCommand {
     
     public MakeCommand () {
         super();
-        setNumChildren(2);
+        setNumChildren(1);
         //how do we specify that children should be varcommand and constant?
     }
 
     @Override
     public Double execute () {
-        return getMyChildren().get(0).execute() + getMyChildren().get(1).execute();
+        return getMyChildren().get(0).execute();
     }
 
     @Override
     public String toString () {
-        return "create var" + getMyChildren().get(0).toString() + " = " + getMyChildren().get(1).execute();
+        return "create var " + getMyChildren().get(0).toString() + " = " + getMyChildren().get(0).execute();
     }
 }

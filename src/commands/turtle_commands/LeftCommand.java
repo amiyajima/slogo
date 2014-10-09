@@ -13,14 +13,14 @@ public class LeftCommand extends TurtleCommand {
     @Override
     public Double execute () {
         double value = getMyChildren().get(0).execute();
-        setValue(value * (-1));
+        setValue(value);
         executeTurtleCommand(getMyTurtle()); 
         return value;
     }
 
     @Override
     public void executeTurtleCommand (AbstractTurtle t) {
-       t.turnTurtle(getValue());
+       t.turnTurtle(-getValue());
     }
 
     @Override
