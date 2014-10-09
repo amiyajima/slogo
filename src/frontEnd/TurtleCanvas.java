@@ -1,5 +1,6 @@
 package frontEnd;
 
+import java.io.File;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -46,6 +47,10 @@ public class TurtleCanvas extends Group implements Observer {
 	
 	public void changePenColor(Color c) {
 		penColor = c;
+	}
+	
+	public void changeTurtleImage(File f) {
+		turtleView.setImage(new Image("file:"+f.getAbsolutePath()));
 	}
 
 	private void addBackground() {
