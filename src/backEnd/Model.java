@@ -39,7 +39,6 @@ public class Model {
         }
 
         List<Command> rootCommands = myParser.parseScript(script);
-        System.out.println(rootCommands);
         Queue<Command> executables = myScriptManager.compileScript(rootCommands);
 
         return 0;

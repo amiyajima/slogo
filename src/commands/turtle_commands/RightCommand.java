@@ -3,9 +3,9 @@ package commands.turtle_commands;
 import backEnd.AbstractTurtle;
 import commands.TurtleCommand;
 
-public class LeftCommand extends TurtleCommand {
+public class RightCommand extends TurtleCommand {
 
-    public LeftCommand() {
+    public RightCommand() {
         super();
         setNumChildren(1);
     }
@@ -20,12 +20,12 @@ public class LeftCommand extends TurtleCommand {
 
     @Override
     public void executeTurtleCommand (AbstractTurtle t) {
-       t.turnTurtle(-getValue());
+       t.turnTurtle(getValue());
     }
 
     @Override
     public String toString () {
-        return "Left: " + getMyChildren().get(0).execute();
+        return "Right: " + getMyChildren().get(0).execute();
     }
 
 }

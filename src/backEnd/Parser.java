@@ -1,13 +1,15 @@
 package backEnd;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
-
 import commands.Command;
 import commands.CommandFactory;
 import commands.ConstantCommand;
+import commands.variable_commands.MakeCommand;
+import commands.variable_commands.Variable;
 import exceptions.*;
 
 
@@ -18,11 +20,12 @@ class Parser {
     private String myString;
     private CommandFactory myFactory;
     private StringTokenizer myCommands;
-    private Map<String, Command> myVarMap;
+    private Map<String, Command> myVarsMap;
     private Model myModel;
 
     Parser (Model model) {
         myModel = model;
+        myVarsMap = new HashMap<String, Command>();
     }
 
     /**
@@ -64,7 +67,8 @@ class Parser {
         myCommands = new StringTokenizer(script);
 
         while (myCommands.hasMoreTokens()) {
-            myRoots.add(makeTree(myCommands.nextToken()));
+            Command createdCommand = makeTree(myCommands.nextToken());
+            myRoots.add(createdCommand);
             System.out.println(myRoots);
         }
         return myRoots;
@@ -74,16 +78,23 @@ class Parser {
      * Creates commands from strings and inserts them as children of existing commands
      * Recursive method, returns root of the tree
      * 
-     * @param command
+     * @param commandName
      * @return
      * @throws RuntimeException
      */
-    Command makeTree (String command) throws RuntimeException {
-
-        //System.out.println(command);
-        Command c = myFactory.buildCommand(command);
+    Command makeTree (String commandName) throws RuntimeException {
+        if (myVarsMap.keySet().contains(commandName)) {
+            System.out.println("variable recognized");
+            return myVarsMap.get(commandName);
+        }
+        System.out.println(commandName);
+        Command c = myFactory.buildCommand(commandName);
         if (c instanceof ConstantCommand) { return c; }
-        //System.out.println(c.getNumChildren());
+        if (c instanceof Variable) {
+            myVarsMap.put(commandName, c);
+            c.addChild(makeTree(myCommands.nextToken()));
+            System.out.println("vars map " + myVarsMap);
+        }
         while (c.getNumChildrenNeeded() > 0) {
             c.addChild(makeTree(myCommands.nextToken()));
         }
