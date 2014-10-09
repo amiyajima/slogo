@@ -1,5 +1,7 @@
 package panels;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextArea;
@@ -9,7 +11,7 @@ import backEnd.Controller;
 
 class ScriptPanel extends Panel {
 
-	ScriptPanel(BorderPane borderPane, Controller controller) {
+	ScriptPanel(BorderPane borderPane, Controller controller) throws Exception {
 		
 		super(borderPane, controller);
 		
@@ -29,7 +31,21 @@ class ScriptPanel extends Panel {
 		textArea.setMinHeight(30);
 		textArea.setMinHeight(30);
 		
-		runButton.setOnAction(event -> controller.runScript(textArea.getText()));
+		
+		runButton.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					controller.runScript(textArea.getText());
+				} catch (Exception e) {
+					// TODO Add Error Handling
+					e.printStackTrace();
+				}
+				
+			}
+			
+		});
 		
 		hbox.getChildren().addAll(textArea, runButton);
 		

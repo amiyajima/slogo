@@ -1,6 +1,8 @@
 package frontEnd;
 
 //import javafx.geometry.Pos;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
@@ -16,11 +18,21 @@ class ScriptPanel extends Pane {
         TextArea textArea = new TextArea("Enter commands here");
         Button runButton = new Button("RUN");
         textArea.setPrefSize(3*borderPane.getPrefWidth()/4, borderPane.getPrefHeight()/5);
-//      textArea.setAlignment(Pos.TOP_LEFT);
         runButton.setPrefSize(borderPane.getPrefWidth()/4, borderPane.getPrefHeight()/5);
         
-        runButton.setOnAction(event -> controller.runScript(textArea.getText()));
-//      textField.setOnAction(event -> controller.runScript(textField.getText()));
+        runButton.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					controller.runScript(textArea.getText());
+				} catch (Exception e) {
+					// TODO Implement more error handling
+					System.out.println(e.toString());
+				}
+			}
+        	
+        });
         
         hbox.getChildren().addAll(textArea, runButton);
         

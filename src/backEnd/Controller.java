@@ -14,7 +14,7 @@ public class Controller {
 		myModel.setTurtleObserver(view);
 	}
 	
-	public void runScript(String script) {
+	public void runScript(String script) throws Exception {
 		if (script != null) {
 			myModel.runScript(script);
 		}
@@ -22,6 +22,13 @@ public class Controller {
 	
 	public void changeBackgroundColor(Color c) {
 		myView.myCanvas.changeBackgroundColor(c);
+	}
+	
+	/*
+	 * TEMPORARY - For view.canvas testing
+	 */
+	public void changeXPos(double x) {
+		myView.myCanvas.setTurtleX(x);
 	}
 	
 }

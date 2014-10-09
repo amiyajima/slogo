@@ -65,8 +65,10 @@ class Parser {
         myFactory = new CommandFactory("English", myModel);
         myCommands = new StringTokenizer(script);
 
-        myRoots.add(makeTree(myCommands.nextToken()));
-
+        while (myCommands.hasMoreTokens()) {
+            myRoots.add(makeTree(myCommands.nextToken()));
+            System.out.println(myRoots);
+        }
         return myRoots;
     }
 
@@ -86,7 +88,6 @@ class Parser {
             if (!myCommands.hasMoreTokens()) { throw new SLogoException("too many tokens"); }
             c.addChild(makeTree(myCommands.nextToken()));
         }
-        if (myCommands.hasMoreTokens()) { throw new SLogoException("missing parameters"); }
         return c;
     }
 }

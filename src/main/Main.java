@@ -21,7 +21,6 @@ public class Main extends Application {
 		
 		view.setupGui(stage);	
 		stage.show();
-		System.out.println("beginning simulation");
 	}
 
 }

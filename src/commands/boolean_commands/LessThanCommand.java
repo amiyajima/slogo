@@ -16,7 +16,7 @@ public class LessThanCommand extends BooleanCommand {
 
     @Override
     public String toString () {
-        return null;
+        return "less than result: " + execute();
     }
 
 }

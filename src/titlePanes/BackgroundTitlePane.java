@@ -22,7 +22,7 @@ class BackgroundTitlePane extends TitledPane {
 		
 	}
 	
-	Node makeBackgroundColorBox(Controller contr) {
+	private Node makeBackgroundColorBox(Controller contr) {
 		VBox vbox = new VBox();
 		
 		Label label = new Label("Background color: ");

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Queue;
 
 import commands.Command;
+
 import frontEnd.View;
 
 public class Model {
@@ -31,7 +32,7 @@ public class Model {
      *         types of syntax errors.
      * 
      */
-    int runScript (String script) {
+    int runScript (String script) throws Exception {
         int errorStatus = myParser.checkScript(script);
         if (errorStatus != 0) {
             return errorStatus;

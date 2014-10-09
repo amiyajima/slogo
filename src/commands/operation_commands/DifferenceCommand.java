@@ -17,7 +17,7 @@ public class DifferenceCommand extends OperationCommand {
 
     @Override
     public String toString () {
-        return null;
+        return "dif: " + getMyChildren().get(0).execute() + " " + getMyChildren().get(1).execute();
     }
 
 }

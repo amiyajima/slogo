@@ -2,7 +2,6 @@ package commands;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import backEnd.Model;
 
 
@@ -14,6 +13,7 @@ public abstract class Command {
 
     public Command () {
         myChildren = new ArrayList<>();
+        System.out.println( this.getClass().getName() +" created");
     }
 
     public abstract Double execute ();

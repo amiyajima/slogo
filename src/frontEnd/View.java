@@ -42,9 +42,9 @@ public class View implements Observer {
 		
 		stage.setTitle("SLogo");
 		setupBorderPane();
+		setupCanvas();
 		setupMenuBar();
 		setupGuiElements();	
-		setupCanvas();
 		
 		Scene scene = new Scene(myBorderPane);
 		stage.setScene(scene);
@@ -56,7 +56,7 @@ public class View implements Observer {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		
+		myCanvas.update(o, arg);
 	}
 	
 	private void setupMenuBar() {
