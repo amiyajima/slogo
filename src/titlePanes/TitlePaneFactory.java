@@ -18,6 +18,7 @@ public class TitlePaneFactory {
 		implementedTitlePanes = new HashMap<String, Class<?>>();
 		implementTitlePane("BackgroundTitlePane", BackgroundTitlePane.class);
 		implementTitlePane("HistoryTitlePane", HistoryTitlePane.class);
+		implementTitlePane("ControlTitlePane", ControlTitlePane.class);
 	}
 
 	void implementTitlePane(String type, Class<?> panelClass) {

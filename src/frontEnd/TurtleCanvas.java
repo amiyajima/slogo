@@ -5,20 +5,19 @@ import java.util.Observer;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
-import javax.vecmath.Point2d;
-
 import backEnd.Controller;
 
 public class TurtleCanvas extends Group implements Observer {
 	
 	private DoubleProperty myWidth, myHeight;
-	private Point2d turtleLocation;
+	private Point2D turtleLocation;
+	private Color penColor;
 	Rectangle myBackground;
 	ImageView turtleView;
 
@@ -26,7 +25,8 @@ public class TurtleCanvas extends Group implements Observer {
 		super();
 		
 		myWidth = new SimpleDoubleProperty(3.*width/4.);
-		myHeight = new SimpleDoubleProperty(4.*height/5.);
+		myHeight = new SimpleDoubleProperty(3.*height/4.);
+		penColor = Color.BLACK;
 		
 		addBackground();
 		addTurtle();
@@ -43,6 +43,10 @@ public class TurtleCanvas extends Group implements Observer {
 	public void changeBackgroundColor(Color c) {
 		myBackground.setFill(c);
 	}
+	
+	public void changePenColor(Color c) {
+		penColor = c;
+	}
 
 	private void addBackground() {
 		myBackground = new Rectangle();
@@ -50,6 +54,8 @@ public class TurtleCanvas extends Group implements Observer {
 		myBackground.setHeight(myHeight.doubleValue());
 		myBackground.setFill(Color.WHITE);
 		myBackground.setStroke(Color.BLACK);
+		myBackground.setX(0);
+		myBackground.setY(0);
 		
 		getChildren().add(myBackground);
 	}
@@ -63,10 +69,10 @@ public class TurtleCanvas extends Group implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if (arg instanceof Point2d) {
-			turtleLocation = (Point2d)arg;
-			setTurtleX(turtleLocation.x);
-			setTurtleY(turtleLocation.y);
+		if (arg instanceof Point2D) {
+			turtleLocation = (Point2D)arg;
+			setTurtleX(turtleLocation.getX());
+			setTurtleY(turtleLocation.getY());
 		}
 		
 	}

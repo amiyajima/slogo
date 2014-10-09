@@ -1,12 +1,10 @@
 package backEnd;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.StringTokenizer;
+
 import commands.Command;
 import commands.CommandFactory;
 import commands.ConstantCommand;
@@ -81,11 +79,12 @@ class Parser {
      * @throws RuntimeException
      */
     Command makeTree (String command) throws RuntimeException {
+
+        //System.out.println(command);
         Command c = myFactory.buildCommand(command);
         if (c instanceof ConstantCommand) { return c; }
-        System.out.println(c.getNumChildrenNeeded());
+        //System.out.println(c.getNumChildren());
         while (c.getNumChildrenNeeded() > 0) {
-            if (!myCommands.hasMoreTokens()) { throw new SLogoException("too many tokens"); }
             c.addChild(makeTree(myCommands.nextToken()));
         }
         return c;

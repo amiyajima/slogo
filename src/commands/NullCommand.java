@@ -2,6 +2,7 @@ package commands;
 
 import backEnd.Model;
 
+
 public class NullCommand extends Command {
 
     @Override
@@ -19,7 +20,11 @@ public class NullCommand extends Command {
     @Override
     public void initializeCommand (Model m) {
         // TODO Auto-generated method stub
-        
+
+    }
+
+    public int getNumChildrenNeeded () {
+        return 0;
     }
 
 }

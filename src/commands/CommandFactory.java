@@ -1,7 +1,6 @@
 package commands;
 
 import java.util.ResourceBundle;
-
 import backEnd.Model;
 
 
@@ -53,6 +52,17 @@ public class CommandFactory {
     }
 
     /**
+     * PUBLIC FOR TESTING PURPOSES
+     * make all letters lower case so input is not case sensative
+     * 
+     * @param type
+     * @return
+     */
+    public String checkCaps (String type) {
+        return type.toLowerCase();
+    }
+
+    /**
      * If a command is valid, create an instance of that command and return it.
      * If it is a constant, return a constant command instead. If it is invalid, return
      * an error
@@ -61,11 +71,12 @@ public class CommandFactory {
      * @return Either the type of command requested, or an exception
      */
     public Command buildCommand (String type) {
+        type = checkCaps(type);
         if (checkLanguage(type)) {
             try {
                 Command newCommand = (Command) Class.forName
                         (myCommandResources.getString(classKey)).newInstance();
-                if(newCommand instanceof TurtleCommand) {
+                if (newCommand instanceof TurtleCommand) {
                     newCommand.initializeCommand(myModel);
                 }
                 return newCommand;
@@ -88,7 +99,7 @@ public class CommandFactory {
 
             }
             catch (NumberFormatException e2) {
-                return null;
+                return new NullCommand();
             }
         }
         return new NullCommand();

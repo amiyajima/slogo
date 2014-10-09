@@ -44,7 +44,7 @@ public class View implements Observer {
 		setupBorderPane();
 		setupCanvas();
 		setupMenuBar();
-		setupGuiElements();	
+		setupGuiElements();
 		
 		Scene scene = new Scene(myBorderPane);
 		stage.setScene(scene);
