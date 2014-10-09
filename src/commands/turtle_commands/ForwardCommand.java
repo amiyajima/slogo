@@ -26,7 +26,7 @@ public class ForwardCommand extends TurtleCommand {
 
     @Override
     public void executeTurtleCommand (AbstractTurtle t) {
-        t.moveTurtle(getValue());
+        t.moveTurtle(-getValue());
     }
 
 
