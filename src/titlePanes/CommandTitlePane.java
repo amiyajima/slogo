@@ -14,10 +14,10 @@ class CommandTitlePane extends TitledPane {
 		setText("Commands");
 
 		VBox root = new VBox();
-		root.setSpacing(20);
+		root.setSpacing(5);
 
-		Label forward = new Label("+ forward/fd <pixels>");
-		forward.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
+		Label forward = new Label("+ FORWARD/FD <pixels>");
+		forward.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
 		Tooltip forwardTip = new Tooltip();
 
 		forwardTip
@@ -26,7 +26,16 @@ class CommandTitlePane extends TitledPane {
 
 		forward.setTooltip(forwardTip);
 
-		root.getChildren().addAll(forward);
+		Label back = new Label("+ BACK/BK <pixels>");
+		back.setFont(Font.font("Verdana", FontWeight.BOLD, 10));
+		Tooltip backTip = new Tooltip();
+
+		backTip.setText("moves turtle backward in its current heading by pixels distance"
+				+ '\n' + "returns the value of pixels");
+
+		back.setTooltip(backTip);
+
+		root.getChildren().addAll(forward, back);
 
 		setContent(root);
 	}
