@@ -2,12 +2,13 @@ package commands.variable_commands;
 
 import commands.VariableCommand;
 
+
 public class MakeCommand extends VariableCommand {
-    
+
     public MakeCommand () {
         super();
         setNumChildren(1);
-        //how do we specify that children should be varcommand and constant?
+        // how do we specify that children should be varcommand and constant?
     }
 
     @Override
@@ -17,6 +18,7 @@ public class MakeCommand extends VariableCommand {
 
     @Override
     public String toString () {
-        return "create var " + getMyChildren().get(0).toString() + " = " + getMyChildren().get(0).execute();
+        return "create var " + getMyChildren().get(0).toString() + " = " +
+               getMyChildren().get(0).execute();
     }
 }
