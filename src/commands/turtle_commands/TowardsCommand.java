@@ -1,5 +1,6 @@
 package commands.turtle_commands;
 
+import javafx.geometry.Point2D;
 import backEnd.AbstractTurtle;
 import commands.TurtleCommand;
 
@@ -19,12 +20,13 @@ public class TowardsCommand extends TurtleCommand {
 
     @Override
     public void executeTurtleCommand (AbstractTurtle t) {
-       setValue(t.goTo(getMyChildren().get(0).execute(), getMyChildren().get(1).execute()));
+       setValue(t.turnTowards(getMyChildren().get(0).execute(), getMyChildren().get(1).execute()));
     }
 
     @Override
     public String toString () {
-        return "Moved: " + getValue();
+        return "Turned: " + getValue();
     }
+    
 
 }

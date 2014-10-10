@@ -12,13 +12,12 @@ public abstract class AbstractTurtle extends Observable {
     private boolean isPenDown;
     private Point2D myPosition;
     protected DoubleProperty myOrientation;
-    private double canvasWidth, canvasHeight;
-    
+    private double myCanvasWidth, myCanvasHeight;
+
     public static final double INITIAL_ORIENTATION = 0;
-	
+
     private Point2D myHome;
-    private double myCanvasWidth;
-    private double myCanvasHeight;
+
     private boolean isVisible;
 
     public AbstractTurtle (double canvasWidth, double canvasHeight) {
@@ -30,12 +29,16 @@ public abstract class AbstractTurtle extends Observable {
         isVisible = true;
         isPenDown = true;
     }
-    
+
     public abstract void bindProperties(View view);
 
     public abstract void moveTurtle (double distance);
 
     public abstract void turnTurtle (double change);
+
+    public Double getX() {
+        return myPosition.getX() - myCanvasWidth /2;
+    }
     
     public Double goHome() {
         double distance = myPosition.distance(myHome);
@@ -44,7 +47,7 @@ public abstract class AbstractTurtle extends Observable {
         notifyObservers(myPosition);
         return distance;
     }
-    
+
     public double goTo(double x, double y) {
         Point2D newPosition = new Point2D(myHome.getX() + x, myHome.getY() + y);
         double distance = myPosition.distance(newPosition);
@@ -53,11 +56,11 @@ public abstract class AbstractTurtle extends Observable {
         notifyObservers(myPosition);
         return distance;
     }
-//    
-//    public double turnTowards(double x, double y) {
-//        double deltaX = myPosition.getX() -  
-//    }
-    
+    //    
+    //    public double turnTowards(double x, double y) {
+    //        double deltaX = myPosition.getX() -  
+    //    }
+
     public void togglePen (double d) {
         if(d==1) {
             isPenDown = true;
@@ -68,7 +71,7 @@ public abstract class AbstractTurtle extends Observable {
         setChanged();
         notifyObservers(isPenDown);
     }
-    
+
     public void toggleVisibility(double d) {
         if(d ==1 ) {
             isVisible = true;
@@ -89,23 +92,32 @@ public abstract class AbstractTurtle extends Observable {
         setChanged();
         notifyObservers(myPosition);
     }
-    
+
     //TODO May not need this
     public double getOrientation() {
         return myOrientation.get();
     }
-    
+
     public void setOrientation(Double newOrientation) {
         myOrientation.set(newOrientation);
         setChanged();
         notifyObservers(myOrientation);
     }
-    
-    protected double getCanvasWidth() {
-        return canvasWidth;
+
+    protected boolean isInBounds(double x, double y) {
+        Point2D currentPosition = myPosition;
+        return !(currentPosition.getX() -x<0 || currentPosition.getX() +x > myCanvasWidth
+                || currentPosition.getY() -y <0 || currentPosition.getY() + y > myCanvasHeight);
     }
-    
-    protected double getCanvasHeight() {
-        return canvasHeight;
+
+    public double turnTowards(double x, double y) {
+        
+        double angle1 = Math.toDegrees(Math.atan2(myPosition.getY() - myHome.getY(), myPosition.getX() - myHome.getX()));
+        double angle2 = Math.toDegrees(Math.atan2(((y + myHome.getY()) - myHome.getY()), (x + myHome.getX()) - myHome.getX()));
+        
+        double angle =  angle2 - angle1; 
+        setOrientation(angle2);
+        System.out.println(angle);
+        return angle;
     }
 }

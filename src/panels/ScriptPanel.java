@@ -17,7 +17,8 @@ class ScriptPanel extends Panel {
 		
 		HBox hbox = new HBox();
 		
-		TextArea textArea = new TextArea("Enter commands here");
+		TextArea textArea = new TextArea();
+		textArea.setPromptText("Enter commands here");
 		Button runButton = new Button("RUN");
 		
 		textArea.setPrefSize(3*borderPane.getPrefWidth()/4, borderPane.getPrefHeight()/5);
@@ -38,6 +39,7 @@ class ScriptPanel extends Panel {
 			public void handle(ActionEvent event) {
 				try {
 					controller.runScript(textArea.getText());
+					textArea.clear();
 				} catch (Exception e) {
 					// TODO Add Error Handling
 					e.printStackTrace();
