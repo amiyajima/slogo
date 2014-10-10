@@ -36,10 +36,14 @@ public abstract class AbstractTurtle extends Observable {
 
     public abstract void turnTurtle (double change);
 
-    public Double getX() {
-        return myPosition.getX() - myCanvasWidth /2;
+    public Double getMyX() {
+        return myPosition.getX() - myCanvasWidth / 2;
     }
-    
+
+    public Double getMyY() {
+        return -(myPosition.getY() - myCanvasHeight / 2);
+    }
+
     public Double goHome() {
         double distance = myPosition.distance(myHome);
         myPosition = new Point2D(myHome.getX(), myHome.getY());
@@ -56,10 +60,6 @@ public abstract class AbstractTurtle extends Observable {
         notifyObservers(myPosition);
         return distance;
     }
-    //    
-    //    public double turnTowards(double x, double y) {
-    //        double deltaX = myPosition.getX() -  
-    //    }
 
     public void togglePen (double d) {
         if(d==1) {
@@ -93,7 +93,6 @@ public abstract class AbstractTurtle extends Observable {
         notifyObservers(myPosition);
     }
 
-    //TODO May not need this
     public double getOrientation() {
         return myOrientation.get();
     }
@@ -106,18 +105,28 @@ public abstract class AbstractTurtle extends Observable {
 
     protected boolean isInBounds(double x, double y) {
         Point2D currentPosition = myPosition;
+        System.out.println(myCanvasHeight);
+        System.out.println(currentPosition.getY()-y);
         return !(currentPosition.getX() -x<0 || currentPosition.getX() +x > myCanvasWidth
-                || currentPosition.getY() -y <0 || currentPosition.getY() + y > myCanvasHeight);
+                || currentPosition.getY()-y < 0 || currentPosition.getY() + y > myCanvasHeight);
     }
 
     public double turnTowards(double x, double y) {
-        
+
         double angle1 = Math.toDegrees(Math.atan2(myPosition.getY() - myHome.getY(), myPosition.getX() - myHome.getX()));
         double angle2 = Math.toDegrees(Math.atan2(((y + myHome.getY()) - myHome.getY()), (x + myHome.getX()) - myHome.getX()));
-        
+
         double angle =  angle2 - angle1; 
         setOrientation(angle2);
         System.out.println(angle);
         return angle;
+    }
+    
+    public boolean isPenDown() {
+        return isPenDown;
+    }
+    
+    public boolean isVisible() {
+        return isVisible;
     }
 }
