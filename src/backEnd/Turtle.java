@@ -15,6 +15,7 @@ public class Turtle extends AbstractTurtle {
     @Override
 	public void bindProperties(View view) {
 		myOrientation.bindBidirectional(view.myCanvas.turtleOrientation);
+		isPenDown.bindBidirectional(view.myCanvas.isPenDown);
 	}
     
     @Override
