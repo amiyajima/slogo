@@ -1,14 +1,18 @@
 package commands.turtle_commands;
 
+import java.util.Map;
 import backEnd.AbstractTurtle;
+import commands.Command;
 import commands.TurtleCommand;
 
 
 public class ForwardCommand extends TurtleCommand {
 
-    public ForwardCommand () {
-        super();
-        setNumChildren(1);
+    public static final int NUM_CHILDREN = 1;
+
+    public ForwardCommand (Map<String, Double> variableMap) {
+        super(variableMap);
+        setNumChildren(NUM_CHILDREN);
     }
 
     @Override
@@ -22,7 +26,7 @@ public class ForwardCommand extends TurtleCommand {
 
     @Override
     public String toString () {
-        return "Forward: " + execute();
+        return "Forward: " + getMyChildren();
     }
 
     @Override

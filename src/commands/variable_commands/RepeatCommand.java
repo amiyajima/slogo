@@ -1,5 +1,6 @@
 package commands.variable_commands;
 
+import java.util.Map;
 import backEnd.Model;
 import commands.Command;
 
@@ -7,7 +8,8 @@ import commands.Command;
 public class RepeatCommand extends Command {
     public static final int NUM_CHILDREN = 2;
 
-    public RepeatCommand () {
+    public RepeatCommand (Map<String, Double> variableMap) {
+        super(variableMap);
         setNumChildren(NUM_CHILDREN);
     }
 

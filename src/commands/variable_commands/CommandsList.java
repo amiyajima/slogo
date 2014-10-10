@@ -2,11 +2,16 @@ package commands.variable_commands;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import backEnd.Model;
 import commands.Command;
 
 
 public class CommandsList extends Command {
+
+    public CommandsList (Map<String, Double> variableMap) {
+        super(variableMap);
+    }
 
     /**
      * Executes every command in commandsList.
@@ -30,6 +35,10 @@ public class CommandsList extends Command {
     public void initializeCommand (Model m) {
         // TODO Auto-generated method stub
 
+    }
+
+    public Command getChild (int index) {
+        return getMyChildren().get(index);
     }
 
 }

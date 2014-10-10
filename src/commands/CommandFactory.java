@@ -1,5 +1,7 @@
 package commands;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -21,16 +23,18 @@ public class CommandFactory {
     private ResourceBundle myLanguageResources;
     private String classKey;
     private Model myModel;
+    private Map<String, Double> myVariableMap;
 
     /**
      * Initializes a command factory
      * 
      * @param language The language commands are being put into the text field
      */
-    public CommandFactory (String language, Model model) {
+    public CommandFactory (String language, Model model, Map<String, Double> myVarsMap) {
         myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE
                                                        + "languages/" + language);
         myModel = model;
+        myVariableMap = myVarsMap;
     }
 
     /**
@@ -83,8 +87,32 @@ public class CommandFactory {
         type = checkCaps(type);
         if (checkLanguage(type)) {
             try {
-                Command newCommand = (Command) Class.forName
-                        (myCommandResources.getString(classKey)).newInstance();
+                Class newCommandClass = Class.forName
+                        (myCommandResources.getString(classKey));
+                Constructor con = null;
+                try {
+                    con = newCommandClass.getConstructor(Map.class);
+                }
+                catch (NoSuchMethodException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                catch (SecurityException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                Command newCommand = null;
+                try {
+                    newCommand = (Command) con.newInstance(myVariableMap);
+                }
+                catch (IllegalArgumentException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                catch (InvocationTargetException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 if (newCommand instanceof TurtleCommand) {
                     newCommand.initializeCommand(myModel);
                 }
@@ -103,19 +131,19 @@ public class CommandFactory {
 
         else {
             if (checkVar(type)) {
-                Command varCommand = new Variable(type);
+                Command varCommand = new Variable(myVariableMap, type);
                 return varCommand;
             }
             try {
                 Double.parseDouble(type);
-                return new ConstantCommand(type);
+                return new ConstantCommand(myVariableMap, type);
 
             }
             catch (NumberFormatException e2) {
-                return new NullCommand();
+                return new NullCommand(myVariableMap);
             }
         }
-        return new NullCommand();
+        return new NullCommand(myVariableMap);
 
     }
 }

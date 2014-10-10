@@ -33,7 +33,7 @@ public class Model {
      *        The input string of syntax from the text-field
      * 
      * @return Returns 0 if the input is valid. Returns 1 if there is a syntax
-     *         error. Can be extended to return different integers for different
+     *         error. Can be extended to return different Doubles for different
      *         types of syntax errors.
      * 
      */
