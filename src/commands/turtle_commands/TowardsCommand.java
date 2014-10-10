@@ -3,28 +3,28 @@ package commands.turtle_commands;
 import backEnd.AbstractTurtle;
 import commands.TurtleCommand;
 
-public class RightCommand extends TurtleCommand {
+public class TowardsCommand extends TurtleCommand {
+    
+    public static final int NUM_CHILDREN = 2;
 
-    public RightCommand() {
-        setNumChildren(1);
+    public TowardsCommand() {
+        setNumChildren(NUM_CHILDREN);
     }
 
     @Override
     public double execute () {
-        double value = getMyChildren().get(0).execute();
-        setValue(value);
         executeTurtleCommand(getMyTurtle()); 
-        return value;
+        return getValue();
     }
 
     @Override
     public void executeTurtleCommand (AbstractTurtle t) {
-       t.turnTurtle(getValue());
+       setValue(t.goTo(getMyChildren().get(0).execute(), getMyChildren().get(1).execute()));
     }
 
     @Override
     public String toString () {
-        return "Right: " + getMyChildren().get(0).execute();
+        return "Moved: " + getValue();
     }
 
 }
