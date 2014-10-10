@@ -7,9 +7,8 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Point2D;
 import frontEnd.View;
 
-
 public abstract class AbstractTurtle extends Observable {
-    
+
     private boolean isPenDown;
     private Point2D myPosition;
     protected DoubleProperty myOrientation;
@@ -30,27 +29,35 @@ public abstract class AbstractTurtle extends Observable {
 	public abstract void bindProperties(View view);
 	
     public abstract void moveTurtle (double distance);
-    
+
     public abstract void turnTurtle (double change);
-    
-    protected Point2D getPosition() {
+
+    public Point2D getPosition () {
         return myPosition;
     }
-    
-    protected void setPosition(Point2D newPosition) {
+
+    public void setPosition (Point2D newPosition) {
         myPosition = newPosition;
         setChanged();
         notifyObservers(myPosition);
     }
     
     //TODO May not need this
-    protected double getOrientation() {
+    public double getOrientation() {
         return myOrientation.get();
     }
     
-    protected void setOrientation(Double newOrientation) {
+    public void setOrientation(Double newOrientation) {
         myOrientation.set(newOrientation);
         setChanged();
         notifyObservers(myOrientation);
+    }
+    
+    protected double getCanvasWidth() {
+        return canvasWidth;
+    }
+    
+    protected double getCanvasHeight() {
+        return canvasHeight;
     }
 }
