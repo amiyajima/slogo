@@ -4,9 +4,11 @@ import java.io.File;
 import java.util.Observable;
 import java.util.Observer;
 
+import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -82,10 +84,12 @@ public class View implements Observer {
 		Menu menufile = new Menu("File");
 		Menu menuedit = new Menu("Edit");
 		Menu menuview = new Menu("View");
+		Menu menuhelp = new Menu("Help");
 
 		menuedit.getItems().add(makeImageChooserMenuItem());
+		menuhelp.getItems().add(makeCommandsPage());
 
-		menubar.getMenus().addAll(menufile, menuedit, menuview);
+		menubar.getMenus().addAll(menufile, menuedit, menuview, menuhelp);
 		myBorderPane.setTop(menubar);
 	}
 
@@ -104,7 +108,14 @@ public class View implements Observer {
 		myBorderPane.setCenter(myCanvas);
 	}
 
-	private MenuItem makeImageChooserMenuItem() {
+	private MenuItem makeCommandsPage () {
+//        MenuItem commands = new MenuItem("Possible commands");
+//        HostServices hostService = getHostServices();
+//        getHostServices().showDocument("http://www.yahoo.com");
+        return null;
+    }
+
+    private MenuItem makeImageChooserMenuItem() {
 
 		MenuItem menu = new MenuItem("Change Turtle Image");
 
