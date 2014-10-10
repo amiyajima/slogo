@@ -118,6 +118,8 @@ public class TurtleCanvas extends Group implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		
+		System.out.println("HERE!!!!!" + arg.toString());
+		
 		//TODO Change these to Properties to get their names
 		if (arg instanceof Point2D) {
 			if (isPenDown) drawLine((Point2D)arg);

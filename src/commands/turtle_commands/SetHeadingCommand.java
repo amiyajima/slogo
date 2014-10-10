@@ -10,7 +10,6 @@ public class SetHeadingCommand extends TurtleCommand {
     private double myNewOrientation;
 
     public SetHeadingCommand () {
-        super();
         setNumChildren(1);
     }
 
@@ -26,7 +25,6 @@ public class SetHeadingCommand extends TurtleCommand {
 
     @Override
     public void executeTurtleCommand (AbstractTurtle t) {
-        // TODO Auto-generated method stub
         myNewOrientation = getMyChildren().get(0).execute();
         t.setOrientation(myNewOrientation);
     }
