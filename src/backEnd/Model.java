@@ -16,7 +16,12 @@ public class Model {
     public Model () {
         myParser = new Parser(this);
         myScriptManager = new ScriptManager();
-        myTurtle = new Turtle(0, 0);
+    }
+    
+    public void setupTurtle(View view) {
+    	myTurtle = new Turtle(view.getCanvasWidth(), view.getCanvasHeight());
+    	myTurtle.addObserver(view);
+    	myTurtle.bindProperties(view);
     }
 
     /**
@@ -42,10 +47,6 @@ public class Model {
         Queue<Command> executables = myScriptManager.compileScript(rootCommands);
 
         return 0;
-    }
-    
-    public void setTurtleObserver(View view) {
-    	myTurtle.addObserver(view);
     }
     
     public AbstractTurtle getTurtle() {
