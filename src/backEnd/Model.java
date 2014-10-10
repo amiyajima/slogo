@@ -24,7 +24,7 @@ public class Model {
     public void setupTurtle(View view) {
     	myTurtle = new Turtle(view.getCanvasWidth(), view.getCanvasHeight());
     	myTurtle.addObserver(view);
-    	myTurtle.bindProperties(view);
+//    	myTurtle.bindProperties(view);
     }
 
     /**

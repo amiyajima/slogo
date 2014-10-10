@@ -1,11 +1,13 @@
 package frontEnd;
 
 import java.io.File;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
@@ -17,7 +19,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import backEnd.AbstractTurtle;
 import backEnd.Controller;
+import backEnd.Turtle;
 import drawer.Drawer;
 import drawer.SimpleDrawer;
 
@@ -27,8 +31,8 @@ public class TurtleCanvas extends Group {// implements Observer {
 	
 	private DoubleProperty myWidth, myHeight;
 	private Point2D turtleLocation;
-	public DoubleProperty turtleOrientation;
-	public BooleanProperty isPenDown;
+	private DoubleProperty turtleOrientation;
+	private BooleanProperty isPenDown;
 	private Color penColor;
 	Rectangle myBackground;
 	Group myGridLines;
@@ -51,8 +55,12 @@ public class TurtleCanvas extends Group {// implements Observer {
 		
 		addBackground();
 		addGridLines();
-		addTurtle();
-		addListeners();
+	}
+	
+	public void bindProperties(AbstractTurtle turtle) {
+		Map<String, Property> tProps = turtle.getTurtleProperties();
+		turtleOrientation.bindBidirectional((DoubleProperty)tProps.get(AbstractTurtle.ORIENTATION_STRING));
+		isPenDown.bindBidirectional((BooleanProperty)tProps.get(AbstractTurtle.PEN_STRING));
 	}
 	
 	public void setTurtleX(double x) {
@@ -116,14 +124,19 @@ public class TurtleCanvas extends Group {// implements Observer {
 		getChildren().addAll(container, myBackground);
 	}
 	
-	private void addTurtle() {
+	public void addTurtle(AbstractTurtle turtle) {
 		turtleView = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
+		
+		
 		turtleView.setX(boundingWidth/2 - turtleView.getImage().getWidth()/2);
 		turtleView.setY(boundingHeight/2 - turtleView.getImage().getHeight()/2);
 		
 		turtleLocation = new Point2D(getTurtleX(), getTurtleY());
 		turtleOrientation = new SimpleDoubleProperty(0);
 		isPenDown = new SimpleBooleanProperty(true);
+		
+		bindProperties(turtle);
+		addListeners();
 		
 		getChildren().add(turtleView);
 	}

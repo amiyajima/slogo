@@ -21,6 +21,7 @@ public class Main extends Application {
 		
 		view.setupGui(stage);	
 		model.setupTurtle(view);
+		view.setupTurtleView(model.getTurtle());
 
 		stage.show();
 	}
