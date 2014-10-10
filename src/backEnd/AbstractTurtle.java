@@ -2,14 +2,17 @@ package backEnd;
 
 import java.util.Observable;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Point2D;
 import frontEnd.View;
 
 public abstract class AbstractTurtle extends Observable {
 
-    private boolean isPenDown;
+    private static final boolean INITIAL_PEN = true;
+	protected BooleanProperty isPenDown;
     private Point2D myPosition;
     protected DoubleProperty myOrientation;
     private double myCanvasWidth, myCanvasHeight;
@@ -27,7 +30,7 @@ public abstract class AbstractTurtle extends Observable {
         myCanvasWidth = canvasWidth;
         myCanvasHeight = canvasHeight;
         isVisible = true;
-        isPenDown = true;
+        isPenDown = new SimpleBooleanProperty(INITIAL_PEN);
     }
 
     public abstract void bindProperties(View view);
@@ -63,13 +66,13 @@ public abstract class AbstractTurtle extends Observable {
 
     public void togglePen (double d) {
         if(d==1) {
-            isPenDown = true;
+        	isPenDown.set(true);
         }
         else {
-            isPenDown = false;
+            isPenDown.set(false);
         }
-        setChanged();
-        notifyObservers(isPenDown);
+//        setChanged();
+//        notifyObservers(isPenDown);
     }
 
     public void toggleVisibility(double d) {
@@ -123,7 +126,7 @@ public abstract class AbstractTurtle extends Observable {
     }
     
     public boolean isPenDown() {
-        return isPenDown;
+        return isPenDown.get();
     }
     
     public boolean isVisible() {
