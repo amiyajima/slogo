@@ -14,7 +14,7 @@ public class Model {
     private Parser myParser;
     private ScriptManager myScriptManager;
     private AbstractTurtle myTurtle;
-    public static final Dimension CANVAS_DIMENSIONS = new Dimension(657, 524);
+//    public static final Dimension CANVAS_DIMENSIONS = new Dimension(657, 524);
 
     public Model () {
         myParser = new Parser(this);
