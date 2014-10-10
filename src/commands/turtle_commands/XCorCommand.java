@@ -13,7 +13,6 @@ public class XCorCommand extends TurtleCommand {
     @Override
     public double execute () {
         setValue(getMyTurtle().getX());
-        System.out.println("hello");
         System.out.println(getValue());
         return getValue();
     }

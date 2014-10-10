@@ -12,13 +12,12 @@ public abstract class AbstractTurtle extends Observable {
     private boolean isPenDown;
     private Point2D myPosition;
     protected DoubleProperty myOrientation;
-    private double canvasWidth, canvasHeight;
+    private double myCanvasWidth, myCanvasHeight;
 
     public static final double INITIAL_ORIENTATION = 0;
 
     private Point2D myHome;
-    private double myCanvasWidth;
-    private double myCanvasHeight;
+
     private boolean isVisible;
 
     public AbstractTurtle (double canvasWidth, double canvasHeight) {
@@ -38,8 +37,7 @@ public abstract class AbstractTurtle extends Observable {
     public abstract void turnTurtle (double change);
 
     public Double getX() {
-        System.out.println(canvasWidth);
-        return myPosition.getX() - canvasWidth /2;
+        return myPosition.getX() - myCanvasWidth /2;
     }
     
     public Double goHome() {
@@ -106,12 +104,10 @@ public abstract class AbstractTurtle extends Observable {
         notifyObservers(myOrientation);
     }
 
-    protected double getCanvasWidth() {
-        return canvasWidth;
-    }
-
-    protected double getCanvasHeight() {
-        return canvasHeight;
+    protected boolean isInBounds(double x, double y) {
+        Point2D currentPosition = myPosition;
+        return !(currentPosition.getX() -x<0 || currentPosition.getX() +x > myCanvasWidth
+                || currentPosition.getY() -y <0 || currentPosition.getY() + y > myCanvasHeight);
     }
 
     public double turnTowards(double x, double y) {

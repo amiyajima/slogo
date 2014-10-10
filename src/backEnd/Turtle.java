@@ -10,11 +10,7 @@ public class Turtle extends AbstractTurtle {
         super(canvasWidth, canvasHeight);
     }
 
-    private boolean isInBounds(double x, double y) {
-        Point2D currentPosition = getPosition();
-        return !(currentPosition.getX() -x<0 || currentPosition.getX() +x > getCanvasWidth()
-                || currentPosition.getY() -y <0 || currentPosition.getY() + y > getCanvasHeight());
-    }
+
 
     @Override
 	public void bindProperties(View view) {
