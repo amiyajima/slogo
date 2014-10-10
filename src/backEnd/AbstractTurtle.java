@@ -100,8 +100,8 @@ public abstract class AbstractTurtle extends Observable {
 
     public void setOrientation(Double newOrientation) {
         myOrientation.set(newOrientation);
-        setChanged();
-        notifyObservers(myOrientation);
+//        setChanged();
+//        notifyObservers(myOrientation);
     }
 
     protected boolean isInBounds(double x, double y) {

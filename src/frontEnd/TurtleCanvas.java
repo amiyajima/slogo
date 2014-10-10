@@ -18,8 +18,8 @@ import backEnd.Controller;
 import drawer.Drawer;
 import drawer.SimpleDrawer;
 
-public class TurtleCanvas extends Group implements Observer {
-	
+public class TurtleCanvas extends Group {// implements Observer {
+//observer commented out	
 	public double boundingWidth, boundingHeight, myPadding;
 	
 	private DoubleProperty myWidth, myHeight;
@@ -63,8 +63,8 @@ public class TurtleCanvas extends Group implements Observer {
 		// + myHeight.doubleValue()/2
 	}
 	
-	public void setTurtleOrientation(double o) {
-		turtleOrientation.set(o);
+	public void setTurtleOrientation(double orientation) {
+		turtleOrientation.set(orientation);
 		turtleView.setRotate(turtleOrientation.get());
 	}
 	
@@ -115,7 +115,7 @@ public class TurtleCanvas extends Group implements Observer {
 		getChildren().add(turtleView);
 	}
 
-	@Override
+//	@Override
 	public void update(Observable o, Object arg) {
 		
 		System.out.println("HERE!!!!!" + arg.toString());
