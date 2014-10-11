@@ -8,7 +8,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import backEnd.Controller;
 
-class CommandTitlePane extends TitledPane {
+public class CommandTitlePane extends TitledPane {
 
 	public CommandTitlePane(Controller contr) {
 		setText("Commands");

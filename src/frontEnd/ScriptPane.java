@@ -25,9 +25,9 @@ class ScriptPane extends Pane {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
-					String text = textArea.getText();
-					
-					controller.runScript(text);
+//					String text = textArea.getText();
+//					addToHistory(text);
+					controller.runScript(textArea.getText());
 				} catch (Exception e) {
 					// TODO Implement more error handling
 					System.out.println(e.toString());
@@ -40,5 +40,10 @@ class ScriptPane extends Pane {
         
         borderPane.setBottom(hbox);
     }
+
+//	private void addToHistory(String text) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 }

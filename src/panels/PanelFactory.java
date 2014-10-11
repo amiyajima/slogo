@@ -30,14 +30,14 @@ public class PanelFactory {
 		implementedPanels.put(type, panelClass);
 	}
 
-	public void buildPanel(String type, BorderPane pane, Controller contr)
+	public Panel buildPanel(String type, BorderPane pane, Controller contr)
 			throws Exception {
 		if (!implementedPanels.containsKey(type)) {
 			throw new Exception("Panel not implemented!");
 		} else {
 			Class<?> c = Class.forName("panels." + type);
 			Constructor<?>[] constr = c.getDeclaredConstructors();
-			constr[0].newInstance(pane, contr);
+			return (Panel)constr[0].newInstance(pane, contr);
 		}
 	}
 

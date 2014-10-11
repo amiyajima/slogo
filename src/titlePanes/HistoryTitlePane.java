@@ -1,30 +1,36 @@
 package titlePanes;
 
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import backEnd.Controller;
 
-class HistoryTitlePane extends TitledPane {
+public class HistoryTitlePane extends TitledPane {
+	
+	private VBox myRoot;
 
 	public HistoryTitlePane(Controller contr) {
 		setText("History");
 		
-		VBox root = new VBox();
+		myRoot = new VBox();
 		
 		//root.getChildren().add(makeXPosBox(contr));
 		
-		setContent(root);
+		setContent(myRoot);
 	}
 
-	private Node makeXPosBox(Controller contr) {
-		VBox vbox = new VBox();
-		
-		
-		
-		return vbox;
+//	private Node makeXPosBox(Controller contr) {
+//		VBox vbox = new VBox();
+//		
+//		
+//		
+//		return vbox;
+//	}
+	
+	public void addToHistory(String script) {
+		Label history = new Label(script);
+		myRoot.getChildren().add(history);
 	}
-	
-	
 
 }

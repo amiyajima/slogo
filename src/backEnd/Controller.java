@@ -18,6 +18,7 @@ public class Controller {
 	public void runScript(String script) throws Exception {
 		if (script != null) {
 			myModel.runScript(script);
+			myView.addToHistory(script);
 		}
 	}
 	
