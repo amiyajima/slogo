@@ -1,16 +1,20 @@
 package commands.turtle_commands;
 
+import java.util.Map;
 import backEnd.AbstractTurtle;
 import backEnd.Turtle;
+import commands.Command;
 import commands.TurtleCommand;
 
 
 public class SetHeadingCommand extends TurtleCommand {
 
     private double myNewOrientation;
+    public static final int NUM_CHILDREN = 1;
 
-    public SetHeadingCommand () {
-        setNumChildren(1);
+    public SetHeadingCommand (Map<String, Double> variableMap) {
+        super(variableMap);
+        setNumChildren(NUM_CHILDREN);
     }
 
     @Override

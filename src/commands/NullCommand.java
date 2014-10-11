@@ -1,9 +1,15 @@
 package commands;
 
+import java.util.Map;
 import backEnd.Model;
 
 
 public class NullCommand extends Command {
+
+    public NullCommand (Map<String, Double> myVariableMap) {
+        super(myVariableMap);
+        // TODO Auto-generated constructor stub
+    }
 
     @Override
     public double execute () {

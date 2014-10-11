@@ -1,12 +1,15 @@
 package commands.boolean_commands;
 
+import java.util.Map;
 import commands.BooleanCommand;
+import commands.Command;
 
 
 public class LessThanCommand extends BooleanCommand {
     public static final int NUM_CHILDREN = 2;
-    
-    public LessThanCommand () {
+
+    public LessThanCommand (Map<String, Double> variableMap) {
+        super(variableMap);
         setNumChildren(NUM_CHILDREN);
     }
 
