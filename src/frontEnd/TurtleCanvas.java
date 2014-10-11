@@ -1,10 +1,14 @@
 package frontEnd;
 
 import java.io.File;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,19 +17,22 @@ import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import backEnd.AbstractTurtle;
 import backEnd.Controller;
+import backEnd.Turtle;
 import drawer.Drawer;
 import drawer.SimpleDrawer;
 
-public class TurtleCanvas extends Group implements Observer {
-	
+public class TurtleCanvas extends Group {// implements Observer {
+//observer commented out	
 	public double boundingWidth, boundingHeight, myPadding;
 	
 	private DoubleProperty myWidth, myHeight;
 	private Point2D turtleLocation;
-	public DoubleProperty turtleOrientation;
-	private boolean isPenDown;
+	private DoubleProperty turtleOrientation;
+	private BooleanProperty isPenDown;
 	private Color penColor;
 	Rectangle myBackground;
 	Group myGridLines;
@@ -48,8 +55,12 @@ public class TurtleCanvas extends Group implements Observer {
 		
 		addBackground();
 		addGridLines();
-		addTurtle();
-		addListeners();
+	}
+	
+	public void bindProperties(AbstractTurtle turtle) {
+		Map<String, Property> tProps = turtle.getTurtleProperties();
+		turtleOrientation.bindBidirectional((DoubleProperty)tProps.get(AbstractTurtle.ORIENTATION_STRING));
+		isPenDown.bindBidirectional((BooleanProperty)tProps.get(AbstractTurtle.PEN_STRING));
 	}
 	
 	public void setTurtleX(double x) {
@@ -59,12 +70,20 @@ public class TurtleCanvas extends Group implements Observer {
 	}
 	
 	public void setTurtleY(double y) {
-		turtleView.setY(y - turtleView.getImage().getWidth()/2);
+		turtleView.setY(y - turtleView.getImage().getHeight()/2);
 		// + myHeight.doubleValue()/2
 	}
 	
-	public void setTurtleOrientation(double o) {
-		turtleOrientation.set(o);
+	private double getTurtleX() {
+		return turtleView.getX() + turtleView.getImage().getWidth()/2;
+	}
+	
+	private double getTurtleY() {
+		return turtleView.getY() + turtleView.getImage().getHeight()/2;
+	}
+	
+	public void setTurtleOrientation(double orientation) {
+		turtleOrientation.set(orientation);
 		turtleView.setRotate(turtleOrientation.get());
 	}
 	
@@ -105,24 +124,31 @@ public class TurtleCanvas extends Group implements Observer {
 		getChildren().addAll(container, myBackground);
 	}
 	
-	private void addTurtle() {
+	public void addTurtle(AbstractTurtle turtle) {
 		turtleView = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
+		
+		
 		turtleView.setX(boundingWidth/2 - turtleView.getImage().getWidth()/2);
 		turtleView.setY(boundingHeight/2 - turtleView.getImage().getHeight()/2);
 		
+		turtleLocation = new Point2D(getTurtleX(), getTurtleY());
 		turtleOrientation = new SimpleDoubleProperty(0);
+		isPenDown = new SimpleBooleanProperty(true);
+		
+		bindProperties(turtle);
+		addListeners();
 		
 		getChildren().add(turtleView);
 	}
 
-	@Override
+//	@Override
 	public void update(Observable o, Object arg) {
 		
 		System.out.println("HERE!!!!!" + arg.toString());
 		
 		//TODO Change these to Properties to get their names
 		if (arg instanceof Point2D) {
-			if (isPenDown) drawLine((Point2D)arg);
+			if (isPenDown.get()) drawLine((Point2D)arg);
 			turtleLocation = (Point2D)arg;
 			setTurtleX(turtleLocation.getX());
 			setTurtleY(turtleLocation.getY());
@@ -155,6 +181,15 @@ public class TurtleCanvas extends Group implements Observer {
 				turtleView.setRotate(turtleOrientation.get());
 			}
 		});
+//		isPenDown.addListener(new ChangeListener<Object>() {
+//			@Override
+//			public void changed(ObservableValue<? extends Object> observable,
+//					Object oldValue, Object newValue) {
+//				// TODO Auto-generated method stub
+//			}
+//		});
+		
+		
 //		turtleLocation.addListener(new ChangeListener<Object>() {
 //			@Override
 //			public void changed(ObservableValue<? extends Object> observable,
@@ -165,7 +200,8 @@ public class TurtleCanvas extends Group implements Observer {
 	}
 	
 	private void drawLine(Point2D endPoint) {
-		myDrawer.makeLine(penColor, turtleLocation, endPoint);
+		Line line = myDrawer.makeLine(penColor, turtleLocation, endPoint);
+		getChildren().add(line);
 	}
 
 }

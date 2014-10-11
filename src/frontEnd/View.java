@@ -14,7 +14,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import panels.PanelFactory;
+import backEnd.AbstractTurtle;
 import backEnd.Controller;
+import backEnd.Turtle;
 
 public class View implements Observer {
 
@@ -55,6 +57,10 @@ public class View implements Observer {
 
 		Scene scene = new Scene(myBorderPane);
 		myStage.setScene(scene);
+	}
+	
+	public void setupTurtleView(AbstractTurtle turtle) {
+		myCanvas.addTurtle(turtle);
 	}
 	
 	public double getCanvasWidth() {

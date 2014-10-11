@@ -1,24 +1,21 @@
 package commands.turtle_commands;
 
 import java.util.Map;
-import backEnd.AbstractTurtle;
-import commands.Command;
 import commands.TurtleCommand;
+import backEnd.AbstractTurtle;
 
 
-public class XCorCommand extends TurtleCommand {
-
+public class PenDownQuery extends TurtleCommand {
     public static final int NUM_CHILDREN = 0;
 
-    public XCorCommand (Map<String, Double> variableMap) {
+    public PenDownQuery (Map<String, Double> variableMap) {
         super(variableMap);
         setNumChildren(NUM_CHILDREN);
     }
 
     @Override
     public double execute () {
-        setValue(getMyTurtle().getX());
-        System.out.println(getValue());
+        setValue(getMyTurtle().isPenDown() ? 1.0 : 0);
         return getValue();
     }
 

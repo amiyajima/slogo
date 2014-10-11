@@ -11,7 +11,8 @@ public class Model {
 
     private Parser myParser;
     private AbstractTurtle myTurtle;
-    public static final Dimension CANVAS_DIMENSIONS = new Dimension(657, 524);
+
+    // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657, 524);
 
     public Model () {
         myParser = new Parser(this);
@@ -21,7 +22,7 @@ public class Model {
     public void setupTurtle (View view) {
         myTurtle = new Turtle(view.getCanvasWidth(), view.getCanvasHeight());
         myTurtle.addObserver(view);
-        myTurtle.bindProperties(view);
+        // myTurtle.bindProperties(view);
     }
 
     /**
@@ -46,7 +47,7 @@ public class Model {
         for (Command c : rootCommands) {
             c.execute();
         }
-        //print root commands here AKA the compiled tree
+        // print root commands here AKA the compiled tree
         System.out.println(rootCommands);
         return 0;
     }

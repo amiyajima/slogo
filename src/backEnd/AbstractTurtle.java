@@ -1,17 +1,25 @@
 package backEnd;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Point2D;
 import frontEnd.View;
 
 public abstract class AbstractTurtle extends Observable {
 
-    private boolean isPenDown;
+    public static final String PEN_STRING = "pen";
+	public static final String ORIENTATION_STRING = "orientation";
+	private static final boolean INITIAL_PEN = true;
+	private BooleanProperty isPenDown;
     private Point2D myPosition;
-    protected DoubleProperty myOrientation;
+    private DoubleProperty myOrientation;
     private double myCanvasWidth, myCanvasHeight;
 
     public static final double INITIAL_ORIENTATION = 0;
@@ -27,19 +35,23 @@ public abstract class AbstractTurtle extends Observable {
         myCanvasWidth = canvasWidth;
         myCanvasHeight = canvasHeight;
         isVisible = true;
-        isPenDown = true;
+        isPenDown = new SimpleBooleanProperty(INITIAL_PEN);
     }
 
-    public abstract void bindProperties(View view);
+//    public abstract void bindProperties(View view);
 
     public abstract void moveTurtle (double distance);
 
     public abstract void turnTurtle (double change);
 
-    public Double getX() {
-        return myPosition.getX() - myCanvasWidth /2;
+    public Double getMyX() {
+        return myPosition.getX() - myCanvasWidth / 2;
     }
-    
+
+    public Double getMyY() {
+        return -(myPosition.getY() - myCanvasHeight / 2);
+    }
+
     public Double goHome() {
         double distance = myPosition.distance(myHome);
         myPosition = new Point2D(myHome.getX(), myHome.getY());
@@ -56,20 +68,16 @@ public abstract class AbstractTurtle extends Observable {
         notifyObservers(myPosition);
         return distance;
     }
-    //    
-    //    public double turnTowards(double x, double y) {
-    //        double deltaX = myPosition.getX() -  
-    //    }
 
     public void togglePen (double d) {
         if(d==1) {
-            isPenDown = true;
+        	isPenDown.set(true);
         }
         else {
-            isPenDown = false;
+            isPenDown.set(false);
         }
-        setChanged();
-        notifyObservers(isPenDown);
+//        setChanged();
+//        notifyObservers(isPenDown);
     }
 
     public void toggleVisibility(double d) {
@@ -93,31 +101,47 @@ public abstract class AbstractTurtle extends Observable {
         notifyObservers(myPosition);
     }
 
-    //TODO May not need this
     public double getOrientation() {
         return myOrientation.get();
     }
 
     public void setOrientation(Double newOrientation) {
         myOrientation.set(newOrientation);
-        setChanged();
-        notifyObservers(myOrientation);
+//        setChanged();
+//        notifyObservers(myOrientation);
     }
 
     protected boolean isInBounds(double x, double y) {
         Point2D currentPosition = myPosition;
+        System.out.println(myCanvasHeight);
+        System.out.println(currentPosition.getY()-y);
         return !(currentPosition.getX() -x<0 || currentPosition.getX() +x > myCanvasWidth
-                || currentPosition.getY() -y <0 || currentPosition.getY() + y > myCanvasHeight);
+                || currentPosition.getY()-y < 0 || currentPosition.getY() + y > myCanvasHeight);
     }
 
     public double turnTowards(double x, double y) {
-        
+
         double angle1 = Math.toDegrees(Math.atan2(myPosition.getY() - myHome.getY(), myPosition.getX() - myHome.getX()));
         double angle2 = Math.toDegrees(Math.atan2(((y + myHome.getY()) - myHome.getY()), (x + myHome.getX()) - myHome.getX()));
-        
+
         double angle =  angle2 - angle1; 
         setOrientation(angle2);
         System.out.println(angle);
         return angle;
+    }
+    
+    public boolean isPenDown() {
+        return isPenDown.get();
+    }
+    
+    public boolean isVisible() {
+        return isVisible;
+    }
+    
+    public Map<String, Property> getTurtleProperties() {
+    	Map<String, Property> tProps = new HashMap<String, Property>();
+    	tProps.put(ORIENTATION_STRING, myOrientation);
+    	tProps.put(PEN_STRING, isPenDown);
+    	return tProps;
     }
 }

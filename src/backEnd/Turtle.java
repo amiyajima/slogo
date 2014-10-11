@@ -12,17 +12,18 @@ public class Turtle extends AbstractTurtle {
 
 
 
-    @Override
-	public void bindProperties(View view) {
-		myOrientation.bindBidirectional(view.myCanvas.turtleOrientation);
-	}
+//    @Override
+//	public void bindProperties(View view) {
+//		myOrientation.bindBidirectional(view.myCanvas.turtleOrientation);
+//		isPenDown.bindBidirectional(view.myCanvas.isPenDown);
+//	}
     
     @Override
     public void moveTurtle (double distance) {
 
         Point2D currentPosition = getPosition();
-        Double newX = Math.sin(Math.toRadians(getOrientation())) * distance;
-        Double newY = Math.cos(Math.toRadians(getOrientation())) * distance;
+        Double newX = Math.sin(Math.toRadians(-getOrientation())) * distance;
+        Double newY = Math.cos(Math.toRadians(-getOrientation())) * distance;
         if(isInBounds(newX, newY)) {
             Point2D newPosition = new Point2D(currentPosition.getX() +newX, currentPosition.getY() +newY);
             setPosition(newPosition);

@@ -12,7 +12,6 @@ public class SimpleDrawer implements Drawer {
 
 	@Override
 	public Line makeLine(Color lineColor, Point2D start, Point2D end) {
-		
 		Line line = new Line();
 		line.setStroke(lineColor);
 		line.setStartX(start.getX());
