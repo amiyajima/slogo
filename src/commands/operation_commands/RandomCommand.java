@@ -1,12 +1,15 @@
 package commands.operation_commands;
 
+import java.util.Map;
+import commands.Command;
 import commands.OperationCommand;
 
 
 public class RandomCommand extends OperationCommand {
     public static final int NUM_CHILDREN = 1;
 
-    public RandomCommand () {
+    public RandomCommand (Map<String, Double> variableMap) {
+        super(variableMap);
         setNumChildren(NUM_CHILDREN);
     }
 

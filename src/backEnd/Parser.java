@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 import commands.Command;
 import commands.CommandFactory;
 import commands.ConstantCommand;
+import commands.variable_commands.CommandsList;
 import commands.variable_commands.MakeCommand;
 import commands.variable_commands.Variable;
 import exceptions.*;
@@ -19,19 +20,19 @@ class Parser {
 
     private String myString;
     private CommandFactory myFactory;
-    private StringTokenizer myCommands;
-    private Map<String, Command> myVarsMap;
+    private StringTokenizer myInstructions;
     private Model myModel;
+    private Map<String, Double> myVarsMap;
 
     Parser (Model model) {
         myModel = model;
-        myVarsMap = new HashMap<String, Command>();
+        myVarsMap = new HashMap<String, Double>();
     }
 
     /**
      * Called by the model via the controller every time a user runs a new
      * script. The Parser will begin by checking the syntax to make sure there
-     * are no errors, and will return an integer for different error messages to
+     * are no errors, and will return an Double for different error messages to
      * be handled by the view.
      * 
      * @param script
@@ -63,13 +64,12 @@ class Parser {
      */
     List<Command> parseScript (String script) {
         List<Command> myRoots = new ArrayList<Command>();
-        myFactory = new CommandFactory("English", myModel);
-        myCommands = new StringTokenizer(script);
+        myFactory = new CommandFactory("English", myModel, myVarsMap);
+        myInstructions = new StringTokenizer(script);
 
-        while (myCommands.hasMoreTokens()) {
-            Command createdCommand = makeTree(myCommands.nextToken());
+        while (myInstructions.hasMoreTokens()) {
+            Command createdCommand = makeTree(myInstructions.nextToken());
             myRoots.add(createdCommand);
-            System.out.println(myRoots);
         }
         return myRoots;
     }
@@ -83,20 +83,38 @@ class Parser {
      * @throws RuntimeException
      */
     Command makeTree (String commandName) throws RuntimeException {
-        if (myVarsMap.keySet().contains(commandName)) {
-            System.out.println("variable recognized");
-            return myVarsMap.get(commandName);
-        }
+        /*
+         * if (myVarsMap.keySet().contains(commandName)) {
+         * System.out.println("variable recognized");
+         * String nextInstruction = myInstructions.nextToken();
+         * // if the value for the var is the same as the next thing
+         * if (nextInstruction.equals(myVarsMap.get(commandName))) { return myVarsMap
+         * .get(commandName); }
+         * }
+         */
         System.out.println(commandName);
+
         Command c = myFactory.buildCommand(commandName);
-        if (c instanceof ConstantCommand) { return c; }
-        if (c instanceof Variable) {
-            myVarsMap.put(commandName, c);
-            c.addChild(makeTree(myCommands.nextToken()));
-            System.out.println("vars map " + myVarsMap);
+        if (c instanceof CommandsList) {
+            String nextInstruction = myInstructions.nextToken();
+            while (!(nextInstruction.equals("]"))) {
+                System.out.println("CREATING NEW LIST CHILD");
+                c.addChild(makeTree(nextInstruction));
+                nextInstruction = myInstructions.nextToken();
+            }
+            return c;
         }
+
+        if (c instanceof ConstantCommand) { return c; }
+        /*
+         * if (c instanceof Variable) {
+         * myVarsMap.put(commandName, c);
+         * c.addChild(makeTree(myInstructions.nextToken()));
+         * System.out.println("vars map " + myVarsMap);
+         * }
+         */
         while (c.getNumChildrenNeeded() > 0) {
-            c.addChild(makeTree(myCommands.nextToken()));
+            c.addChild(makeTree(myInstructions.nextToken()));
         }
         return c;
     }

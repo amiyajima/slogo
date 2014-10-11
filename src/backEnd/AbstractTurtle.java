@@ -1,9 +1,12 @@
 package backEnd;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Point2D;
@@ -11,10 +14,12 @@ import frontEnd.View;
 
 public abstract class AbstractTurtle extends Observable {
 
-    private static final boolean INITIAL_PEN = true;
-	protected BooleanProperty isPenDown;
+    public static final String PEN_STRING = "pen";
+	public static final String ORIENTATION_STRING = "orientation";
+	private static final boolean INITIAL_PEN = true;
+	private BooleanProperty isPenDown;
     private Point2D myPosition;
-    protected DoubleProperty myOrientation;
+    private DoubleProperty myOrientation;
     private double myCanvasWidth, myCanvasHeight;
 
     public static final double INITIAL_ORIENTATION = 0;
@@ -33,7 +38,7 @@ public abstract class AbstractTurtle extends Observable {
         isPenDown = new SimpleBooleanProperty(INITIAL_PEN);
     }
 
-    public abstract void bindProperties(View view);
+//    public abstract void bindProperties(View view);
 
     public abstract void moveTurtle (double distance);
 
@@ -131,5 +136,12 @@ public abstract class AbstractTurtle extends Observable {
     
     public boolean isVisible() {
         return isVisible;
+    }
+    
+    public Map<String, Property> getTurtleProperties() {
+    	Map<String, Property> tProps = new HashMap<String, Property>();
+    	tProps.put(ORIENTATION_STRING, myOrientation);
+    	tProps.put(PEN_STRING, isPenDown);
+    	return tProps;
     }
 }

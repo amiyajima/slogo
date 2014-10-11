@@ -1,25 +1,29 @@
 package commands.turtle_commands;
 
+import java.util.Map;
+import commands.Command;
 import commands.TurtleCommand;
-
 import backEnd.AbstractTurtle;
 
-public class PenDownCommand extends TurtleCommand{
+
+public class PenDownCommand extends TurtleCommand {
     public static final int PEN_DOWN = 1;
-    
-    public PenDownCommand() {
-        setNumChildren(0);
+    public static final int NUM_CHILDREN = 0;
+
+    public PenDownCommand (Map<String, Double> variableMap) {
+        super(variableMap);
+        setNumChildren(NUM_CHILDREN);
     }
 
     @Override
     public double execute () {
-        executeTurtleCommand(getMyTurtle()); 
+        executeTurtleCommand(getMyTurtle());
         return PEN_DOWN;
     }
 
     @Override
     public void executeTurtleCommand (AbstractTurtle t) {
-       t.togglePen(PEN_DOWN);
+        t.togglePen(PEN_DOWN);
     }
 
     @Override

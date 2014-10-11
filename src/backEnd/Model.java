@@ -3,28 +3,26 @@ package backEnd;
 import java.awt.Dimension;
 import java.util.List;
 import java.util.Queue;
-
 import commands.Command;
-
 import frontEnd.View;
 
 
 public class Model {
 
     private Parser myParser;
-    private ScriptManager myScriptManager;
     private AbstractTurtle myTurtle;
-//    public static final Dimension CANVAS_DIMENSIONS = new Dimension(657, 524);
+
+    // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657, 524);
 
     public Model () {
         myParser = new Parser(this);
-        myScriptManager = new ScriptManager();
+
     }
-    
-    public void setupTurtle(View view) {
-    	myTurtle = new Turtle(view.getCanvasWidth(), view.getCanvasHeight());
-    	myTurtle.addObserver(view);
-    	myTurtle.bindProperties(view);
+
+    public void setupTurtle (View view) {
+        myTurtle = new Turtle(view.getCanvasWidth(), view.getCanvasHeight());
+        myTurtle.addObserver(view);
+        // myTurtle.bindProperties(view);
     }
 
     /**
@@ -36,7 +34,7 @@ public class Model {
      *        The input string of syntax from the text-field
      * 
      * @return Returns 0 if the input is valid. Returns 1 if there is a syntax
-     *         error. Can be extended to return different integers for different
+     *         error. Can be extended to return different Doubles for different
      *         types of syntax errors.
      * 
      */
@@ -45,17 +43,21 @@ public class Model {
         if (errorStatus != 0) { return errorStatus; }
 
         List<Command> rootCommands = myParser.parseScript(script);
-        Queue<Command> executables = myScriptManager.compileScript(rootCommands);
 
+        for (Command c : rootCommands) {
+            c.execute();
+        }
+        // print root commands here AKA the compiled tree
+        System.out.println(rootCommands);
         return 0;
     }
 
     public void setTurtleObserver (View view) {
         myTurtle.addObserver(view);
     }
-    
-    public AbstractTurtle getTurtle() {
-    	return myTurtle;
+
+    public AbstractTurtle getTurtle () {
+        return myTurtle;
     }
 
 }

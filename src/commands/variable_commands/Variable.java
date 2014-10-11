@@ -1,21 +1,28 @@
 package commands.variable_commands;
 
 import java.util.ArrayList;
+import java.util.Map;
 import backEnd.Model;
 import commands.Command;
 
 
 public class Variable extends Command {
     private String myValue;
+    private Map<String, Double> myVarsMap;
 
-    public Variable (String value) {
+    public Variable (Map<String, Double> variableMap) {
+        this(variableMap, "");
+    }
+
+    public Variable (Map<String, Double> myVariableMap, String value) {
+        super(myVariableMap);
         myValue = value;
-        setNumChildren(1);
+        myVarsMap = myVariableMap;
     }
 
     @Override
     public double execute () {
-        return getMyChildren().get(0).execute();
+        return myVarsMap.get(myValue);
     }
 
     @Override

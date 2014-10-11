@@ -1,7 +1,9 @@
 package commands;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import backEnd.Model;
 
 
@@ -10,10 +12,12 @@ public abstract class Command {
     private List<Command> myChildren;
     private int myNumChildren;
     private double myValue;
+    private Map<String, Double> myVarsMap;
 
-    public Command () {
+    public Command (Map<String, Double> variableMap) {
         myChildren = new ArrayList<>();
         System.out.println(this.getClass().getName() + " created");
+        myVarsMap = variableMap;
     }
 
     public abstract double execute ();

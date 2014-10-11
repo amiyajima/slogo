@@ -1,12 +1,16 @@
 package commands.operation_commands;
 
+import java.util.Map;
+import commands.Command;
 import commands.OperationCommand;
+
 
 public class CosineCommand extends OperationCommand {
 
     public static final int NUM_CHILDREN = 1;
 
-    public CosineCommand () {
+    public CosineCommand (Map<String, Double> variableMap) {
+        super(variableMap);
         setNumChildren(NUM_CHILDREN);
     }
 
