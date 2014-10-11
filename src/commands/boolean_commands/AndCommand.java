@@ -1,11 +1,14 @@
 package commands.boolean_commands;
 
+import java.util.Map;
 import commands.BooleanCommand;
+import commands.Command;
 
 public class AndCommand extends BooleanCommand {
     public static final int NUM_CHILDREN = 2;
 
-    public AndCommand () {
+    public AndCommand (Map<String, Double> variableMap) {
+        super(variableMap);
         setNumChildren(NUM_CHILDREN);
     }
 

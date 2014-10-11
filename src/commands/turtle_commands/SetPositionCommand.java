@@ -1,24 +1,28 @@
 package commands.turtle_commands;
 
+import java.util.Map;
 import backEnd.AbstractTurtle;
+import commands.Command;
 import commands.TurtleCommand;
 
-public class SetPositionCommand extends TurtleCommand{
+
+public class SetPositionCommand extends TurtleCommand {
     public static final int NUM_CHILDREN = 2;
-    
-    public SetPositionCommand() {
+
+    public SetPositionCommand (Map<String, Double> variableMap) {
+        super(variableMap);
         setNumChildren(NUM_CHILDREN);
     }
 
     @Override
     public double execute () {
-        executeTurtleCommand(getMyTurtle()); 
+        executeTurtleCommand(getMyTurtle());
         return getValue();
     }
 
     @Override
     public void executeTurtleCommand (AbstractTurtle t) {
-       setValue(t.goTo(getMyChildren().get(0).execute(), getMyChildren().get(1).execute()));
+        setValue(t.goTo(getMyChildren().get(0).execute(), getMyChildren().get(1).execute()));
     }
 
     @Override

@@ -1,11 +1,16 @@
 package commands;
 
+import java.util.Map;
 import backEnd.Model;
 import backEnd.AbstractTurtle;
 import backEnd.Turtle;
 
 
 public abstract class TurtleCommand extends Command {
+    public TurtleCommand (Map<String, Double> variableMap) {
+        super(variableMap);
+    }
+
     private AbstractTurtle myTurtle;
 
     public abstract void executeTurtleCommand (AbstractTurtle t);

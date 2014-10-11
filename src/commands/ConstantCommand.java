@@ -1,12 +1,20 @@
 package commands;
 
+import java.util.Map;
 import backEnd.Model;
 
 
 public class ConstantCommand extends Command {
-    private String myValue;
 
-    public ConstantCommand (String value) {
+    private String myValue;
+    private Map<String, Double> myVarsMap;
+
+    public ConstantCommand (Map<String, Double> variableMap) {
+        this(variableMap, "");
+    }
+
+    public ConstantCommand (Map<String, Double> myVariableMap, String value) {
+        super(myVariableMap);
         myValue = value;
     }
 

@@ -1,25 +1,29 @@
 package commands.turtle_commands;
 
+import java.util.Map;
 import backEnd.AbstractTurtle;
-
+import commands.Command;
 import commands.TurtleCommand;
 
-public class HideTurtleCommand extends TurtleCommand{
+
+public class HideTurtleCommand extends TurtleCommand {
     public static final int HIDE_TURTLE = 0;
-    
-    public HideTurtleCommand() {
-        setNumChildren(0);
+    public static final int NUM_CHILDREN = 0;
+
+    public HideTurtleCommand (Map<String, Double> variableMap) {
+        super(variableMap);
+        setNumChildren(NUM_CHILDREN);
     }
 
     @Override
     public double execute () {
-        executeTurtleCommand(getMyTurtle()); 
+        executeTurtleCommand(getMyTurtle());
         return HIDE_TURTLE;
     }
 
     @Override
     public void executeTurtleCommand (AbstractTurtle t) {
-       t.toggleVisibility(HIDE_TURTLE);
+        t.toggleVisibility(HIDE_TURTLE);
     }
 
     @Override

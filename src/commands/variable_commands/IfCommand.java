@@ -5,27 +5,28 @@ import backEnd.Model;
 import commands.Command;
 
 
-public class RepeatCommand extends Command {
+public class IfCommand extends Command {
     public static final int NUM_CHILDREN = 2;
 
-    public RepeatCommand (Map<String, Double> variableMap) {
+    public IfCommand (Map<String, Double> variableMap) {
         super(variableMap);
         setNumChildren(NUM_CHILDREN);
     }
 
     @Override
     public double execute () {
-        Double result = 0.0;
-        for (int i = 0; i < getMyChildren().get(0).execute(); i++) {
-            result += getMyChildren().get(1).execute();
+        if (getMyChildren().get(0).execute() != 0) {
+            return getMyChildren().get(1).execute();
         }
-        return result;
+        else {
+            return 0;
+        }
     }
 
     @Override
     public String toString () {
-        return "repeat " + getMyChildren().get(1).toString() + " " +
-               getMyChildren().get(0).execute() + " times.";
+        return "If " + getMyChildren().get(0).execute() + " != 0, execute " +
+               getMyChildren().get(1);
     }
 
     @Override
