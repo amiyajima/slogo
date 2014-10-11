@@ -1,5 +1,7 @@
 package panels;
 
+import java.util.Map;
+
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.BorderPane;
@@ -8,6 +10,7 @@ import titlePanes.ControlTitlePane;
 import titlePanes.DisplayTitlePane;
 import titlePanes.HistoryTitlePane;
 import titlePanes.TitlePaneFactory;
+import titlePanes.VariableTitlePane;
 import backEnd.Controller;
 
 public class ParameterPanel extends Panel {
@@ -16,6 +19,7 @@ public class ParameterPanel extends Panel {
 	private HistoryTitlePane myHistoryTitlePane;
 	private ControlTitlePane myControlTitlePane;
 	private CommandTitlePane myCommandTitlePane;
+	private VariableTitlePane myVariableTitlePane;
 
 	ParameterPanel(BorderPane borderPane, Controller controller) {
 		
@@ -34,7 +38,8 @@ public class ParameterPanel extends Panel {
 		myHistoryTitlePane = (HistoryTitlePane)factory.buildTitleFrame("HistoryTitlePane", controller);
 		myControlTitlePane = (ControlTitlePane)factory.buildTitleFrame("ControlTitlePane", controller);
 		myCommandTitlePane = (CommandTitlePane)factory.buildTitleFrame("CommandTitlePane", controller);
-		root.getPanes().addAll(myDisplayTitlePane, myHistoryTitlePane, myControlTitlePane, myCommandTitlePane);
+		myVariableTitlePane = (VariableTitlePane)factory.buildTitleFrame("VariableTitlePane", controller);
+		root.getPanes().addAll(myDisplayTitlePane, myHistoryTitlePane, myControlTitlePane, myCommandTitlePane, myVariableTitlePane);
 		} catch (Exception e) {
 			e.printStackTrace();
 			//other stuff?
@@ -48,6 +53,10 @@ public class ParameterPanel extends Panel {
 	
 	public void addToHistory(String script) {
 		myHistoryTitlePane.addToHistory(script);
+	}
+	
+	public void setupVariableMap(Map<String, Double> varMap) {
+		myVariableTitlePane.setupVariableMap(varMap);
 	}
 
 }

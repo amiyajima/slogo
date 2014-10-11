@@ -1,6 +1,7 @@
 package frontEnd;
 
 import java.io.File;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -148,6 +149,10 @@ public class View implements Observer {
 	
 	public void addToHistory(String script) {
 		myParameterPanel.addToHistory(script);
+	}
+	
+	public void setupVariableMap(Map<String, Double> varMap) {
+		myParameterPanel.setupVariableMap(varMap);
 	}
 
 }

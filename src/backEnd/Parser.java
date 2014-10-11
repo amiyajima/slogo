@@ -103,4 +103,8 @@ class Parser {
         }
         return c;
     }
+    
+    public Map<String, Double> getVariableMap() {
+    	return myVarsMap;
+    }
 }

@@ -12,21 +12,9 @@ public class HistoryTitlePane extends TitledPane {
 
 	public HistoryTitlePane(Controller contr) {
 		setText("History");
-		
-		myRoot = new VBox();
-		
-		//root.getChildren().add(makeXPosBox(contr));
-		
+		myRoot = new VBox();		
 		setContent(myRoot);
 	}
-
-//	private Node makeXPosBox(Controller contr) {
-//		VBox vbox = new VBox();
-//		
-//		
-//		
-//		return vbox;
-//	}
 	
 	public void addToHistory(String script) {
 		Label history = new Label(script);
