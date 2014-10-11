@@ -8,12 +8,11 @@ import backEnd.Controller;
 class HistoryTitlePane extends TitledPane {
 
 	public HistoryTitlePane(Controller contr) {
-		
 		setText("History");
 		
 		VBox root = new VBox();
 		
-		root.getChildren().add(makeXPosBox(contr));
+		//root.getChildren().add(makeXPosBox(contr));
 		
 		setContent(root);
 	}
