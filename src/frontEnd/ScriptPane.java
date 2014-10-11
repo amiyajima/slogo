@@ -10,9 +10,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import backEnd.Controller;
 
-class ScriptPanel extends Pane {
+class ScriptPane extends Pane {
 
-    ScriptPanel(BorderPane borderPane, Controller controller) {
+    ScriptPane(BorderPane borderPane, Controller controller) {
         HBox hbox = new HBox();
         
         TextArea textArea = new TextArea("Enter commands here");
@@ -25,7 +25,9 @@ class ScriptPanel extends Pane {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
-					controller.runScript(textArea.getText());
+					String text = textArea.getText();
+					
+					controller.runScript(text);
 				} catch (Exception e) {
 					// TODO Implement more error handling
 					System.out.println(e.toString());

@@ -181,22 +181,6 @@ public class TurtleCanvas extends Group {// implements Observer {
 				turtleView.setRotate(turtleOrientation.get());
 			}
 		});
-//		isPenDown.addListener(new ChangeListener<Object>() {
-//			@Override
-//			public void changed(ObservableValue<? extends Object> observable,
-//					Object oldValue, Object newValue) {
-//				// TODO Auto-generated method stub
-//			}
-//		});
-		
-		
-//		turtleLocation.addListener(new ChangeListener<Object>() {
-//			@Override
-//			public void changed(ObservableValue<? extends Object> observable,
-//					Object oldValue, Object newValue) {
-//				// TODO Auto-generated method stub
-//			}
-//		});
 	}
 	
 	private void drawLine(Point2D endPoint) {

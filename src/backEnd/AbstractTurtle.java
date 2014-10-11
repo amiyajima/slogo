@@ -38,8 +38,6 @@ public abstract class AbstractTurtle extends Observable {
         isPenDown = new SimpleBooleanProperty(INITIAL_PEN);
     }
 
-//    public abstract void bindProperties(View view);
-
     public abstract void moveTurtle (double distance);
 
     public abstract void turnTurtle (double change);
@@ -76,8 +74,6 @@ public abstract class AbstractTurtle extends Observable {
         else {
             isPenDown.set(false);
         }
-//        setChanged();
-//        notifyObservers(isPenDown);
     }
 
     public void toggleVisibility(double d) {
@@ -107,8 +103,6 @@ public abstract class AbstractTurtle extends Observable {
 
     public void setOrientation(Double newOrientation) {
         myOrientation.set(newOrientation);
-//        setChanged();
-//        notifyObservers(myOrientation);
     }
 
     protected boolean isInBounds(double x, double y) {

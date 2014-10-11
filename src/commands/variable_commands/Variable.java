@@ -22,6 +22,7 @@ public class Variable extends Command {
 
     @Override
     public double execute () {
+        
         return myVarsMap.get(myValue);
     }
 
