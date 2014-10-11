@@ -20,6 +20,7 @@ public class TitlePaneFactory {
 		implementTitlePane("HistoryTitlePane", HistoryTitlePane.class);
 		implementTitlePane("ControlTitlePane", ControlTitlePane.class);
 		implementTitlePane("CommandTitlePane", CommandTitlePane.class);
+		implementTitlePane("TurtleInfoTitlePane", TurtleInfoTitlePane.class);
 	}
 
 	void implementTitlePane(String type, Class<?> panelClass) {

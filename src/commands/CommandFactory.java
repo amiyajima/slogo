@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import commands.variable_commands.UserInputCommand;
 import commands.variable_commands.Variable;
 import backEnd.Model;
 
@@ -143,7 +144,7 @@ public class CommandFactory {
                 return new NullCommand(myVariableMap);
             }
         }
-        return new NullCommand(myVariableMap);
+        return new UserInputCommand(myVariableMap, type);
 
     }
 }

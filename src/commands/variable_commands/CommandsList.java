@@ -40,5 +40,9 @@ public class CommandsList extends Command {
     public Command getChild (int index) {
         return getMyChildren().get(index);
     }
+    
+    public int getNumChildren(){
+        return getMyChildren().size();
+    }
 
 }

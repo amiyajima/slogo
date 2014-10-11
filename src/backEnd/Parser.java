@@ -23,10 +23,12 @@ class Parser {
     private StringTokenizer myInstructions;
     private Model myModel;
     private Map<String, Double> myVarsMap;
+    private Map<String, Command> myCommandMap;
 
     Parser (Model model) {
         myModel = model;
         myVarsMap = new HashMap<String, Double>();
+        myCommandMap = new HashMap<String, Command>();
     }
 
     /**
@@ -83,17 +85,7 @@ class Parser {
      * @throws RuntimeException
      */
     Command makeTree (String commandName) throws RuntimeException {
-        /*
-         * if (myVarsMap.keySet().contains(commandName)) {
-         * System.out.println("variable recognized");
-         * String nextInstruction = myInstructions.nextToken();
-         * // if the value for the var is the same as the next thing
-         * if (nextInstruction.equals(myVarsMap.get(commandName))) { return myVarsMap
-         * .get(commandName); }
-         * }
-         */
         System.out.println(commandName);
-
         Command c = myFactory.buildCommand(commandName);
         if (c instanceof CommandsList) {
             String nextInstruction = myInstructions.nextToken();
@@ -106,13 +98,6 @@ class Parser {
         }
 
         if (c instanceof ConstantCommand) { return c; }
-        /*
-         * if (c instanceof Variable) {
-         * myVarsMap.put(commandName, c);
-         * c.addChild(makeTree(myInstructions.nextToken()));
-         * System.out.println("vars map " + myVarsMap);
-         * }
-         */
         while (c.getNumChildrenNeeded() > 0) {
             c.addChild(makeTree(myInstructions.nextToken()));
         }

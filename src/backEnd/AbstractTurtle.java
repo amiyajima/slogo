@@ -57,6 +57,11 @@ public abstract class AbstractTurtle extends Observable {
         notifyObservers(myPosition);
         return distance;
     }
+    
+    //TODO implement this method
+    public void clearMyLines() {
+        
+    }
 
     public double goTo(double x, double y) {
         Point2D newPosition = new Point2D(myHome.getX() + x, myHome.getY() + y);
