@@ -24,6 +24,7 @@ public class VariableTitlePane extends TitledPane {
 		Set<String> variables = varMap.keySet();
 		for(String varName : variables) {
 			Label variable = new Label(varName + ": " + varMap.get(varName));
+			myRoot.getChildren().add(variable);
 		}
 	}
 	
