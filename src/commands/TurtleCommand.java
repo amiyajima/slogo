@@ -5,24 +5,49 @@ import backEnd.Model;
 import backEnd.AbstractTurtle;
 import backEnd.Turtle;
 
-
+/**
+ * Turtle commands have an additional method, executeTurtleCommand.
+ * Using a turtle which is added from the initialize method, 
+ * the command is able to modify properties of the turtle. 
+ * 
+ * @author Ethan Chang
+ * @author Anna Miyajima
+ *
+ */
 public abstract class TurtleCommand extends Command {
+    
+    private AbstractTurtle myTurtle;
+
     public TurtleCommand (Map<String, Double> variableMap) {
         super(variableMap);
     }
 
-    private AbstractTurtle myTurtle;
-
+    /**
+     * Updates the turtle based on the result of the execution
+     * of the command's children.
+     * @param t
+     */
     public abstract void executeTurtleCommand (AbstractTurtle t);
 
+    /**
+     * Retrive the turtle saved in the command
+     * @return Turtle object
+     */
     protected AbstractTurtle getMyTurtle () {
         return myTurtle;
     }
 
+    /**
+     * Sets the command's turtle
+     * @param t turtle
+     */
     protected void setTurtle (Turtle t) {
         myTurtle = t;
     }
 
+    /**
+     * Sets the command's turtle based on the model.
+     */
     @Override
     public void initializeCommand (Model model) {
         myTurtle = model.getTurtle();
