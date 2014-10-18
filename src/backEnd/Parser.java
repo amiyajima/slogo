@@ -73,6 +73,7 @@ class Parser {
             Command createdCommand = makeTree(myInstructions.nextToken());
             myRoots.add(createdCommand);
         }
+
         return myRoots;
     }
 
@@ -84,7 +85,7 @@ class Parser {
      * @return
      * @throws RuntimeException
      */
-    Command makeTree (String commandName) throws RuntimeException {
+    Command makeTree (String commandName) throws SLogoException {
         System.out.println(commandName);
         Command c = myFactory.buildCommand(commandName);
         if (c instanceof CommandsList) {
