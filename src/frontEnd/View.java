@@ -1,6 +1,7 @@
 package frontEnd;
 
 import java.io.File;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -14,6 +15,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import panels.PanelFactory;
+import panels.ParameterPanel;
+import panels.ScriptPanel;
 import backEnd.AbstractTurtle;
 import backEnd.Controller;
 import backEnd.Turtle;
@@ -31,6 +34,8 @@ public class View implements Observer {
 	private PanelFactory myPanelFactory;
 	private String myLanguage;
 	private Controller myController;
+	private ScriptPanel myScriptPanel;
+	private ParameterPanel myParameterPanel;
 	
 	public View(String language) {
 		myLanguage = language;
@@ -97,7 +102,14 @@ public class View implements Observer {
 
 	private void setupGuiElements() {
 		myPanelFactory = new PanelFactory();
-		myPanelFactory.buildAllPanels(myBorderPane, myController);
+		try {
+		myScriptPanel = (ScriptPanel)myPanelFactory.buildPanel("ScriptPanel", myBorderPane, myController);
+		myParameterPanel = (ParameterPanel)myPanelFactory.buildPanel("ParameterPanel", myBorderPane, myController);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//other stuff
+		}
+		//myPanelFactory.buildAllPanels(myBorderPane, myController);
 	}
 
 	private void setupBorderPane() {
@@ -133,6 +145,14 @@ public class View implements Observer {
 		});
 
 		return menu;
+	}
+	
+	public void addToHistory(String script) {
+		myParameterPanel.addToHistory(script);
+	}
+	
+	public void setupVariableMap(Map<String, Double> varMap) {
+		myParameterPanel.setupVariableMap(varMap);
 	}
 
 }

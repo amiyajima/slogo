@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import backEnd.Controller;
 
-class DisplayTitlePane extends TitledPane {
+public class DisplayTitlePane extends TitledPane {
 
 	public DisplayTitlePane(Controller contr) {
 

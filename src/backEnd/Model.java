@@ -2,7 +2,9 @@ package backEnd;
 
 import java.awt.Dimension;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
+
 import commands.Command;
 import frontEnd.View;
 
@@ -60,6 +62,10 @@ public class Model {
 
     public AbstractTurtle getTurtle () {
         return myTurtle;
+    }
+    
+    public Map<String, Double> getVariableMap() {
+    	return myParser.getVariableMap();
     }
 
 }

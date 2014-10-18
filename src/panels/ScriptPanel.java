@@ -9,7 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import backEnd.Controller;
 
-class ScriptPanel extends Panel {
+public class ScriptPanel extends Panel {
 
 	ScriptPanel(BorderPane borderPane, Controller controller) throws Exception {
 		

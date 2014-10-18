@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import backEnd.Controller;
 
-class ControlTitlePane extends TitledPane {
+public class ControlTitlePane extends TitledPane {
 
 	public ControlTitlePane(Controller contr) {
 		
