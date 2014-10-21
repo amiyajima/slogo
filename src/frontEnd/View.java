@@ -27,7 +27,7 @@ public class View implements Observer {
 	private static final double HEIGHT = 700;
 	private static final double PADDING = 20;
 
-	public TurtleCanvas myCanvas;
+	public TurtleCanvas myCanvas; //should NOT be public
 
 	private Stage myStage;
 	private BorderPane myBorderPane;
@@ -69,11 +69,11 @@ public class View implements Observer {
 	}
 	
 	public double getCanvasWidth() {
-		return myCanvas.boundingWidth;
+		return myCanvas.getBoundingWidth();
 	}
 	
 	public double getCanvasHeight() {
-		return myCanvas.boundingHeight;
+		return myCanvas.getBoundingHeight();
 	}
 
 	/**
