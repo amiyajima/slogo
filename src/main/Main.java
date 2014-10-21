@@ -15,15 +15,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		Model model = new Model();
-		View view = new View("English");
-		Controller controller = new Controller(model, view);
-		view.addController(controller);
-		
-		view.setupGui(stage);	
-		model.setupTurtle(view);
-		view.setupTurtleView(model.getTurtle());
-
-		stage.show();
+		View view = new View("English", stage);
+		new Controller(model, view);
 	}
 
 }

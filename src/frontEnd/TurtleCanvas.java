@@ -55,34 +55,34 @@ public class TurtleCanvas extends Group {// implements Observer {
 		addGridLines();
 	}
 	
-	public void bindProperties(AbstractTurtle turtle) {
-		Map<String, Property> tProps = turtle.getTurtleProperties();
-		turtleOrientation.bindBidirectional((DoubleProperty)tProps.get(AbstractTurtle.ORIENTATION_STRING));
-		isPenDown.bindBidirectional((BooleanProperty)tProps.get(AbstractTurtle.PEN_STRING));
-	}
-	
-	public void setTurtleX(double x) {
+	// To be abstracted out to TurtleView Class
+	public void addTurtle(AbstractTurtle turtle) {
 		
-		turtleView.setX(x - turtleView.getImage().getWidth()/2);
-		// + myWidth.doubleValue()/2
+		// Can be adjusted for a different default turtle image
+		turtleView = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
+		
+		turtleView.setX(boundingWidth/2 - turtleView.getImage().getWidth()/2);
+		turtleView.setY(boundingHeight/2 - turtleView.getImage().getHeight()/2);
+		
+		turtleLocation = new Point2D(getTurtleX(), getTurtleY());
+		turtleOrientation = new SimpleDoubleProperty(0);
+		isPenDown = new SimpleBooleanProperty(true);
+		
+		bindProperties(turtle);
+		addListeners();
+		
+		getChildren().add(turtleView);
 	}
 	
-	public void setTurtleY(double y) {
-		turtleView.setY(y - turtleView.getImage().getHeight()/2);
-		// + myHeight.doubleValue()/2
-	}
-	
-	private double getTurtleX() {
-		return turtleView.getX() + turtleView.getImage().getWidth()/2;
-	}
-	
-	private double getTurtleY() {
-		return turtleView.getY() + turtleView.getImage().getHeight()/2;
-	}
-	
-	public void setTurtleOrientation(double orientation) {
-		turtleOrientation.set(orientation);
-		turtleView.setRotate(turtleOrientation.get());
+	public void update(Observable o, Object arg) {
+		
+		if (arg instanceof Point2D) {
+			if (isPenDown.get()) drawLine((Point2D)arg);
+			turtleLocation = (Point2D)arg;
+			setTurtleX(turtleLocation.getX());
+			setTurtleY(turtleLocation.getY());
+		}
+		
 	}
 	
 	public void changeBackgroundColor(Color c) {
@@ -122,36 +122,6 @@ public class TurtleCanvas extends Group {// implements Observer {
 		getChildren().addAll(container, myBackground);
 	}
 	
-	public void addTurtle(AbstractTurtle turtle) {
-		turtleView = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
-		
-		
-		turtleView.setX(boundingWidth/2 - turtleView.getImage().getWidth()/2);
-		turtleView.setY(boundingHeight/2 - turtleView.getImage().getHeight()/2);
-		
-		turtleLocation = new Point2D(getTurtleX(), getTurtleY());
-		turtleOrientation = new SimpleDoubleProperty(0);
-		isPenDown = new SimpleBooleanProperty(true);
-		
-		bindProperties(turtle);
-		addListeners();
-		
-		getChildren().add(turtleView);
-	}
-
-//	@Override
-	public void update(Observable o, Object arg) {
-		
-		//TODO Change these to Properties to get their names
-		if (arg instanceof Point2D) {
-			if (isPenDown.get()) drawLine((Point2D)arg);
-			turtleLocation = (Point2D)arg;
-			setTurtleX(turtleLocation.getX());
-			setTurtleY(turtleLocation.getY());
-		}
-		
-	}
-	
 	private void addGridLines() {
 		
 		myGridLines = new Group();
@@ -169,6 +139,15 @@ public class TurtleCanvas extends Group {// implements Observer {
 		getChildren().add(myGridLines);
 	}
 	
+	private void bindProperties(AbstractTurtle turtle) {
+		
+		@SuppressWarnings("rawtypes")
+		Map<String, Property> tProps = turtle.getTurtleProperties();
+		
+		turtleOrientation.bindBidirectional((DoubleProperty)tProps.get(AbstractTurtle.ORIENTATION_STRING));
+		isPenDown.bindBidirectional((BooleanProperty)tProps.get(AbstractTurtle.PEN_STRING));
+	}
+	
 	private void addListeners() {
 		turtleOrientation.addListener(new ChangeListener<Object>() {
 			@Override
@@ -182,6 +161,24 @@ public class TurtleCanvas extends Group {// implements Observer {
 	private void drawLine(Point2D endPoint) {
 		Line line = myDrawer.makeLine(penColor, turtleLocation, endPoint);
 		getChildren().add(line);
+	}
+	
+	
+	// This looks weird to have private getters and setters - might want to change convention
+	private void setTurtleX(double x) {	
+		turtleView.setX(x - turtleView.getImage().getWidth()/2);
+	}
+	
+	private void setTurtleY(double y) {
+		turtleView.setY(y - turtleView.getImage().getHeight()/2);
+	}
+	
+	private double getTurtleX() {
+		return turtleView.getX() + turtleView.getImage().getWidth()/2;
+	}
+	
+	private double getTurtleY() {
+		return turtleView.getY() + turtleView.getImage().getHeight()/2;
 	}
 
 }
