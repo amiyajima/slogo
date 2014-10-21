@@ -2,9 +2,6 @@ package frontEnd;
 
 import java.util.Map;
 
-import backEnd.AbstractTurtle;
-import drawer.Drawer;
-import drawer.SimpleDrawer;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.Property;
@@ -18,6 +15,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import backEnd.AbstractTurtle;
+import drawer.Drawer;
+import drawer.SimpleDrawer;
 
 public class TurtleView {
 	
@@ -60,26 +60,6 @@ public class TurtleView {
 		return myPenLines;
 	}
 
-//	public void setX(double d) {
-//		// TODO Auto-generated method stub
-//		myImageView.setX(d);
-//	}
-//
-//	public void setY(double d) {
-//		// TODO Auto-generated method stub
-//		myImageView.setY(d);
-//	}
-//
-//	public double getX() {
-//		// TODO Auto-generated method stub
-//		return myImageView.getX();
-//	}
-//
-//	public double getY() {
-//		// TODO Auto-generated method stub
-//		return myImageView.getY();
-//	}
-
 	public void setImage(Image image) {
 		// TODO Auto-generated method stub
 		myImageView.setImage(image);
@@ -95,16 +75,6 @@ public class TurtleView {
 		myPenColor = c;
 	}
 	
-//	private double getTurtleX() {
-//		//return getX() + getImage().getWidth()/2;
-//		return myLocation.getX();
-//	}
-//	
-//	private double getTurtleY() {
-//		//return getY() + getImage().getHeight()/2;
-//		return myLocation.getY();
-//	}
-	
 	public void setTurtleX(double x) {
 		myImageView.setX(x - getImage().getWidth()/2);
 		// + myWidth.doubleValue()/2
@@ -117,18 +87,11 @@ public class TurtleView {
 		myLocation = new Point2D(myLocation.getX(), y);
 	}
 	
-	//remove
-//	public void setRotate(double d) {
-//		// TODO Auto-generated method stub
-//		myImageView.setRotate(d);
-//	}
-	
 	public void setOrientation(double orientation) {
 		myOrientation.set(orientation);
 		myImageView.setRotate(myOrientation.get());
 	}
 	
-	//make private
 	private void addListeners() {
 		myOrientation.addListener(new ChangeListener<Object>() {
 			@Override
@@ -143,7 +106,6 @@ public class TurtleView {
 		return penDown.get();
 	}
 	
-	//probably make private
 	private void bindProperties(Map<String, Property> tProps) {
 		myOrientation.bindBidirectional((DoubleProperty)tProps.get(AbstractTurtle.ORIENTATION_STRING));
 		penDown.bindBidirectional((BooleanProperty)tProps.get(AbstractTurtle.PEN_STRING));

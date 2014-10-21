@@ -1,21 +1,10 @@
 package frontEnd;
 
-import java.io.File;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import panels.PanelFactory;
 import panels.ParameterPanel;
 import backEnd.AbstractTurtle;
@@ -28,21 +17,16 @@ public class View implements Observer {
 	private static final double PADDING = 20;
 
 	public TurtleCanvas myCanvas; //should NOT be public
-
-	private Stage myStage;
 	
 	private Controller myController; //on here after merge conflict, not sure how used
 	private String myLanguage; //on here after merge conflict, not sure how used
-	private TabPane myTabPane; //on here after merge conflict, not sure how used
-	private Tab myRootTab; //on here after merge conflict, not sure how used
 
 	private BorderPane myBorderPane;
 	private PanelFactory myPanelFactory;
 	private ParameterPanel myParameterPanel;
 	
-	public View(String language, Stage stage) {
+	public View(String language) {
 		myLanguage = language;
-		myStage = stage;
 	}
 
 	/**
@@ -83,45 +67,21 @@ public class View implements Observer {
 	}
 	
 	private void setupGui() {
-
-		myStage.setTitle("SLogo");
-		myRootTab = new Tab("Workspace 1");
-		myTabPane = new TabPane();
-		myTabPane.getTabs().add(myRootTab);
 		
 		setupBorderPane();
 		setupCanvas();
-		setupMenuBar();
 		setupGuiElements();
 
-		Scene scene = new Scene(myTabPane);
-		myStage.setScene(scene);
-		myStage.show();
 	}
 	
 	private void setupBorderPane() {
 		myBorderPane = new BorderPane();
 		myBorderPane.setPrefSize(WIDTH, HEIGHT);
-		myRootTab.setContent(myBorderPane);
 	}
 	
 	private void setupCanvas() {
 		myCanvas = new TurtleCanvas(WIDTH, HEIGHT, PADDING, myController);
 		myBorderPane.setCenter(myCanvas);
-	}
-
-	private void setupMenuBar() {
-		MenuBar menubar = new MenuBar();
-
-		Menu menufile = new Menu("File");
-		Menu menuedit = new Menu("Edit");
-		Menu menuview = new Menu("View");
-
-		menufile.getItems().add(makeNewWorkspaceMenuItem());
-		menuedit.getItems().add(makeImageChooserMenuItem());
-
-		menubar.getMenus().addAll(menufile, menuedit, menuview);
-		myBorderPane.setTop(menubar);
 	}
 
 	private void setupGuiElements() {
@@ -134,46 +94,6 @@ public class View implements Observer {
 			//other stuff
 		}
 		//myPanelFactory.buildAllPanels(myBorderPane, myController);
-	}
-
-	private MenuItem makeImageChooserMenuItem() {
-
-		MenuItem menu = new MenuItem("Change Turtle Image");
-
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Upload Image");
-		fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All Images", "*.*"),
-                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png")
-            );
-
-		menu.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				File file = fileChooser.showOpenDialog(myStage);
-				if (file != null) {
-					myController.changeTurtleImage(file);
-				}
-			};
-		});
-
-		return menu;
-	}
-	
-	private MenuItem makeNewWorkspaceMenuItem() {
-
-		MenuItem menu = new MenuItem("New Workspace");
-
-		menu.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				Tab tab = new Tab("Workspace 2");
-				myTabPane.getTabs().add(tab);
-			};
-		});
-
-		return menu;
 	}
 	
 	public void addToHistory(String script) {
