@@ -98,6 +98,17 @@ public class View implements Observer {
 		myStage.setScene(scene);
 		myStage.show();
 	}
+	
+	private void setupBorderPane() {
+		myBorderPane = new BorderPane();
+		myBorderPane.setPrefSize(WIDTH, HEIGHT);
+		myRootTab.setContent(myBorderPane);
+	}
+	
+	private void setupCanvas() {
+		myCanvas = new TurtleCanvas(WIDTH, HEIGHT, PADDING, myController);
+		myBorderPane.setCenter(myCanvas);
+	}
 
 	private void setupMenuBar() {
 		MenuBar menubar = new MenuBar();
@@ -123,17 +134,6 @@ public class View implements Observer {
 			//other stuff
 		}
 		//myPanelFactory.buildAllPanels(myBorderPane, myController);
-	}
-	
-	private void setupBorderPane() {
-		myBorderPane = new BorderPane();
-		myBorderPane.setPrefSize(WIDTH, HEIGHT);
-		myRootTab.setContent(myBorderPane);
-	}
-
-	private void setupCanvas() {
-		myCanvas = new TurtleCanvas(WIDTH, HEIGHT, PADDING, myController);
-		myBorderPane.setCenter(myCanvas);
 	}
 
 	private MenuItem makeImageChooserMenuItem() {
