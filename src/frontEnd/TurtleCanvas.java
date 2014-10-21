@@ -28,8 +28,8 @@ public class TurtleCanvas extends Group {// implements Observer {
 	public TurtleCanvas(double width, double height, double padding, Controller controller) {
 		super();
 		
-		myWidth = new SimpleDoubleProperty(3.*width/4.);
-		myHeight = new SimpleDoubleProperty(3.*height/4.);
+		myWidth = new SimpleDoubleProperty(width);
+		myHeight = new SimpleDoubleProperty(height);
 		myPadding = padding;	
 		
 		boundingWidth = myWidth.get() - 2*myPadding;
@@ -90,6 +90,7 @@ public class TurtleCanvas extends Group {// implements Observer {
 	
 	public void addTurtle(AbstractTurtle turtle) {
 		ImageView turtleImage = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
+		@SuppressWarnings("rawtypes")
 		Map<String, Property> tProps = turtle.getTurtleProperties();
 		turtleView = new TurtleView(tProps, boundingWidth, boundingHeight, turtleImage);
 		//change to just adding group for turtle?

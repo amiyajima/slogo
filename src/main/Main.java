@@ -2,9 +2,6 @@ package main;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import backEnd.Controller;
-import backEnd.Model;
-import frontEnd.View;
 
 public class Main extends Application {
 
@@ -14,9 +11,9 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		Model model = new Model();
-		View view = new View("English");
-		new Controller(model, view);
+//		Model model = new Model();
+//		View view = new View(new VBox(), "English");
+//		new Controller(model, view);
 	}
 
 }
