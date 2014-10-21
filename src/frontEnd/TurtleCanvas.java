@@ -3,7 +3,6 @@ package frontEnd;
 import java.io.File;
 import java.util.Map;
 import java.util.Observable;
-import java.util.Observer;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
@@ -21,12 +20,11 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import backEnd.AbstractTurtle;
 import backEnd.Controller;
-import backEnd.Turtle;
 import drawer.Drawer;
 import drawer.SimpleDrawer;
 
 public class TurtleCanvas extends Group {// implements Observer {
-//observer commented out	
+	
 	public double boundingWidth, boundingHeight, myPadding;
 	
 	private DoubleProperty myWidth, myHeight;
@@ -143,8 +141,6 @@ public class TurtleCanvas extends Group {// implements Observer {
 
 //	@Override
 	public void update(Observable o, Object arg) {
-		
-		System.out.println("HERE!!!!!" + arg.toString());
 		
 		//TODO Change these to Properties to get their names
 		if (arg instanceof Point2D) {

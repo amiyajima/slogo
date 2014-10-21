@@ -3,11 +3,13 @@ package titlePanes;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import backEnd.Controller;
 
 public class ControlTitlePane extends TitledPane {
@@ -22,6 +24,8 @@ public class ControlTitlePane extends TitledPane {
 		makeButtons(root, contr);
 		
 		makeLocationFields(root, contr);
+		
+		makePenColorBox(root, contr);
 		
 		setContent(root);
 		
@@ -50,7 +54,7 @@ public class ControlTitlePane extends TitledPane {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
-					contr.runScript("back 10");
+					contr.runScript("forward 10");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					System.out.println(e.toString());
@@ -64,7 +68,35 @@ public class ControlTitlePane extends TitledPane {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
-					contr.runScript("forward 10");
+					contr.runScript("back 10");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.toString());
+				}
+			}
+			
+		});
+		
+		rightButton.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					contr.runScript("right 10");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.toString());
+				}
+			}
+			
+		});
+		
+		leftButton.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					contr.runScript("left 10");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					System.out.println(e.toString());
@@ -83,16 +115,64 @@ public class ControlTitlePane extends TitledPane {
 	
 	private void makeLocationFields(VBox root, Controller contr) {
 		
-		HBox hbox = new HBox();
+		VBox vbox = new VBox();
+		HBox xhbox = new HBox();
+		HBox yhbox = new HBox();
 		
 		Label xlabel = new Label("X Loc: ");
+		Label ylabel = new Label("Y Loc: ");
 		
-		TextField tf = new TextField();
-		tf.setOnAction(event -> contr.changeXPos(Double.parseDouble(tf.getText())));
+		TextField xtf = new TextField();
+		xtf.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					contr.runScript("setxy " + xtf.getText() + " ycor");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.toString());
+				}
+			}
+			
+		});
 		
-		hbox.getChildren().addAll(xlabel, tf);
+		TextField ytf = new TextField();
+		ytf.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					contr.runScript("setxy "  + "xcor "+ ytf.getText());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.toString());
+				}
+			}
+			
+		});
 		
-		root.getChildren().add(hbox);
+		xhbox.getChildren().addAll(xlabel, xtf);
+		yhbox.getChildren().addAll(ylabel, ytf);
+		vbox.getChildren().addAll(xhbox, yhbox);
+		
+		root.getChildren().add(vbox);
+	}
+	
+	private void makePenColorBox(VBox root, Controller contr) {
+		VBox vbox = new VBox();
+
+		Label label = new Label("Pen color: ");
+		vbox.getChildren().add(label);
+
+		ColorPicker colorPicker = new ColorPicker();
+		colorPicker.setValue(Color.BLACK);
+		vbox.getChildren().add(colorPicker);
+
+		colorPicker.setOnAction(event -> contr.changePenColor(colorPicker
+				.getValue()));
+
+		root.getChildren().add(vbox);
 	}
 	
 	private void setSize(Button b) {

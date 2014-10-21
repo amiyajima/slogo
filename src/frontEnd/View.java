@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -19,7 +21,6 @@ import panels.ParameterPanel;
 import panels.ScriptPanel;
 import backEnd.AbstractTurtle;
 import backEnd.Controller;
-import backEnd.Turtle;
 
 public class View implements Observer {
 
@@ -28,8 +29,8 @@ public class View implements Observer {
 	private static final double PADDING = 20;
 
 	public TurtleCanvas myCanvas;
-
-	private Stage myStage;
+	public Stage myStage;
+	
 	private BorderPane myBorderPane;
 	private PanelFactory myPanelFactory;
 	private String myLanguage;
@@ -61,6 +62,7 @@ public class View implements Observer {
 		setupGuiElements();
 
 		Scene scene = new Scene(myBorderPane);
+		makeKeyListeners(scene);
 		myStage.setScene(scene);
 	}
 	
@@ -111,6 +113,8 @@ public class View implements Observer {
 		}
 		//myPanelFactory.buildAllPanels(myBorderPane, myController);
 	}
+	
+	
 
 	private void setupBorderPane() {
 		myBorderPane = new BorderPane();
@@ -120,6 +124,46 @@ public class View implements Observer {
 	private void setupCanvas() {
 		myCanvas = new TurtleCanvas(WIDTH, HEIGHT, PADDING, myController);
 		myBorderPane.setCenter(myCanvas);
+	}
+	
+	private void makeKeyListeners(Scene scene) {
+		EventHandler<KeyEvent> keyPressListener = new EventHandler<KeyEvent>() {
+			
+			@Override
+			public void handle(KeyEvent event) {
+				System.out.println("key pressed");
+				if (event.getCode() == KeyCode.UP) {
+					try {
+						myController.runScript("forward 10");
+					} catch (Exception e) {
+						System.out.println(e.toString());
+					}
+				}
+				if (event.getCode() == KeyCode.DOWN) {
+					try {
+						myController.runScript("back 10");
+					} catch (Exception e) {
+						System.out.println(e.toString());
+					}
+				}
+				if (event.getCode() == KeyCode.RIGHT) {
+					try {
+						myController.runScript("right 10");
+					} catch (Exception e) {
+						System.out.println(e.toString());
+					}
+				}
+				if (event.getCode() == KeyCode.LEFT) {
+					try {
+						myController.runScript("left 10");
+					} catch (Exception e) {
+						System.out.println(e.toString());
+					}
+				}
+			}
+		};
+		
+		scene.setOnKeyPressed(keyPressListener);
 	}
 
 	private MenuItem makeImageChooserMenuItem() {
