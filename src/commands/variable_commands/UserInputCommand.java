@@ -2,8 +2,8 @@ package commands.variable_commands;
 
 import java.util.Map;
 import backEnd.Model;
-import commands.Command;
 import commands.ConstantCommand;
+import commands.templates.Command;
 import exceptions.SLogoException;
 
 
@@ -21,19 +21,17 @@ public class UserInputCommand extends Command {
     public static String myName;
     private Map<String, Double> myVarsMap;
 
-    public UserInputCommand (Map<String, Double> variableMap) {
-        this(variableMap, "");
+    public UserInputCommand () {
+        this("");
     }
 
-    public UserInputCommand (Map<String, Double> variableMap, String commandName) {
-        super(variableMap);
+    public UserInputCommand (String commandName) {
         myName = commandName;
-        myVarsMap = variableMap;
     }
 
     @Override
     public double execute () {
-        CommandsList myVariableList = (CommandsList)getMyChildren().get(1);
+        CommandsList myVariableList = (CommandsList) getMyChildren().get(1);
         System.out.println("Is this working");
         System.out.println(myVariableList);
         for (int i = 0; i < myVariableList.getNumChildren(); i++) {
@@ -42,7 +40,7 @@ public class UserInputCommand extends Command {
                 myVarsMap.keySet().add(myVariableList.getChild(i).toString());
             }
             else if (myVariableList.getChild(i) instanceof ConstantCommand) {
-                myVarsMap.put(( myVariableList.getChild(i - 1).toString()),
+                myVarsMap.put((myVariableList.getChild(i - 1).toString()),
                               myVariableList.getChild(i).execute());
             }
             else {

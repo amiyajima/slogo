@@ -1,18 +1,14 @@
 package commands.turtle_commands;
 
-import java.util.Map;
-import javafx.geometry.Point2D;
 import backEnd.AbstractTurtle;
-import commands.Command;
-import commands.TurtleCommand;
+import commands.templates.TurtleCommand;
 
 
 public class TowardsCommand extends TurtleCommand {
 
     public static final int NUM_CHILDREN = 2;
 
-    public TowardsCommand (Map<String, Double> variableMap) {
-        super(variableMap);
+    public TowardsCommand () {
         setNumChildren(NUM_CHILDREN);
     }
 

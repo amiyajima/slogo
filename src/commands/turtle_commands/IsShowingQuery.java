@@ -1,17 +1,13 @@
 package commands.turtle_commands;
 
-import java.util.Map;
 import backEnd.AbstractTurtle;
-import commands.Command;
-import commands.TurtleCommand;
-import backEnd.AbstractTurtle;
+import commands.templates.TurtleCommand;
 
 
 public class IsShowingQuery extends TurtleCommand {
     public static final int NUM_CHILDREN = 0;
 
-    public IsShowingQuery (Map<String, Double> variableMap) {
-        super(variableMap);
+    public IsShowingQuery () {
         setNumChildren(NUM_CHILDREN);
     }
 

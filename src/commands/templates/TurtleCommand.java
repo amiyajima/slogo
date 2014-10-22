@@ -1,4 +1,4 @@
-package commands;
+package commands.templates;
 
 import java.util.Map;
 import backEnd.Model;
@@ -18,8 +18,7 @@ public abstract class TurtleCommand extends Command {
     
     private AbstractTurtle myTurtle;
 
-    public TurtleCommand (Map<String, Double> variableMap) {
-        super(variableMap);
+    public TurtleCommand () {
     }
 
     /**

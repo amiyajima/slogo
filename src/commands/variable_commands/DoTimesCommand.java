@@ -1,29 +1,27 @@
 package commands.variable_commands;
 
+import java.util.HashMap;
 import java.util.Map;
 import backEnd.Model;
-import commands.Command;
+import commands.templates.Command;
+import commands.templates.TwoChildCommand;
 
 
 /**
  * A do times command, that runs a set of commands using variable values from 1 to limit
  * 
- * Input format:  dotimes [ :k 5 ] [ sum :k 1 ]
+ * Input format: dotimes [ :k 5 ] [ sum :k 1 ]
  * 
  * @author annamiyajima
  *
  */
-public class DoTimesCommand extends Command {
-
-    public static final int NUM_CHILDREN = 2;
+public class DoTimesCommand extends TwoChildCommand {
     private Map<String, Double> myVarsMap;
-    Command myVariable;
+    private Command myVariable;
 
-    public DoTimesCommand (Map<String, Double> variableMap) {
-        super(variableMap);
-        setNumChildren(NUM_CHILDREN);
-        myVarsMap = variableMap;
+    public DoTimesCommand () {
         myVariable = null;
+        myVarsMap = new HashMap<String, Double>();
     }
 
     @Override

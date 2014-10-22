@@ -1,15 +1,13 @@
 package commands.turtle_commands;
 
-import java.util.Map;
 import backEnd.AbstractTurtle;
-import commands.TurtleCommand;
+import commands.templates.TurtleCommand;
 
 
 public class XCorQuery extends TurtleCommand {
     public static final int NUM_CHILDREN = 0;
 
-    public XCorQuery (Map<String, Double> variableMap) {
-        super(variableMap);
+    public XCorQuery () {
         setNumChildren(NUM_CHILDREN);
     }
 

@@ -1,4 +1,4 @@
-package commands;
+package commands.templates;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 import backEnd.Model;
 
+
 /**
- * Superclass for commands. All commands are given a reference to the map of all possible
- * variables. Each also sets the number of children that it can hold. i.e. sum can take
+ * Superclass for commands. Each sets the number of children that it can hold. i.e. sum can take
  * two children, so its numchildren is set to 0. Commands can then be executed, which returns
  * a double.
  * 
@@ -20,16 +20,14 @@ public abstract class Command {
     private List<Command> myChildren;
     private int myNumChildren;
     private double myValue;
-    private Map<String, Double> myVarsMap;
 
     /**
      * 
-     * @param variableMap map containing all the current, possible variables
+     * 
      */
-    public Command (Map<String, Double> variableMap) {
+    public Command () {
         myChildren = new ArrayList<>();
         System.out.println(this.getClass().getName() + " created");
-        myVarsMap = variableMap;
     }
 
     /**
@@ -43,14 +41,16 @@ public abstract class Command {
 
     /**
      * Returns the list of children for this command (its arguments)
+     * 
      * @return
      */
     protected List<Command> getMyChildren () {
         return myChildren;
     }
-    
+
     /**
      * Sets the number of children/arguments the command will take
+     * 
      * @param numChildren number of arguments command will take
      */
     protected void setNumChildren (int numChildren) {
@@ -68,6 +68,7 @@ public abstract class Command {
 
     /**
      * Retrieve value returned by the command
+     * 
      * @return value returned by command
      */
     protected double getValue () {
@@ -76,6 +77,7 @@ public abstract class Command {
 
     /**
      * Add child to the command
+     * 
      * @param c command to be added
      */
     public void addChild (Command c) {
@@ -84,6 +86,7 @@ public abstract class Command {
 
     /**
      * Get the number of children that can still be added
+     * 
      * @return children missing
      */
     public int getNumChildrenNeeded () {
@@ -93,6 +96,7 @@ public abstract class Command {
     /**
      * Adds anything that the command might need from the model
      * i.e. turtles for turtle commands
+     * 
      * @param m
      */
     public abstract void initializeCommand (Model m);

@@ -1,17 +1,9 @@
-package commands.boolean_commands;
+package commands.twochildren;
 
-import java.util.Map;
-import commands.BooleanCommand;
-import commands.Command;
+import commands.templates.TwoChildCommand;
 
 
-public class OrCommand extends BooleanCommand {
-    public static final int NUM_CHILDREN = 2;
-
-    public OrCommand (Map<String, Double> variableMap) {
-        super(variableMap);
-        setNumChildren(NUM_CHILDREN);
-    }
+public class OrCommand extends TwoChildCommand {
 
     @Override
     public double execute () {

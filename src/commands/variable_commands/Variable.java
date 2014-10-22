@@ -1,29 +1,24 @@
 package commands.variable_commands;
 
-import java.util.ArrayList;
-import java.util.Map;
 import backEnd.Model;
-import commands.Command;
+import commands.templates.Command;
 
 
 public class Variable extends Command {
     private String myValue;
-    private Map<String, Double> myVarsMap;
 
-    public Variable (Map<String, Double> variableMap) {
-        this(variableMap, "");
+    public Variable () {
+        this("");
     }
 
-    public Variable (Map<String, Double> myVariableMap, String value) {
-        super(myVariableMap);
+    public Variable (String value) {
         myValue = value;
-        myVarsMap = myVariableMap;
     }
 
     @Override
     public double execute () {
-        
-        return myVarsMap.get(myValue);
+        System.out.println("execute variable called");
+        return 0;
     }
 
     @Override

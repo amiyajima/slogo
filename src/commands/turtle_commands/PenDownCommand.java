@@ -1,8 +1,6 @@
 package commands.turtle_commands;
 
-import java.util.Map;
-import commands.Command;
-import commands.TurtleCommand;
+import commands.templates.TurtleCommand;
 import backEnd.AbstractTurtle;
 
 
@@ -10,8 +8,7 @@ public class PenDownCommand extends TurtleCommand {
     public static final int PEN_DOWN = 1;
     public static final int NUM_CHILDREN = 0;
 
-    public PenDownCommand (Map<String, Double> variableMap) {
-        super(variableMap);
+    public PenDownCommand () {
         setNumChildren(NUM_CHILDREN);
     }
 

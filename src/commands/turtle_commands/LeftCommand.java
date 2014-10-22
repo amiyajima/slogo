@@ -1,17 +1,14 @@
 package commands.turtle_commands;
 
-import java.util.Map;
 import backEnd.AbstractTurtle;
-import commands.Command;
-import commands.TurtleCommand;
+import commands.templates.TurtleCommand;
 
 
 public class LeftCommand extends TurtleCommand {
 
     public static final int NUM_CHILDREN = 1;
 
-    public LeftCommand (Map<String, Double> variableMap) {
-        super(variableMap);
+    public LeftCommand () {
         setNumChildren(NUM_CHILDREN);
     }
 

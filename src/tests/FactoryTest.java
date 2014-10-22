@@ -3,9 +3,9 @@ package tests;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import backEnd.Model;
-import commands.Command;
 import commands.CommandFactory;
 import commands.ConstantCommand;
+import commands.templates.Command;
 
 
 public class FactoryTest {

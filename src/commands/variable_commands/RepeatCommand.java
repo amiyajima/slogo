@@ -1,17 +1,10 @@
 package commands.variable_commands;
 
-import java.util.Map;
 import backEnd.Model;
-import commands.Command;
+import commands.templates.TwoChildCommand;
 
 
-public class RepeatCommand extends Command {
-    public static final int NUM_CHILDREN = 2;
-
-    public RepeatCommand (Map<String, Double> variableMap) {
-        super(variableMap);
-        setNumChildren(NUM_CHILDREN);
-    }
+public class RepeatCommand extends TwoChildCommand {
 
     @Override
     public double execute () {

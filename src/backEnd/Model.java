@@ -4,8 +4,7 @@ import java.awt.Dimension;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-
-import commands.Command;
+import commands.templates.Command;
 import frontEnd.View;
 
 
@@ -41,13 +40,10 @@ public class Model {
      * 
      */
     int runScript (String script) throws Exception {
-        int errorStatus = myParser.checkScript(script);
-        if (errorStatus != 0) { return errorStatus; }
-
         List<Command> rootCommands = myParser.parseScript(script);
 
-        //System.out.println("beginning execution " + rootCommands);
-        
+        // System.out.println("beginning execution " + rootCommands);
+
         for (Command c : rootCommands) {
             c.execute();
         }
@@ -62,10 +58,6 @@ public class Model {
 
     public AbstractTurtle getTurtle () {
         return myTurtle;
-    }
-    
-    public Map<String, Double> getVariableMap() {
-    	return myParser.getVariableMap();
     }
 
 }

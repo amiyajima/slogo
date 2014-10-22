@@ -1,8 +1,10 @@
 package commands.variable_commands;
 
+import java.util.HashMap;
 import java.util.Map;
 import backEnd.Model;
-import commands.Command;
+import commands.templates.Command;
+import commands.templates.TwoChildCommand;
 
 
 /**
@@ -13,17 +15,14 @@ import commands.Command;
  * @author annamiyajima
  *
  */
-public class ForCommand extends Command {
+public class ForCommand extends TwoChildCommand {
 
-    public static final int NUM_CHILDREN = 2;
     private Map<String, Double> myVarsMap;
     Command myForList;
 
-    public ForCommand (Map<String, Double> variableMap) {
-        super(variableMap);
-        setNumChildren(NUM_CHILDREN);
-        myVarsMap = variableMap;
+    public ForCommand () {
         myForList = null;
+        myVarsMap = new HashMap<String,Double>();
     }
 
     @Override

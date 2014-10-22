@@ -1,17 +1,18 @@
 package backEnd;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.StringTokenizer;
-import commands.Command;
 import commands.CommandFactory;
 import commands.ConstantCommand;
+import commands.templates.Command;
 import commands.variable_commands.CommandsList;
-import commands.variable_commands.MakeCommand;
-import commands.variable_commands.Variable;
-import exceptions.*;
 
 
 // contain hashmap for variables, replace mapped value for variable
@@ -22,36 +23,11 @@ class Parser {
     private CommandFactory myFactory;
     private StringTokenizer myInstructions;
     private Model myModel;
-    private Map<String, Double> myVarsMap;
     private Map<String, Command> myCommandMap;
 
     Parser (Model model) {
         myModel = model;
-        myVarsMap = new HashMap<String, Double>();
         myCommandMap = new HashMap<String, Command>();
-    }
-
-    /**
-     * Called by the model via the controller every time a user runs a new
-     * script. The Parser will begin by checking the syntax to make sure there
-     * are no errors, and will return an Double for different error messages to
-     * be handled by the view.
-     * 
-     * @param script
-     *        Raw input from the user
-     * @return
-     * 
-     */
-    int checkScript (String script) {
-        /*
-         * try{
-         * 
-         * }
-         * catch(){
-         * 
-         * }
-         */
-        return 0;
     }
 
     /**
@@ -66,7 +42,7 @@ class Parser {
      */
     List<Command> parseScript (String script) {
         List<Command> myRoots = new ArrayList<Command>();
-        myFactory = new CommandFactory("English", myModel, myVarsMap);
+        myFactory = new CommandFactory("English", myModel);
         myInstructions = new StringTokenizer(script);
 
         while (myInstructions.hasMoreTokens()) {
@@ -102,9 +78,5 @@ class Parser {
             c.addChild(makeTree(myInstructions.nextToken()));
         }
         return c;
-    }
-    
-    public Map<String, Double> getVariableMap() {
-    	return myVarsMap;
     }
 }

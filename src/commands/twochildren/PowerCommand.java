@@ -1,17 +1,9 @@
-package commands.operation_commands;
+package commands.twochildren;
 
-import java.util.Map;
-import commands.Command;
-import commands.OperationCommand;
+import commands.templates.TwoChildCommand;
 
 
-public class PowerCommand extends OperationCommand {
-    public static final int NUM_CHILDREN = 2;
-
-    public PowerCommand (Map<String, Double> variableMap) {
-        super(variableMap);
-        setNumChildren(NUM_CHILDREN);
-    }
+public class PowerCommand extends TwoChildCommand {
 
     @Override
     public double execute () {
