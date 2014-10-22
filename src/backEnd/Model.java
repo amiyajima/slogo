@@ -41,8 +41,6 @@ public class Model {
      * 
      */
     int runScript (String script) throws Exception {
-        int errorStatus = myParser.checkScript(script);
-        if (errorStatus != 0) { return errorStatus; }
 
         List<Command> rootCommands = myParser.parseScript(script);
 

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.regex.Pattern;
+
 import commands.Command;
 import commands.CommandFactory;
 import commands.ConstantCommand;
@@ -24,35 +26,22 @@ class Parser {
     private Model myModel;
     private Map<String, Double> myVarsMap;
     private Map<String, Command> myCommandMap;
+    public static final String CONSTANT_REGEX = "-?[0-9]+\\.?[0-9]*";
+    public static final String VARIABLE_REGEX = ":[a-zA-Z]+";
+    public static final String COMMAND_REGEX = "[a-zA-Z_]+(\\?)?";
+    public static final String OPEN_BRACKET_REGEX = "\\[";
+    public static final String CLOSE_BRACKET_REGEX = "\\]";
+
 
     Parser (Model model) {
         myModel = model;
         myVarsMap = new HashMap<String, Double>();
         myCommandMap = new HashMap<String, Command>();
+        myFactory = new CommandFactory("English", myModel, myVarsMap);
+
     }
 
-    /**
-     * Called by the model via the controller every time a user runs a new
-     * script. The Parser will begin by checking the syntax to make sure there
-     * are no errors, and will return an Double for different error messages to
-     * be handled by the view.
-     * 
-     * @param script
-     *        Raw input from the user
-     * @return
-     * 
-     */
-    int checkScript (String script) {
-        /*
-         * try{
-         * 
-         * }
-         * catch(){
-         * 
-         * }
-         */
-        return 0;
-    }
+
 
     /**
      * Called by the model if the input script is valid. At this point, the
@@ -66,7 +55,6 @@ class Parser {
      */
     List<Command> parseScript (String script) {
         List<Command> myRoots = new ArrayList<Command>();
-        myFactory = new CommandFactory("English", myModel, myVarsMap);
         myInstructions = new StringTokenizer(script);
 
         while (myInstructions.hasMoreTokens()) {
@@ -88,24 +76,38 @@ class Parser {
     Command makeTree (String commandName) throws SLogoException {
         System.out.println(commandName);
         Command c = myFactory.buildCommand(commandName);
-        if (c instanceof CommandsList) {
+        if (Pattern.matches(OPEN_BRACKET_REGEX, commandName)) {
             String nextInstruction = myInstructions.nextToken();
-            while (!(nextInstruction.equals("]"))) {
-                System.out.println("CREATING NEW LIST CHILD");
+            while (!(Pattern.matches(CLOSE_BRACKET_REGEX, nextInstruction))) {
                 c.addChild(makeTree(nextInstruction));
+                
+                if(!myInstructions.hasMoreElements()) {
+                    //throw exception
+                    break;
+                }
+                
                 nextInstruction = myInstructions.nextToken();
+
             }
             return c;
         }
 
-        if (c instanceof ConstantCommand) { return c; }
-        while (c.getNumChildrenNeeded() > 0) {
-            c.addChild(makeTree(myInstructions.nextToken()));
+        else if (Pattern.matches(CONSTANT_REGEX, commandName)) { 
+            return c; 
+        }
+
+        else if (Pattern.matches(COMMAND_REGEX, commandName)) {
+            while (c.getNumChildrenNeeded() > 0) {
+                c.addChild(makeTree(myInstructions.nextToken()));
+            }
+        }
+        else {
+            //Throw exception
         }
         return c;
     }
-    
+
     public Map<String, Double> getVariableMap() {
-    	return myVarsMap;
+        return myVarsMap;
     }
 }
