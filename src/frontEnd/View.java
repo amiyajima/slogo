@@ -4,29 +4,38 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import javafx.scene.layout.BorderPane;
-import panels.PanelFactory;
+import javafx.scene.Node;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import panels.ParameterPanel;
+import panels.ScriptPanel;
 import backEnd.AbstractTurtle;
 import backEnd.Controller;
 
-public class View implements Observer {
+public class View extends VBox implements Observer {
+	
+	public TurtleCanvas myCanvas; //MAKE THIS PRIVATE (look at controller)
 
-	private static final double WIDTH = 900;
-	private static final double HEIGHT = 700;
+	@SuppressWarnings("unused")
+	private String myLanguage;
+	private Controller myController;
+	
+	private double WIDTH, HEIGHT;
 	private static final double PADDING = 20;
-
-	public TurtleCanvas myCanvas; //should NOT be public
+	private ParameterPanel mySidePanel;
 	
-	private Controller myController; //on here after merge conflict, not sure how used
-	private String myLanguage; //on here after merge conflict, not sure how used
-
-	private BorderPane myBorderPane;
-	private PanelFactory myPanelFactory;
-	private ParameterPanel myParameterPanel;
-	
-	public View(String language) {
+	public View(double width, double height, String language) {
+		super();
+		
 		myLanguage = language;
+		
+		WIDTH = width;
+		HEIGHT = height;
+		
+		setMinWidth(WIDTH);
+		setMinHeight(HEIGHT);
+		setMaxWidth(WIDTH);
+		setMaxHeight(HEIGHT);
 	}
 
 	/**
@@ -66,42 +75,37 @@ public class View implements Observer {
 		myCanvas.update(o, arg);
 	}
 	
-	private void setupGui() {
-		
-		setupBorderPane();
-		setupCanvas();
-		setupGuiElements();
-
-	}
-	
-	private void setupBorderPane() {
-		myBorderPane = new BorderPane();
-		myBorderPane.setPrefSize(WIDTH, HEIGHT);
-	}
-	
-	private void setupCanvas() {
-		myCanvas = new TurtleCanvas(WIDTH, HEIGHT, PADDING, myController);
-		myBorderPane.setCenter(myCanvas);
-	}
-
-	private void setupGuiElements() {
-		myPanelFactory = new PanelFactory();
-		try {
-			myPanelFactory.buildPanel("ScriptPanel", myBorderPane, myController); // built and not stored
-			myParameterPanel = (ParameterPanel)myPanelFactory.buildPanel("ParameterPanel", myBorderPane, myController);
-		} catch (Exception e) {
-			e.printStackTrace();
-			//other stuff
-		}
-		//myPanelFactory.buildAllPanels(myBorderPane, myController);
-	}
-	
 	public void addToHistory(String script) {
-		myParameterPanel.addToHistory(script);
+		mySidePanel.addToHistory(script);
 	}
 	
 	public void setupVariableMap(Map<String, Double> varMap) {
-		myParameterPanel.setupVariableMap(varMap);
+		mySidePanel.setupVariableMap(varMap);
 	}
-
+	
+/////////////////  GUI SETUP  //////////////////
+	private void setupGui() {
+		
+		HBox hbox = new HBox();
+		hbox.setMinHeight(3.*HEIGHT/4.);
+		hbox.setMinWidth(WIDTH);
+		hbox.getChildren().addAll(buildCanvas(), buildSidePanel());
+		
+		getChildren().addAll(hbox, buildScriptPanel());
+	}
+	
+	private Node buildCanvas() {
+		myCanvas = new TurtleCanvas(3.*WIDTH/4., 3.*HEIGHT/4., PADDING, myController);
+		return myCanvas;
+	}
+	
+	private Node buildSidePanel() {
+		mySidePanel = new ParameterPanel(WIDTH/4., 3.*HEIGHT/4., myController);
+		return mySidePanel;
+	}
+	
+	private Node buildScriptPanel() {
+		return new ScriptPanel(WIDTH, HEIGHT/4., myController);
+	}
+	
 }

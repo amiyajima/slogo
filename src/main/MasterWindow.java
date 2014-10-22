@@ -1,6 +1,6 @@
 package main;
 
-import java.util.prefs.Preferences;
+import java.io.File;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -13,18 +13,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import frontEnd.DisplayPreferences;
 import frontEnd.Workspace;
 
 public class MasterWindow extends Application {
 	
 	public Workspace currentWorkspace;
 	
-	private final Preferences DEFAULT_DISPLAY_PREFS = new DisplayPreferences();
-	
+	private Stage stage;
 	private Scene scene;
-	private Pane root;
-	private TabPane tabs;
+	private Pane root = new VBox();
+	private TabPane tabs = new TabPane();
 	private MenuBar menubar;
 
 	static public void main(String[] args) {
@@ -33,26 +31,24 @@ public class MasterWindow extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
-		root = new VBox();
-		tabs = new TabPane();
-		
+	
 		buildMenuBar();
-
 		root.getChildren().addAll(menubar, tabs);
 		scene = new Scene(root);
 		
-		buildWorkspace(DEFAULT_DISPLAY_PREFS);
+		buildWorkspace();
 		
-		primaryStage.setScene(scene);
-		primaryStage.setTitle("SLogo");
-		primaryStage.show();
+		stage = primaryStage;
+		stage.setScene(scene);
+		stage.setTitle("SLogo");
+		stage.show();
 	}
 
-	private void buildWorkspace(Preferences prefs) {
+	private void buildWorkspace() {
 		
-		currentWorkspace = new Workspace(new DisplayPreferences());
+		currentWorkspace = new Workspace();
 		setKeyListener();
+		setMouseListener();
 		
 		Tab tab = new Tab("Workspace " + (tabs.getTabs().size() + 1));
 		tab.setContent(currentWorkspace);
@@ -60,9 +56,30 @@ public class MasterWindow extends Application {
 		tab.setOnSelectionChanged(event -> tabChanged(tab));
 		
 		tabs.getTabs().add(tab);
-		
+		tabs.getSelectionModel().select(tab);
+
+	}
+	
+	private void tabChanged(Tab tab) {
+		if (tab.isSelected()) {
+			tab.getContent().requestFocus();
+			currentWorkspace = (Workspace) tab.getContent();
+			setKeyListener();
+		}
+	}
+	
+	private void setKeyListener() {
+		scene.setOnKeyReleased(currentWorkspace.getKeyListener());
+	}
+	
+	private void setMouseListener() {
+		scene.setOnMouseClicked(currentWorkspace.getMouseListener());
 	}
 
+/////////////////////// MENU STUFF ////////////////////////
+	/*
+	 * TODO EXTRACT out all of this MenuBar stuff into its own class
+	 */
 	private void buildMenuBar() {
 		menubar = new MenuBar();
 
@@ -86,7 +103,7 @@ public class MasterWindow extends Application {
 
 	private MenuItem buildNewWorkspaceMenuItem() {
 		MenuItem menu = new MenuItem("New Workspace");
-		menu.setOnAction(event -> buildWorkspace(DEFAULT_DISPLAY_PREFS));
+		menu.setOnAction(event -> buildWorkspace());
 		return menu;
 	}
 
@@ -101,31 +118,16 @@ public class MasterWindow extends Application {
 				new FileChooser.ExtensionFilter("JPG", "*.jpg"),
 				new FileChooser.ExtensionFilter("PNG", "*.png"));
 
-		// menu.setOnAction(new EventHandler<ActionEvent>() {
-		// @Override
-		// public void handle(ActionEvent e) {
-		// File file = fileChooser.showOpenDialog(myStage);
-		// if (file != null) {
-		// myController.changeTurtleImage(file);
-		// }
-		// };
-		// });
+		menu.setOnAction(event -> turtleImageFileChooser(fileChooser));
 
 		return menu;
 	}
 	
-	private void tabChanged(Tab tab) {
-		if (tab.isSelected()) {
-			System.out.println("Tab changed");
-			tab.getContent().requestFocus();
-			currentWorkspace = (Workspace) tab.getContent();
-			setKeyListener();
+	private void turtleImageFileChooser(FileChooser fileChooser) {
+		File file = fileChooser.showOpenDialog(stage);
+		if (file != null) {
+			//myController.changeTurtleImage(file);
 		}
-		// Change the model/controllers focus + preferences??
-	}
-	
-	private void setKeyListener() {
-		scene.setOnKeyReleased(currentWorkspace.getKeyListener());
 	}
 
 }
