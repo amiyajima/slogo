@@ -25,9 +25,11 @@ public class ParameterPanel extends Pane {
 		setMinWidth(width);
 		setMinHeight(height);
 		
+		double maxTitlePaneHeight = height-100;
+		
 		Accordion accordion = new Accordion();
 		
-		TitlePaneFactory factory = new TitlePaneFactory();
+		TitlePaneFactory factory = new TitlePaneFactory(maxTitlePaneHeight);
 			
 		try {
 		myDisplayTitlePane = (DisplayTitlePane)factory.buildTitleFrame("DisplayTitlePane", controller);

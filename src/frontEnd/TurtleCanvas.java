@@ -37,6 +37,7 @@ public class TurtleCanvas extends Group {// implements Observer {
 		
 		addBackground();
 		addGridLines();
+		addClipper();
 	}
 	
 	//remove later - currently needed by Controller in changeXPos
@@ -66,27 +67,6 @@ public class TurtleCanvas extends Group {// implements Observer {
 	public void toggleGridLines() {
 		myGridLines.setVisible(!myGridLines.isVisible());
 	}
-
-	private void addBackground() {
-		
-		Rectangle container = new Rectangle();
-		container.setWidth(myWidth.doubleValue());
-		container.setHeight(myHeight.doubleValue());
-		container.setFill(Color.WHITE);
-		container.setStroke(Color.BLACK);
-		container.setX(0);
-		container.setY(0);
-		
-		myBackground = new Rectangle();
-		myBackground.setWidth(boundingWidth);
-		myBackground.setHeight(boundingHeight);
-		myBackground.setFill(Color.WHITE);
-		myBackground.setStroke(Color.BLACK);
-		myBackground.setX(myPadding);
-		myBackground.setY(myPadding);
-		
-		getChildren().addAll(container, myBackground);
-	}
 	
 	public void addTurtle(AbstractTurtle turtle) {
 		ImageView turtleImage = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
@@ -108,6 +88,32 @@ public class TurtleCanvas extends Group {// implements Observer {
 			turtleView.setTurtleX(newPoint.getX());
 			turtleView.setTurtleY(newPoint.getY());			
 		}
+	}
+
+	private void addBackground() {
+		
+		Rectangle container = makeRect(myWidth.doubleValue(), myHeight.doubleValue(), 0, 0);
+		container.setFill(Color.WHITE);
+		container.setStroke(Color.BLACK);
+		
+		myBackground = makeRect(boundingWidth, boundingHeight, myPadding, myPadding);
+		myBackground.setFill(Color.WHITE);
+		myBackground.setStroke(Color.BLACK);
+
+		
+		getChildren().addAll(container, myBackground);
+	}
+	
+	private void addClipper() {
+		Rectangle container = makeRect(boundingWidth, boundingHeight, myPadding, myPadding);
+		setClip(container);
+	}
+	
+	private Rectangle makeRect(double width, double height, double xpos, double ypos) {
+		Rectangle rect = new Rectangle(width, height);
+		rect.setX(xpos);
+		rect.setY(ypos);
+		return rect;
 	}
 	
 	private void addGridLines() {

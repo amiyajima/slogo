@@ -34,6 +34,8 @@ public class View extends VBox implements Observer {
 		
 		setMinWidth(WIDTH);
 		setMinHeight(HEIGHT);
+		setMaxWidth(WIDTH);
+		setMaxHeight(HEIGHT);
 	}
 
 	/**
@@ -105,5 +107,5 @@ public class View extends VBox implements Observer {
 	private Node buildScriptPanel() {
 		return new ScriptPanel(WIDTH, HEIGHT/4., myController);
 	}
-
+	
 }

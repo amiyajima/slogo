@@ -1,7 +1,5 @@
 package panels;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
@@ -20,25 +18,23 @@ public class ScriptPanel extends Pane {
 		textArea.setPromptText("Enter commands here");
 		Button runButton = new Button("RUN");
 		
-		runButton.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				try {
-					controller.runScript(textArea.getText());
-					textArea.clear();
-				} catch (Exception e) {
-					// TODO Add Error Handling
-					e.printStackTrace();
-				}
-				
-			}
-			
-		});
+		runButton.setOnAction(event -> handler(controller, textArea));
+		
+		textArea.setPrefSize(3.*width/4., height);
+		runButton.setPrefSize(width/4., height);
 		
 		hbox.getChildren().addAll(textArea, runButton);
 		getChildren().add(hbox);
 
+	}
+	
+	private void handler(Controller c, TextArea t) {
+		try {
+			c.runScript(t.getText());
+			t.clear();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 	}
 
 }
