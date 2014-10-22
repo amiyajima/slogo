@@ -1,7 +1,6 @@
 package main;
 
 import java.io.File;
-import java.util.prefs.Preferences;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -15,15 +14,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import backEnd.Model;
-import frontEnd.DisplayPreferences;
 import frontEnd.Workspace;
 
 public class MasterWindow extends Application {
 	
-	public Model model; // ONLY ONE MODEL FOR THE WHOLE APPLICATION
-	public Workspace currentWorkspace;	
-	
-	private final Preferences DEFAULT_DISPLAY_PREFS = new DisplayPreferences();
+	public Model model; // ONLY ONE MODEL FOR THE WHOLE APPLICATION   (maybe...)
+	public Workspace currentWorkspace;
 	
 	private Stage stage;
 	private Scene scene;
@@ -44,16 +40,17 @@ public class MasterWindow extends Application {
 		scene = new Scene(root);
 		
 		model = new Model();
-		buildWorkspace(DEFAULT_DISPLAY_PREFS);
+		System.out.println(tabs.getOnKeyPressed());
+		buildWorkspace();
 		
 		stage.setScene(scene);
 		stage.setTitle("SLogo");
 		stage.show();
 	}
 
-	private void buildWorkspace(Preferences prefs) {
+	private void buildWorkspace() {
 		
-		currentWorkspace = new Workspace(prefs, model);
+		currentWorkspace = new Workspace(model);
 		setKeyListener();
 		
 		Tab tab = new Tab("Workspace " + (tabs.getTabs().size() + 1));
@@ -62,7 +59,7 @@ public class MasterWindow extends Application {
 		tab.setOnSelectionChanged(event -> tabChanged(tab));
 		
 		tabs.getTabs().add(tab);
-		
+
 	}
 	
 	private void tabChanged(Tab tab) {
@@ -72,7 +69,15 @@ public class MasterWindow extends Application {
 			currentWorkspace = (Workspace) tab.getContent();
 			setKeyListener();
 		}
-		// Change the model/controllers focus + preferences??
+		
+		// Change the model/view preferences + connections
+		/* 
+		 * Pseudocode:
+		 * 
+		 * model.updateState(currentWorkspace.getState());
+		 * bindProperties(currentWorkspace, model);
+		 */
+		
 	}
 	
 	private void setKeyListener() {
@@ -106,7 +111,7 @@ public class MasterWindow extends Application {
 
 	private MenuItem buildNewWorkspaceMenuItem() {
 		MenuItem menu = new MenuItem("New Workspace");
-		menu.setOnAction(event -> buildWorkspace(DEFAULT_DISPLAY_PREFS));
+		menu.setOnAction(event -> buildWorkspace());
 		return menu;
 	}
 
