@@ -1,25 +1,14 @@
 package frontEnd;
 
-import java.io.File;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import panels.PanelFactory;
 import panels.ParameterPanel;
-import panels.ScriptPanel;
 import backEnd.AbstractTurtle;
 import backEnd.Controller;
-import backEnd.Turtle;
 
 public class View implements Observer {
 
@@ -27,14 +16,13 @@ public class View implements Observer {
 	private static final double HEIGHT = 700;
 	private static final double PADDING = 20;
 
-	public TurtleCanvas myCanvas;
+	public TurtleCanvas myCanvas; //should NOT be public
+	
+	private Controller myController; //on here after merge conflict, not sure how used
+	private String myLanguage; //on here after merge conflict, not sure how used
 
-	private Stage myStage;
 	private BorderPane myBorderPane;
 	private PanelFactory myPanelFactory;
-	private String myLanguage;
-	private Controller myController;
-	private ScriptPanel myScriptPanel;
 	private ParameterPanel myParameterPanel;
 	
 	public View(String language) {
@@ -42,38 +30,29 @@ public class View implements Observer {
 	}
 
 	/**
-	 * Done by Main at initiation
+	 * Called by Controller constructor
 	 */
-	public void addController(Controller controller) {
+	public void addControllerAndSetupGui(Controller controller) {
 		myController = controller;
-	}
-
-	/**
-	 * Called by Main after the controller is attached
-	 */
-	public void setupGui(Stage stage) {
-
-		myStage = stage;
-		myStage.setTitle("SLogo");
-		setupBorderPane();
-		setupCanvas();
-		setupMenuBar();
-		setupGuiElements();
-
-		Scene scene = new Scene(myBorderPane);
-		myStage.setScene(scene);
+		setupGui();
 	}
 	
+	/**
+	 * Called by Controller constructor
+	 */
 	public void setupTurtleView(AbstractTurtle turtle) {
 		myCanvas.addTurtle(turtle);
 	}
 	
+	/**
+	 * Called by Model when it sets up its turtle
+	 */
 	public double getCanvasWidth() {
-		return myCanvas.boundingWidth;
+		return myCanvas.getBoundingWidth();
 	}
 	
 	public double getCanvasHeight() {
-		return myCanvas.boundingHeight;
+		return myCanvas.getBoundingHeight();
 	}
 
 	/**
@@ -86,65 +65,35 @@ public class View implements Observer {
 	public void update(Observable o, Object arg) {
 		myCanvas.update(o, arg);
 	}
+	
+	private void setupGui() {
+		
+		setupBorderPane();
+		setupCanvas();
+		setupGuiElements();
 
-	private void setupMenuBar() {
-		MenuBar menubar = new MenuBar();
-
-		Menu menufile = new Menu("File");
-		Menu menuedit = new Menu("Edit");
-		Menu menuview = new Menu("View");
-
-		menuedit.getItems().add(makeImageChooserMenuItem());
-
-		menubar.getMenus().addAll(menufile, menuedit, menuview);
-		myBorderPane.setTop(menubar);
 	}
-
-	private void setupGuiElements() {
-		myPanelFactory = new PanelFactory();
-		try {
-		myScriptPanel = (ScriptPanel)myPanelFactory.buildPanel("ScriptPanel", myBorderPane, myController);
-		myParameterPanel = (ParameterPanel)myPanelFactory.buildPanel("ParameterPanel", myBorderPane, myController);
-		} catch (Exception e) {
-			e.printStackTrace();
-			//other stuff
-		}
-		//myPanelFactory.buildAllPanels(myBorderPane, myController);
-	}
-
+	
 	private void setupBorderPane() {
 		myBorderPane = new BorderPane();
 		myBorderPane.setPrefSize(WIDTH, HEIGHT);
 	}
-
+	
 	private void setupCanvas() {
 		myCanvas = new TurtleCanvas(WIDTH, HEIGHT, PADDING, myController);
 		myBorderPane.setCenter(myCanvas);
 	}
 
-	private MenuItem makeImageChooserMenuItem() {
-
-		MenuItem menu = new MenuItem("Change Turtle Image");
-
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Upload Image");
-		fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All Images", "*.*"),
-                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png")
-            );
-
-		menu.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				File file = fileChooser.showOpenDialog(myStage);
-				if (file != null) {
-					myController.changeTurtleImage(file);
-				}
-			};
-		});
-
-		return menu;
+	private void setupGuiElements() {
+		myPanelFactory = new PanelFactory();
+		try {
+			myPanelFactory.buildPanel("ScriptPanel", myBorderPane, myController); // built and not stored
+			myParameterPanel = (ParameterPanel)myPanelFactory.buildPanel("ParameterPanel", myBorderPane, myController);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//other stuff
+		}
+		//myPanelFactory.buildAllPanels(myBorderPane, myController);
 	}
 	
 	public void addToHistory(String script) {

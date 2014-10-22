@@ -1,11 +1,10 @@
 package backEnd;
 
-import java.awt.Dimension;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 
 import commands.Command;
+
 import frontEnd.View;
 
 
@@ -18,7 +17,6 @@ public class Model {
 
     public Model () {
         myParser = new Parser(this);
-
     }
 
     public void setupTurtle (View view) {

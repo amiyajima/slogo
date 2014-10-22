@@ -18,7 +18,6 @@ public class DisplayTitlePane extends TitledPane {
 		VBox root = new VBox();
 
 		root.getChildren().add(makeBackgroundColorBox(contr));
-		root.getChildren().add(makePenColorBox(contr));
 		root.getChildren().add(makeGridLinesBox(contr));
 
 		setContent(root);
@@ -37,22 +36,6 @@ public class DisplayTitlePane extends TitledPane {
 
 		colorPicker.setOnAction(event -> contr
 				.changeBackgroundColor(colorPicker.getValue()));
-
-		return vbox;
-	}
-
-	private Node makePenColorBox(Controller contr) {
-		VBox vbox = new VBox();
-
-		Label label = new Label("Pen color: ");
-		vbox.getChildren().add(label);
-
-		ColorPicker colorPicker = new ColorPicker();
-		colorPicker.setValue(Color.BLACK);
-		vbox.getChildren().add(colorPicker);
-
-		colorPicker.setOnAction(event -> contr.changePenColor(colorPicker
-				.getValue()));
 
 		return vbox;
 	}

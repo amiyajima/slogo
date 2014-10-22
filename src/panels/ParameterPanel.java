@@ -3,7 +3,6 @@ package panels;
 import java.util.Map;
 
 import javafx.scene.control.Accordion;
-import javafx.scene.control.TitledPane;
 import javafx.scene.layout.BorderPane;
 import titlePanes.CommandTitlePane;
 import titlePanes.ControlTitlePane;
