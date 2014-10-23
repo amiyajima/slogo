@@ -1,4 +1,4 @@
-package backEnd;
+package backEnd.turtle;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -111,9 +111,9 @@ public abstract class AbstractTurtle extends Observable {
     }
 
     protected boolean isInBounds (double x, double y) {
-       //works on right bottom, not on left top
+        // works on right bottom, not on left top
         Point2D currentPosition = myPosition;
-        System.out.println( "current distance from top edge is " + (currentPosition.getY() - y));
+        System.out.println("current distance from top edge is " + (currentPosition.getY() - y));
         return !(currentPosition.getX() - x < 0 || currentPosition.getX() + x > myCanvasWidth
                  || currentPosition.getY() - y < 0 || currentPosition.getY() + y > myCanvasHeight);
     }

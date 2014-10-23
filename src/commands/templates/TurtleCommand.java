@@ -2,9 +2,9 @@ package commands.templates;
 
 import java.util.Map;
 import backEnd.Model;
-import backEnd.AbstractTurtle;
-import backEnd.Turtle;
 import backEnd.VariableManager;
+import backEnd.turtle.AbstractTurtle;
+import backEnd.turtle.Turtle;
 
 /**
  * Turtle commands have an additional method, executeTurtleCommand.
