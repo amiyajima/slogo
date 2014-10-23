@@ -3,96 +3,61 @@ package frontEnd;
 import java.io.File;
 import java.util.Map;
 import java.util.Observable;
-import java.util.Observer;
 
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.Property;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import backEnd.AbstractTurtle;
 import backEnd.Controller;
-import backEnd.Turtle;
-import drawer.Drawer;
-import drawer.SimpleDrawer;
 
 public class TurtleCanvas extends Group {// implements Observer {
-//observer commented out	
-	public double boundingWidth, boundingHeight, myPadding;
+//observer commented out
 	
+	private double boundingWidth, boundingHeight, myPadding;
 	private DoubleProperty myWidth, myHeight;
-	private Point2D turtleLocation;
-	private DoubleProperty turtleOrientation;
-	private BooleanProperty isPenDown;
-	private Color penColor;
-	Rectangle myBackground;
-	Group myGridLines;
-	ImageView turtleView;
-	Drawer myDrawer;
+	private Rectangle myBackground;
+	private Group myGridLines;
+	private TurtleView turtleView;
 
 	public TurtleCanvas(double width, double height, double padding, Controller controller) {
 		super();
 		
-		myWidth = new SimpleDoubleProperty(3.*width/4.);
-		myHeight = new SimpleDoubleProperty(3.*height/4.);
+		myWidth = new SimpleDoubleProperty(width);
+		myHeight = new SimpleDoubleProperty(height);
 		myPadding = padding;	
 		
 		boundingWidth = myWidth.get() - 2*myPadding;
 		boundingHeight = myHeight.get() - 2*myPadding;
 		
-		penColor = Color.BLACK;
-		
-		myDrawer = new SimpleDrawer();
-		
 		addBackground();
 		addGridLines();
+		addClipper();
 	}
 	
-	public void bindProperties(AbstractTurtle turtle) {
-		Map<String, Property> tProps = turtle.getTurtleProperties();
-		turtleOrientation.bindBidirectional((DoubleProperty)tProps.get(AbstractTurtle.ORIENTATION_STRING));
-		isPenDown.bindBidirectional((BooleanProperty)tProps.get(AbstractTurtle.PEN_STRING));
-	}
-	
+	//remove later - currently needed by Controller in changeXPos
 	public void setTurtleX(double x) {
-		
-		turtleView.setX(x - turtleView.getImage().getWidth()/2);
-		// + myWidth.doubleValue()/2
+		turtleView.setTurtleX(x);
 	}
 	
+	//remove later - corresponding method for X currently needed by controller
 	public void setTurtleY(double y) {
-		turtleView.setY(y - turtleView.getImage().getHeight()/2);
-		// + myHeight.doubleValue()/2
-	}
-	
-	private double getTurtleX() {
-		return turtleView.getX() + turtleView.getImage().getWidth()/2;
-	}
-	
-	private double getTurtleY() {
-		return turtleView.getY() + turtleView.getImage().getHeight()/2;
-	}
-	
-	public void setTurtleOrientation(double orientation) {
-		turtleOrientation.set(orientation);
-		turtleView.setRotate(turtleOrientation.get());
+		turtleView.setTurtleY(y);
 	}
 	
 	public void changeBackgroundColor(Color c) {
 		myBackground.setFill(c);
 	}
 	
+	//remove later - currently needed by controller
 	public void changePenColor(Color c) {
-		penColor = c;
+		//penColor = c;
+		turtleView.changePenColor(c);
 	}
 	
 	public void changeTurtleImage(File f) {
@@ -102,62 +67,56 @@ public class TurtleCanvas extends Group {// implements Observer {
 	public void toggleGridLines() {
 		myGridLines.setVisible(!myGridLines.isVisible());
 	}
-
-	private void addBackground() {
-		
-		Rectangle container = new Rectangle();
-		container.setWidth(myWidth.doubleValue());
-		container.setHeight(myHeight.doubleValue());
-		container.setFill(Color.WHITE);
-		container.setStroke(Color.BLACK);
-		container.setX(0);
-		container.setY(0);
-		
-		myBackground = new Rectangle();
-		myBackground.setWidth(boundingWidth);
-		myBackground.setHeight(boundingHeight);
-		myBackground.setFill(Color.WHITE);
-		myBackground.setStroke(Color.BLACK);
-		myBackground.setX(myPadding);
-		myBackground.setY(myPadding);
-		
-		getChildren().addAll(container, myBackground);
-	}
 	
 	public void addTurtle(AbstractTurtle turtle) {
-		turtleView = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
-		
-		
-		turtleView.setX(boundingWidth/2 - turtleView.getImage().getWidth()/2);
-		turtleView.setY(boundingHeight/2 - turtleView.getImage().getHeight()/2);
-		
-		turtleLocation = new Point2D(getTurtleX(), getTurtleY());
-		turtleOrientation = new SimpleDoubleProperty(0);
-		isPenDown = new SimpleBooleanProperty(true);
-		
-		bindProperties(turtle);
-		addListeners();
-		
-		getChildren().add(turtleView);
+		ImageView turtleImage = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
+		@SuppressWarnings("rawtypes")
+		Map<String, Property> tProps = turtle.getTurtleProperties();
+		turtleView = new TurtleView(tProps, boundingWidth, boundingHeight, turtleImage);
+		//change to just adding group for turtle?
+		getChildren().add(turtleView.getImageView());
+		getChildren().add(turtleView.getPenLines());
 	}
 
 //	@Override
 	public void update(Observable o, Object arg) {
-		
 		System.out.println("HERE!!!!!" + arg.toString());
-		
 		//TODO Change these to Properties to get their names
 		if (arg instanceof Point2D) {
-			if (isPenDown.get()) drawLine((Point2D)arg);
-			turtleLocation = (Point2D)arg;
-			setTurtleX(turtleLocation.getX());
-			setTurtleY(turtleLocation.getY());
+			if (turtleView.penIsDown()) turtleView.drawLine((Point2D)arg);
+			Point2D newPoint = (Point2D)arg;
+			turtleView.setTurtleX(newPoint.getX());
+			turtleView.setTurtleY(newPoint.getY());			
 		}
+	}
+
+	private void addBackground() {
 		
+		Rectangle container = makeRect(myWidth.doubleValue(), myHeight.doubleValue(), 0, 0);
+		container.setFill(Color.WHITE);
+		container.setStroke(Color.BLACK);
+		
+		myBackground = makeRect(boundingWidth, boundingHeight, myPadding, myPadding);
+		myBackground.setFill(Color.WHITE);
+		myBackground.setStroke(Color.BLACK);
+
+		
+		getChildren().addAll(container, myBackground);
+	}
+	
+	private void addClipper() {
+		Rectangle container = makeRect(boundingWidth, boundingHeight, myPadding, myPadding);
+		setClip(container);
+	}
+	
+	private Rectangle makeRect(double width, double height, double xpos, double ypos) {
+		Rectangle rect = new Rectangle(width, height);
+		rect.setX(xpos);
+		rect.setY(ypos);
+		return rect;
 	}
 	
 	private void addGridLines() {
-		
 		myGridLines = new Group();
 		for (int row = 0; row < 20; row++) {
 			for (int col = 0; col < 20; col++) {
@@ -172,20 +131,12 @@ public class TurtleCanvas extends Group {// implements Observer {
 		}
 		getChildren().add(myGridLines);
 	}
-	
-	private void addListeners() {
-		turtleOrientation.addListener(new ChangeListener<Object>() {
-			@Override
-			public void changed(ObservableValue<? extends Object> observable,
-					Object oldValue, Object newValue) {
-				turtleView.setRotate(turtleOrientation.get());
-			}
-		});
+		
+	public double getBoundingWidth() {
+		return boundingWidth;
 	}
 	
-	private void drawLine(Point2D endPoint) {
-		Line line = myDrawer.makeLine(penColor, turtleLocation, endPoint);
-		getChildren().add(line);
+	public double getBoundingHeight() {
+		return boundingHeight;
 	}
-
 }

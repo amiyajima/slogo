@@ -1,9 +1,6 @@
 package backEnd;
 
-import java.awt.Dimension;
 import java.util.List;
-import java.util.Map;
-import java.util.Queue;
 import commands.templates.Command;
 import frontEnd.View;
 
@@ -17,8 +14,10 @@ public class Model {
     // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657, 524);
 
     public Model () {
+
         myVariableManager = new VariableManager();
-        myParser = new Parser(this, myVariableManager);   
+        myParser = new Parser(this, myVariableManager);
+
     }
 
     public void setupTurtle (View view) {
@@ -41,6 +40,7 @@ public class Model {
      * 
      */
     int runScript (String script) throws Exception {
+
         List<Command> rootCommands = myParser.parseScript(script);
 
         // System.out.println("beginning execution " + rootCommands);

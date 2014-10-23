@@ -1,79 +1,67 @@
 package frontEnd;
 
-import java.io.File;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import panels.PanelFactory;
+import javafx.scene.Node;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import panels.ParameterPanel;
 import panels.ScriptPanel;
 import backEnd.AbstractTurtle;
 import backEnd.Controller;
-import backEnd.Turtle;
 
-public class View implements Observer {
+public class View extends VBox implements Observer {
+	
+	public TurtleCanvas myCanvas; //MAKE THIS PRIVATE (look at controller)
 
-	private static final double WIDTH = 900;
-	private static final double HEIGHT = 700;
-	private static final double PADDING = 20;
-
-	public TurtleCanvas myCanvas;
-
-	private Stage myStage;
-	private BorderPane myBorderPane;
-	private PanelFactory myPanelFactory;
+	@SuppressWarnings("unused")
 	private String myLanguage;
 	private Controller myController;
-	private ScriptPanel myScriptPanel;
-	private ParameterPanel myParameterPanel;
 	
-	public View(String language) {
+	private double WIDTH, HEIGHT;
+	private static final double PADDING = 20;
+	private ParameterPanel mySidePanel;
+	
+	public View(double width, double height, String language) {
+		super();
+		
 		myLanguage = language;
+		
+		WIDTH = width;
+		HEIGHT = height;
+		
+		setMinWidth(WIDTH);
+		setMinHeight(HEIGHT);
+		setMaxWidth(WIDTH);
+		setMaxHeight(HEIGHT);
 	}
 
 	/**
-	 * Done by Main at initiation
+	 * Called by Controller constructor
 	 */
-	public void addController(Controller controller) {
+	public void addControllerAndSetupGui(Controller controller) {
 		myController = controller;
-	}
-
-	/**
-	 * Called by Main after the controller is attached
-	 */
-	public void setupGui(Stage stage) {
-
-		myStage = stage;
-		myStage.setTitle("SLogo");
-		setupBorderPane();
-		setupCanvas();
-		setupMenuBar();
-		setupGuiElements();
-
-		Scene scene = new Scene(myBorderPane);
-		myStage.setScene(scene);
+		setupGui();
 	}
 	
+	/**
+	 * Called by Controller constructor
+	 */
 	public void setupTurtleView(AbstractTurtle turtle) {
 		myCanvas.addTurtle(turtle);
 	}
 	
+	/**
+	 * Called by Model when it sets up its turtle
+	 */
 	public double getCanvasWidth() {
-		return myCanvas.boundingWidth;
+		return myCanvas.getBoundingWidth();
 	}
 	
 	public double getCanvasHeight() {
-		return myCanvas.boundingHeight;
+		return myCanvas.getBoundingHeight();
 	}
 
 	/**
@@ -86,73 +74,38 @@ public class View implements Observer {
 	public void update(Observable o, Object arg) {
 		myCanvas.update(o, arg);
 	}
-
-	private void setupMenuBar() {
-		MenuBar menubar = new MenuBar();
-
-		Menu menufile = new Menu("File");
-		Menu menuedit = new Menu("Edit");
-		Menu menuview = new Menu("View");
-
-		menuedit.getItems().add(makeImageChooserMenuItem());
-
-		menubar.getMenus().addAll(menufile, menuedit, menuview);
-		myBorderPane.setTop(menubar);
-	}
-
-	private void setupGuiElements() {
-		myPanelFactory = new PanelFactory();
-		try {
-		myScriptPanel = (ScriptPanel)myPanelFactory.buildPanel("ScriptPanel", myBorderPane, myController);
-		myParameterPanel = (ParameterPanel)myPanelFactory.buildPanel("ParameterPanel", myBorderPane, myController);
-		} catch (Exception e) {
-			e.printStackTrace();
-			//other stuff
-		}
-		//myPanelFactory.buildAllPanels(myBorderPane, myController);
-	}
-
-	private void setupBorderPane() {
-		myBorderPane = new BorderPane();
-		myBorderPane.setPrefSize(WIDTH, HEIGHT);
-	}
-
-	private void setupCanvas() {
-		myCanvas = new TurtleCanvas(WIDTH, HEIGHT, PADDING, myController);
-		myBorderPane.setCenter(myCanvas);
-	}
-
-	private MenuItem makeImageChooserMenuItem() {
-
-		MenuItem menu = new MenuItem("Change Turtle Image");
-
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Upload Image");
-		fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All Images", "*.*"),
-                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png")
-            );
-
-		menu.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				File file = fileChooser.showOpenDialog(myStage);
-				if (file != null) {
-					myController.changeTurtleImage(file);
-				}
-			};
-		});
-
-		return menu;
-	}
 	
 	public void addToHistory(String script) {
-		myParameterPanel.addToHistory(script);
+		mySidePanel.addToHistory(script);
 	}
 	
 	public void setupVariableMap(Map<String, Double> varMap) {
-		myParameterPanel.setupVariableMap(varMap);
+		mySidePanel.setupVariableMap(varMap);
 	}
-
+	
+/////////////////  GUI SETUP  //////////////////
+	private void setupGui() {
+		
+		HBox hbox = new HBox();
+		hbox.setMinHeight(3.*HEIGHT/4.);
+		hbox.setMinWidth(WIDTH);
+		hbox.getChildren().addAll(buildCanvas(), buildSidePanel());
+		
+		getChildren().addAll(hbox, buildScriptPanel());
+	}
+	
+	private Node buildCanvas() {
+		myCanvas = new TurtleCanvas(3.*WIDTH/4., 3.*HEIGHT/4., PADDING, myController);
+		return myCanvas;
+	}
+	
+	private Node buildSidePanel() {
+		mySidePanel = new ParameterPanel(WIDTH/4., 3.*HEIGHT/4., myController);
+		return mySidePanel;
+	}
+	
+	private Node buildScriptPanel() {
+		return new ScriptPanel(WIDTH, HEIGHT/4., myController);
+	}
+	
 }

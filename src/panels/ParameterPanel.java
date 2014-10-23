@@ -3,8 +3,7 @@ package panels;
 import java.util.Map;
 
 import javafx.scene.control.Accordion;
-import javafx.scene.control.TitledPane;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import titlePanes.CommandTitlePane;
 import titlePanes.ControlTitlePane;
 import titlePanes.DisplayTitlePane;
@@ -13,7 +12,7 @@ import titlePanes.TitlePaneFactory;
 import titlePanes.VariableTitlePane;
 import backEnd.Controller;
 
-public class ParameterPanel extends Panel {
+public class ParameterPanel extends Pane {
 	
 	private DisplayTitlePane myDisplayTitlePane;
 	private HistoryTitlePane myHistoryTitlePane;
@@ -21,34 +20,30 @@ public class ParameterPanel extends Panel {
 	private CommandTitlePane myCommandTitlePane;
 	private VariableTitlePane myVariableTitlePane;
 
-	ParameterPanel(BorderPane borderPane, Controller controller) {
+	public ParameterPanel(double width, double height, Controller controller) {
+				
+		setMinWidth(width);
+		setMinHeight(height);
 		
-		super(borderPane, controller);
+		double maxTitlePaneHeight = height-100;
 		
-		Accordion root = new Accordion();
-		root.setPrefWidth(borderPane.getPrefWidth()/4);
+		Accordion accordion = new Accordion();
 		
-		TitlePaneFactory factory = new TitlePaneFactory();
-		
-		//Pen color
-		//Background color
-		//Turtle image		
+		TitlePaneFactory factory = new TitlePaneFactory(maxTitlePaneHeight);
+			
 		try {
 		myDisplayTitlePane = (DisplayTitlePane)factory.buildTitleFrame("DisplayTitlePane", controller);
 		myHistoryTitlePane = (HistoryTitlePane)factory.buildTitleFrame("HistoryTitlePane", controller);
 		myControlTitlePane = (ControlTitlePane)factory.buildTitleFrame("ControlTitlePane", controller);
 		myCommandTitlePane = (CommandTitlePane)factory.buildTitleFrame("CommandTitlePane", controller);
 		myVariableTitlePane = (VariableTitlePane)factory.buildTitleFrame("VariableTitlePane", controller);
-		root.getPanes().addAll(myDisplayTitlePane, myHistoryTitlePane, myControlTitlePane, myCommandTitlePane, myVariableTitlePane);
+		accordion.getPanes().addAll(myDisplayTitlePane, myHistoryTitlePane, myControlTitlePane, myCommandTitlePane, myVariableTitlePane);
 		} catch (Exception e) {
 			e.printStackTrace();
-			//other stuff?
 		}
-//		for (TitledPane tp : factory.buildAllTitleFrames(controller)) {		
-//			root.getPanes().add(tp);
-//		}
 		
-		borderPane.setRight(root);
+		getChildren().add(accordion);
+		
 	}
 	
 	public void addToHistory(String script) {

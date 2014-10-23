@@ -13,36 +13,34 @@ public class Controller {
 	public Controller(Model model, View view) {
 		myModel = model;
 		myView = view;
+		
+		myView.addControllerAndSetupGui(this);
+		
+		model.setupTurtle(view);
+		view.setupTurtleView(model.getTurtle());
 	}
-	
+
 	public void runScript(String script) throws Exception {
 		if (script != null) {
 			myModel.runScript(script);
 			myView.addToHistory(script);
 		}
 	}
-	
+
 	public void changeBackgroundColor(Color c) {
 		myView.myCanvas.changeBackgroundColor(c);
 	}
-	
+
 	public void changePenColor(Color c) {
 		myView.myCanvas.changePenColor(c);
 	}
-	
+
 	public void changeTurtleImage(File f) {
 		myView.myCanvas.changeTurtleImage(f);
 	}
-	
+
 	public void toggleGridLines() {
 		myView.myCanvas.toggleGridLines();
 	}
-	
-	/*
-	 * TEMPORARY - For view.canvas testing
-	 */
-	public void changeXPos(double x) {
-		myView.myCanvas.setTurtleX(x);
-	}
-	
+
 }

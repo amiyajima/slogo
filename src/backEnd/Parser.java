@@ -1,32 +1,35 @@
 package backEnd;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.StringTokenizer;
-import commands.CommandFactory;
-import commands.ConstantCommand;
+import java.util.regex.Pattern;
 import commands.templates.Command;
-import commands.variable_commands.CommandsList;
+import commands.CommandFactory;
+import exceptions.SLogoException;
+
 
 class Parser {
 
-    private String myString;
     private CommandFactory myFactory;
     private StringTokenizer myInstructions;
     private Model myModel;
     private Map<String, Command> myCommandMap;
     private VariableManager myVariableManager;
 
+    public static final String CONSTANT_REGEX = "-?[0-9]+\\.?[0-9]*";
+    public static final String VARIABLE_REGEX = ":[a-zA-Z]+";
+    public static final String COMMAND_REGEX = "[a-zA-Z_]+(\\?)?";
+    public static final String OPEN_BRACKET_REGEX = "\\[";
+    public static final String CLOSE_BRACKET_REGEX = "\\]";
+
     Parser (Model model, VariableManager manager) {
         myModel = model;
         myCommandMap = new HashMap<String, Command>();
         myVariableManager = manager;
+        myFactory = new CommandFactory("English", myModel, myVariableManager);
     }
 
     /**
@@ -41,13 +44,13 @@ class Parser {
      */
     List<Command> parseScript (String script) {
         List<Command> myRoots = new ArrayList<Command>();
-        myFactory = new CommandFactory("English", myModel, myVariableManager);
         myInstructions = new StringTokenizer(script);
 
         while (myInstructions.hasMoreTokens()) {
             Command createdCommand = makeTree(myInstructions.nextToken());
             myRoots.add(createdCommand);
         }
+
         return myRoots;
     }
 
@@ -59,22 +62,36 @@ class Parser {
      * @return
      * @throws RuntimeException
      */
-    Command makeTree (String commandName) throws RuntimeException {
+    Command makeTree (String commandName) throws SLogoException {
         System.out.println(commandName);
         Command c = myFactory.buildCommand(commandName);
-        if (c instanceof CommandsList) {
+        if (Pattern.matches(OPEN_BRACKET_REGEX, commandName)) {
             String nextInstruction = myInstructions.nextToken();
-            while (!(nextInstruction.equals("]"))) {
-                System.out.println("CREATING NEW LIST CHILD");
+            while (!(Pattern.matches(CLOSE_BRACKET_REGEX, nextInstruction))) {
                 c.addChild(makeTree(nextInstruction));
+
+                if (!myInstructions.hasMoreElements()) {
+                    // throw exception
+                    break;
+                }
+
                 nextInstruction = myInstructions.nextToken();
+
             }
             return c;
         }
 
-        if (c instanceof ConstantCommand) { return c; }
-        while (c.getNumChildrenNeeded() > 0) {
-            c.addChild(makeTree(myInstructions.nextToken()));
+        else if (Pattern.matches(CONSTANT_REGEX, commandName)) {
+            return c;
+        }
+
+        else if (Pattern.matches(COMMAND_REGEX, commandName)) {
+            while (c.getNumChildrenNeeded() > 0) {
+                c.addChild(makeTree(myInstructions.nextToken()));
+            }
+        }
+        else {
+            // Throw exception
         }
         return c;
     }

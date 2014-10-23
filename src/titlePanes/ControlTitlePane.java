@@ -3,11 +3,16 @@ package titlePanes;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import backEnd.Controller;
 
 public class ControlTitlePane extends TitledPane {
@@ -22,6 +27,10 @@ public class ControlTitlePane extends TitledPane {
 		makeButtons(root, contr);
 		
 		makeLocationFields(root, contr);
+		
+		makePenColorBox(root, contr);
+		
+		makeHelpText(root);
 		
 		setContent(root);
 		
@@ -40,38 +49,12 @@ public class ControlTitlePane extends TitledPane {
 		Button downButton = new Button(">");
 		downButton.setRotate(90);
 		
-		setSize(upButton);
-		setSize(leftButton);
-		setSize(rightButton);
-		setSize(downButton);
+		setSize(new Button[]{upButton, leftButton, rightButton, downButton});
 		
-		upButton.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				try {
-					contr.runScript("back 10");
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					System.out.println(e.toString());
-				}
-			}
-			
-		});
-		
-		downButton.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				try {
-					contr.runScript("forward 10");
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					System.out.println(e.toString());
-				}
-			}
-			
-		});
+		upButton.setOnAction(event -> handle(contr, "forward 15"));
+		downButton.setOnAction(event -> handle(contr, "back 15"));
+		rightButton.setOnAction(event -> handle(contr, "right 15"));
+		leftButton.setOnAction(event -> handle(contr, "left 15"));
 		
 		hbox.getChildren().addAll(leftButton, downButton, rightButton);
 		
@@ -81,22 +64,93 @@ public class ControlTitlePane extends TitledPane {
 		
 	}
 	
-	private void makeLocationFields(VBox root, Controller contr) {
-		
-		HBox hbox = new HBox();
-		
-		Label xlabel = new Label("X Loc: ");
-		
-		TextField tf = new TextField();
-		tf.setOnAction(event -> contr.changeXPos(Double.parseDouble(tf.getText())));
-		
-		hbox.getChildren().addAll(xlabel, tf);
-		
-		root.getChildren().add(hbox);
+	private void handle(Controller c, String s) {
+		try {
+			c.runScript(s);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 	}
 	
-	private void setSize(Button b) {
-		b.setPrefSize(40, 40);
+	private void makeLocationFields(VBox root, Controller contr) {
+		
+		VBox vbox = new VBox();
+		HBox xhbox = new HBox();
+		HBox yhbox = new HBox();
+		
+		Label xlabel = new Label("X Loc: ");
+		Label ylabel = new Label("Y Loc: ");
+		
+		TextField xtf = new TextField();
+		xtf.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					contr.runScript("setxy " + xtf.getText() + " ycor");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.toString());
+				}
+			}
+			
+		});
+		
+		TextField ytf = new TextField();
+		ytf.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					contr.runScript("setxy "  + "xcor "+ ytf.getText());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.toString());
+				}
+			}
+			
+		});
+		
+		xhbox.getChildren().addAll(xlabel, xtf);
+		yhbox.getChildren().addAll(ylabel, ytf);
+		vbox.getChildren().addAll(xhbox, yhbox);
+		
+		root.getChildren().add(vbox);
+	}
+	
+	private void makePenColorBox(VBox root, Controller contr) {
+		VBox vbox = new VBox();
+
+		Label label = new Label("Pen color: ");
+		vbox.getChildren().add(label);
+
+		ColorPicker colorPicker = new ColorPicker();
+		colorPicker.setValue(Color.BLACK);
+		vbox.getChildren().add(colorPicker);
+
+		colorPicker.setOnAction(event -> contr.changePenColor(colorPicker
+				.getValue()));
+
+		root.getChildren().add(vbox);
+	}
+	
+	private void makeHelpText(Pane root) {
+		
+		VBox vbox = new VBox();
+		
+		Label label1 = new Label();
+		Label label2 = new Label();
+		label1.setText("Additionally");
+		label2.setText("Use A,S,W,D keys for navigation");
+		
+		label1.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
+		
+		vbox.getChildren().addAll(label1, label2);
+		root.getChildren().add(vbox);
+	}
+	
+	private void setSize(Button[] b) {
+		for (Button a:b) a.setPrefSize(40, 40);
 	}
 
 }
