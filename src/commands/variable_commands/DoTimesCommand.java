@@ -18,20 +18,18 @@ import commands.templates.TwoChildCommand;
  *
  */
 public class DoTimesCommand extends TwoChildCommand {
-    private VariableManager myVariableManager;
     private Command myVariable;
 
     public DoTimesCommand (VariableManager manager) {
         super(manager);
         myVariable = null;
-        myVariableManager = new VariableManager();
     }
 
     @Override
     public double execute () {
         Double result = 0.0;
         myVariable = getMyChildren().get(0);
-        for (int i = 0; i < (int) ((CommandsList) myVariable).getChild(1).execute(); i++) {
+        for (int i = 1; i <= (int) ((CommandsList) myVariable).getChild(1).execute(); i++) {
             // for each value the var up to limit
             System.out.println(((CommandsList) myVariable).getChild(0).toString());
             // replace all instances of
