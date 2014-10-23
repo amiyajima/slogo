@@ -3,6 +3,7 @@ package commands.variable_commands;
 import java.util.HashMap;
 import java.util.Map;
 import backEnd.Model;
+import backEnd.VariableManager;
 import commands.templates.Command;
 import commands.templates.TwoChildCommand;
 
@@ -20,7 +21,8 @@ public class ForCommand extends TwoChildCommand {
     private Map<String, Double> myVarsMap;
     Command myForList;
 
-    public ForCommand () {
+    public ForCommand (VariableManager manager) {
+        super(manager);
         myForList = null;
         myVarsMap = new HashMap<String,Double>();
     }

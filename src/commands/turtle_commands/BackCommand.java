@@ -4,13 +4,15 @@ import java.util.Map;
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import backEnd.AbstractTurtle;
+import backEnd.VariableManager;
 
 
 public class BackCommand extends TurtleCommand {
 
     public static final int NUM_CHILDREN = 1;
 
-    public BackCommand () {
+    public BackCommand (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 

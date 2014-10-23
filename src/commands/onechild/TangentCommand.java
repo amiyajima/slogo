@@ -1,9 +1,14 @@
 package commands.onechild;
 
+import backEnd.VariableManager;
 import commands.templates.OneChildCommand;
 
 
 public class TangentCommand extends OneChildCommand {
+
+    public TangentCommand (VariableManager manager) {
+        super(manager);
+    }
 
     @Override
     public double execute () {

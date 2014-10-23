@@ -12,12 +12,13 @@ public class Model {
 
     private Parser myParser;
     private AbstractTurtle myTurtle;
+    private VariableManager myVariableManager;
 
     // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657, 524);
 
     public Model () {
-        myParser = new Parser(this);
-
+        myVariableManager = new VariableManager();
+        myParser = new Parser(this, myVariableManager);   
     }
 
     public void setupTurtle (View view) {

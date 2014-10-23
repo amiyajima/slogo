@@ -1,8 +1,8 @@
 package backEnd;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 
@@ -22,22 +22,22 @@ public class VariableManager {
     }
 
     private void setVarProperties () throws IOException {
-        File file = new File("/resources/Variables.properties");
-        FileInputStream fileInput = new FileInputStream(file);
-        myVariables.load(fileInput);
-        fileInput.close();
+        InputStream fileInput = getClass().getResourceAsStream("/resources/Variables.properties");
+        
     }
 
     public double getVar (String var) {
-        
-        return (double) myVariables.get(var);
+        return Double.parseDouble(myVariables.getProperty(var));
     }
 
-    public void addVar (String var, String value) {
+    public void addVar (String var, String value) throws IOException {
+        System.out.println("var added in manager " + var + value);
         myVariables.setProperty(var, value);
+        FileOutputStream myFileOutput = new FileOutputStream("src/resources/Variables.properties");
+        myVariables.store(myFileOutput, "adding vars");
     }
 
     public boolean checkVarExists (String var) {
-        return (myVariables.containsKey(var));
+        return myVariables.containsKey(var);
     }
 }

@@ -1,12 +1,14 @@
 package commands.turtle_commands;
 
-import java.util.Map;
 import backEnd.AbstractTurtle;
+import backEnd.VariableManager;
 import commands.templates.TurtleCommand;
+
 
 public class ClearCommand extends TurtleCommand {
 
-    public ClearCommand () {
+    public ClearCommand (VariableManager manager) {
+        super(manager);
     }
 
     @Override

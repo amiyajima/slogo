@@ -1,12 +1,14 @@
 package commands.templates;
 
 import backEnd.Model;
+import backEnd.VariableManager;
 
 public abstract class OneChildCommand extends Command {
 
     public static final int NUM_CHILDREN = 1;
     
-    public OneChildCommand () {
+    public OneChildCommand (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
     

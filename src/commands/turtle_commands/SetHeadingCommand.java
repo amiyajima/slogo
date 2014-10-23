@@ -1,6 +1,7 @@
 package commands.turtle_commands;
 
 import backEnd.AbstractTurtle;
+import backEnd.VariableManager;
 import commands.templates.TurtleCommand;
 
 
@@ -9,7 +10,8 @@ public class SetHeadingCommand extends TurtleCommand {
     private double myNewOrientation;
     public static final int NUM_CHILDREN = 1;
 
-    public SetHeadingCommand () {
+    public SetHeadingCommand (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 

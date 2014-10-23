@@ -2,13 +2,15 @@ package commands.turtle_commands;
 
 import commands.templates.TurtleCommand;
 import backEnd.AbstractTurtle;
+import backEnd.VariableManager;
 
 
 public class HeadingQuery extends TurtleCommand {
 
     public static final int NUM_CHILDREN = 0;
 
-    public HeadingQuery () {
+    public HeadingQuery (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 

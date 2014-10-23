@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import backEnd.Model;
+import backEnd.VariableManager;
 
 
 /**
@@ -20,14 +21,16 @@ public abstract class Command {
     private List<Command> myChildren;
     private int myNumChildren;
     private double myValue;
+    protected VariableManager myVariableManager;
 
     /**
      * 
      * 
      */
-    public Command () {
+    public Command (VariableManager manager) {
         myChildren = new ArrayList<>();
         System.out.println(this.getClass().getName() + " created");
+        myVariableManager = manager;
     }
 
     /**

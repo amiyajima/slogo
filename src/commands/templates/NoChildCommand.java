@@ -1,8 +1,14 @@
 package commands.templates;
 
 import backEnd.Model;
+import backEnd.VariableManager;
 
 public abstract class NoChildCommand extends Command {
+
+    public NoChildCommand (VariableManager manager) {
+        super(manager);
+        // TODO Auto-generated constructor stub
+    }
 
     @Override
     public double execute () {

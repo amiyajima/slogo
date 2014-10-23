@@ -1,6 +1,7 @@
 package commands.turtle_commands;
 
 import backEnd.AbstractTurtle;
+import backEnd.VariableManager;
 import commands.templates.TurtleCommand;
 
 
@@ -8,7 +9,8 @@ public class ForwardCommand extends TurtleCommand {
 
     public static final int NUM_CHILDREN = 1;
 
-    public ForwardCommand () {
+    public ForwardCommand (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 
@@ -17,7 +19,7 @@ public class ForwardCommand extends TurtleCommand {
         double value = getMyChildren().get(0).execute();
         setValue(value);
         executeTurtleCommand(getMyTurtle());
-        System.out.println("forward execute called");
+        System.out.println("forward " + value + " called");
         return value;
     }
 

@@ -1,9 +1,14 @@
 package commands.onechild;
 
+import backEnd.VariableManager;
 import commands.templates.OneChildCommand;
 
 
 public class CosineCommand extends OneChildCommand {
+
+    public CosineCommand (VariableManager manager) {
+        super(manager);
+    }
 
     @Override
     public double execute () {

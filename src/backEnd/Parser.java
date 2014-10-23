@@ -14,9 +14,6 @@ import commands.ConstantCommand;
 import commands.templates.Command;
 import commands.variable_commands.CommandsList;
 
-
-// contain hashmap for variables, replace mapped value for variable
-
 class Parser {
 
     private String myString;
@@ -24,10 +21,12 @@ class Parser {
     private StringTokenizer myInstructions;
     private Model myModel;
     private Map<String, Command> myCommandMap;
+    private VariableManager myVariableManager;
 
-    Parser (Model model) {
+    Parser (Model model, VariableManager manager) {
         myModel = model;
         myCommandMap = new HashMap<String, Command>();
+        myVariableManager = manager;
     }
 
     /**
@@ -42,7 +41,7 @@ class Parser {
      */
     List<Command> parseScript (String script) {
         List<Command> myRoots = new ArrayList<Command>();
-        myFactory = new CommandFactory("English", myModel);
+        myFactory = new CommandFactory("English", myModel, myVariableManager);
         myInstructions = new StringTokenizer(script);
 
         while (myInstructions.hasMoreTokens()) {

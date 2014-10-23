@@ -1,6 +1,7 @@
 package commands.turtle_commands;
 
 import backEnd.AbstractTurtle;
+import backEnd.VariableManager;
 import commands.templates.TurtleCommand;
 
 
@@ -8,7 +9,8 @@ public class TowardsCommand extends TurtleCommand {
 
     public static final int NUM_CHILDREN = 2;
 
-    public TowardsCommand () {
+    public TowardsCommand (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 

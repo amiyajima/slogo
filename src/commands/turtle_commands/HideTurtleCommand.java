@@ -1,6 +1,7 @@
 package commands.turtle_commands;
 
 import backEnd.AbstractTurtle;
+import backEnd.VariableManager;
 import commands.templates.TurtleCommand;
 
 
@@ -8,7 +9,8 @@ public class HideTurtleCommand extends TurtleCommand {
     public static final int HIDE_TURTLE = 0;
     public static final int NUM_CHILDREN = 0;
 
-    public HideTurtleCommand () {
+    public HideTurtleCommand (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 

@@ -1,6 +1,7 @@
 package commands.turtle_commands;
 
 import backEnd.AbstractTurtle;
+import backEnd.VariableManager;
 import commands.templates.TurtleCommand;
 
 
@@ -8,7 +9,8 @@ public class RightCommand extends TurtleCommand {
 
     public static final int NUM_CHILDREN = 1;
 
-    public RightCommand () {
+    public RightCommand (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 

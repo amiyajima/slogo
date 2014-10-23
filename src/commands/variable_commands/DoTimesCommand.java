@@ -1,8 +1,10 @@
 package commands.variable_commands;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import backEnd.Model;
+import backEnd.VariableManager;
 import commands.templates.Command;
 import commands.templates.TwoChildCommand;
 
@@ -16,25 +18,32 @@ import commands.templates.TwoChildCommand;
  *
  */
 public class DoTimesCommand extends TwoChildCommand {
-    private Map<String, Double> myVarsMap;
+    private VariableManager myVariableManager;
     private Command myVariable;
 
-    public DoTimesCommand () {
+    public DoTimesCommand (VariableManager manager) {
+        super(manager);
         myVariable = null;
-        myVarsMap = new HashMap<String, Double>();
+        myVariableManager = new VariableManager();
     }
 
     @Override
     public double execute () {
         Double result = 0.0;
         myVariable = getMyChildren().get(0);
-        for (int i = (int) ((CommandsList) myVariable).getChild(1).execute(); i > 0; i--) {
+        for (int i = 0; i < (int) ((CommandsList) myVariable).getChild(1).execute(); i++) {
             // for each value the var up to limit
             System.out.println(((CommandsList) myVariable).getChild(0).toString());
-            myVarsMap.put(((CommandsList) myVariable).getChild(0).toString(),
-                          (double) i);
+            // replace all instances of
+            try {
+                myVariableManager.addVar(((CommandsList) myVariable).getChild(0).toString(),
+                                         String.valueOf(i));
+            }
+            catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             getMyChildren().get(1).execute();
-            System.out.println(myVarsMap);
         }
         return result;
     }
@@ -48,7 +57,6 @@ public class DoTimesCommand extends TwoChildCommand {
 
     @Override
     public void initializeCommand (Model m) {
-
     }
 
 }

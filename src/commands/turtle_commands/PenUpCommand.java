@@ -1,6 +1,7 @@
 package commands.turtle_commands;
 
 import backEnd.AbstractTurtle;
+import backEnd.VariableManager;
 import commands.templates.TurtleCommand;
 
 
@@ -8,7 +9,8 @@ public class PenUpCommand extends TurtleCommand {
     public static final int PEN_UP = 0;
     public static final int NUM_CHILDREN = 0;
 
-    public PenUpCommand () {
+    public PenUpCommand (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 

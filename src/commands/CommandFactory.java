@@ -5,11 +5,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import com.sun.xml.internal.fastinfoset.sax.Properties;
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import commands.variable_commands.UserInputCommand;
 import commands.variable_commands.Variable;
 import backEnd.Model;
+import backEnd.VariableManager;
 
 
 /**
@@ -26,16 +28,18 @@ public class CommandFactory {
     private ResourceBundle myLanguageResources;
     private String classKey;
     private Model myModel;
-
+    private VariableManager myVariableManager;
+    
     /**
      * Initializes a command factory
      * 
      * @param language The language commands are being put into the text field
      */
-    public CommandFactory (String language, Model model) {
+    public CommandFactory (String language, Model model, VariableManager manager) {
         myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE
                                                        + "languages/" + language);
         myModel = model;
+        myVariableManager = manager;
     }
 
     /**
@@ -92,7 +96,7 @@ public class CommandFactory {
                         (myCommandResources.getString(classKey));
                 Constructor con = null;
                 try {
-                    con = newCommandClass.getConstructor();
+                    con = newCommandClass.getConstructor(VariableManager.class);
                 }
                 catch (NoSuchMethodException e) {
                     // TODO Auto-generated catch block
@@ -104,7 +108,7 @@ public class CommandFactory {
                 }
                 Command newCommand = null;
                 try {
-                    newCommand = (Command) con.newInstance();
+                    newCommand = (Command) con.newInstance(myVariableManager);
                 }
                 catch (IllegalArgumentException e) {
                     // TODO Auto-generated catch block
@@ -132,19 +136,19 @@ public class CommandFactory {
 
         else {
             if (checkVar(type)) {
-                Command varCommand = new Variable(type);
+                Command varCommand = new Variable(type, myVariableManager);
                 return varCommand;
             }
             try {
                 Double.parseDouble(type);
-                return new ConstantCommand(type);
+                return new ConstantCommand(type, myVariableManager);
 
             }
             catch (NumberFormatException e2) {
-                return new NullCommand();
+                return new NullCommand(myVariableManager);
             }
         }
-        return new UserInputCommand(type);
+        return new UserInputCommand(type, myVariableManager);
 
     }
 }

@@ -1,13 +1,15 @@
 package commands.turtle_commands;
 
 import backEnd.AbstractTurtle;
+import backEnd.VariableManager;
 import commands.templates.TurtleCommand;
 
 
 public class IsShowingQuery extends TurtleCommand {
     public static final int NUM_CHILDREN = 0;
 
-    public IsShowingQuery () {
+    public IsShowingQuery (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 

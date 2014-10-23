@@ -1,13 +1,15 @@
 package commands.turtle_commands;
 
 import backEnd.AbstractTurtle;
+import backEnd.VariableManager;
 import commands.templates.TurtleCommand;
 
 
 public class XCorQuery extends TurtleCommand {
     public static final int NUM_CHILDREN = 0;
 
-    public XCorQuery () {
+    public XCorQuery (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 

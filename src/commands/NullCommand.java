@@ -2,6 +2,7 @@ package commands;
 
 import commands.templates.Command;
 import backEnd.Model;
+import backEnd.VariableManager;
 
 
 /**
@@ -12,6 +13,10 @@ import backEnd.Model;
  *
  */
 public class NullCommand extends Command {
+
+    public NullCommand (VariableManager manager) {
+        super(manager);
+    }
 
     @Override
     public double execute () {

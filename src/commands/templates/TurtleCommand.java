@@ -4,6 +4,7 @@ import java.util.Map;
 import backEnd.Model;
 import backEnd.AbstractTurtle;
 import backEnd.Turtle;
+import backEnd.VariableManager;
 
 /**
  * Turtle commands have an additional method, executeTurtleCommand.
@@ -16,10 +17,12 @@ import backEnd.Turtle;
  */
 public abstract class TurtleCommand extends Command {
     
-    private AbstractTurtle myTurtle;
-
-    public TurtleCommand () {
+    public TurtleCommand (VariableManager manager) {
+        super(manager);
+        // TODO Auto-generated constructor stub
     }
+
+    private AbstractTurtle myTurtle;
 
     /**
      * Updates the turtle based on the result of the execution

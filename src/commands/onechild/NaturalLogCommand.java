@@ -1,9 +1,14 @@
 package commands.onechild;
 
+import backEnd.VariableManager;
 import commands.templates.OneChildCommand;
 
 
 public class NaturalLogCommand extends OneChildCommand {
+
+    public NaturalLogCommand (VariableManager manager) {
+        super(manager);
+    }
 
     @Override
     public double execute () {

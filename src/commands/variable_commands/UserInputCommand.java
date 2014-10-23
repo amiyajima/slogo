@@ -2,6 +2,7 @@ package commands.variable_commands;
 
 import java.util.Map;
 import backEnd.Model;
+import backEnd.VariableManager;
 import commands.ConstantCommand;
 import commands.templates.Command;
 import exceptions.SLogoException;
@@ -21,11 +22,12 @@ public class UserInputCommand extends Command {
     public static String myName;
     private Map<String, Double> myVarsMap;
 
-    public UserInputCommand () {
-        this("");
+    public UserInputCommand (VariableManager manager) {
+        this("", manager);
     }
 
-    public UserInputCommand (String commandName) {
+    public UserInputCommand (String commandName, VariableManager manager) {
+        super(manager);
         myName = commandName;
     }
 

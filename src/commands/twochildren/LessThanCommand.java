@@ -1,11 +1,13 @@
 package commands.twochildren;
 
+import backEnd.VariableManager;
 import commands.templates.TwoChildCommand;
 
 
 public class LessThanCommand extends TwoChildCommand {
 
-    public LessThanCommand () {
+    public LessThanCommand (VariableManager manager) {
+        super(manager);
     }
 
     @Override

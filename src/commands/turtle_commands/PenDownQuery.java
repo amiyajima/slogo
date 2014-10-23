@@ -2,12 +2,14 @@ package commands.turtle_commands;
 
 import commands.templates.TurtleCommand;
 import backEnd.AbstractTurtle;
+import backEnd.VariableManager;
 
 
 public class PenDownQuery extends TurtleCommand {
     public static final int NUM_CHILDREN = 0;
 
-    public PenDownQuery () {
+    public PenDownQuery (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 
