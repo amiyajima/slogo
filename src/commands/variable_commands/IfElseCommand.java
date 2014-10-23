@@ -2,7 +2,8 @@ package commands.variable_commands;
 
 import java.util.Map;
 import backEnd.Model;
-import commands.Command;
+import backEnd.VariableManager;
+import commands.templates.Command;
 
 
 /**
@@ -16,8 +17,8 @@ public class IfElseCommand extends Command {
 
     public static final int NUM_CHILDREN = 3;
 
-    public IfElseCommand (Map<String, Double> variableMap) {
-        super(variableMap);
+    public IfElseCommand (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 

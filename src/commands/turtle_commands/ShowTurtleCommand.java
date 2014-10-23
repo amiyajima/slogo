@@ -1,17 +1,16 @@
 package commands.turtle_commands;
 
-import java.util.Map;
-import backEnd.AbstractTurtle;
-import commands.Command;
-import commands.TurtleCommand;
+import backEnd.VariableManager;
+import backEnd.turtle.AbstractTurtle;
+import commands.templates.TurtleCommand;
 
 
 public class ShowTurtleCommand extends TurtleCommand {
     public static final int SHOW_TURTLE = 1;
     public static final int NUM_CHILDREN = 0;
 
-    public ShowTurtleCommand (Map<String, Double> variableMap) {
-        super(variableMap);
+    public ShowTurtleCommand (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 

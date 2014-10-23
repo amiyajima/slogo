@@ -3,7 +3,6 @@ package frontEnd;
 import java.io.File;
 import java.util.Map;
 import java.util.Observable;
-
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -13,8 +12,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import backEnd.AbstractTurtle;
 import backEnd.Controller;
+import backEnd.turtle.AbstractTurtle;
 
 public class TurtleCanvas extends Group {// implements Observer {
 //observer commented out

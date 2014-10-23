@@ -1,28 +1,28 @@
 package commands.variable_commands;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import backEnd.Model;
-import commands.Command;
+import backEnd.VariableManager;
+import commands.templates.Command;
+import commands.templates.TwoChildCommand;
 
 
 /**
  * A for loop command.
  * 
- * Input format: for [ :x 1 110 1 ] [ sum 3 5 ]
+ * Input format: for [ :x 1 10 1 ] [ forward :x ]
  * 
  * @author annamiyajima
  *
  */
-public class ForCommand extends Command {
+public class ForCommand extends TwoChildCommand {
 
-    public static final int NUM_CHILDREN = 2;
-    private Map<String, Double> myVarsMap;
-    Command myForList;
+    private Command myForList;
 
-    public ForCommand (Map<String, Double> variableMap) {
-        super(variableMap);
-        setNumChildren(NUM_CHILDREN);
-        myVarsMap = variableMap;
+    public ForCommand (VariableManager manager) {
+        super(manager);
         myForList = null;
     }
 
@@ -36,8 +36,14 @@ public class ForCommand extends Command {
 
         while (i < upperBound) {
             System.out.println(((CommandsList) myForList).getChild(0).toString());
-            myVarsMap.put(((CommandsList) myForList).getChild(0).toString(),
-                          (double) i);
+            try {
+                myVariableManager.addVar(((CommandsList) myForList).getChild(0).toString(),
+                                         String.valueOf(i));
+            }
+            catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             result += getMyChildren().get(1).execute();
             i += increment;
         }

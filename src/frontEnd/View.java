@@ -3,14 +3,13 @@ package frontEnd;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
-
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import panels.ParameterPanel;
 import panels.ScriptPanel;
-import backEnd.AbstractTurtle;
 import backEnd.Controller;
+import backEnd.turtle.AbstractTurtle;
 
 public class View extends VBox implements Observer {
 	

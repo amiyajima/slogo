@@ -1,16 +1,15 @@
 package commands.turtle_commands;
 
-import java.util.Map;
-import backEnd.AbstractTurtle;
-import commands.Command;
-import commands.TurtleCommand;
+import backEnd.VariableManager;
+import backEnd.turtle.AbstractTurtle;
+import commands.templates.TurtleCommand;
 
 
 public class SetPositionCommand extends TurtleCommand {
     public static final int NUM_CHILDREN = 2;
 
-    public SetPositionCommand (Map<String, Double> variableMap) {
-        super(variableMap);
+    public SetPositionCommand (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 

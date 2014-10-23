@@ -1,16 +1,15 @@
 package commands.variable_commands;
 
-import java.util.Map;
 import backEnd.Model;
-import commands.Command;
+import backEnd.VariableManager;
+import commands.templates.TwoChildCommand;
 
 
-public class RepeatCommand extends Command {
-    public static final int NUM_CHILDREN = 2;
+public class RepeatCommand extends TwoChildCommand {
 
-    public RepeatCommand (Map<String, Double> variableMap) {
-        super(variableMap);
-        setNumChildren(NUM_CHILDREN);
+    public RepeatCommand (VariableManager manager) {
+        super(manager);
+        // TODO Auto-generated constructor stub
     }
 
     @Override

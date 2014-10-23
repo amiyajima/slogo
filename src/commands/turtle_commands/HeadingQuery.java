@@ -1,16 +1,16 @@
 package commands.turtle_commands;
 
-import java.util.Map;
-import commands.TurtleCommand;
-import backEnd.AbstractTurtle;
+import commands.templates.TurtleCommand;
+import backEnd.VariableManager;
+import backEnd.turtle.AbstractTurtle;
 
 
 public class HeadingQuery extends TurtleCommand {
 
     public static final int NUM_CHILDREN = 0;
 
-    public HeadingQuery (Map<String, Double> variableMap) {
-        super(variableMap);
+    public HeadingQuery (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 

@@ -1,29 +1,32 @@
 package commands.variable_commands;
 
-import java.util.ArrayList;
-import java.util.Map;
 import backEnd.Model;
-import commands.Command;
+import backEnd.VariableManager;
+import commands.templates.Command;
 
 
 public class Variable extends Command {
     private String myValue;
-    private Map<String, Double> myVarsMap;
 
-    public Variable (Map<String, Double> variableMap) {
-        this(variableMap, "");
+    public Variable (VariableManager manager) {
+        this("", manager);
     }
 
-    public Variable (Map<String, Double> myVariableMap, String value) {
-        super(myVariableMap);
-        myValue = value;
-        myVarsMap = myVariableMap;
+    public Variable (String value, VariableManager manager) {
+        super(manager);
+        myValue = value.substring(1);
     }
 
     @Override
     public double execute () {
-        
-        return myVarsMap.get(myValue);
+        System.out.println("execute variable called for " + myValue);
+        if(myVariableManager.checkVarExists(myValue)){
+            return myVariableManager.getVar(myValue);
+        }
+        else{
+         System.out.println("throw var not found error here (in variable class)");   
+        }
+        return 0;
     }
 
     @Override

@@ -1,10 +1,12 @@
 package commands;
 
-import java.util.Map;
+import commands.templates.Command;
 import backEnd.Model;
+import backEnd.VariableManager;
+
 
 /**
- * NullCommand. NullCommand which is used instead of a 
+ * NullCommand. NullCommand which is used instead of a
  * null.
  * 
  * @author Anna Miyajima
@@ -12,8 +14,8 @@ import backEnd.Model;
  */
 public class NullCommand extends Command {
 
-    public NullCommand (Map<String, Double> myVariableMap) {
-        super(myVariableMap);
+    public NullCommand (VariableManager manager) {
+        super(manager);
     }
 
     @Override

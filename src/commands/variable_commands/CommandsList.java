@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import backEnd.Model;
-import commands.Command;
+import backEnd.VariableManager;
+import commands.templates.Command;
 
 
 public class CommandsList extends Command {
 
-    public CommandsList (Map<String, Double> variableMap) {
-        super(variableMap);
+    public CommandsList (VariableManager manager) {
+        super(manager);
     }
 
     /**

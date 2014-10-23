@@ -1,16 +1,15 @@
 package commands.variable_commands;
 
-import java.util.Map;
 import backEnd.Model;
-import commands.Command;
+import backEnd.VariableManager;
+import commands.templates.TwoChildCommand;
 
 
-public class IfCommand extends Command {
-    public static final int NUM_CHILDREN = 2;
+public class IfCommand extends TwoChildCommand {
 
-    public IfCommand (Map<String, Double> variableMap) {
-        super(variableMap);
-        setNumChildren(NUM_CHILDREN);
+    public IfCommand (VariableManager manager) {
+        super(manager);
+        // TODO Auto-generated constructor stub
     }
 
     @Override

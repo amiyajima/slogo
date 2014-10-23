@@ -1,10 +1,9 @@
 package backEnd;
 
 import java.util.List;
-import java.util.Map;
-
-import commands.Command;
-
+import backEnd.turtle.AbstractTurtle;
+import backEnd.turtle.Turtle;
+import commands.templates.Command;
 import frontEnd.View;
 
 
@@ -12,11 +11,15 @@ public class Model {
 
     private Parser myParser;
     private AbstractTurtle myTurtle;
+    private VariableManager myVariableManager;
 
     // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657, 524);
 
     public Model () {
-        myParser = new Parser(this);
+
+        myVariableManager = new VariableManager();
+        myParser = new Parser(this, myVariableManager);
+
     }
 
     public void setupTurtle (View view) {
@@ -42,8 +45,8 @@ public class Model {
 
         List<Command> rootCommands = myParser.parseScript(script);
 
-        //System.out.println("beginning execution " + rootCommands);
-        
+        // System.out.println("beginning execution " + rootCommands);
+
         for (Command c : rootCommands) {
             c.execute();
         }
@@ -58,10 +61,6 @@ public class Model {
 
     public AbstractTurtle getTurtle () {
         return myTurtle;
-    }
-    
-    public Map<String, Double> getVariableMap() {
-    	return myParser.getVariableMap();
     }
 
 }

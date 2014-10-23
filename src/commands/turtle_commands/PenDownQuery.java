@@ -1,15 +1,15 @@
 package commands.turtle_commands;
 
-import java.util.Map;
-import commands.TurtleCommand;
-import backEnd.AbstractTurtle;
+import commands.templates.TurtleCommand;
+import backEnd.VariableManager;
+import backEnd.turtle.AbstractTurtle;
 
 
 public class PenDownQuery extends TurtleCommand {
     public static final int NUM_CHILDREN = 0;
 
-    public PenDownQuery (Map<String, Double> variableMap) {
-        super(variableMap);
+    public PenDownQuery (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 

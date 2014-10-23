@@ -1,36 +1,35 @@
 package commands.variable_commands;
 
-import java.util.Map;
-import backEnd.Model;
-import commands.Command;
+import java.io.IOException;
+import backEnd.VariableManager;
+import commands.templates.TwoChildCommand;
 
 
-public class MakeCommand extends Command {
+public class MakeCommand extends TwoChildCommand {
 
-    public static final int NUM_CHILDREN = 2;
-    private Map<String, Double> myVarsMap;
+    VariableManager myVarManager;
 
-    public MakeCommand (Map<String, Double> variableMap) {
-        super(variableMap);
-        setNumChildren(NUM_CHILDREN);
-        myVarsMap = variableMap;
+    public MakeCommand (VariableManager manager) {
+        super(manager);
+        myVarManager = manager;
     }
 
     @Override
     public double execute () {
-        myVarsMap.put(getMyChildren().get(0).toString(), getMyChildren().get(1).execute());
-        return getMyChildren().get(1).execute();
+        System.out.println("adding var to map");
+        try {
+            myVarManager.addVar(getMyChildren().get(0).toString(),
+                                String.valueOf(getMyChildren().get(1).execute()));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return myVarManager.getVar(getMyChildren().get(0).toString());
     }
 
     @Override
     public String toString () {
         return "create var " + getMyChildren().get(0).toString() + " = " +
                getMyChildren().get(1);
-    }
-
-    @Override
-    public void initializeCommand (Model m) {
-        // TODO Auto-generated method stub
-
     }
 }

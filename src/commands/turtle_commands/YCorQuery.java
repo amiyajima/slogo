@@ -1,16 +1,16 @@
 package commands.turtle_commands;
 
-import java.util.Map;
-import backEnd.AbstractTurtle;
-import commands.TurtleCommand;
+import backEnd.VariableManager;
+import backEnd.turtle.AbstractTurtle;
+import commands.templates.TurtleCommand;
 
 
 public class YCorQuery extends TurtleCommand {
 
     public static final int NUM_CHILDREN = 0;
 
-    public YCorQuery (Map<String, Double> variableMap) {
-        super(variableMap);
+    public YCorQuery (VariableManager manager) {
+        super(manager);
         setNumChildren(NUM_CHILDREN);
     }
 

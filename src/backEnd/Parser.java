@@ -6,42 +6,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
-
-import commands.Command;
+import commands.templates.Command;
 import commands.CommandFactory;
-import commands.ConstantCommand;
-import commands.variable_commands.CommandsList;
-import commands.variable_commands.MakeCommand;
-import commands.variable_commands.Variable;
-import exceptions.*;
+import exceptions.SLogoException;
 
-
-// contain hashmap for variables, replace mapped value for variable
 
 class Parser {
 
-    private String myString;
     private CommandFactory myFactory;
     private StringTokenizer myInstructions;
     private Model myModel;
-    private Map<String, Double> myVarsMap;
     private Map<String, Command> myCommandMap;
+    private VariableManager myVariableManager;
+
     public static final String CONSTANT_REGEX = "-?[0-9]+\\.?[0-9]*";
     public static final String VARIABLE_REGEX = ":[a-zA-Z]+";
     public static final String COMMAND_REGEX = "[a-zA-Z_]+(\\?)?";
     public static final String OPEN_BRACKET_REGEX = "\\[";
     public static final String CLOSE_BRACKET_REGEX = "\\]";
 
-
-    Parser (Model model) {
+    Parser (Model model, VariableManager manager) {
         myModel = model;
-        myVarsMap = new HashMap<String, Double>();
         myCommandMap = new HashMap<String, Command>();
-        myFactory = new CommandFactory("English", myModel, myVarsMap);
-
+        myVariableManager = manager;
+        myFactory = new CommandFactory("English", myModel, myVariableManager);
     }
-
-
 
     /**
      * Called by the model if the input script is valid. At this point, the
@@ -80,20 +69,20 @@ class Parser {
             String nextInstruction = myInstructions.nextToken();
             while (!(Pattern.matches(CLOSE_BRACKET_REGEX, nextInstruction))) {
                 c.addChild(makeTree(nextInstruction));
-                
-                if(!myInstructions.hasMoreElements()) {
-                    //throw exception
+
+                if (!myInstructions.hasMoreElements()) {
+                    // throw exception
                     break;
                 }
-                
+
                 nextInstruction = myInstructions.nextToken();
 
             }
             return c;
         }
 
-        else if (Pattern.matches(CONSTANT_REGEX, commandName)) { 
-            return c; 
+        else if (Pattern.matches(CONSTANT_REGEX, commandName)) {
+            return c;
         }
 
         else if (Pattern.matches(COMMAND_REGEX, commandName)) {
@@ -102,12 +91,8 @@ class Parser {
             }
         }
         else {
-            //Throw exception
+            // Throw exception
         }
         return c;
-    }
-
-    public Map<String, Double> getVariableMap() {
-        return myVarsMap;
     }
 }

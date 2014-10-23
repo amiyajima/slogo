@@ -1,7 +1,9 @@
 package commands;
 
 import java.util.Map;
+import commands.templates.Command;
 import backEnd.Model;
+import backEnd.VariableManager;
 
 /**
  * A constant command is created when just a double is entered as a parameter
@@ -16,10 +18,9 @@ import backEnd.Model;
 public class ConstantCommand extends Command {
 
     private String myValue;
-    private Map<String, Double> myVarsMap;
 
-    public ConstantCommand (Map<String, Double> variableMap) {
-        this(variableMap, "");
+    public ConstantCommand (VariableManager manager) {
+        this("", manager);
     }
 
     /**
@@ -27,8 +28,8 @@ public class ConstantCommand extends Command {
      * @param myVariableMap map of all variables
      * @param value the constant used to create the command.
      */
-    public ConstantCommand (Map<String, Double> myVariableMap, String value) {
-        super(myVariableMap);
+    public ConstantCommand (String value, VariableManager manager) {
+        super(manager);
         myValue = value;
     }
     
