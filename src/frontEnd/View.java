@@ -14,6 +14,8 @@ import backEnd.turtle.AbstractTurtle;
 public class View extends VBox implements Observer {
 	
 	public TurtleCanvas myCanvas; //MAKE THIS PRIVATE (look at controller)
+								  //just need to add methods in View that mirror methods in TurtleCanvas
+								  //can then just call View instead fo View.myCanvas
 
 	@SuppressWarnings("unused")
 	private String myLanguage;
@@ -48,9 +50,10 @@ public class View extends VBox implements Observer {
 	/**
 	 * Called by Controller constructor
 	 */
-	public void setupTurtleView(AbstractTurtle turtle) {
-		myCanvas.addTurtle(turtle);
-	}
+	//not needed?
+//	public void setupTurtleView(AbstractTurtle turtle) {
+//		myCanvas.addTurtle(turtle);
+//	}
 	
 	/**
 	 * Called by Model when it sets up its turtle

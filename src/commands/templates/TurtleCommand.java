@@ -1,10 +1,12 @@
 package commands.templates;
 
 import java.util.Map;
+
 import backEnd.Model;
 import backEnd.VariableManager;
 import backEnd.turtle.AbstractTurtle;
 import backEnd.turtle.Turtle;
+import backEnd.turtle.TurtleManager;
 
 /**
  * Turtle commands have an additional method, executeTurtleCommand.
@@ -22,7 +24,8 @@ public abstract class TurtleCommand extends Command {
         // TODO Auto-generated constructor stub
     }
 
-    private AbstractTurtle myTurtle;
+//    private AbstractTurtle myTurtle;
+    private TurtleManager myTurtleManager;
 
     /**
      * Updates the turtle based on the result of the execution
@@ -52,7 +55,8 @@ public abstract class TurtleCommand extends Command {
      */
     @Override
     public void initializeCommand (Model model) {
-        myTurtle = model.getTurtle();
+//        myTurtle = model.getTurtle();
+    	myTurtleManager = model.getTurtleManager();
     }
 
 }

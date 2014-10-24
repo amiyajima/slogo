@@ -81,7 +81,11 @@ public class TurtleCanvas extends Group {// implements Observer {
 	public void update(Observable o, Object arg) {
 		System.out.println("HERE!!!!!" + arg.toString());
 		//TODO Change these to Properties to get their names
-		if (arg instanceof Point2D) {
+		if(arg instanceof AbstractTurtle) {
+			AbstractTurtle turtle = (AbstractTurtle)arg;
+			addTurtle(turtle);
+		}
+		else if (arg instanceof Point2D) {
 			if (turtleView.penIsDown()) turtleView.drawLine((Point2D)arg);
 			Point2D newPoint = (Point2D)arg;
 			turtleView.setTurtleX(newPoint.getX());

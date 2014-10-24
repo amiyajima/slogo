@@ -1,8 +1,11 @@
 package backEnd;
 
+import java.util.Arrays;
 import java.util.List;
+
 import backEnd.turtle.AbstractTurtle;
 import backEnd.turtle.Turtle;
+import backEnd.turtle.TurtleManager;
 import commands.templates.Command;
 import frontEnd.View;
 
@@ -12,6 +15,7 @@ public class Model {
     private Parser myParser;
     private AbstractTurtle myTurtle;
     private VariableManager myVariableManager;
+    private TurtleManager myTurtleManager;
 
     // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657, 524);
 
@@ -22,9 +26,10 @@ public class Model {
 
     }
 
-    public void setupTurtle (View view) {
-        myTurtle = new Turtle(view.getCanvasWidth(), view.getCanvasHeight());
-        myTurtle.addObserver(view);
+    public void setupTurtleManager (View view) {
+        myTurtleManager = new TurtleManager(view.getCanvasWidth(), view.getCanvasHeight());
+        myTurtleManager.addObserver(view);
+        myTurtleManager.updateActiveTurtleList(Arrays.asList(TurtleManager.INITIAL_TURTLE));
         // myTurtle.bindProperties(view);
     }
 
@@ -59,8 +64,12 @@ public class Model {
         myTurtle.addObserver(view);
     }
 
-    public AbstractTurtle getTurtle () {
-        return myTurtle;
+//    public AbstractTurtle getTurtle () {
+//        return myTurtle;
+//    }
+    
+    public TurtleManager getTurtleManager() {
+    	return myTurtleManager;
     }
 
 }
