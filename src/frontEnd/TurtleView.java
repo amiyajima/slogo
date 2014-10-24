@@ -43,8 +43,8 @@ public class TurtleView {
 		myPenLines = new Group();
 		penDown = new SimpleBooleanProperty(true);
 		linesCleared = new SimpleBooleanProperty(false);
-		bindProperties(tProps);
 		addListeners();
+		bindProperties(tProps);
 	}
 	
 	//possibly change this to just getImage - would make things more direct in TurtleCanvas's
