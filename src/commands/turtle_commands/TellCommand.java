@@ -26,6 +26,7 @@ public class TellCommand extends TurtleCommand{
             turtleNames.add(getValue());
         }
         getMyTurtleManager().updateActiveTurtleList(turtleNames);
+        System.out.println(getMyTurtleManager().getTurtleList());
         return getValue();
     }
 
@@ -37,7 +38,7 @@ public class TellCommand extends TurtleCommand{
     @Override
     public String toString () {
         // TODO Auto-generated method stub
-        return null;
+        return "hi";
     }
 
 }

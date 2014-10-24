@@ -54,6 +54,7 @@ public class TurtleManager extends Observable {
      *            id of the turtle
      */
     private void addNewTurtle (Double turtleId) {
+        System.out.println("Turtle created");
         Turtle newTurtle = new Turtle(myCanvasWidth, myCanvasHeight);
         myTurtles.put(turtleId, newTurtle);
         setChanged();
@@ -89,7 +90,9 @@ public class TurtleManager extends Observable {
      *            list of names for turtles to be in active turtles
      */
     public void updateActiveTurtleList (List<Double> turtleIds) {
+        myStoredTurtleLists.pop();
         myActiveTurtles = createTurtleList(turtleIds);
+        myStoredTurtleLists.push(myActiveTurtles);
     }
 
     /**
@@ -113,6 +116,7 @@ public class TurtleManager extends Observable {
      * @return list of turtles
      */
     public List<Turtle> getTurtleList () {
+        System.out.println(myStoredTurtleLists.size());
         return myStoredTurtleLists.peek();
     }
 
