@@ -12,8 +12,8 @@ import javafx.beans.property.SimpleDoubleProperty;
 public class Pen {
     public static double DEFAULT_PEN_COLOR = 1.0;
     public static double DEFAULT_PEN_SIZE = 1.0;
-    public static final String DEFAULT_PEN_SIZE_PACKAGE = "/resources/PenSize";
-    public static final String DEFAULT_PEN_Color_PACKAGE = "/resources/PenColor";
+    public static final String DEFAULT_PEN_SIZE_PACKAGE = "/resources/PenSize.properties";
+    public static final String DEFAULT_PEN_Color_PACKAGE = "/resources/PenColor.properties";
     
     private DoubleProperty myPenColor;
     private DoubleProperty myPenSize;
