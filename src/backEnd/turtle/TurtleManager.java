@@ -20,7 +20,7 @@ public class TurtleManager extends Observable {
 
     public static final String INITIAL_TURTLE = "turtle1";
 
-    private Map<String, Turtle> myTurtles;
+    private Map<Double, Turtle> myTurtles;
     private double myCanvasWidth;
     private double myCanvasHeight;
     private Stack<List<Turtle>> myStoredTurtleLists;
@@ -53,9 +53,9 @@ public class TurtleManager extends Observable {
      * @param turtleName
      *            id of the turtle
      */
-    private void addNewTurtle (String turtleName) {
+    private void addNewTurtle (Double turtleId) {
         Turtle newTurtle = new Turtle(myCanvasWidth, myCanvasHeight);
-        myTurtles.put(turtleName, newTurtle);
+        myTurtles.put(turtleId, newTurtle);
         setChanged();
         notifyObservers(newTurtle); //change to TurtleProperties
     }
@@ -69,9 +69,9 @@ public class TurtleManager extends Observable {
      *            list of names of the turtles desired
      * @return returns the list of turtles requested
      */
-    private List<Turtle> createTurtleList (List<String> turtleNames) {
+    private List<Turtle> createTurtleList (List<Double> turtleIds) {
         List<Turtle> turtleList = new ArrayList<>();
-        for (String s : turtleNames) {
+        for (Double s : turtleIds) {
             if (!myTurtles.keySet().contains(s)) {
                 addNewTurtle(s);
             }
@@ -88,8 +88,8 @@ public class TurtleManager extends Observable {
      * @param turtleNames
      *            list of names for turtles to be in active turtles
      */
-    public void updateActiveTurtleList (List<String> turtleNames) {
-        myActiveTurtles = createTurtleList(turtleNames);
+    public void updateActiveTurtleList (List<Double> turtleIds) {
+        myActiveTurtles = createTurtleList(turtleIds);
     }
 
     /**
@@ -99,8 +99,8 @@ public class TurtleManager extends Observable {
      * 
      * @param turtleNames
      */
-    public void addTemporaryTurtleList (List<String> turtleNames) {
-        List<Turtle> turtleList = createTurtleList(turtleNames);
+    public void addTemporaryTurtleList (List<Double> turtleIds) {
+        List<Turtle> turtleList = createTurtleList(turtleIds);
         myStoredTurtleLists.push(turtleList);
 
     }

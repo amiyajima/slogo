@@ -29,7 +29,7 @@ public class Model {
     public void setupTurtleManager (View view) {
         myTurtleManager = new TurtleManager(view.getCanvasWidth(), view.getCanvasHeight());
         myTurtleManager.addObserver(view);
-        myTurtleManager.updateActiveTurtleList(Arrays.asList(TurtleManager.INITIAL_TURTLE));
+        myTurtleManager.updateActiveTurtleList(Arrays.asList(1.0));
         // myTurtle.bindProperties(view);
     }
 

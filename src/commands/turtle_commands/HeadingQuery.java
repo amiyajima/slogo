@@ -1,8 +1,12 @@
 package commands.turtle_commands;
 
+import java.util.List;
+
 import commands.templates.TurtleCommand;
 import backEnd.VariableManager;
 import backEnd.turtle.AbstractTurtle;
+import backEnd.turtle.Turtle;
+import backEnd.turtle.TurtleManager;
 
 
 public class HeadingQuery extends TurtleCommand {
@@ -16,7 +20,8 @@ public class HeadingQuery extends TurtleCommand {
 
     @Override
     public double execute () {
-        setValue(getMyTurtle().getOrientation());
+        List<Turtle> turtles = getMyTurtleManager().getTurtleList();
+        setValue(turtles.get(turtles.size()-1).getOrientation());
         return getValue();
     }
 
@@ -26,7 +31,7 @@ public class HeadingQuery extends TurtleCommand {
     }
 
     @Override
-    public void executeTurtleCommand (AbstractTurtle t) {
+    public void executeTurtleCommand (TurtleManager t) {
     }
 
 }

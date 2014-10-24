@@ -6,24 +6,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
-import commands.templates.Command;
+
 import commands.CommandFactory;
+import commands.templates.Command;
+import exceptions.InvalidInputException;
 import exceptions.SLogoException;
 
-
 class Parser {
+    
+    public static final String CONSTANT_REGEX = "-?[0-9]+\\.?[0-9]*";
+    public static final String VARIABLE_REGEX = ":[a-zA-Z]+";
+    public static final String COMMAND_REGEX = "[a-zA-Z_]+(\\?)?";
+    public static final String OPEN_BRACKET_REGEX = "\\[";
+    public static final String CLOSE_BRACKET_REGEX = "\\]";
 
     private CommandFactory myFactory;
     private StringTokenizer myInstructions;
     private Model myModel;
     private Map<String, Command> myCommandMap;
     private VariableManager myVariableManager;
-
-    public static final String CONSTANT_REGEX = "-?[0-9]+\\.?[0-9]*";
-    public static final String VARIABLE_REGEX = ":[a-zA-Z]+";
-    public static final String COMMAND_REGEX = "[a-zA-Z_]+(\\?)?";
-    public static final String OPEN_BRACKET_REGEX = "\\[";
-    public static final String CLOSE_BRACKET_REGEX = "\\]";
 
     Parser (Model model, VariableManager manager) {
         myModel = model;
@@ -37,9 +38,9 @@ class Parser {
      * parser will split the script up into different lines and individual
      * commands. The Parser will then call the CommandFactory to build all of
      * the commands and add them to the returned list
-     * 
+     *
      * @param script
-     *        Raw input from the user (always error free)
+     *            Raw input from the user (always error free)
      * @return A list of commands to be sent to the ScriptManager
      */
     List<Command> parseScript (String script) {
@@ -55,9 +56,9 @@ class Parser {
     }
 
     /**
-     * Creates commands from strings and inserts them as children of existing commands
-     * Recursive method, returns root of the tree
-     * 
+     * Creates commands from strings and inserts them as children of existing
+     * commands Recursive method, returns root of the tree
+     *
      * @param commandName
      * @return
      * @throws RuntimeException
@@ -71,8 +72,7 @@ class Parser {
                 c.addChild(makeTree(nextInstruction));
 
                 if (!myInstructions.hasMoreElements()) {
-                    // throw exception
-                    break;
+                    throw new InvalidInputException("Open brackets must have a corresponding ']'");
                 }
 
                 nextInstruction = myInstructions.nextToken();
@@ -89,8 +89,7 @@ class Parser {
             while (c.getNumChildrenNeeded() > 0) {
                 c.addChild(makeTree(myInstructions.nextToken()));
             }
-        }
-        else {
+        } else {
             // Throw exception
         }
         return c;

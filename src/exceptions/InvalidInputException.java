@@ -2,9 +2,8 @@ package exceptions;
 
 public class InvalidInputException extends SLogoException {
 
-    public InvalidInputException (String message) {
+    public InvalidInputException (String message, String ... s) {
         super(message);
-        // TODO Auto-generated constructor stub
     }
     
     public InvalidInputException (String message, Throwable cause) {

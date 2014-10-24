@@ -1,10 +1,14 @@
 package commands.turtle_commands;
 
+import java.util.List;
 import java.util.Map;
+
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import backEnd.VariableManager;
 import backEnd.turtle.AbstractTurtle;
+import backEnd.turtle.Turtle;
+import backEnd.turtle.TurtleManager;
 
 
 public class BackCommand extends TurtleCommand {
@@ -20,7 +24,7 @@ public class BackCommand extends TurtleCommand {
     public double execute () {
         double value = getMyChildren().get(0).execute();
         setValue(value);
-        executeTurtleCommand(getMyTurtle());
+        executeTurtleCommand(getMyTurtleManager());
         return value;
     }
 
@@ -30,8 +34,11 @@ public class BackCommand extends TurtleCommand {
     }
 
     @Override
-    public void executeTurtleCommand (AbstractTurtle t) {
-        t.moveTurtle(getValue());
+    public void executeTurtleCommand (TurtleManager turtleManager) {
+        List<Turtle> turtles = turtleManager.getTurtleList();
+        for(Turtle t : turtles) {
+            t.moveTurtle(getValue());
+        }
     }
 
 }
