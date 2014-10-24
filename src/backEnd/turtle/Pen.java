@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
 public class Pen {
@@ -37,7 +39,7 @@ public class Pen {
             myPenColorProperty.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }        
     }
     
     public DoubleProperty getMyPenColor() {

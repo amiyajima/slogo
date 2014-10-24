@@ -28,6 +28,7 @@ public abstract class AbstractTurtle extends Observable {
     private Point2D myHome;
 
     private boolean isVisible;
+    private Pen myPen;
 
     public AbstractTurtle (String id, double canvasWidth, double canvasHeight) {
         myPosition = new TurtlePoint(canvasWidth / 2, canvasHeight / 2);
@@ -39,6 +40,7 @@ public abstract class AbstractTurtle extends Observable {
         isPenDown = new SimpleBooleanProperty(INITIAL_PEN);
         linesCleared = new SimpleBooleanProperty(INITIAL_CLEAR);
         myId = id;
+        myPen = new Pen();
     }
 
     public abstract void moveTurtle (double distance);
