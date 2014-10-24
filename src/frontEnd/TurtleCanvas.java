@@ -89,12 +89,12 @@ public class TurtleCanvas extends Group {// implements Observer {
 			AbstractTurtle turtle = (AbstractTurtle)arg;
 			addTurtle(turtle);
 		}
-		else if (arg instanceof Point2D) {
-			if (turtleView.penIsDown()) turtleView.drawLine((Point2D)arg);
-			Point2D newPoint = (Point2D)arg;
-			turtleView.setTurtleX(newPoint.getX());
-			turtleView.setTurtleY(newPoint.getY());			
-		}
+//		else if (arg instanceof Point2D) {
+//			if (turtleView.penIsDown()) turtleView.drawLine((Point2D)arg);
+//			Point2D newPoint = (Point2D)arg;
+//			turtleView.setTurtleX(newPoint.getX());
+//			turtleView.setTurtleY(newPoint.getY());			
+//		}
 	}
 
 	private void addBackground() {

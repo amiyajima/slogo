@@ -19,7 +19,7 @@ public class Turtle extends AbstractTurtle {
     @Override
     public void moveTurtle (double distance) {
 
-        Point2D currentPosition = getPosition();
+        TurtlePoint currentPosition = getPosition();
         Double newX = Math.sin(Math.toRadians(-getOrientation())) * distance;
         Double newY = Math.cos(Math.toRadians(-getOrientation())) * distance;
         if (isInBounds(newX, newY)) {

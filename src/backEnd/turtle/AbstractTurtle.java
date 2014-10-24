@@ -14,17 +14,10 @@ import frontEnd.View;
 
 public abstract class AbstractTurtle extends Observable {
 
-//    public static final String PEN_STRING = "pen";
-//    public static final String ORIENTATION_STRING = "orientation";
-//    public static final String CLEAR_STRING = "clear lines";
-//    public static final String X_STRING = "xPosition";
-//    public static final String Y_STRING = "yPosition";
     private static final boolean INITIAL_PEN = true;
     private static final boolean INITIAL_CLEAR = false;
     private BooleanProperty isPenDown;
-    private Point2D myPosition;
-//    private DoubleProperty myXPosition;
-//    private DoubleProperty myYPosition;
+    private TurtlePoint myPosition;
     private DoubleProperty myOrientation;
     private double myCanvasWidth, myCanvasHeight;
     private BooleanProperty linesCleared;
@@ -36,10 +29,8 @@ public abstract class AbstractTurtle extends Observable {
     private boolean isVisible;
 
     public AbstractTurtle (double canvasWidth, double canvasHeight) {
-        myPosition = new Point2D(canvasWidth / 2, canvasHeight / 2);
+        myPosition = new TurtlePoint(canvasWidth / 2, canvasHeight / 2);
         myHome = new Point2D(myPosition.getX(), myPosition.getY());
-//        myXPosition = new SimpleDoubleProperty(myPosition.getX());
-//        myYPosition = new SimpleDoubleProperty(myPosition.getY());
         myOrientation = new SimpleDoubleProperty(INITIAL_ORIENTATION);
         myCanvasWidth = canvasWidth;
         myCanvasHeight = canvasHeight;
@@ -62,9 +53,10 @@ public abstract class AbstractTurtle extends Observable {
 
     public Double goHome () {
         double distance = myPosition.distance(myHome);
-        myPosition = new Point2D(myHome.getX(), myHome.getY());
-        setChanged();
-        notifyObservers(myPosition);
+//        myPosition = new Point2D(myHome.getX(), myHome.getY());
+        myPosition.set(myHome.getX(), myHome.getY());
+//        setChanged();
+//        notifyObservers(myPosition);
         return distance;
     }
 
@@ -78,11 +70,12 @@ public abstract class AbstractTurtle extends Observable {
     }
 
     public double goTo (double x, double y) {
-        Point2D newPosition = new Point2D(myHome.getX() + x, myHome.getY() + y);
-        double distance = myPosition.distance(newPosition);
-        myPosition = newPosition;
-        setChanged();
-        notifyObservers(myPosition);
+//        Point2D newPosition = new Point2D(myHome.getX() + x, myHome.getY() + y);
+        double distance = myPosition.distance(x, y);
+//        myPosition = newPosition;
+        myPosition.set(x, y);
+//        setChanged();
+//        notifyObservers(myPosition);
         return distance;
     }
 
@@ -106,14 +99,14 @@ public abstract class AbstractTurtle extends Observable {
         notifyObservers(isVisible);
     }
 
-    public Point2D getPosition () {
+    public TurtlePoint getPosition () {
         return myPosition;
     }
 
     public void setPosition (Point2D newPosition) {
-        myPosition = newPosition;
-        setChanged();
-        notifyObservers(myPosition);
+        myPosition.set(newPosition);
+//        setChanged();
+//        notifyObservers(myPosition);
     }
 
     public double getOrientation () {
@@ -124,12 +117,13 @@ public abstract class AbstractTurtle extends Observable {
         myOrientation.set(newOrientation);
     }
 
+    //necessary?
     protected boolean isInBounds (double x, double y) {
         // works on right bottom, not on left top
-        Point2D currentPosition = myPosition;
-        System.out.println("current distance from top edge is " + (currentPosition.getY() - y));
-        return !(currentPosition.getX() - x < 0 || currentPosition.getX() + x > myCanvasWidth
-                 || currentPosition.getY() - y < 0 || currentPosition.getY() + y > myCanvasHeight);
+//        Point2D currentPosition = myPosition;
+        System.out.println("current distance from top edge is " + (myPosition.getY() - y));
+        return !(myPosition.getX() - x < 0 || myPosition.getX() + x > myCanvasWidth
+                 || myPosition.getY() - y < 0 || myPosition.getY() + y > myCanvasHeight);
     }
 
     public double turnTowards (double x, double y) {
