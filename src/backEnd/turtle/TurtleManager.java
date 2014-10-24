@@ -90,9 +90,11 @@ public class TurtleManager extends Observable {
      *            list of names for turtles to be in active turtles
      */
     public void updateActiveTurtleList (List<Double> turtleIds) {
-        myStoredTurtleLists.pop();
-        myActiveTurtles = createTurtleList(turtleIds);
-        myStoredTurtleLists.push(myActiveTurtles);
+        List<Turtle> newActiveTurtles = createTurtleList(turtleIds);
+        myActiveTurtles.clear();
+        for(Turtle t : newActiveTurtles) {
+            myActiveTurtles.add(t);
+        }
     }
 
     /**
