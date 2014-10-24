@@ -11,7 +11,7 @@ import exceptions.SLogoException;
 /**
  * A user created command
  * 
- * newcommand [ :k 5 :x 2 ] [ sum :k 5 forward :x ]
+ * TO newcommand [ :k 5 :x 2 ] [ sum :k 5 forward :x ]
  * 
  * @author annamiyajima
  *
@@ -50,7 +50,6 @@ public class UserInputCommand extends Command {
             }
         }
 
-        getMyChildren().get(1).execute();
         getMyChildren().get(2).execute();
         return 1;
     }

@@ -5,13 +5,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import backEnd.Model;
+import backEnd.VariableManager;
 import com.sun.xml.internal.fastinfoset.sax.Properties;
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import commands.variable_commands.UserInputCommand;
 import commands.variable_commands.Variable;
-import backEnd.Model;
-import backEnd.VariableManager;
 
 
 /**
