@@ -15,20 +15,24 @@ import javafx.geometry.Point2D;
  */
 public class TurtleProperties {
 	
-	private Point2D myPosition;
+	private TurtlePoint myPosition;
 	private DoubleProperty myOrientation;
 	private BooleanProperty isPenDown;
 	private BooleanProperty linesCleared;
 	
-	public TurtleProperties(Point2D myPosition, DoubleProperty myOrientation, BooleanProperty isPenDown, BooleanProperty linesCleared) {
+	public TurtleProperties(TurtlePoint myPosition, DoubleProperty myOrientation, BooleanProperty isPenDown, BooleanProperty linesCleared) {
 		this.myPosition = myPosition;
 		this.myOrientation = myOrientation;
 		this.isPenDown = isPenDown;
 		this.linesCleared = linesCleared;
 	}
 	
-	public Point2D getPosition() {
-		return myPosition;
+	public DoubleProperty getXPosition() {
+		return myPosition.getBindableX();
+	}
+	
+	public DoubleProperty getYPosition() {
+		return myPosition.getBindableY();
 	}
 	
 	public DoubleProperty getOrientation() {

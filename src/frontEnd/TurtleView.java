@@ -26,7 +26,11 @@ public class TurtleView {
 	private Group myPenLines;
 	private Drawer myDrawer;
 	private Color myPenColor;
-	private Point2D myLocation;
+	
+//	private Point2D myLocation;
+	private DoubleProperty myXPosition;
+	private DoubleProperty myYPosition;
+	
 	private DoubleProperty myOrientation;
 	private BooleanProperty penDown;
 	private BooleanProperty linesCleared;
@@ -35,7 +39,9 @@ public class TurtleView {
 		myImageView = imageView;
 		myDrawer = new SimpleDrawer();
 		myPenColor = Color.BLACK;
-		myLocation = new Point2D(boundingWidth/2, boundingHeight/2);
+//		myLocation = new Point2D(boundingWidth/2, boundingHeight/2);
+		myXPosition = new SimpleDoubleProperty(boundingWidth/2);
+		myYPosition = new SimpleDoubleProperty(boundingHeight/2);
 		double initialX = boundingWidth/2 - getImage().getWidth()/2;
 		double initialY = boundingHeight/2 - getImage().getHeight()/2;
 		myImageView.setX(initialX);
@@ -69,7 +75,8 @@ public class TurtleView {
 	}
 	
 	public void drawLine(Point2D endPoint) {
-		Line line = myDrawer.makeLine(myPenColor, myLocation, endPoint);
+		Point2D startPoint = new Point2D(myXPosition.get(), myYPosition.get());
+		Line line = myDrawer.makeLine(myPenColor, startPoint, endPoint);
 		myPenLines.getChildren().add(line);
 //		canvas.getChildren().add(line);
 	}
@@ -78,16 +85,20 @@ public class TurtleView {
 		myPenColor = c;
 	}
 	
+	//change to just set imageView?, private?
 	public void setTurtleX(double x) {
+		myXPosition.set(x);
 		myImageView.setX(x - getImage().getWidth()/2);
 		// + myWidth.doubleValue()/2
-		myLocation = new Point2D(x, myLocation.getY());
+//		myLocation = new Point2D(x, myLocation.getY());
 	}
 	
+	//change to just set imageView?, private?
 	public void setTurtleY(double y) {
+		myYPosition.set(y);
 		myImageView.setY(y - getImage().getHeight()/2);
 		// + myHeight.doubleValue()/2
-		myLocation = new Point2D(myLocation.getX(), y);
+//		myLocation = new Point2D(myLocation.getX(), y);
 	}
 	
 	public void setOrientation(double orientation) {
@@ -96,6 +107,23 @@ public class TurtleView {
 	}
 	
 	private void addListeners() {
+		myXPosition.addListener(new ChangeListener<Object>() {
+			@Override
+			public void changed(ObservableValue<? extends Object> observable,
+					Object oldValue, Object newValue) {
+				// TODO Auto-generated method stub
+				setTurtleX(myXPosition.get());
+			}
+		});
+		myYPosition.addListener(new ChangeListener<Object>() {
+			@Override
+			public void changed(ObservableValue<? extends Object> observable,
+					Object oldValue, Object newValue) {
+				// TODO Auto-generated method stub
+				setTurtleY(myYPosition.get());
+			}
+		});
+		
 		myOrientation.addListener(new ChangeListener<Object>() {
 			@Override
 			public void changed(ObservableValue<? extends Object> observable,
@@ -120,8 +148,12 @@ public class TurtleView {
 	}
 	
 	private void bindProperties(TurtleProperties tProps) {
+		myXPosition.bindBidirectional(tProps.getXPosition());
+		myYPosition.bindBidirectional(tProps.getYPosition());
+		
 		myOrientation.bindBidirectional(tProps.getOrientation());
 		penDown.bindBidirectional(tProps.getIsPenDown());
 		linesCleared.bindBidirectional(tProps.getLinesCleared());
+		
 	}
 }
