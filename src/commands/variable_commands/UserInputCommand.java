@@ -29,27 +29,20 @@ public class UserInputCommand extends Command {
     public UserInputCommand (String commandName, VariableManager manager) {
         super(manager);
         myName = commandName;
+        setNumChildren(NUM_CHILDREN);
     }
 
     @Override
     public double execute () {
-        CommandsList myVariableList = (CommandsList) getMyChildren().get(1);
-        System.out.println("Is this working");
-        System.out.println(myVariableList);
+        System.out.println(getMyChildren());
+
+        CommandsList myVariableList = (CommandsList) getMyChildren().get(0);
+        System.out.println(myVarsMap);
         for (int i = 0; i < myVariableList.getNumChildren(); i++) {
             System.out.println(myVariableList.getChild(i));
-            if (myVariableList.getChild(i) instanceof Variable) {
-                myVarsMap.keySet().add(myVariableList.getChild(i).toString());
-            }
-            else if (myVariableList.getChild(i) instanceof ConstantCommand) {
-                myVarsMap.put((myVariableList.getChild(i - 1).toString()),
-                              myVariableList.getChild(i).execute());
-            }
-            else {
-                throw new SLogoException("cannot create command -- enter in correct format");
-            }
+            Variable currentVariable = (LocalVariable) myVariableList.getChild(i);
+            myVarsMap.put(currentVariable.toString(), currentVariable.execute());
         }
-
         getMyChildren().get(2).execute();
         return 1;
     }

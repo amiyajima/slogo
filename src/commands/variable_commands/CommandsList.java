@@ -1,8 +1,5 @@
 package commands.variable_commands;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import backEnd.Model;
 import backEnd.VariableManager;
 import commands.templates.Command;

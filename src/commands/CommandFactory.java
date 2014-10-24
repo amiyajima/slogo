@@ -11,6 +11,7 @@ import com.sun.xml.internal.fastinfoset.sax.Properties;
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import commands.variable_commands.UserInputCommand;
+import commands.variable_commands.GlobalVariable;
 import commands.variable_commands.Variable;
 
 
@@ -29,7 +30,7 @@ public class CommandFactory {
     private String classKey;
     private Model myModel;
     private VariableManager myVariableManager;
-    
+
     /**
      * Initializes a command factory
      * 
@@ -67,6 +68,11 @@ public class CommandFactory {
             return true;
         }
         else return false;
+    }
+
+    public boolean isNumeric (String str)
+    {
+        return str.matches("-?[0-9]+.?[0-9]*");  // match a number with optional '-' and decimal.
     }
 
     /**
@@ -139,16 +145,11 @@ public class CommandFactory {
                 Command varCommand = new Variable(type, myVariableManager);
                 return varCommand;
             }
-            try {
-                Double.parseDouble(type);
-                return new ConstantCommand(type, myVariableManager);
 
-            }
-            catch (NumberFormatException e2) {
-                return new NullCommand(myVariableManager);
-            }
+            if (isNumeric(type)) { return new ConstantCommand(type, myVariableManager); }
+
         }
         return new UserInputCommand(type, myVariableManager);
-
     }
+
 }

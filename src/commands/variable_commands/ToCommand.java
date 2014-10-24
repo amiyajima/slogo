@@ -13,7 +13,10 @@ public class ToCommand extends OneChildCommand {
     }
 
     public double execute () {
+        System.out.println("execute called on to");
+
         if (getMyChildren().get(0) instanceof UserInputCommand) {
+            System.out.println("execute called on user input command");
             getMyChildren().get(0).execute();
         }
         else {
