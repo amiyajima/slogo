@@ -28,6 +28,7 @@ public abstract class AbstractTurtle extends Observable {
     private DoubleProperty myOrientation;
     private double myCanvasWidth, myCanvasHeight;
     private BooleanProperty linesCleared;
+    private String myId;
 
     public static final double INITIAL_ORIENTATION = 0;
 
@@ -35,7 +36,7 @@ public abstract class AbstractTurtle extends Observable {
 
     private boolean isVisible;
 
-    public AbstractTurtle (double canvasWidth, double canvasHeight) {
+    public AbstractTurtle (String id, double canvasWidth, double canvasHeight) {
         myPosition = new Point2D(canvasWidth / 2, canvasHeight / 2);
         myHome = new Point2D(myPosition.getX(), myPosition.getY());
 //        myXPosition = new SimpleDoubleProperty(myPosition.getX());
@@ -46,6 +47,7 @@ public abstract class AbstractTurtle extends Observable {
         isVisible = true;
         isPenDown = new SimpleBooleanProperty(INITIAL_PEN);
         linesCleared = new SimpleBooleanProperty(INITIAL_CLEAR);
+        myId = id;
     }
 
     public abstract void moveTurtle (double distance);
@@ -158,5 +160,9 @@ public abstract class AbstractTurtle extends Observable {
     public TurtleProperties getTurtleProperties() {
     	TurtleProperties tProps = new TurtleProperties(myPosition, myOrientation, isPenDown, linesCleared);
     	return tProps;
+    }
+    
+    public String getId() {
+        return myId;
     }
 }

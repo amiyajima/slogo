@@ -6,8 +6,8 @@ import frontEnd.View;
 
 public class Turtle extends AbstractTurtle {
 
-    public Turtle (double canvasWidth, double canvasHeight) {
-        super(canvasWidth, canvasHeight);
+    public Turtle (String id, double canvasWidth, double canvasHeight) {
+        super(id, canvasWidth, canvasHeight);
     }
 
     // @Override

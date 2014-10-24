@@ -37,8 +37,7 @@ public class TellCommand extends TurtleCommand{
 
     @Override
     public String toString () {
-        // TODO Auto-generated method stub
-        return "hi";
+        return null;
     }
 
 }
