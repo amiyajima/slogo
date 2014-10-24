@@ -1,7 +1,11 @@
 package commands.turtle_commands;
 
+import java.util.List;
+
 import backEnd.VariableManager;
 import backEnd.turtle.AbstractTurtle;
+import backEnd.turtle.Turtle;
+import backEnd.turtle.TurtleManager;
 import commands.templates.TurtleCommand;
 
 
@@ -17,18 +21,21 @@ public class SetHeadingCommand extends TurtleCommand {
 
     @Override
     public double execute () {
-        AbstractTurtle myTurtle = getMyTurtle();
-        double value = getMyChildren().get(0).execute() - myTurtle.getOrientation();
-        System.out.println("set heading return value: " + value);
-        setValue(value);
-        executeTurtleCommand(getMyTurtle());
-        return value;
+
+        executeTurtleCommand(getMyTurtleManager());
+        return getValue();
     }
 
     @Override
-    public void executeTurtleCommand (AbstractTurtle t) {
+    public void executeTurtleCommand (TurtleManager turtleManager) {
         myNewOrientation = getMyChildren().get(0).execute();
-        t.setOrientation(myNewOrientation);
+        
+        turtleManager = getMyTurtleManager();
+        List<Turtle> turtles = turtleManager.getTurtleList();
+        for(Turtle t : turtles) {
+            t.setOrientation(myNewOrientation);
+            setValue(myNewOrientation - t.getOrientation());
+        }
     }
 
     @Override

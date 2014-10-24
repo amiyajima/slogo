@@ -32,23 +32,23 @@ public abstract class TurtleCommand extends Command {
      * of the command's children.
      * @param t
      */
-    public abstract void executeTurtleCommand (AbstractTurtle t);
+    public abstract void executeTurtleCommand (TurtleManager turtleManager);
 
     /**
      * Retrive the turtle saved in the command
      * @return Turtle object
      */
-    protected AbstractTurtle getMyTurtle () {
-        return myTurtle;
+    protected TurtleManager getMyTurtleManager () {
+        return myTurtleManager;
     }
 
-    /**
-     * Sets the command's turtle
-     * @param t turtle
-     */
-    protected void setTurtle (Turtle t) {
-        myTurtle = t;
-    }
+//    /**
+//     * Sets the command's turtle
+//     * @param t turtle
+//     */
+//    protected void setTurtle (Turtle t) {
+//        myTurtle = t;
+//    }
 
     /**
      * Sets the command's turtle based on the model.

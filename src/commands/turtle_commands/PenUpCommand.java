@@ -1,7 +1,11 @@
 package commands.turtle_commands;
 
+import java.util.List;
+
 import backEnd.VariableManager;
 import backEnd.turtle.AbstractTurtle;
+import backEnd.turtle.Turtle;
+import backEnd.turtle.TurtleManager;
 import commands.templates.TurtleCommand;
 
 
@@ -16,13 +20,16 @@ public class PenUpCommand extends TurtleCommand {
 
     @Override
     public double execute () {
-        executeTurtleCommand(getMyTurtle());
+        executeTurtleCommand(getMyTurtleManager());
         return PEN_UP;
     }
 
     @Override
-    public void executeTurtleCommand (AbstractTurtle t) {
-        t.togglePen(PEN_UP);
+    public void executeTurtleCommand (TurtleManager turtleManager) {
+        List<Turtle> turtles = turtleManager.getTurtleList();
+        for(Turtle t : turtles) {
+            t.togglePen(PEN_UP);
+        }
     }
 
     @Override

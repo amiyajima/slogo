@@ -1,8 +1,12 @@
 package commands.turtle_commands;
 
+import java.util.List;
+
 import commands.templates.TurtleCommand;
 import backEnd.VariableManager;
 import backEnd.turtle.AbstractTurtle;
+import backEnd.turtle.Turtle;
+import backEnd.turtle.TurtleManager;
 
 
 public class PenDownQuery extends TurtleCommand {
@@ -15,7 +19,8 @@ public class PenDownQuery extends TurtleCommand {
 
     @Override
     public double execute () {
-        setValue(getMyTurtle().isPenDown() ? 1.0 : 0);
+        List<Turtle> turtles = getMyTurtleManager().getTurtleList();
+        setValue(turtles.get(turtles.size()-1).isPenDown() ? 1.0 : 0);
         return getValue();
     }
 
@@ -25,7 +30,7 @@ public class PenDownQuery extends TurtleCommand {
     }
 
     @Override
-    public void executeTurtleCommand (AbstractTurtle t) {
+    public void executeTurtleCommand (TurtleManager turtleManager) {
     }
 
 }

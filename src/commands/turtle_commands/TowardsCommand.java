@@ -1,7 +1,11 @@
 package commands.turtle_commands;
 
+import java.util.List;
+
 import backEnd.VariableManager;
 import backEnd.turtle.AbstractTurtle;
+import backEnd.turtle.Turtle;
+import backEnd.turtle.TurtleManager;
 import commands.templates.TurtleCommand;
 
 
@@ -16,13 +20,16 @@ public class TowardsCommand extends TurtleCommand {
 
     @Override
     public double execute () {
-        executeTurtleCommand(getMyTurtle());
+        executeTurtleCommand(getMyTurtleManager());
         return getValue();
     }
 
     @Override
-    public void executeTurtleCommand (AbstractTurtle t) {
-        setValue(t.turnTowards(getMyChildren().get(0).execute(), getMyChildren().get(1).execute()));
+    public void executeTurtleCommand (TurtleManager turtleManager) {
+        List<Turtle> turtles = turtleManager.getTurtleList();
+        for(Turtle t : turtles) {
+            setValue(t.turnTowards(getMyChildren().get(0).execute(), getMyChildren().get(1).execute()));
+        }
     }
 
     @Override
