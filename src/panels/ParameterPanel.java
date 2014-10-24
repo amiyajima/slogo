@@ -3,6 +3,8 @@ package panels;
 import java.util.Map;
 
 import javafx.scene.control.Accordion;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.Pane;
 import titlePanes.CommandTitlePane;
 import titlePanes.ControlTitlePane;
@@ -10,7 +12,6 @@ import titlePanes.DisplayTitlePane;
 import titlePanes.HelpTitlePane;
 import titlePanes.HistoryTitlePane;
 import titlePanes.LanguageTitlePane;
-import titlePanes.TitlePaneFactory;
 import titlePanes.VariableTitlePane;
 import backEnd.Controller;
 
@@ -28,11 +29,11 @@ public class ParameterPanel extends Pane {
 				
 		setMinWidth(width);
 		setMinHeight(height);
-		double maxTitlePaneHeight = height-100;
+		double maxTitlePaneHeight = height-200;
 		
 		Accordion accordion = new Accordion();
 		myDisplayTitlePane = new DisplayTitlePane(controller);
-		myHistoryTitlePane = new HistoryTitlePane(controller);
+		myHistoryTitlePane = new HistoryTitlePane(controller, maxTitlePaneHeight);
 		myControlTitlePane = new ControlTitlePane(controller);
 		myCommandTitlePane = new CommandTitlePane(controller);
 		myVariableTitlePane = new VariableTitlePane(controller);
@@ -40,7 +41,13 @@ public class ParameterPanel extends Pane {
 		myHelpTitlePane = new HelpTitlePane(controller);
 		accordion.getPanes().addAll(myDisplayTitlePane, myHistoryTitlePane, myControlTitlePane, 
 				myCommandTitlePane, myVariableTitlePane, myLanguageTitlePane, myHelpTitlePane);
-		getChildren().add(accordion);
+		
+		ScrollPane sp = new ScrollPane();
+		sp.setContent(accordion);
+		sp.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		sp.setMaxHeight(height);
+		
+		getChildren().add(sp);
 		
 //		TitlePaneFactory factory = new TitlePaneFactory(maxTitlePaneHeight);
 //			

@@ -2,13 +2,13 @@ package commands.turtle_commands;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import backEnd.VariableManager;
 import backEnd.turtle.TurtleManager;
 import commands.templates.TurtleCommand;
 import commands.variable_commands.CommandsList;
 
-public class TellCommand extends TurtleCommand{
+
+public class TellCommand extends TurtleCommand {
 
     public static final int NUM_CHILDREN = 1;
 
@@ -19,9 +19,9 @@ public class TellCommand extends TurtleCommand{
 
     @Override
     public double execute () {
-        CommandsList turtleCommandList = (CommandsList)getMyChildren().get(0);
+        CommandsList turtleCommandList = (CommandsList) getMyChildren().get(0);
         List<Double> turtleNames = new ArrayList<>();
-        for(int i=0; i< turtleCommandList.getNumChildren(); i++) {
+        for (int i = 0; i < turtleCommandList.getNumChildren(); i++) {
             setValue(turtleCommandList.getChild(i).execute());
             turtleNames.add(getValue());
         }
@@ -32,13 +32,12 @@ public class TellCommand extends TurtleCommand{
 
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
-        
+
     }
 
     @Override
     public String toString () {
-        // TODO Auto-generated method stub
-        return "hi";
+        return null;
     }
 
 }

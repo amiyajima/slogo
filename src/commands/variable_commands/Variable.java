@@ -6,6 +6,7 @@ import commands.templates.Command;
 
 
 public class Variable extends Command {
+
     private String myValue;
 
     public Variable (VariableManager manager) {
@@ -16,26 +17,27 @@ public class Variable extends Command {
         super(manager);
         myValue = value.substring(1);
     }
+    
+    public String getMyValue(){
+        return myValue;
+    }
 
     @Override
     public double execute () {
-        System.out.println("execute variable called for " + myValue);
-        if(myVariableManager.checkVarExists(myValue)){
-            return myVariableManager.getVar(myValue);
-        }
-        else{
-         System.out.println("throw var not found error here (in variable class)");   
-        }
+        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public String toString () {
-        return myValue;
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
     public void initializeCommand (Model m) {
+        // TODO Auto-generated method stub
+
     }
 
 }

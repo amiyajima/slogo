@@ -1,7 +1,9 @@
 package backEnd.turtle;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -25,6 +27,7 @@ public class TurtleManager extends Observable {
     private double myCanvasHeight;
     private Stack<List<Turtle>> myStoredTurtleLists;
     private List<Turtle> myActiveTurtles;
+    private String activeId;
 
     /**
      * Constructor for turtle manager. Initializes a map which will map the
@@ -55,7 +58,7 @@ public class TurtleManager extends Observable {
      */
     private void addNewTurtle (Double turtleId) {
         System.out.println("Turtle created");
-        Turtle newTurtle = new Turtle(myCanvasWidth, myCanvasHeight);
+        Turtle newTurtle = new Turtle(Double.toString(turtleId), myCanvasWidth, myCanvasHeight);
         myTurtles.put(turtleId, newTurtle);
         setChanged();
         notifyObservers(newTurtle); //change to TurtleProperties
@@ -90,9 +93,11 @@ public class TurtleManager extends Observable {
      *            list of names for turtles to be in active turtles
      */
     public void updateActiveTurtleList (List<Double> turtleIds) {
-        myStoredTurtleLists.pop();
-        myActiveTurtles = createTurtleList(turtleIds);
-        myStoredTurtleLists.push(myActiveTurtles);
+        List<Turtle> newActiveTurtles = createTurtleList(turtleIds);
+        myActiveTurtles.clear();
+        for(Turtle t : newActiveTurtles) {
+            myActiveTurtles.add(t);
+        }
     }
 
     /**
@@ -117,7 +122,7 @@ public class TurtleManager extends Observable {
      */
     public List<Turtle> getTurtleList () {
         System.out.println(myStoredTurtleLists.size());
-        return myStoredTurtleLists.peek();
+        return Collections.unmodifiableList(myStoredTurtleLists.peek());
     }
 
     /**
@@ -130,4 +135,9 @@ public class TurtleManager extends Observable {
             myStoredTurtleLists.pop();
         }
     }
+    
+    public int getNumberOfTurtles() {
+        return myTurtles.size();
+    }
+
 }
