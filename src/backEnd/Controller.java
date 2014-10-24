@@ -28,19 +28,23 @@ public class Controller {
 	}
 
 	public void changeBackgroundColor(Color c) {
-		myView.myCanvas.changeBackgroundColor(c);
+		myView.changeBackgroundColor(c);
 	}
 
 	public void changePenColor(Color c) {
-		myView.myCanvas.changePenColor(c);
+		myView.changePenColor(c);
 	}
 
 	public void changeTurtleImage(File f) {
-		myView.myCanvas.changeTurtleImage(f);
+		myView.changeTurtleImage(f);
 	}
 
 	public void toggleGridLines() {
-		myView.myCanvas.toggleGridLines();
+		myView.toggleGridLines();
+	}
+	
+	public void changeLanguage() {
+		//TODO
 	}
 
 }

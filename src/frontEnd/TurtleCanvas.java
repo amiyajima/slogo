@@ -79,7 +79,9 @@ public class TurtleCanvas extends Group {// implements Observer {
 		getChildren().add(turtleView.getPenLines());
 	}
 
-//	@Override
+//	@Override //not actually overriding, just being called by View
+	// not actually observing Point2D! won't be able to when stop passing Turtle
+	// should change to DoubleProperties
 	public void update(Observable o, Object arg) {
 		System.out.println("HERE!!!!!" + arg.toString());
 		//TODO Change these to Properties to get their names
