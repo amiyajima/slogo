@@ -11,7 +11,6 @@ import com.sun.xml.internal.fastinfoset.sax.Properties;
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import commands.variable_commands.UserInputCommand;
-import commands.variable_commands.GlobalVariable;
 import commands.variable_commands.Variable;
 
 

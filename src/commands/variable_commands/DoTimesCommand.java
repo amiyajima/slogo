@@ -19,6 +19,7 @@ import commands.templates.TwoChildCommand;
  */
 public class DoTimesCommand extends TwoChildCommand {
     private Command myVariable;
+    private Map<String, Double> myVariables;
 
     public DoTimesCommand (VariableManager manager) {
         super(manager);
@@ -29,20 +30,16 @@ public class DoTimesCommand extends TwoChildCommand {
     public double execute () {
         Double result = 0.0;
         myVariable = getMyChildren().get(0);
+        VariableManager variableManager = getVariableManager();
+
         for (int i = 1; i <= (int) ((CommandsList) myVariable).getChild(1).execute(); i++) {
             // for each value the var up to limit
             System.out.println(((CommandsList) myVariable).getChild(0).toString());
-            // replace all instances of
-            try {
-                myVariableManager.addVar(((CommandsList) myVariable).getChild(0).toString(),
-                                         String.valueOf(i));
-            }
-            catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            getMyChildren().get(1).execute();
+            myVariables.put(((CommandsList) myVariable).getChild(0).toString(), (double) i);
         }
+        variableManager.setVarProperties(myVariables);
+        getMyChildren().get(1).execute();
+        variableManager.popVarProperties();
         return result;
     }
 

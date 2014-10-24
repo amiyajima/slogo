@@ -11,8 +11,9 @@ import commands.templates.Command;
 import exceptions.InvalidInputException;
 import exceptions.SLogoException;
 
+
 class Parser {
-    
+
     public static final String CONSTANT_REGEX = "-?[0-9]+\\.?[0-9]*";
     public static final String VARIABLE_REGEX = ":[a-zA-Z]+";
     public static final String COMMAND_REGEX = "[a-zA-Z_]+(\\?)?";
@@ -22,12 +23,10 @@ class Parser {
     private CommandFactory myFactory;
     private StringTokenizer myInstructions;
     private Model myModel;
-    private Map<String, Command> myCommandMap;
     private VariableManager myVariableManager;
 
     Parser (Model model, VariableManager manager) {
         myModel = model;
-        myCommandMap = new HashMap<String, Command>();
         myVariableManager = manager;
         myFactory = new CommandFactory("English", myModel, myVariableManager);
     }
@@ -39,7 +38,7 @@ class Parser {
      * the commands and add them to the returned list
      *
      * @param script
-     *            Raw input from the user (always error free)
+     *        Raw input from the user (always error free)
      * @return A list of commands to be sent to the ScriptManager
      */
     List<Command> parseScript (String script) {
@@ -48,9 +47,10 @@ class Parser {
 
         while (myInstructions.hasMoreTokens()) {
             Command createdCommand = makeTree(myInstructions.nextToken());
+            System.out.println(createdCommand + " CREATED");
             myRoots.add(createdCommand);
         }
-
+       System.out.println("parse script completed");
         return myRoots;
     }
 
@@ -70,9 +70,8 @@ class Parser {
             while (!(Pattern.matches(CLOSE_BRACKET_REGEX, nextInstruction))) {
                 c.addChild(makeTree(nextInstruction));
 
-                if (!myInstructions.hasMoreElements()) {
-                    throw new InvalidInputException("Open brackets must have a corresponding ']'");
-                }
+                if (!myInstructions.hasMoreElements()) { throw new InvalidInputException(
+                                                                                         "Open brackets must have a corresponding ']'"); }
 
                 nextInstruction = myInstructions.nextToken();
 
@@ -88,7 +87,8 @@ class Parser {
             while (c.getNumChildrenNeeded() > 0) {
                 c.addChild(makeTree(myInstructions.nextToken()));
             }
-        } else {
+        }
+        else {
             // Throw exception
         }
         return c;

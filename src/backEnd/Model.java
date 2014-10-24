@@ -50,7 +50,7 @@ public class Model {
 
         List<Command> rootCommands = myParser.parseScript(script);
 
-        // System.out.println("beginning execution " + rootCommands);
+        System.out.println("beginning execution " + rootCommands);
 
         for (Command c : rootCommands) {
             c.execute();

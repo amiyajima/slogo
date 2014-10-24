@@ -17,21 +17,26 @@ public class Variable extends Command {
         super(manager);
         myValue = value.substring(1);
     }
-    
-    public String getMyValue(){
+
+    public String getMyValue () {
         return myValue;
     }
 
     @Override
     public double execute () {
-        // TODO Auto-generated method stub
+        System.out.println("execute variable called for " + myValue);
+        if (getVariableManager().checkVarExists(myValue)) {
+            return getVariableManager().getVar(myValue);
+        }
+        else {
+            System.out.println("throw var not found error here (in variable class)");
+        }
         return 0;
     }
 
     @Override
     public String toString () {
-        // TODO Auto-generated method stub
-        return null;
+        return myValue;
     }
 
     @Override

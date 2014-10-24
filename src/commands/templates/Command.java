@@ -21,7 +21,7 @@ public abstract class Command {
     private List<Command> myChildren;
     private int myNumChildren;
     private double myValue;
-    protected VariableManager myVariableManager;
+    private VariableManager myVariableManager;
 
     /**
      * 
@@ -81,6 +81,7 @@ public abstract class Command {
     /**
      * Add child to the command
      * 
+     * Public so the parser can add children commands
      * @param c command to be added
      */
     public void addChild (Command c) {
@@ -90,6 +91,7 @@ public abstract class Command {
     /**
      * Get the number of children that can still be added
      * 
+     * Public because it is accessed in the parser to determine whether or not a new root needs to be created
      * @return children missing
      */
     public int getNumChildrenNeeded () {
@@ -103,5 +105,9 @@ public abstract class Command {
      * @param m
      */
     public abstract void initializeCommand (Model m);
+    
+    protected VariableManager getVariableManager(){
+        return myVariableManager;
+    }
 
 }
