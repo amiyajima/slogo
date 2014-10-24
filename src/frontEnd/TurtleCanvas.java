@@ -77,6 +77,7 @@ public class TurtleCanvas extends Group {// implements Observer {
 		//change to just adding group for turtle?
 		getChildren().add(turtleView.getImageView());
 		getChildren().add(turtleView.getPenLines());
+		getChildren().add(turtleView.getStamps());
 	}
 
 //	@Override //not actually overriding, just being called by View

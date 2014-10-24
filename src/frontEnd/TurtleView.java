@@ -24,6 +24,7 @@ public class TurtleView {
 	
 	private ImageView myImageView;
 	private Group myPenLines;
+	private Group myStamps;
 	private Drawer myDrawer;
 	private Color myPenColor;
 	
@@ -48,6 +49,7 @@ public class TurtleView {
 		myImageView.setY(initialY);
 		myOrientation = new SimpleDoubleProperty(0);
 		myPenLines = new Group();
+		myStamps = new Group();
 		penDown = new SimpleBooleanProperty(true);
 		linesCleared = new SimpleBooleanProperty(false);
 		addListeners();
@@ -68,6 +70,10 @@ public class TurtleView {
 	public Group getPenLines() {
 		return myPenLines;
 	}
+	
+	public Group getStamps() {
+		return myStamps;
+	}
 
 	public void setImage(Image image) {
 		// TODO Auto-generated method stub
@@ -79,6 +85,13 @@ public class TurtleView {
 		Line line = myDrawer.makeLine(myPenColor, startPoint, endPoint);
 		myPenLines.getChildren().add(line);
 //		canvas.getChildren().add(line);
+	}
+	
+	public void drawStamp() {
+		ImageView stamp = new ImageView(myImageView.getImage());
+		stamp.setX(myXPosition.get() - getImage().getWidth()/2); //repeated code
+		stamp.setY(myYPosition.get() - getImage().getHeight()/2); //repeated code
+		myStamps.getChildren().add(stamp);
 	}
 	
 	public void changePenColor(Color c) {
