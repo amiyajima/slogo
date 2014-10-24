@@ -16,11 +16,14 @@ public abstract class AbstractTurtle extends Observable {
 
     public static final String PEN_STRING = "pen";
     public static final String ORIENTATION_STRING = "orientation";
+    public static final String CLEAR_STRING = "clear lines";
     private static final boolean INITIAL_PEN = true;
+    private static final boolean INITIAL_CLEAR = false;
     private BooleanProperty isPenDown;
     private Point2D myPosition;
     private DoubleProperty myOrientation;
     private double myCanvasWidth, myCanvasHeight;
+    private BooleanProperty linesCleared;
 
     public static final double INITIAL_ORIENTATION = 0;
 
@@ -36,6 +39,7 @@ public abstract class AbstractTurtle extends Observable {
         myCanvasHeight = canvasHeight;
         isVisible = true;
         isPenDown = new SimpleBooleanProperty(INITIAL_PEN);
+        linesCleared = new SimpleBooleanProperty(INITIAL_CLEAR);
     }
 
     public abstract void moveTurtle (double distance);
@@ -58,9 +62,13 @@ public abstract class AbstractTurtle extends Observable {
         return distance;
     }
 
-    // TODO implement this method
+    // TODO improve design?
+    // sets true to clear lines, sets back to false after lines cleared
+    // linesCleared is binded to BooleanProperty in front-end that causes
+    // lines stored on front-end to clear
     public void clearMyLines () {
-
+    	linesCleared.set(true);
+    	linesCleared.set(false);
     }
 
     public double goTo (double x, double y) {
@@ -145,6 +153,7 @@ public abstract class AbstractTurtle extends Observable {
         Map<String, Property> tProps = new HashMap<String, Property>();
         tProps.put(ORIENTATION_STRING, myOrientation);
         tProps.put(PEN_STRING, isPenDown);
+        tProps.put(CLEAR_STRING, linesCleared);
         return tProps;
     }
 }

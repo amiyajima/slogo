@@ -1,6 +1,7 @@
 package frontEnd;
 
 import java.util.Map;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.Property;
@@ -27,6 +28,7 @@ public class TurtleView {
 	private Point2D myLocation;
 	private DoubleProperty myOrientation;
 	private BooleanProperty penDown;
+	private BooleanProperty linesCleared;
 	
 	public TurtleView(Map<String, Property> tProps, double boundingWidth, double boundingHeight, ImageView imageView) {
 		myImageView = imageView;
@@ -40,6 +42,7 @@ public class TurtleView {
 		myOrientation = new SimpleDoubleProperty(0);
 		myPenLines = new Group();
 		penDown = new SimpleBooleanProperty(true);
+		linesCleared = new SimpleBooleanProperty(false);
 		bindProperties(tProps);
 		addListeners();
 	}
@@ -99,6 +102,16 @@ public class TurtleView {
 				myImageView.setRotate(myOrientation.get());
 			}
 		});
+		linesCleared.addListener(new ChangeListener<Object>() {
+			@Override
+			public void changed(ObservableValue<? extends Object> observable,
+					Object oldValue, Object newValue) {
+				// TODO Auto-generated method stub	
+				if(linesCleared.get()) {
+					myPenLines.getChildren().clear();
+				}
+			}
+		});
 	}
 	
 	public boolean penIsDown() {
@@ -108,5 +121,6 @@ public class TurtleView {
 	private void bindProperties(Map<String, Property> tProps) {
 		myOrientation.bindBidirectional((DoubleProperty)tProps.get(AbstractTurtle.ORIENTATION_STRING));
 		penDown.bindBidirectional((BooleanProperty)tProps.get(AbstractTurtle.PEN_STRING));
+		linesCleared.bindBidirectional((BooleanProperty)tProps.get(AbstractTurtle.CLEAR_STRING));
 	}
 }
