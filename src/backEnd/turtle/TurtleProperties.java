@@ -27,6 +27,10 @@ public class TurtleProperties {
 		this.linesCleared = linesCleared;
 	}
 	
+	public Point2D getPosition() {
+		return myPosition;
+	}
+	
 	public DoubleProperty getOrientation() {
 		return myOrientation;
 	}
