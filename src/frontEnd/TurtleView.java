@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import backEnd.turtle.AbstractTurtle;
+import backEnd.turtle.TurtleProperties;
 import drawer.Drawer;
 import drawer.SimpleDrawer;
 
@@ -30,7 +31,7 @@ public class TurtleView {
 	private BooleanProperty penDown;
 	private BooleanProperty linesCleared;
 	
-	public TurtleView(Map<String, Property> tProps, double boundingWidth, double boundingHeight, ImageView imageView) {
+	public TurtleView(TurtleProperties tProps, double boundingWidth, double boundingHeight, ImageView imageView) {
 		myImageView = imageView;
 		myDrawer = new SimpleDrawer();
 		myPenColor = Color.BLACK;
@@ -118,9 +119,9 @@ public class TurtleView {
 		return penDown.get();
 	}
 	
-	private void bindProperties(Map<String, Property> tProps) {
-		myOrientation.bindBidirectional((DoubleProperty)tProps.get(AbstractTurtle.ORIENTATION_STRING));
-		penDown.bindBidirectional((BooleanProperty)tProps.get(AbstractTurtle.PEN_STRING));
-		linesCleared.bindBidirectional((BooleanProperty)tProps.get(AbstractTurtle.CLEAR_STRING));
+	private void bindProperties(TurtleProperties tProps) {
+		myOrientation.bindBidirectional(tProps.getOrientation());
+		penDown.bindBidirectional(tProps.getIsPenDown());
+		linesCleared.bindBidirectional(tProps.getLinesCleared());
 	}
 }

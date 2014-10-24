@@ -3,6 +3,7 @@ package frontEnd;
 import java.io.File;
 import java.util.Map;
 import java.util.Observable;
+
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -14,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import backEnd.Controller;
 import backEnd.turtle.AbstractTurtle;
+import backEnd.turtle.TurtleProperties;
 
 public class TurtleCanvas extends Group {// implements Observer {
 //observer commented out
@@ -70,7 +72,7 @@ public class TurtleCanvas extends Group {// implements Observer {
 	public void addTurtle(AbstractTurtle turtle) {
 		ImageView turtleImage = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
 		@SuppressWarnings("rawtypes")
-		Map<String, Property> tProps = turtle.getTurtleProperties();
+		TurtleProperties tProps = turtle.getTurtleProperties();
 		turtleView = new TurtleView(tProps, boundingWidth, boundingHeight, turtleImage);
 		//change to just adding group for turtle?
 		getChildren().add(turtleView.getImageView());

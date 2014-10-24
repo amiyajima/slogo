@@ -2,6 +2,7 @@ package backEnd.turtle;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.geometry.Point2D;
 
 /**
  * Data object used to hold properties about Turtle that later are bound to 
@@ -14,11 +15,13 @@ import javafx.beans.property.DoubleProperty;
  */
 public class TurtleProperties {
 	
+	private Point2D myPosition;
 	private DoubleProperty myOrientation;
 	private BooleanProperty isPenDown;
 	private BooleanProperty linesCleared;
 	
-	public TurtleProperties(DoubleProperty myOrientation, BooleanProperty isPenDown, BooleanProperty linesCleared) {
+	public TurtleProperties(Point2D myPosition, DoubleProperty myOrientation, BooleanProperty isPenDown, BooleanProperty linesCleared) {
+		this.myPosition = myPosition;
 		this.myOrientation = myOrientation;
 		this.isPenDown = isPenDown;
 		this.linesCleared = linesCleared;
