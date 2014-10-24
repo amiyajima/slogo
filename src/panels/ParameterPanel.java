@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import titlePanes.CommandTitlePane;
 import titlePanes.ControlTitlePane;
 import titlePanes.DisplayTitlePane;
+import titlePanes.HelpTitlePane;
 import titlePanes.HistoryTitlePane;
 import titlePanes.LanguageTitlePane;
 import titlePanes.TitlePaneFactory;
@@ -21,6 +22,7 @@ public class ParameterPanel extends Pane {
 	private CommandTitlePane myCommandTitlePane;
 	private VariableTitlePane myVariableTitlePane;
 	private LanguageTitlePane myLanguageTitlePane;
+	private HelpTitlePane myHelpTitlePane;
 
 	public ParameterPanel(double width, double height, Controller controller) {
 				
@@ -35,8 +37,9 @@ public class ParameterPanel extends Pane {
 		myCommandTitlePane = new CommandTitlePane(controller);
 		myVariableTitlePane = new VariableTitlePane(controller);
 		myLanguageTitlePane = new LanguageTitlePane(controller);
+		myHelpTitlePane = new HelpTitlePane(controller);
 		accordion.getPanes().addAll(myDisplayTitlePane, myHistoryTitlePane, myControlTitlePane, 
-				myCommandTitlePane, myVariableTitlePane, myLanguageTitlePane);
+				myCommandTitlePane, myVariableTitlePane, myLanguageTitlePane, myHelpTitlePane);
 		getChildren().add(accordion);
 		
 //		TitlePaneFactory factory = new TitlePaneFactory(maxTitlePaneHeight);

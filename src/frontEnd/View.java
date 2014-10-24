@@ -1,11 +1,14 @@
 package frontEnd;
 
+import java.io.File;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
+
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import panels.ParameterPanel;
 import panels.ScriptPanel;
 import backEnd.Controller;
@@ -13,9 +16,7 @@ import backEnd.turtle.AbstractTurtle;
 
 public class View extends VBox implements Observer {
 	
-	public TurtleCanvas myCanvas; //MAKE THIS PRIVATE (look at controller)
-								  //just need to add methods in View that mirror methods in TurtleCanvas
-								  //can then just call View instead fo View.myCanvas
+	private TurtleCanvas myCanvas;
 
 	@SuppressWarnings("unused")
 	private String myLanguage;
@@ -108,6 +109,26 @@ public class View extends VBox implements Observer {
 	
 	private Node buildScriptPanel() {
 		return new ScriptPanel(WIDTH, HEIGHT/4., myController);
+	}
+
+	public void changeBackgroundColor(Color c) {
+		// TODO Auto-generated method stub
+		myCanvas.changeBackgroundColor(c);
+	}
+
+	public void changePenColor(Color c) {
+		// TODO Auto-generated method stub
+		myCanvas.changePenColor(c);
+	}
+
+	public void changeTurtleImage(File f) {
+		// TODO Auto-generated method stub
+		myCanvas.changeTurtleImage(f);
+	}
+
+	public void toggleGridLines() {
+		// TODO Auto-generated method stub
+		myCanvas.toggleGridLines();
 	}
 	
 }

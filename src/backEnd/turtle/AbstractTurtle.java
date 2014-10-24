@@ -14,13 +14,17 @@ import frontEnd.View;
 
 public abstract class AbstractTurtle extends Observable {
 
-    public static final String PEN_STRING = "pen";
-    public static final String ORIENTATION_STRING = "orientation";
-    public static final String CLEAR_STRING = "clear lines";
+//    public static final String PEN_STRING = "pen";
+//    public static final String ORIENTATION_STRING = "orientation";
+//    public static final String CLEAR_STRING = "clear lines";
+//    public static final String X_STRING = "xPosition";
+//    public static final String Y_STRING = "yPosition";
     private static final boolean INITIAL_PEN = true;
     private static final boolean INITIAL_CLEAR = false;
     private BooleanProperty isPenDown;
     private Point2D myPosition;
+//    private DoubleProperty myXPosition;
+//    private DoubleProperty myYPosition;
     private DoubleProperty myOrientation;
     private double myCanvasWidth, myCanvasHeight;
     private BooleanProperty linesCleared;
@@ -34,6 +38,8 @@ public abstract class AbstractTurtle extends Observable {
     public AbstractTurtle (double canvasWidth, double canvasHeight) {
         myPosition = new Point2D(canvasWidth / 2, canvasHeight / 2);
         myHome = new Point2D(myPosition.getX(), myPosition.getY());
+//        myXPosition = new SimpleDoubleProperty(myPosition.getX());
+//        myYPosition = new SimpleDoubleProperty(myPosition.getY());
         myOrientation = new SimpleDoubleProperty(INITIAL_ORIENTATION);
         myCanvasWidth = canvasWidth;
         myCanvasHeight = canvasHeight;
@@ -148,12 +154,9 @@ public abstract class AbstractTurtle extends Observable {
     public boolean isVisible () {
         return isVisible;
     }
-
-    public Map<String, Property> getTurtleProperties () {
-        Map<String, Property> tProps = new HashMap<String, Property>();
-        tProps.put(ORIENTATION_STRING, myOrientation);
-        tProps.put(PEN_STRING, isPenDown);
-        tProps.put(CLEAR_STRING, linesCleared);
-        return tProps;
+    
+    public TurtleProperties getTurtleProperties() {
+    	TurtleProperties tProps = new TurtleProperties(myPosition, myOrientation, isPenDown, linesCleared);
+    	return tProps;
     }
 }
