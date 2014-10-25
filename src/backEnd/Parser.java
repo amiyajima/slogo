@@ -11,8 +11,17 @@ import commands.templates.Command;
 import exceptions.InvalidInputException;
 import exceptions.SLogoException;
 
+/**
+ * Parser for slogo. If given a string of commands, the parser will
+ * split it into tokens and convert them into a list of roots for runnable
+ * trees.
+ * 
+ * @author Ethan Chang
+ * @author Anna Miyajima
+ *
+ */
 class Parser {
-    
+
     public static final String CONSTANT_REGEX = "-?[0-9]+\\.?[0-9]*";
     public static final String VARIABLE_REGEX = ":[a-zA-Z]+";
     public static final String COMMAND_REGEX = "[a-zA-Z_]+(\\?)?";
@@ -25,6 +34,9 @@ class Parser {
     private Map<String, Command> myCommandMap;
     private VariableManager myVariableManager;
 
+    /**
+     * Constructor for the parser
+     */
     Parser (Model model, VariableManager manager) {
         myModel = model;
         myCommandMap = new HashMap<String, Command>();
@@ -62,34 +74,30 @@ class Parser {
      * @return
      * @throws RuntimeException
      */
-    Command makeTree (String commandName) throws SLogoException {
+    Command makeTree (String commandName) {
         System.out.println(commandName);
         Command c = myFactory.buildCommand(commandName);
         if (Pattern.matches(OPEN_BRACKET_REGEX, commandName)) {
             String nextInstruction = myInstructions.nextToken();
             while (!(Pattern.matches(CLOSE_BRACKET_REGEX, nextInstruction))) {
                 c.addChild(makeTree(nextInstruction));
-
                 if (!myInstructions.hasMoreElements()) {
                     throw new InvalidInputException("Open brackets must have a corresponding ']'");
                 }
-
                 nextInstruction = myInstructions.nextToken();
-
             }
             return c;
         }
-
         else if (Pattern.matches(CONSTANT_REGEX, commandName)) {
             return c;
         }
-
         else if (Pattern.matches(COMMAND_REGEX, commandName)) {
             while (c.getNumChildrenNeeded() > 0) {
                 c.addChild(makeTree(myInstructions.nextToken()));
             }
-        } else {
-            // Throw exception
+        }      
+        else {
+            throw new InvalidInputException("");
         }
         return c;
     }

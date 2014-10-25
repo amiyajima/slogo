@@ -3,18 +3,19 @@ package backEnd.turtle;
 import javafx.geometry.Point2D;
 import frontEnd.View;
 
-
+/**
+ * Turtle class for slogo. Extends abstractTurtle and implements
+ * the move turtle and turn turtle commands.
+ * 
+ * @author Ethan Chang
+ *
+ */
 public class Turtle extends AbstractTurtle {
 
     public Turtle (String id, double canvasWidth, double canvasHeight) {
         super(id, canvasWidth, canvasHeight);
     }
 
-    // @Override
-    // public void bindProperties(View view) {
-    // myOrientation.bindBidirectional(view.myCanvas.turtleOrientation);
-    // isPenDown.bindBidirectional(view.myCanvas.isPenDown);
-    // }
 
     @Override
     public void moveTurtle (double distance) {
@@ -32,7 +33,6 @@ public class Turtle extends AbstractTurtle {
     @Override
     public void turnTurtle (double change) {
         setOrientation(getOrientation() + change);
-        // System.out.println("turtle turned by " + change);
     }
 
 }

@@ -3,7 +3,6 @@ package backEnd.turtle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -27,7 +26,6 @@ public class TurtleManager extends Observable {
     private double myCanvasHeight;
     private Stack<List<Turtle>> myStoredTurtleLists;
     private List<Turtle> myActiveTurtles;
-    private String activeId;
 
     /**
      * Constructor for turtle manager. Initializes a map which will map the
@@ -61,7 +59,7 @@ public class TurtleManager extends Observable {
         Turtle newTurtle = new Turtle(Double.toString(turtleId), myCanvasWidth, myCanvasHeight);
         myTurtles.put(turtleId, newTurtle);
         setChanged();
-        notifyObservers(newTurtle); //change to TurtleProperties
+        notifyObservers(newTurtle);
     }
 
     /**
@@ -95,7 +93,7 @@ public class TurtleManager extends Observable {
     public void updateActiveTurtleList (List<Double> turtleIds) {
         List<Turtle> newActiveTurtles = createTurtleList(turtleIds);
         myActiveTurtles.clear();
-        for(Turtle t : newActiveTurtles) {
+        for (Turtle t : newActiveTurtles) {
             myActiveTurtles.add(t);
         }
     }
@@ -136,7 +134,7 @@ public class TurtleManager extends Observable {
         }
     }
     
-    public int getNumberOfTurtles() {
+    public int getNumberOfTurtles () {
         return myTurtles.size();
     }
 
