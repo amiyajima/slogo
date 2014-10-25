@@ -27,6 +27,7 @@ public class Variable extends Command {
     public double execute () {
         System.out.println("execute variable called for " + myValue);
         if (getVariableManager().checkVarExists(myValue)) {
+            System.out.println("checking if " + myValue + " exists");
             return getVariableManager().getVar(myValue);
         }
         else {
