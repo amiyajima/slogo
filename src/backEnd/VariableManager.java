@@ -31,18 +31,22 @@ public class VariableManager {
 
     }
 
-    public void pushVarProperties (Map<String, String> variableMap) throws FileNotFoundException, IOException {
-        System.out.println("entered pushvarproperties");
-        myStoredVariables.push(myVariables);
+    public void pushVarProperties (Map<String, String> variableMap) throws FileNotFoundException,
+                                                                   IOException {
+        System.out.println("entered pushvarproperties. myVariables are " + myVariables);
+        System.out.println("stack before push is: " + myStoredVariables);
+        Properties addToStack = new Properties ();
+        for(Object s : myVariables.keySet()){
+            addToStack.setProperty((String)s, (String)myVariables.get(s));        
+        }
+        System.out.println(addToStack);
+        myStoredVariables.push(addToStack);
         myVariables.clear();
+        System.out.println("stack after push is: " + myStoredVariables);
         myVariables.putAll(variableMap);
+        System.out.println("stack after push is: " + myStoredVariables);
         writeVarsToFile();
-    }
-
-    public void popVarProperties () throws FileNotFoundException, IOException {
-        myVariables = myStoredVariables.pop();
-        System.out.println(myVariables);
-        writeVarsToFile();
+        System.out.println("stack after push is: " + myStoredVariables);
     }
 
     public double getVar (String var) {
@@ -51,6 +55,13 @@ public class VariableManager {
         System.out.println(myVariables.keySet());
         System.out.println(myVariables.getProperty(var));
         return Double.parseDouble(myVariables.getProperty(var));
+    }
+
+    public void popVarProperties () throws FileNotFoundException, IOException {
+        System.out.println("stack before pop is: " + myStoredVariables);
+        myVariables = myStoredVariables.pop();
+        System.out.println("stack after pop is: " + myStoredVariables);
+        writeVarsToFile();
     }
 
     public void addVar (String var, String value) throws IOException {
