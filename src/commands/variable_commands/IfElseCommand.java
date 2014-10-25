@@ -1,7 +1,7 @@
 package commands.variable_commands;
 
+import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.TurtleManager;
 
 import commands.templates.Command;
 
@@ -26,8 +26,7 @@ public class IfElseCommand extends Command {
         if (getMyChildren().get(0).execute() != 0) {
 
             return getMyChildren().get(1).execute();
-        } 
-        else {
+        } else {
 
             return getMyChildren().get(2).execute();
         }
@@ -41,7 +40,7 @@ public class IfElseCommand extends Command {
     }
 
     @Override
-    public void initializeCommand (TurtleManager turtleManager) {
+    public void initializeCommand (Model model) {
 
     }
 

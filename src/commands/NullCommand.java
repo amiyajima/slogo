@@ -1,8 +1,7 @@
 package commands;
 
+import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.TurtleManager;
-
 import commands.templates.Command;
 
 /**
@@ -28,7 +27,7 @@ public class NullCommand extends Command {
     }
 
     @Override
-    public void initializeCommand (TurtleManager turtleManager) {
+    public void initializeCommand (Model model) {
     }
 
     @Override

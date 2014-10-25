@@ -1,5 +1,6 @@
 package commands.templates;
 
+import backEnd.Model;
 import backEnd.VariableManager;
 import backEnd.turtle.TurtleManager;
 
@@ -14,7 +15,7 @@ import backEnd.turtle.TurtleManager;
  */
 public abstract class TurtleCommand extends Command {
     
-    private TurtleManager myTurtleManager;
+    private Model myModel;
 
     public TurtleCommand (VariableManager manager) {
         super(manager);
@@ -34,7 +35,7 @@ public abstract class TurtleCommand extends Command {
      * @return Turtle object
      */
     protected TurtleManager getMyTurtleManager () {
-        return myTurtleManager;
+        return myModel.getTurtleManager();
     }
 
 
@@ -42,8 +43,8 @@ public abstract class TurtleCommand extends Command {
      * Sets the command's turtle based on the model.
      */
     @Override
-    public void initializeCommand (TurtleManager turtleManager) {
-        myTurtleManager = turtleManager;
+    public void initializeCommand (Model model) {
+        myModel = model;
     }
 
 }

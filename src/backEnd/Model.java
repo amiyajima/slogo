@@ -47,7 +47,7 @@ public class Model {
      */
     int runScript (String script) {
 
-        List<Command> rootCommands = myParser.parseScript(script, myTurtleManager,
+        List<Command> rootCommands = myParser.parseScript(script, this,
                 myVariableManager);
 
         // System.out.println("beginning execution " + rootCommands);
