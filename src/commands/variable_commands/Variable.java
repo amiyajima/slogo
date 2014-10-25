@@ -3,6 +3,7 @@ package commands.variable_commands;
 import backEnd.Model;
 import backEnd.VariableManager;
 import commands.templates.Command;
+import commands.templates.OneChildCommand;
 
 
 public class Variable extends Command {

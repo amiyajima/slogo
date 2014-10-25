@@ -86,16 +86,16 @@ class Parser {
             }
             return c;
         }
-        else if (Pattern.matches(CONSTANT_REGEX, commandName)) {
+        else if (Pattern.matches(CONSTANT_REGEX, commandName) || Pattern.matches(VARIABLE_REGEX, commandName)) {
             return c;
         }
         else if (Pattern.matches(COMMAND_REGEX, commandName)) {
             while (c.getNumChildrenNeeded() > 0) {
                 c.addChild(makeTree(myInstructions.nextToken()));
             }
-        }      
+        }     
         else {
-            throw new InvalidInputException("");
+            throw new InvalidInputException("error in parser");
         }
         return c;
     }
