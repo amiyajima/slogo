@@ -28,16 +28,15 @@ public class VariableManager {
 
     private void setInitialVarProperties () throws IOException {
         InputStream fileInput = getClass().getResourceAsStream("/resources/Variables.properties");
-
     }
 
     public void pushVarProperties (Map<String, String> variableMap) throws FileNotFoundException,
                                                                    IOException {
         System.out.println("entered pushvarproperties. myVariables are " + myVariables);
         System.out.println("stack before push is: " + myStoredVariables);
-        Properties addToStack = new Properties ();
-        for(Object s : myVariables.keySet()){
-            addToStack.setProperty((String)s, (String)myVariables.get(s));        
+        Properties addToStack = new Properties();
+        for (Object s : myVariables.keySet()) {
+            addToStack.setProperty((String) s, (String) myVariables.get(s));
         }
         System.out.println(addToStack);
         myStoredVariables.push(addToStack);
