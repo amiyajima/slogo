@@ -1,13 +1,14 @@
 package commands.variable_commands;
 
 import java.io.IOException;
-import backEnd.VariableManager;
-import commands.templates.TwoChildCommand;
 
+import backEnd.VariableManager;
+
+import commands.templates.TwoChildCommand;
 
 public class MakeCommand extends TwoChildCommand {
 
-    VariableManager myVarManager;
+    private VariableManager myVarManager;
 
     public MakeCommand (VariableManager manager) {
         super(manager);
@@ -18,9 +19,9 @@ public class MakeCommand extends TwoChildCommand {
     public double execute () {
         System.out.println("adding var to map");
         try {
-            myVarManager.addVar(getMyChildren().get(0).toString(),
-                                ((Double)(getMyChildren().get(1).execute())).toString());
-        }
+            myVarManager.addVar(getMyChildren().get(0).toString(), ((Double)(getMyChildren()
+                    .get(1).execute())).toString());
+        } 
         catch (IOException e) {
             e.printStackTrace();
         }
@@ -29,7 +30,6 @@ public class MakeCommand extends TwoChildCommand {
 
     @Override
     public String toString () {
-        return "create var " + getMyChildren().get(0).toString() + " = " +
-               getMyChildren().get(1);
+        return "create var " + getMyChildren().get(0).toString() + " = " + getMyChildren().get(1);
     }
 }

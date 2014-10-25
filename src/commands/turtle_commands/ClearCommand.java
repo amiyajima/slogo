@@ -4,11 +4,15 @@ import java.util.List;
 
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.TurtleCommand;
 
-
+/**
+ * Clear command
+ * @author Ethan Chang
+ *
+ */
 public class ClearCommand extends TurtleCommand {
 
     public ClearCommand (VariableManager manager) {
@@ -24,7 +28,7 @@ public class ClearCommand extends TurtleCommand {
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle turtle : turtles) {
+        for (Turtle turtle : turtles) {
             setValue(turtle.goHome());
             turtle.clearMyLines();
         }
@@ -34,6 +38,5 @@ public class ClearCommand extends TurtleCommand {
     public String toString () {
         return null;
     }
-
 
 }

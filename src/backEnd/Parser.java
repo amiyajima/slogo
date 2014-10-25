@@ -11,7 +11,6 @@ import backEnd.turtle.TurtleManager;
 import commands.CommandFactory;
 import commands.templates.Command;
 import exceptions.InvalidInputException;
-import exceptions.SLogoException;
 
 
 /**

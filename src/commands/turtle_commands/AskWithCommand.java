@@ -1,18 +1,15 @@
 package commands.turtle_commands;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import backEnd.VariableManager;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import commands.variable_commands.CommandsList;
 
 public class AskWithCommand extends TurtleCommand {
-    
-    public static final int NUM_CHILDREN = 2;
 
+    public static final int NUM_CHILDREN = 2;
 
     public AskWithCommand (VariableManager manager) {
         super(manager);
@@ -21,10 +18,10 @@ public class AskWithCommand extends TurtleCommand {
 
     @Override
     public double execute () {
-        
+
         Command condition = getMyChildren().get(0);
-        
-        if(condition.execute() == 1) {
+
+        if (condition.execute() == 1) {
             executeTurtleCommand(getMyTurtleManager());
         }
 
@@ -33,9 +30,9 @@ public class AskWithCommand extends TurtleCommand {
 
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
-  
+
         CommandsList commandToPerform = (CommandsList)getMyChildren().get(1);
-        for(int i=0; i< commandToPerform.getNumChildren(); i++) {
+        for (int i = 0; i < commandToPerform.getNumChildren(); i++) {
             setValue(commandToPerform.getChild(i).execute());
         }
     }

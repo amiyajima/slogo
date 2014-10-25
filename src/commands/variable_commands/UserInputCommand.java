@@ -5,19 +5,19 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import backEnd.Model;
 import backEnd.VariableManager;
 import backEnd.turtle.TurtleManager;
+
 import commands.ConstantCommand;
 import commands.templates.Command;
-import exceptions.SLogoException;
 
+import exceptions.SLogoException;
 
 /**
  * A user created command
- * 
+ *
  * TO newcommand [ :k 5 :x 2 ] [ sum :k 5 forward :x ]
- * 
+ *
  * @author annamiyajima
  *
  */
@@ -35,7 +35,7 @@ public class UserInputCommand extends Command {
         super(manager);
         myName = commandName;
         setNumChildren(NUM_CHILDREN);
-        myLocalVariables = new HashMap<String,String>();
+        myLocalVariables = new HashMap<String, String>();
     }
 
     @Override
@@ -43,30 +43,26 @@ public class UserInputCommand extends Command {
         System.out.println(getMyChildren());
         VariableManager variablemanager = getVariableManager();
         System.out.println("variable manager setting success");
-        
+
         CommandsList myVariableList = (CommandsList) getMyChildren().get(0);
         System.out.println(myLocalVariables);
         for (int i = 0; i < myVariableList.getNumChildren(); i++) {
             if (myVariableList.getChild(i) instanceof Variable) {
                 myLocalVariables.keySet().add(myVariableList.getChild(i).toString());
-            }
-            else if (myVariableList.getChild(i) instanceof ConstantCommand) {
-                myLocalVariables.put((myVariableList.getChild(i - 1).toString()),
-                              myVariableList.getChild(i).toString());
-            }
-            else {
+            } else if (myVariableList.getChild(i) instanceof ConstantCommand) {
+                myLocalVariables.put((myVariableList.getChild(i - 1).toString()), myVariableList
+                        .getChild(i).toString());
+            } else {
                 throw new SLogoException("cannot create command -- enter in correct format");
             }
         }
         System.out.println("my local variables are " + myLocalVariables);
         try {
             variablemanager.pushVarProperties(myLocalVariables);
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -74,12 +70,10 @@ public class UserInputCommand extends Command {
         System.out.println("execute finished in userinput");
         try {
             variablemanager.popVarProperties();
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

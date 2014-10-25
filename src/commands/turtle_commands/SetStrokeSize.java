@@ -5,8 +5,14 @@ import java.util.List;
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.TurtleCommand;
 
+/**
+ * Command to set the stroke size for the turtle's pen
+ * @author Ethan Chang
+ *
+ */
 public class SetStrokeSize extends TurtleCommand {
     public static final int NUM_CHILDREN = 1;
 
@@ -25,14 +31,13 @@ public class SetStrokeSize extends TurtleCommand {
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle turtle : turtles ) {
+        for (Turtle turtle : turtles) {
             turtle.getPen().setMyPenSize(getValue());
         }
     }
 
     @Override
     public String toString () {
-        // TODO Auto-generated method stub
         return null;
     }
 

@@ -4,11 +4,15 @@ import java.util.List;
 
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.TurtleCommand;
 
-
+/**
+ * Raises the pen
+ * @author Ethan Chang
+ *
+ */
 public class PenUpCommand extends TurtleCommand {
     public static final int PEN_UP = 0;
     public static final int NUM_CHILDREN = 0;
@@ -27,7 +31,7 @@ public class PenUpCommand extends TurtleCommand {
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle t : turtles) {
+        for (Turtle t : turtles) {
             t.togglePen(PEN_UP);
         }
     }

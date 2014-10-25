@@ -4,11 +4,15 @@ import java.util.List;
 
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.TurtleCommand;
 
-
+/**
+ * Command to have a turtle face towards a point
+ * @author Ethan Chang
+ *
+ */
 public class TowardsCommand extends TurtleCommand {
 
     public static final int NUM_CHILDREN = 2;
@@ -27,8 +31,9 @@ public class TowardsCommand extends TurtleCommand {
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle t : turtles) {
-            setValue(t.turnTowards(getMyChildren().get(0).execute(), getMyChildren().get(1).execute()));
+        for (Turtle t : turtles) {
+            setValue(t.turnTowards(getMyChildren().get(0).execute(), getMyChildren().get(1)
+                    .execute()));
         }
     }
 

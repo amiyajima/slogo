@@ -4,11 +4,15 @@ import java.util.List;
 
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.TurtleCommand;
 
-
+/**
+ * Command to rotate the turtle
+ * @author Ethan Chang
+ *
+ */
 public class RightCommand extends TurtleCommand {
 
     public static final int NUM_CHILDREN = 1;
@@ -29,7 +33,7 @@ public class RightCommand extends TurtleCommand {
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle t : turtles) {
+        for (Turtle t : turtles) {
             t.turnTurtle(getValue());
         }
     }

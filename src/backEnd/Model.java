@@ -4,13 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import backEnd.turtle.Turtle;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
-import commands.CommandFactory;
 import commands.templates.Command;
-import exceptions.SLogoException;
 import frontEnd.View;
-
 
 public class Model {
 
@@ -19,7 +15,8 @@ public class Model {
     private VariableManager myVariableManager;
     private TurtleManager myTurtleManager;
 
-    // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657, 524);
+    // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657,
+    // 524);
 
     public Model (Parser parser) {
 
@@ -41,7 +38,7 @@ public class Model {
      * package also
      * 
      * @param script
-     *        The input string of syntax from the text-field
+     *            The input string of syntax from the text-field
      * 
      * @return Returns 0 if the input is valid. Returns 1 if there is a syntax
      *         error. Can be extended to return different Doubles for different
@@ -50,7 +47,8 @@ public class Model {
      */
     int runScript (String script) {
 
-        List<Command> rootCommands = myParser.parseScript(script, myTurtleManager, myVariableManager);
+        List<Command> rootCommands = myParser.parseScript(script, myTurtleManager,
+                myVariableManager);
 
         // System.out.println("beginning execution " + rootCommands);
 
@@ -66,12 +64,12 @@ public class Model {
         myTurtle.addObserver(view);
     }
 
-//    public AbstractTurtle getTurtle () {
-//        return myTurtle;
-//    }
-    
-    public TurtleManager getTurtleManager() {
-    	return myTurtleManager;
+    // public AbstractTurtle getTurtle () {
+    // return myTurtle;
+    // }
+
+    public TurtleManager getTurtleManager () {
+        return myTurtleManager;
     }
 
 }

@@ -6,11 +6,11 @@ import java.util.ResourceBundle;
 
 import backEnd.VariableManager;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import commands.variable_commands.UserInputCommand;
 import commands.variable_commands.Variable;
-
 
 /**
  * This factory is part of the command pattern implementation. It contains a
@@ -29,7 +29,7 @@ public class CommandFactory {
      * Initializes a command factory
      *
      * @param language
-     *        The language commands are being put into the text field
+     *            The language commands are being put into the text field
      */
     public CommandFactory (String language) {
         myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "languages/"
@@ -42,7 +42,7 @@ public class CommandFactory {
      * language properties file. If it can, return true, if not false.
      *
      * @param type
-     *        command type being checked
+     *            command type being checked
      * @return Return true if the command is valid
      */
     private boolean checkLanguage (String type) {
@@ -84,11 +84,12 @@ public class CommandFactory {
      * return an error
      *
      * @param type
-     *        Command being tested
+     *            Command being tested
      * @return Either the type of command requested, or an exception
      */
-    
-    public Command buildCommand (String type, TurtleManager turtleManager, VariableManager variableManager) {
+
+    public Command buildCommand (String type, TurtleManager turtleManager,
+            VariableManager variableManager) {
         type = checkCaps(type);
         if (checkLanguage(type)) {
             try {
@@ -96,35 +97,28 @@ public class CommandFactory {
                 Constructor con = null;
                 try {
                     con = newCommandClass.getConstructor(VariableManager.class);
-                }
-                catch (NoSuchMethodException e) {
+                } catch (NoSuchMethodException e) {
                     e.printStackTrace();
-                }
-                catch (SecurityException e) {
+                } catch (SecurityException e) {
                     e.printStackTrace();
                 }
                 Command newCommand = null;
                 try {
-                    newCommand = (Command)con.newInstance(variableManager);
-                }
-                catch (IllegalArgumentException e) {
+                    newCommand = (Command) con.newInstance(variableManager);
+                } catch (IllegalArgumentException e) {
                     e.printStackTrace();
-                }
-                catch (InvocationTargetException e) {
+                } catch (InvocationTargetException e) {
                     e.printStackTrace();
                 }
                 if (newCommand instanceof TurtleCommand) {
                     newCommand.initializeCommand(turtleManager);
                 }
                 return newCommand;
-            }
-            catch (InstantiationException e) {
+            } catch (InstantiationException e) {
                 e.printStackTrace();
-            }
-            catch (IllegalAccessException e) {
+            } catch (IllegalAccessException e) {
                 e.printStackTrace();
-            }
-            catch (ClassNotFoundException e) {
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }

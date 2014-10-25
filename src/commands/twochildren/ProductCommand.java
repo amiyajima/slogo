@@ -1,14 +1,18 @@
 package commands.twochildren;
 
 import backEnd.VariableManager;
+
 import commands.templates.TwoChildCommand;
 
-
+/**
+ * Multiplies it's children together
+ * @author Ethan Chang
+ *
+ */
 public class ProductCommand extends TwoChildCommand {
 
     public ProductCommand (VariableManager manager) {
         super(manager);
-        // TODO Auto-generated constructor stub
     }
 
     @Override

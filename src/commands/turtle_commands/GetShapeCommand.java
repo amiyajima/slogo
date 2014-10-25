@@ -5,8 +5,14 @@ import java.util.List;
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.TurtleCommand;
 
+/**
+ * gets index of shape of the turtle
+ * @author Ethan Chang
+ *
+ */
 public class GetShapeCommand extends TurtleCommand {
     public static final int NUM_CHILDREN = 0;
 
@@ -24,12 +30,11 @@ public class GetShapeCommand extends TurtleCommand {
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        setValue(turtles.get(turtles.size()-1).getImageIndex().getValue());
+        setValue(turtles.get(turtles.size() - 1).getImageIndex().getValue());
     }
 
     @Override
     public String toString () {
-        // TODO Auto-generated method stub
         return null;
     }
 

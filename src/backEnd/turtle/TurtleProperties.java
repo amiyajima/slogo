@@ -2,7 +2,6 @@ package backEnd.turtle;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
-import javafx.geometry.Point2D;
 
 /**
  * Data object used to hold properties about Turtle that later are bound to 
@@ -17,33 +16,34 @@ public class TurtleProperties {
 	
 	private TurtlePoint myPosition;
 	private DoubleProperty myOrientation;
-	private BooleanProperty isPenDown;
-	private BooleanProperty linesCleared;
+	private BooleanProperty myPenState;
+	private BooleanProperty myLinesCleared;
 	
-	public TurtleProperties(TurtlePoint myPosition, DoubleProperty myOrientation, BooleanProperty isPenDown, BooleanProperty linesCleared) {
-		this.myPosition = myPosition;
-		this.myOrientation = myOrientation;
-		this.isPenDown = isPenDown;
-		this.linesCleared = linesCleared;
+	public TurtleProperties (TurtlePoint position, DoubleProperty orientation, 
+	        BooleanProperty isPenDown, BooleanProperty linesCleared) {
+		myPosition = position;
+		myOrientation = orientation;
+		myPenState = isPenDown;
+		myLinesCleared = linesCleared;
 	}
 	
-	public DoubleProperty getXPosition() {
+	public DoubleProperty getXPosition () {
 		return myPosition.getBindableX();
 	}
 	
-	public DoubleProperty getYPosition() {
+	public DoubleProperty getYPosition () {
 		return myPosition.getBindableY();
 	}
 	
-	public DoubleProperty getOrientation() {
+	public DoubleProperty getOrientation () {
 		return myOrientation;
 	}
 	
-	public BooleanProperty getIsPenDown() {
-		return isPenDown;
+	public BooleanProperty getIsPenDown () {
+		return myPenState;
 	}
 	
-	public BooleanProperty getLinesCleared() {
-		return linesCleared;
+	public BooleanProperty getLinesCleared () {
+		return myLinesCleared;
 	}
 }

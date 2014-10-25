@@ -4,10 +4,9 @@ import java.util.List;
 
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
-import commands.templates.TurtleCommand;
 
+import commands.templates.TurtleCommand;
 
 public class XCorQuery extends TurtleCommand {
     public static final int NUM_CHILDREN = 0;
@@ -20,7 +19,7 @@ public class XCorQuery extends TurtleCommand {
     @Override
     public double execute () {
         List<Turtle> turtles = getMyTurtleManager().getTurtleList();
-        setValue(turtles.get(turtles.size()-1).getMyX());
+        setValue(turtles.get(turtles.size() - 1).getMyX());
         return getValue();
     }
 
@@ -31,7 +30,7 @@ public class XCorQuery extends TurtleCommand {
 
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
-        
+
     }
 
 }

@@ -1,16 +1,18 @@
 package commands.twochildren;
 
-import java.util.Map;
 import backEnd.VariableManager;
-import commands.templates.Command;
+
 import commands.templates.TwoChildCommand;
 
-
+/**
+ * Command to divide the first child by the second
+ * @author Ethan Chang
+ *
+ */
 public class QuotientCommand extends TwoChildCommand {
 
     public QuotientCommand (VariableManager manager) {
         super(manager);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
