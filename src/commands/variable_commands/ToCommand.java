@@ -26,7 +26,7 @@ public class ToCommand extends OneChildCommand {
     }
 
     public String toString () {
-        return "ToCommand tostring";
+        return getMyChildren().get(0).toString();
 
     }
 

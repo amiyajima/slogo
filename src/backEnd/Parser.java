@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 import commands.CommandFactory;
 import commands.templates.Command;
+import commands.variable_commands.ToCommand;
 import exceptions.InvalidInputException;
 import exceptions.SLogoException;
 
@@ -33,6 +34,7 @@ class Parser {
     private StringTokenizer myInstructions;
     private Model myModel;
     private VariableManager myVariableManager;
+    private Map<String, Command> myCommandsMap;
 
     /**
      * Constructor for the parser
@@ -40,7 +42,8 @@ class Parser {
     Parser (Model model, VariableManager manager) {
         myModel = model;
         myVariableManager = manager;
-        myFactory = new CommandFactory("English", myModel, myVariableManager);
+        myCommandsMap = new HashMap<String, Command>();
+        myFactory = new CommandFactory("English", myModel, myVariableManager, myCommandsMap);
     }
 
     /**
@@ -60,6 +63,10 @@ class Parser {
         while (myInstructions.hasMoreTokens()) {
             Command createdCommand = makeTree(myInstructions.nextToken());
             System.out.println("NEW ROOT REGISTERED");
+            if(createdCommand instanceof ToCommand){
+                System.out.println("TO COMMAND CREATED AND REGISTERED");
+                myCommandsMap.put(createdCommand.toString(), createdCommand);
+            }
             myRoots.add(createdCommand);
         }
         System.out.println("while loop in parse script completed");

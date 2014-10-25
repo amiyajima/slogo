@@ -2,6 +2,8 @@ package commands;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import backEnd.Model;
 import backEnd.VariableManager;
@@ -25,6 +27,7 @@ public class CommandFactory {
     private String myClassKey;
     private Model myModel;
     private VariableManager myVariableManager;
+    private Map<String, Command> myCommandsMap;
 
     /**
      * Initializes a command factory
@@ -32,11 +35,15 @@ public class CommandFactory {
      * @param language
      *        The language commands are being put into the text field
      */
-    public CommandFactory (String language, Model model, VariableManager manager) {
+    public CommandFactory (String language,
+                           Model model,
+                           VariableManager manager,
+                           Map<String, Command> commandsMap) {
         myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "languages/"
                                                        + language);
         myModel = model;
         myVariableManager = manager;
+        myCommandsMap = commandsMap;
     }
 
     /**
@@ -78,6 +85,16 @@ public class CommandFactory {
      */
     private String checkCaps (String type) {
         return type.toLowerCase();
+    }
+
+    /**
+     * Checks if the command has been previously defined by the user
+     * 
+     * @param type
+     * @return
+     */
+    private boolean checkUserCommand (String type) {
+        return myCommandsMap.containsKey(type);
     }
 
     /**
@@ -139,6 +156,11 @@ public class CommandFactory {
             if (isNumeric(type)) { return new ConstantCommand(type, myVariableManager); }
 
         }
+        if (checkUserCommand(type)) {
+            System.out.println(myCommandsMap);
+            return myCommandsMap.get(type);
+        }
         return new UserInputCommand(type, myVariableManager);
     }
+
 }

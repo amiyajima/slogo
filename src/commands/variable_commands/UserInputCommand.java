@@ -33,7 +33,7 @@ public class UserInputCommand extends Command {
         super(manager);
         myName = commandName;
         setNumChildren(NUM_CHILDREN);
-        myLocalVariables = new HashMap<String,String>();
+        myLocalVariables = new HashMap<String, String>();
     }
 
     @Override
@@ -41,17 +41,17 @@ public class UserInputCommand extends Command {
         System.out.println(getMyChildren());
         VariableManager variablemanager = getVariableManager();
         System.out.println("variable manager setting success");
-        
+
         CommandsList myVariableList = (CommandsList) getMyChildren().get(0);
         System.out.println(myLocalVariables);
-        //works up to here then UnsupportedOperationException
+        // works up to here then UnsupportedOperationException
         for (int i = 0; i < myVariableList.getNumChildren(); i++) {
             if (myVariableList.getChild(i) instanceof Variable) {
-                //just skip over variable names
+                // just skip over variable names
             }
             else if (myVariableList.getChild(i) instanceof ConstantCommand) {
                 myLocalVariables.put((myVariableList.getChild(i - 1).toString()),
-                              myVariableList.getChild(i).toString());
+                                     myVariableList.getChild(i).toString());
             }
             else {
                 throw new SLogoException("cannot create command -- enter in correct format");
@@ -88,7 +88,7 @@ public class UserInputCommand extends Command {
 
     @Override
     public String toString () {
-        return "userinputcommand tostring";
+        return myName;
     }
 
     @Override
