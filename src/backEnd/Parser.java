@@ -31,7 +31,6 @@ class Parser {
     private CommandFactory myFactory;
     private StringTokenizer myInstructions;
     private Model myModel;
-    private Map<String, Command> myCommandMap;
     private VariableManager myVariableManager;
 
     /**
@@ -39,7 +38,6 @@ class Parser {
      */
     Parser (Model model, VariableManager manager) {
         myModel = model;
-        myCommandMap = new HashMap<String, Command>();
         myVariableManager = manager;
         myFactory = new CommandFactory("English", myModel, myVariableManager);
     }

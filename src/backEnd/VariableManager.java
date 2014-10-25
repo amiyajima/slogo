@@ -3,17 +3,20 @@ package backEnd;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Stack;
 
 
 public class VariableManager {
 
     private Properties myVariables;
+    private Stack<Properties> myStoredVariables;
 
     public VariableManager () {
         myVariables = new Properties();
         try {
-            setVarProperties();
+            setInitialVarProperties();
         }
         catch (IOException e) {
             // TODO Auto-generated catch block
@@ -21,9 +24,21 @@ public class VariableManager {
         }
     }
 
-    private void setVarProperties () throws IOException {
+    private void setInitialVarProperties () throws IOException {
         InputStream fileInput = getClass().getResourceAsStream("/resources/Variables.properties");
-        
+
+    }
+
+    public void pushVarProperties (Map<String, Double> variableMap) {
+        myStoredVariables.push(myVariables);
+        myVariables.clear();
+        myVariables.putAll(variableMap);
+        System.out.println(myVariables);
+    }
+
+    public void popVarProperties () {
+        myVariables = myStoredVariables.pop();
+        System.out.println(myVariables);
     }
 
     public double getVar (String var) {
