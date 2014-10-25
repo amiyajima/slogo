@@ -4,12 +4,13 @@ public class SLogoException extends RuntimeException {
 
 
     private static final long serialVersionUID = 1L;
+    private String myError;
 
     /**
      * Create an exception based on an issue in our code.
      */
     public SLogoException (String message, String ... s) {
-        super(message);
+        myError = String.format(message, (Object[])s);
     }
 
     /**

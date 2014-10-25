@@ -125,9 +125,33 @@ public abstract class AbstractTurtle extends Observable {
     protected boolean isInBounds (double x, double y) {
         // works on right bottom, not on left top
 //        Point2D currentPosition = myPosition;
-        System.out.println("current distance from top edge is " + (myPosition.getY() - y));
-        return !(myPosition.getX() - x < 0 || myPosition.getX() + x > myCanvasWidth
-                 || myPosition.getY() - y < 0 || myPosition.getY() + y > myCanvasHeight);
+        System.out.println("current distance from top edge is " + (myPosition.getY() + y));
+        return !(myPosition.getX() + x < 0 || myPosition.getX() + x > myCanvasWidth
+                 || myPosition.getY() + y < 0 || myPosition.getY() + y > myCanvasHeight);
+    }
+    
+    protected void toroidalMovement (double deltaX, double deltaY ) {
+        double newX = myPosition.getX() + deltaX;
+        double newY = myPosition.getY() + deltaY;
+         
+        if (myPosition.getX() < 0) {
+            togglePen(0);
+            newX = myCanvasWidth;
+        }
+        else if (myPosition.getX() > myCanvasWidth) {
+            togglePen(0);
+            newX = 0;
+        }
+        
+        if (myPosition.getY()<0) {
+            togglePen(0);
+            newY = myCanvasHeight;
+        }
+        else if(myPosition.getY() > myCanvasHeight) {
+            togglePen(0);
+            newY = 0;
+        }
+        setPosition(new Point2D(newX, newY));
     }
 
     public double turnTowards (double x, double y) {
@@ -141,7 +165,6 @@ public abstract class AbstractTurtle extends Observable {
 
         double angle = angle2 - angle1;
         setOrientation(angle2);
-        System.out.println(angle);
         return angle;
     }
 

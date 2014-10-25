@@ -1,7 +1,5 @@
 package backEnd.turtle;
 
-import javafx.geometry.Point2D;
-import frontEnd.View;
 
 /**
  * Turtle class for slogo. Extends abstractTurtle and implements
@@ -19,15 +17,25 @@ public class Turtle extends AbstractTurtle {
 
     @Override
     public void moveTurtle (double distance) {
+        int penState = isPenDown() ? 1 : 0;
+        double direction = distance<0 ? -1 : 1;
+        for(int i = 0; i < Math.abs(distance); i++) {
+            System.out.println(distance);
 
-        TurtlePoint currentPosition = getPosition();
-        Double newX = Math.sin(Math.toRadians(-getOrientation())) * distance;
-        Double newY = Math.cos(Math.toRadians(-getOrientation())) * distance;
-        if (isInBounds(newX, newY)) {
-            Point2D newPosition =
-                    new Point2D(currentPosition.getX() + newX, currentPosition.getY() + newY);
-            setPosition(newPosition);
+            movementHelper(direction, penState);
         }
+        
+        direction = distance - (int) distance;
+        movementHelper(direction, penState);
+        
+    }
+    
+    private void movementHelper(double direction, int penState) {
+        System.out.println("aye");
+        double deltaX = Math.sin(Math.toRadians(-getOrientation())) * direction;
+        double deltaY = Math.cos(Math.toRadians(-getOrientation())) * direction;
+        toroidalMovement(deltaX, deltaY);
+        togglePen(penState);
     }
 
     @Override

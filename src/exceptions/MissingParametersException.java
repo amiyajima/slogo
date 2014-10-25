@@ -9,8 +9,7 @@ public class MissingParametersException extends SLogoException {
 
     
     public MissingParametersException (String message, String ... s) {
-        String error = String.format(message, s);
-        super(error);
+        super(message, s);
     }
     
     /**
