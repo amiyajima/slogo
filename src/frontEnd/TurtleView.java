@@ -15,7 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import backEnd.turtle.AbstractTurtle;
+import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleProperties;
 import drawer.Drawer;
 import drawer.SimpleDrawer;

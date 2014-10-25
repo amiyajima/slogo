@@ -4,16 +4,13 @@ import java.util.List;
 
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
 import commands.templates.TurtleCommand;
 
-
-public class ShowTurtleCommand extends TurtleCommand {
-    public static final int SHOW_TURTLE = 1;
+public class GetShapeCommand extends TurtleCommand {
     public static final int NUM_CHILDREN = 0;
 
-    public ShowTurtleCommand (VariableManager manager) {
+    public GetShapeCommand (VariableManager manager) {
         super(manager);
         setNumChildren(NUM_CHILDREN);
     }
@@ -21,20 +18,19 @@ public class ShowTurtleCommand extends TurtleCommand {
     @Override
     public double execute () {
         executeTurtleCommand(getMyTurtleManager());
-        return SHOW_TURTLE;
+        return getValue();
     }
 
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle t : turtles) {
-            t.toggleVisibility(SHOW_TURTLE);
-        }
+        setValue(turtles.get(turtles.size()-1).getImageIndex().getValue());
     }
 
     @Override
     public String toString () {
-        return "Show turtle";
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

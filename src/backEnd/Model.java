@@ -3,7 +3,7 @@ package backEnd;
 import java.util.Arrays;
 import java.util.List;
 
-import backEnd.turtle.AbstractTurtle;
+import backEnd.turtle.Turtle;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
 import commands.CommandFactory;
@@ -15,7 +15,7 @@ import frontEnd.View;
 public class Model {
 
     private Parser myParser;
-    private AbstractTurtle myTurtle;
+    private Turtle myTurtle;
     private VariableManager myVariableManager;
     private TurtleManager myTurtleManager;
 

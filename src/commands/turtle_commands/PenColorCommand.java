@@ -4,37 +4,38 @@ import java.util.List;
 
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
 import commands.templates.TurtleCommand;
 
-
-public class ShowTurtleCommand extends TurtleCommand {
-    public static final int SHOW_TURTLE = 1;
+/**
+ * 
+ * @author Ethan Chang
+ *
+ */
+public class PenColorCommand extends TurtleCommand {
     public static final int NUM_CHILDREN = 0;
 
-    public ShowTurtleCommand (VariableManager manager) {
+    public PenColorCommand (VariableManager manager) {
         super(manager);
-        setNumChildren(NUM_CHILDREN);
+        setNumChildren(0);
     }
 
     @Override
     public double execute () {
         executeTurtleCommand(getMyTurtleManager());
-        return SHOW_TURTLE;
+        return getValue();
     }
 
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
-        List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle t : turtles) {
-            t.toggleVisibility(SHOW_TURTLE);
-        }
+        List<Turtle> turtleList = turtleManager.getTurtleList();
+        setValue(turtleList.get(turtleList.size() - 1).getPen().getMyPenColor());
     }
 
     @Override
     public String toString () {
-        return "Show turtle";
+        return null;
     }
+
 
 }

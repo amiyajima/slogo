@@ -3,12 +3,13 @@ package commands;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ResourceBundle;
+
 import backEnd.VariableManager;
 import backEnd.turtle.TurtleManager;
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
+import commands.variable_commands.UserInputCommand;
 import commands.variable_commands.Variable;
-import exceptions.InvalidInputException;
 
 
 /**
@@ -86,6 +87,7 @@ public class CommandFactory {
      *        Command being tested
      * @return Either the type of command requested, or an exception
      */
+    
     public Command buildCommand (String type, TurtleManager turtleManager, VariableManager variableManager) {
         type = checkCaps(type);
         if (checkLanguage(type)) {
@@ -138,6 +140,6 @@ public class CommandFactory {
             }
 
         }
-        throw new InvalidInputException("The input '%s' is not a valid input", type);
+        return new UserInputCommand(type, variableManager);
     }
 }

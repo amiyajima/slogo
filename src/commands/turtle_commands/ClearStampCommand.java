@@ -4,16 +4,14 @@ import java.util.List;
 
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
 import commands.templates.TurtleCommand;
 
+public class ClearStampCommand extends TurtleCommand {
 
-public class ShowTurtleCommand extends TurtleCommand {
-    public static final int SHOW_TURTLE = 1;
     public static final int NUM_CHILDREN = 0;
-
-    public ShowTurtleCommand (VariableManager manager) {
+    
+    public ClearStampCommand (VariableManager manager) {
         super(manager);
         setNumChildren(NUM_CHILDREN);
     }
@@ -21,20 +19,20 @@ public class ShowTurtleCommand extends TurtleCommand {
     @Override
     public double execute () {
         executeTurtleCommand(getMyTurtleManager());
-        return SHOW_TURTLE;
+        return 0;
     }
 
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle t : turtles) {
-            t.toggleVisibility(SHOW_TURTLE);
+        for(Turtle turtle : turtles) {
+            turtle.clearStamp();
         }
     }
 
     @Override
     public String toString () {
-        return "Show turtle";
+        return null;
     }
 
 }
