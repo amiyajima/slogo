@@ -1,16 +1,19 @@
 package exceptions;
 
+import java.util.Formatter;
+
 public class SLogoException extends RuntimeException {
 
 
     private static final long serialVersionUID = 1L;
-    private String myError;
+    private Formatter formatter;
 
     /**
      * Create an exception based on an issue in our code.
      */
     public SLogoException (String message, String ... s) {
-        myError = String.format(message, (Object[])s);
+        formatter = new Formatter();
+        formatter.format(message, (Object[])s);
     }
 
     /**
@@ -25,5 +28,10 @@ public class SLogoException extends RuntimeException {
      */
     public SLogoException (String message, Throwable cause) {
         super(message, cause);
+    }
+    
+    @Override
+    public String getMessage() {
+        return formatter.toString();
     }
 }

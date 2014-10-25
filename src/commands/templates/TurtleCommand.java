@@ -54,9 +54,8 @@ public abstract class TurtleCommand extends Command {
      * Sets the command's turtle based on the model.
      */
     @Override
-    public void initializeCommand (Model model) {
-//        myTurtle = model.getTurtle();
-    	myTurtleManager = model.getTurtleManager();
+    public void initializeCommand (TurtleManager turtleManager) {
+    	myTurtleManager = turtleManager;
     }
 
 }

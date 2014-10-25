@@ -1,8 +1,10 @@
 package commands.variable_commands;
 
 import java.util.Map;
+
 import backEnd.Model;
 import backEnd.VariableManager;
+import backEnd.turtle.TurtleManager;
 import commands.templates.Command;
 
 
@@ -40,10 +42,8 @@ public class IfElseCommand extends Command {
                getMyChildren().get(1) + " if " + getMyChildren().get(0).execute() +
                " == 0, execute " + getMyChildren().get(2);
     }
-
     @Override
-    public void initializeCommand (Model m) {
-        // TODO Auto-generated method stub
+    public void initializeCommand (TurtleManager turtleManager) {
 
     }
 

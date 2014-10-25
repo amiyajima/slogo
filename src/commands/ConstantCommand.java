@@ -1,9 +1,11 @@
 package commands;
 
 import java.util.Map;
+
 import commands.templates.Command;
 import backEnd.Model;
 import backEnd.VariableManager;
+import backEnd.turtle.TurtleManager;
 
 /**
  * A constant command is created when just a double is entered as a parameter
@@ -47,7 +49,7 @@ public class ConstantCommand extends Command {
     }
 
     @Override
-    public void initializeCommand (Model m) {
+    public void initializeCommand (TurtleManager turtleManager) {        
     }
 
 }

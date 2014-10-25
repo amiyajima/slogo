@@ -3,6 +3,7 @@ package backEnd;
 import java.io.File;
 
 import javafx.scene.paint.Color;
+import exceptions.SLogoException;
 import frontEnd.View;
 
 public class Controller {
@@ -20,9 +21,14 @@ public class Controller {
 		//view.setupTurtleView(model.getTurtle()); //not needed?
 	}
 
-	public void runScript(String script) throws Exception {
+	public void runScript(String script) {
 		if (script != null) {
-			myModel.runScript(script);
+			try {
+			    myModel.runScript(script);
+			}
+			catch(SLogoException e) {
+			    System.out.println(e.getMessage());
+			}
 			myView.addToHistory(script);
 		}
 	}

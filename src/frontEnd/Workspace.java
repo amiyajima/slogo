@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import backEnd.Controller;
 import backEnd.Model;
+import backEnd.Parser;
 
 public class Workspace extends VBox {
 
@@ -25,18 +26,18 @@ public class Workspace extends VBox {
 
 	private static final Preferences DEFAULT_DISPLAY_PREFERENCES = new DisplayPreferences();
 
-	public Workspace() {
-		this(DEFAULT_DISPLAY_PREFERENCES);
+	public Workspace(Parser parser) {
+		this(DEFAULT_DISPLAY_PREFERENCES, parser);
 	}
 
-	public Workspace(Preferences preferences) {
+	public Workspace(Preferences preferences, Parser parser) {
 
 		displayPreferences = preferences;
 
 		setMinWidth(WIDTH);
 		setMinWidth(HEIGHT);
 
-		myModel = new Model();
+		myModel = new Model(parser);
 		myView = new View(WIDTH, HEIGHT, "English");
 		myController = new Controller(myModel, myView);
 

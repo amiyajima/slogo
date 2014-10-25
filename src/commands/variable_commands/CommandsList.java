@@ -2,6 +2,7 @@ package commands.variable_commands;
 
 import backEnd.Model;
 import backEnd.VariableManager;
+import backEnd.turtle.TurtleManager;
 import commands.templates.Command;
 
 
@@ -29,18 +30,16 @@ public class CommandsList extends Command {
         return getMyChildren().toString();
     }
 
-    @Override
-    public void initializeCommand (Model m) {
-        // TODO Auto-generated method stub
-
-    }
-
     public Command getChild (int index) {
         return getMyChildren().get(index);
     }
     
     public int getNumChildren(){
         return getMyChildren().size();
+    }
+
+    @Override
+    public void initializeCommand (TurtleManager turtleManager) {
     }
 
 }

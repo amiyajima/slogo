@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import backEnd.Model;
 import backEnd.VariableManager;
+import backEnd.turtle.TurtleManager;
 
 
 /**
@@ -102,6 +104,6 @@ public abstract class Command {
      * 
      * @param m
      */
-    public abstract void initializeCommand (Model m);
+    public abstract void initializeCommand (TurtleManager turtleManager);
 
 }

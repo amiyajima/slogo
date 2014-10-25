@@ -2,6 +2,7 @@ package commands.templates;
 
 import backEnd.Model;
 import backEnd.VariableManager;
+import backEnd.turtle.TurtleManager;
 
 public abstract class OneChildCommand extends Command {
 
@@ -14,20 +15,16 @@ public abstract class OneChildCommand extends Command {
     
     @Override
     public double execute () {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public String toString () {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public void initializeCommand (Model m) {
-        // TODO Auto-generated method stub
-
+    public void initializeCommand (TurtleManager turtleManager) {
     }
 
 }

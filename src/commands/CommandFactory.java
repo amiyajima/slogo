@@ -4,13 +4,12 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ResourceBundle;
 
-import backEnd.Model;
 import backEnd.VariableManager;
-
+import backEnd.turtle.TurtleManager;
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
-import commands.variable_commands.UserInputCommand;
 import commands.variable_commands.Variable;
+import exceptions.InvalidInputException;
 
 /**
  * This factory is part of the command pattern implementation. It contains a
@@ -21,11 +20,9 @@ import commands.variable_commands.Variable;
 public class CommandFactory {
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
     public static final ResourceBundle MYCOMMANDRESOURCES = ResourceBundle
-            .getBundle(DEFAULT_RESOURCE_PACKAGE + "Commands");
+            .getBundle("resources/Commands");
     private ResourceBundle myLanguageResources;
     private String myClassKey;
-    private Model myModel;
-    private VariableManager myVariableManager;
 
     /**
      * Initializes a command factory
@@ -33,11 +30,9 @@ public class CommandFactory {
      * @param language
      *            The language commands are being put into the text field
      */
-    public CommandFactory (String language, Model model, VariableManager manager) {
+    public CommandFactory (String language) {
         myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "languages/"
                 + language);
-        myModel = model;
-        myVariableManager = manager;
     }
 
     /**
@@ -90,7 +85,7 @@ public class CommandFactory {
      *            Command being tested
      * @return Either the type of command requested, or an exception
      */
-    public Command buildCommand (String type) {
+    public Command buildCommand (String type, TurtleManager turtleManager, VariableManager variableManager) {
         type = checkCaps(type);
         if (checkLanguage(type)) {
             try {
@@ -108,7 +103,7 @@ public class CommandFactory {
                 }
                 Command newCommand = null;
                 try {
-                    newCommand = (Command)con.newInstance(myVariableManager);
+                    newCommand = (Command)con.newInstance(variableManager);
                 }
                 catch (IllegalArgumentException e) {
                     e.printStackTrace();
@@ -117,7 +112,7 @@ public class CommandFactory {
                     e.printStackTrace();
                 }
                 if (newCommand instanceof TurtleCommand) {
-                    newCommand.initializeCommand(myModel);
+                    newCommand.initializeCommand(turtleManager);
                 }
                 return newCommand;
             }
@@ -134,16 +129,15 @@ public class CommandFactory {
 
         else {
             if (checkVar(type)) {
-                Command varCommand = new Variable(type, myVariableManager);
+                Command varCommand = new Variable(type, variableManager);
                 return varCommand;
             }
 
             if (isNumeric(type)) {
-                return new ConstantCommand(type, myVariableManager);
+                return new ConstantCommand(type, variableManager);
             }
-
         }
-        return new UserInputCommand(type, myVariableManager);
+        throw new InvalidInputException("The input '%s' is not a valid input", type);
     }
 
 }

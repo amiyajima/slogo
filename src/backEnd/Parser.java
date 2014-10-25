@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
+
+import backEnd.turtle.TurtleManager;
 import commands.CommandFactory;
 import commands.templates.Command;
 import exceptions.InvalidInputException;
@@ -20,7 +22,7 @@ import exceptions.SLogoException;
  * @author Anna Miyajima
  *
  */
-class Parser {
+public class Parser {
 
     public static final String CONSTANT_REGEX = "-?[0-9]+\\.?[0-9]*";
     public static final String VARIABLE_REGEX = ":[a-zA-Z]+";
@@ -30,18 +32,15 @@ class Parser {
 
     private CommandFactory myFactory;
     private StringTokenizer myInstructions;
-    private Model myModel;
     private Map<String, Command> myCommandMap;
     private VariableManager myVariableManager;
 
     /**
      * Constructor for the parser
      */
-    Parser (Model model, VariableManager manager) {
-        myModel = model;
+    public Parser (CommandFactory commandFactory) {
         myCommandMap = new HashMap<String, Command>();
-        myVariableManager = manager;
-        myFactory = new CommandFactory("English", myModel, myVariableManager);
+        myFactory = commandFactory;
     }
 
     /**
@@ -54,12 +53,12 @@ class Parser {
      *            Raw input from the user (always error free)
      * @return A list of commands to be sent to the ScriptManager
      */
-    List<Command> parseScript (String script) {
+    List<Command> parseScript (String script, TurtleManager turtleManager, VariableManager variableManager) {
         List<Command> myRoots = new ArrayList<Command>();
         myInstructions = new StringTokenizer(script);
 
         while (myInstructions.hasMoreTokens()) {
-            Command createdCommand = makeTree(myInstructions.nextToken());
+            Command createdCommand = makeTree(myInstructions.nextToken(), turtleManager, variableManager);
             myRoots.add(createdCommand);
         }
 
@@ -74,13 +73,13 @@ class Parser {
      * @return
      * @throws RuntimeException
      */
-    Command makeTree (String commandName) {
+    public Command makeTree (String commandName, TurtleManager turtleManager, VariableManager variableManager) {
         System.out.println(commandName);
-        Command c = myFactory.buildCommand(commandName);
+        Command c = myFactory.buildCommand(commandName, turtleManager, variableManager);
         if (Pattern.matches(OPEN_BRACKET_REGEX, commandName)) {
             String nextInstruction = myInstructions.nextToken();
             while (!(Pattern.matches(CLOSE_BRACKET_REGEX, nextInstruction))) {
-                c.addChild(makeTree(nextInstruction));
+                c.addChild(makeTree(nextInstruction, turtleManager, variableManager));
                 if (!myInstructions.hasMoreElements()) {
                     throw new InvalidInputException("Open brackets must have a corresponding ']'");
                 }
@@ -93,7 +92,7 @@ class Parser {
         }
         else if (Pattern.matches(COMMAND_REGEX, commandName)) {
             while (c.getNumChildrenNeeded() > 0) {
-                c.addChild(makeTree(myInstructions.nextToken()));
+                c.addChild(makeTree(myInstructions.nextToken(), turtleManager, variableManager));
             }
         }      
         else {

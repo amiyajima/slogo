@@ -6,7 +6,9 @@ import java.util.List;
 import backEnd.turtle.AbstractTurtle;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+import commands.CommandFactory;
 import commands.templates.Command;
+import exceptions.SLogoException;
 import frontEnd.View;
 
 
@@ -19,10 +21,10 @@ public class Model {
 
     // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657, 524);
 
-    public Model () {
+    public Model (Parser parser) {
 
         myVariableManager = new VariableManager();
-        myParser = new Parser(this, myVariableManager);
+        myParser = parser;
 
     }
 
@@ -46,9 +48,9 @@ public class Model {
      *         types of syntax errors.
      * 
      */
-    int runScript (String script) throws Exception {
+    int runScript (String script) {
 
-        List<Command> rootCommands = myParser.parseScript(script);
+        List<Command> rootCommands = myParser.parseScript(script, myTurtleManager, myVariableManager);
 
         // System.out.println("beginning execution " + rootCommands);
 
