@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import backEnd.Controller;
-import backEnd.turtle.AbstractTurtle;
+import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleProperties;
 
 public class TurtleCanvas extends Group {// implements Observer {
@@ -69,7 +69,7 @@ public class TurtleCanvas extends Group {// implements Observer {
 		myGridLines.setVisible(!myGridLines.isVisible());
 	}
 	
-	public void addTurtle(AbstractTurtle turtle) {
+	public void addTurtle(Turtle turtle) {
 		ImageView turtleImage = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
 		@SuppressWarnings("rawtypes")
 		TurtleProperties tProps = turtle.getTurtleProperties();
@@ -86,8 +86,8 @@ public class TurtleCanvas extends Group {// implements Observer {
 	public void update(Observable o, Object arg) {
 		System.out.println("HERE!!!!!" + arg.toString());
 		//TODO Change these to Properties to get their names
-		if(arg instanceof AbstractTurtle) {
-			AbstractTurtle turtle = (AbstractTurtle)arg;
+		if(arg instanceof Turtle) {
+			Turtle turtle = (Turtle)arg;
 			addTurtle(turtle);
 		}
 //		else if (arg instanceof Point2D) {

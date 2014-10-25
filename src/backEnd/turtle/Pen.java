@@ -12,29 +12,20 @@ import javafx.beans.property.SimpleDoubleProperty;
 public class Pen {
     public static double DEFAULT_PEN_COLOR = 1.0;
     public static double DEFAULT_PEN_SIZE = 1.0;
-    public static final String DEFAULT_PEN_SIZE_PACKAGE = "/resources/PenSize.properties";
-    public static final String DEFAULT_PEN_Color_PACKAGE = "/resources/PenColor.properties";
+    public static final String DEFAULT_PEN_COLOR_PACKAGE = "/resources/PenColors.properties";
     
     private DoubleProperty myPenColor;
     private DoubleProperty myPenSize;
-    private Properties myPenSizeProperty;
     private Properties myPenColorProperty;
     
     
     public Pen() {
         myPenColor = new SimpleDoubleProperty(DEFAULT_PEN_COLOR);
         myPenSize = new SimpleDoubleProperty(DEFAULT_PEN_SIZE);
-        
-        myPenSizeProperty = new Properties(); 
-        InputStream inputStream = getClass().getResourceAsStream(DEFAULT_PEN_SIZE_PACKAGE);
-        try {
-            myPenSizeProperty.load(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         
         myPenColorProperty = new Properties();
-        inputStream = getClass().getResourceAsStream(DEFAULT_PEN_SIZE_PACKAGE);
+        InputStream inputStream = getClass().getResourceAsStream(DEFAULT_PEN_COLOR_PACKAGE);
         try {
             myPenColorProperty.load(inputStream);
         } catch (IOException e) {
@@ -42,19 +33,23 @@ public class Pen {
         }        
     }
     
-    public DoubleProperty getMyPenColor() {
+    public DoubleProperty getMyPenColorProperty() {
         return myPenColor;
+    }
+    
+    public double getMyPenColor() {
+        return myPenColor.doubleValue();
     }
     
     public DoubleProperty getMyPenSize() {
         return myPenSize;
     }
     
-    public void setPenColor(double index) {
+    public void setMyPenColor(double index) {
         myPenColor.setValue(index);
     }
     
-    public void setPenSize(double index) {
+    public void setMyPenSize(double index) {
         myPenSize.setValue(index);
     }
 }

@@ -2,6 +2,7 @@ package commands.variable_commands;
 
 import backEnd.Model;
 import backEnd.VariableManager;
+import backEnd.turtle.TurtleManager;
 import commands.templates.TwoChildCommand;
 
 
@@ -28,8 +29,7 @@ public class RepeatCommand extends TwoChildCommand {
     }
 
     @Override
-    public void initializeCommand (Model m) {
-        // TODO Auto-generated method stub
+    public void initializeCommand (TurtleManager turtleManager) {
 
     }
 

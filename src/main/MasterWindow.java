@@ -2,6 +2,8 @@ package main;
 
 import java.io.File;
 
+import commands.CommandFactory;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
@@ -14,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import frontEnd.Workspace;
+import backEnd.Parser;
 
 public class MasterWindow extends Application {
 	
@@ -24,6 +27,8 @@ public class MasterWindow extends Application {
 	private Pane root = new VBox();
 	private TabPane tabs = new TabPane();
 	private MenuBar menubar;
+	private CommandFactory myCommandFactory;
+	private Parser myParser;
 
 	static public void main(String[] args) {
 		launch(args);
@@ -35,6 +40,9 @@ public class MasterWindow extends Application {
 		buildMenuBar();
 		root.getChildren().addAll(menubar, tabs);
 		scene = new Scene(root);
+		myCommandFactory = new CommandFactory("english");
+        myParser = new Parser(myCommandFactory);
+
 		
 		buildWorkspace();
 		
@@ -46,7 +54,7 @@ public class MasterWindow extends Application {
 
 	private void buildWorkspace() {
 		
-		currentWorkspace = new Workspace();
+		currentWorkspace = new Workspace(myParser);
 		setKeyListener();
 		setMouseListener();
 		

@@ -4,8 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 import backEnd.Model;
 import backEnd.VariableManager;
+import backEnd.turtle.TurtleManager;
 import commands.templates.Command;
 import commands.templates.TwoChildCommand;
 
@@ -73,7 +75,7 @@ public class DoTimesCommand extends TwoChildCommand {
     }
 
     @Override
-    public void initializeCommand (Model m) {
+    public void initializeCommand (TurtleManager turtleManager) {
     }
 
 }

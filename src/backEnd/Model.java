@@ -1,29 +1,32 @@
 package backEnd;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-
-import backEnd.turtle.AbstractTurtle;
+import java.util.Map;
+import backEnd.turtle.Turtle;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+import commands.CommandFactory;
 import commands.templates.Command;
+import exceptions.SLogoException;
 import frontEnd.View;
 
 
 public class Model {
 
     private Parser myParser;
-    private AbstractTurtle myTurtle;
+    private Turtle myTurtle;
     private VariableManager myVariableManager;
     private TurtleManager myTurtleManager;
+    private HashMap<String, Command> myCommandsList;
 
     // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657, 524);
 
-    public Model () {
-
+    public Model (Parser parser) {
         myVariableManager = new VariableManager();
-        myParser = new Parser(this, myVariableManager);
-
+        myParser = parser;
+        myCommandsList = new HashMap<String, Command>();
     }
 
     public void setupTurtleManager (View view) {
@@ -46,9 +49,10 @@ public class Model {
      *         types of syntax errors.
      * 
      */
-    int runScript (String script) throws Exception {
+    int runScript (String script) {
 
-        List<Command> rootCommands = myParser.parseScript(script);
+        List<Command> rootCommands =
+                myParser.parseScript(script, myTurtleManager, myVariableManager, myCommandsList);
 
         // System.out.println("beginning execution " + rootCommands);
 
@@ -64,12 +68,16 @@ public class Model {
         myTurtle.addObserver(view);
     }
 
-//    public AbstractTurtle getTurtle () {
-//        return myTurtle;
-//    }
-    
-    public TurtleManager getTurtleManager() {
-    	return myTurtleManager;
+    // public AbstractTurtle getTurtle () {
+    // return myTurtle;
+    // }
+
+    public TurtleManager getTurtleManager () {
+        return myTurtleManager;
+    }
+
+    public Map<String, Command> getCommandsList () {
+        return myCommandsList;
     }
 
 }

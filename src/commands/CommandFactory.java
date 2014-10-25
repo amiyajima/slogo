@@ -5,8 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
-import backEnd.Model;
 import backEnd.VariableManager;
+import backEnd.turtle.TurtleManager;
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import commands.variable_commands.UserInputCommand;
@@ -22,12 +22,9 @@ import commands.variable_commands.Variable;
 public class CommandFactory {
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
     public static final ResourceBundle MYCOMMANDRESOURCES = ResourceBundle
-            .getBundle(DEFAULT_RESOURCE_PACKAGE + "Commands");
+            .getBundle("resources/Commands");
     private ResourceBundle myLanguageResources;
     private String myClassKey;
-    private Model myModel;
-    private VariableManager myVariableManager;
-    private Map<String, Command> myCommandsMap;
 
     /**
      * Initializes a command factory
@@ -35,15 +32,10 @@ public class CommandFactory {
      * @param language
      *        The language commands are being put into the text field
      */
-    public CommandFactory (String language,
-                           Model model,
-                           VariableManager manager,
-                           Map<String, Command> commandsMap) {
+
+    public CommandFactory (String language) {
         myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "languages/"
                                                        + language);
-        myModel = model;
-        myVariableManager = manager;
-        myCommandsMap = commandsMap;
     }
 
     /**
@@ -93,8 +85,8 @@ public class CommandFactory {
      * @param type
      * @return
      */
-    private boolean checkUserCommand (String type) {
-        return myCommandsMap.containsKey(type);
+    private boolean checkUserCommand (String type, Map<String, Command> commandsMap) {
+        return commandsMap.containsKey(type);
     }
 
     /**
@@ -106,7 +98,10 @@ public class CommandFactory {
      *        Command being tested
      * @return Either the type of command requested, or an exception
      */
-    public Command buildCommand (String type) {
+
+    public Command buildCommand (String type,
+                                 TurtleManager turtleManager,
+                                 VariableManager variableManager, Map<String, Command> commandsMap) {
         type = checkCaps(type);
         if (checkLanguage(type)) {
             try {
@@ -123,7 +118,7 @@ public class CommandFactory {
                 }
                 Command newCommand = null;
                 try {
-                    newCommand = (Command) con.newInstance(myVariableManager);
+                    newCommand = (Command) con.newInstance(variableManager);
                 }
                 catch (IllegalArgumentException e) {
                     e.printStackTrace();
@@ -132,7 +127,7 @@ public class CommandFactory {
                     e.printStackTrace();
                 }
                 if (newCommand instanceof TurtleCommand) {
-                    newCommand.initializeCommand(myModel);
+                    newCommand.initializeCommand(turtleManager);
                 }
                 return newCommand;
             }
@@ -149,18 +144,20 @@ public class CommandFactory {
 
         else {
             if (checkVar(type)) {
-                Command varCommand = new Variable(type, myVariableManager);
+                Command varCommand = new Variable(type, variableManager);
                 return varCommand;
             }
 
-            if (isNumeric(type)) { return new ConstantCommand(type, myVariableManager); }
+            if (isNumeric(type)) { return new ConstantCommand(type, variableManager); }
 
         }
-        if (checkUserCommand(type)) {
-            System.out.println("COMMAND EXISTS IN THE MAP: " + myCommandsMap);
-            return myCommandsMap.get(type);
+
+        if (checkUserCommand(type, commandsMap)) {
+            System.out.println("COMMAND EXISTS IN THE MAP: " + commandsMap);
+            return commandsMap.get(type);
         }
-        return new UserInputCommand(type, myVariableManager);
+
+        return new UserInputCommand(type, variableManager);
+
     }
-
 }

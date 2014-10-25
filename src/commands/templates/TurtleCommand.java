@@ -4,7 +4,7 @@ import java.util.Map;
 
 import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.AbstractTurtle;
+import backEnd.turtle.Turtle;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
 
@@ -54,9 +54,8 @@ public abstract class TurtleCommand extends Command {
      * Sets the command's turtle based on the model.
      */
     @Override
-    public void initializeCommand (Model model) {
-//        myTurtle = model.getTurtle();
-    	myTurtleManager = model.getTurtleManager();
+    public void initializeCommand (TurtleManager turtleManager) {
+    	myTurtleManager = turtleManager;
     }
 
 }

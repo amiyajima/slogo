@@ -3,8 +3,10 @@ package commands.variable_commands;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 import backEnd.Model;
 import backEnd.VariableManager;
+import backEnd.turtle.TurtleManager;
 import commands.templates.Command;
 import commands.templates.TwoChildCommand;
 
@@ -40,7 +42,6 @@ public class ForCommand extends TwoChildCommand {
                                             String.valueOf(i));
             }
             catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             result += getMyChildren().get(1).execute();
@@ -58,11 +59,4 @@ public class ForCommand extends TwoChildCommand {
                " incrementing by " + ((CommandsList) myForList).getChild(3) + " execute " +
                getMyChildren().get(1).toString();
     }
-
-    @Override
-    public void initializeCommand (Model m) {
-        // TODO Auto-generated method stub
-
-    }
-
 }
