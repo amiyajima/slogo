@@ -25,4 +25,9 @@ public class ToCommand extends OneChildCommand {
         return 0.0;
     }
 
+    public String toString () {
+        return "ToCommand tostring";
+
+    }
+
 }

@@ -20,6 +20,7 @@ public class ForwardCommand extends TurtleCommand {
 
     @Override
     public double execute () {
+        System.out.println("forward execute called");
         double value = getMyChildren().get(0).execute();
         setValue(value);
         executeTurtleCommand(getMyTurtleManager());
