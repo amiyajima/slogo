@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 import panels.ParameterPanel;
 import panels.ScriptPanel;
 import backEnd.Controller;
-import backEnd.turtle.AbstractTurtle;
+import backEnd.turtle.Turtle;
 
 public class View extends VBox implements Observer {
 	

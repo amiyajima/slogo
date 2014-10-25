@@ -10,7 +10,6 @@ import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import commands.variable_commands.UserInputCommand;
 import commands.variable_commands.Variable;
-import exceptions.InvalidInputException;
 
 
 /**
@@ -88,6 +87,7 @@ public class CommandFactory {
      *        Command being tested
      * @return Either the type of command requested, or an exception
      */
+    
     public Command buildCommand (String type, TurtleManager turtleManager, VariableManager variableManager) {
         type = checkCaps(type);
         if (checkLanguage(type)) {
