@@ -44,9 +44,10 @@ public class UserInputCommand extends Command {
         
         CommandsList myVariableList = (CommandsList) getMyChildren().get(0);
         System.out.println(myLocalVariables);
+        //works up to here then UnsupportedOperationException
         for (int i = 0; i < myVariableList.getNumChildren(); i++) {
             if (myVariableList.getChild(i) instanceof Variable) {
-                myLocalVariables.keySet().add(myVariableList.getChild(i).toString());
+                //just skip over variable names
             }
             else if (myVariableList.getChild(i) instanceof ConstantCommand) {
                 myLocalVariables.put((myVariableList.getChild(i - 1).toString()),
@@ -68,7 +69,8 @@ public class UserInputCommand extends Command {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        getMyChildren().get(2).execute();
+        System.out.println("calling execute now");
+        getMyChildren().get(1).execute();
         System.out.println("execute finished in userinput");
         try {
             variablemanager.popVarProperties();

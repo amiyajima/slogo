@@ -41,10 +41,9 @@ public class VariableManager {
         System.out.println(addToStack);
         myStoredVariables.push(addToStack);
         myVariables.clear();
-        System.out.println("stack after push is: " + myStoredVariables);
         myVariables.putAll(variableMap);
-        System.out.println("stack after push is: " + myStoredVariables);
         writeVarsToFile();
+        System.out.println("variables after push is: " + myVariables);
         System.out.println("stack after push is: " + myStoredVariables);
     }
 
