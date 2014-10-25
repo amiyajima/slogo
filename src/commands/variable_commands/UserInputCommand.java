@@ -39,10 +39,18 @@ public class UserInputCommand extends Command {
         CommandsList myVariableList = (CommandsList) getMyChildren().get(0);
         System.out.println(myVarsMap);
         for (int i = 0; i < myVariableList.getNumChildren(); i++) {
-            System.out.println(myVariableList.getChild(i));
-            Variable currentVariable = (LocalVariable) myVariableList.getChild(i);
-            myVarsMap.put(currentVariable.toString(), currentVariable.execute());
+            if (myVariableList.getChild(i) instanceof Variable) {
+                myVarsMap.keySet().add(myVariableList.getChild(i).toString());
+            }
+            else if (myVariableList.getChild(i) instanceof ConstantCommand) {
+                myVarsMap.put((myVariableList.getChild(i - 1).toString()),
+                              myVariableList.getChild(i).execute());
+            }
+            else {
+                throw new SLogoException("cannot create command -- enter in correct format");
+            }
         }
+        System.out.println(myVarsMap);
         getMyChildren().get(2).execute();
         return 1;
     }

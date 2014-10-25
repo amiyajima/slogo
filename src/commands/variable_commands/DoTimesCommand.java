@@ -34,7 +34,7 @@ public class DoTimesCommand extends TwoChildCommand {
             System.out.println(((CommandsList) myVariable).getChild(0).toString());
             // replace all instances of
             try {
-                myVariableManager.addVar(((CommandsList) myVariable).getChild(0).toString(),
+                getVariableManager().addVar(((CommandsList) myVariable).getChild(0).toString(),
                                          String.valueOf(i));
             }
             catch (IOException e) {
