@@ -64,11 +64,10 @@ public class TurtleView {
 		bindProperties(tProps);
 	}
 	
-	//possibly change this to just getImage - would make things more direct in TurtleCanvas's
 	//addTurtle method when getting height and width of image
 	public ImageView getImageView() {
 		// TODO Auto-generated method stub
-		return myImageView;//.getImage();
+		return myImageView;
 	}
 	
 	public Image getImage() {
@@ -89,13 +88,9 @@ public class TurtleView {
 	}
 	
 	public void drawLine(Point2D endPoint) {
-		System.out.println("\n\ndrew a line\n\n");
 		Point2D startPoint = new Point2D(myLineStartX, myLineStartY);
 		Line line = myDrawer.makeLine(myPenColor, startPoint, endPoint);
 		myPenLines.getChildren().add(line);
-//		canvas.getChildren().add(line);
-//		myLineStartX = myXPosition.get();
-//		myLineStartY = myYPosition.get();
 	}
 	
 	public void drawStamp() {
@@ -113,16 +108,12 @@ public class TurtleView {
 	public void setTurtleX(double x) {
 		myXPosition.set(x);
 		myImageView.setX(x - getImage().getWidth()/2);
-		// + myWidth.doubleValue()/2
-//		myLocation = new Point2D(x, myLocation.getY());
 	}
 	
 	//change to just set imageView?, private?
 	public void setTurtleY(double y) {
 		myYPosition.set(y);
 		myImageView.setY(y - getImage().getHeight()/2);
-		// + myHeight.doubleValue()/2
-//		myLocation = new Point2D(myLocation.getX(), y);
 	}
 	
 	public void setOrientation(double orientation) {
@@ -158,6 +149,7 @@ public class TurtleView {
 				if(penDown.get()) drawLine(lineEnd);
 				myLineStartX = myXPosition.get();
 				myLineStartY = myYPosition.get();
+				System.out.println(myXPosition.get() + ", " + myYPosition.get());
 			}
 		});
 		
@@ -181,7 +173,7 @@ public class TurtleView {
 	
 	private boolean facingHorizontal() {
 		// TODO Auto-generated method stub
-		if(myOrientation.get()%HALF_CIRCLE == RIGHT_ORIENTATION) return true;
+		if(Math.abs(myOrientation.get()%HALF_CIRCLE) == RIGHT_ORIENTATION) return true;
 		return false;
 	}
 
