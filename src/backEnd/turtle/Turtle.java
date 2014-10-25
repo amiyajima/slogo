@@ -31,7 +31,6 @@ public class Turtle extends AbstractTurtle {
     }
     
     private void movementHelper(double direction, int penState) {
-        System.out.println("aye");
         double deltaX = Math.sin(Math.toRadians(-getOrientation())) * direction;
         double deltaY = Math.cos(Math.toRadians(-getOrientation())) * direction;
         toroidalMovement(deltaX, deltaY);

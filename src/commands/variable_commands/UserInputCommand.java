@@ -4,8 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 import backEnd.Model;
 import backEnd.VariableManager;
+import backEnd.turtle.TurtleManager;
 import commands.ConstantCommand;
 import commands.templates.Command;
 import exceptions.SLogoException;
@@ -90,7 +92,7 @@ public class UserInputCommand extends Command {
     }
 
     @Override
-    public void initializeCommand (Model m) {
+    public void initializeCommand (TurtleManager turtleManager) {
         // TODO Auto-generated method stub
 
     }

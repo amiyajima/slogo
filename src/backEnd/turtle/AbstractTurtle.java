@@ -184,4 +184,8 @@ public abstract class AbstractTurtle extends Observable {
     public String getId() {
         return myId;
     }
+    
+    public Pen getPen() {
+        return myPen;
+    }
 }
