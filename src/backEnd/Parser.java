@@ -47,10 +47,10 @@ class Parser {
 
         while (myInstructions.hasMoreTokens()) {
             Command createdCommand = makeTree(myInstructions.nextToken());
-            System.out.println(createdCommand + " CREATED");
             myRoots.add(createdCommand);
+            System.out.println(myRoots);
         }
-       System.out.println("parse script completed");
+        System.out.println("parse script completed");
         return myRoots;
     }
 
@@ -65,8 +65,10 @@ class Parser {
     Command makeTree (String commandName) throws SLogoException {
         System.out.println(commandName);
         Command c = myFactory.buildCommand(commandName);
+        System.out.println(c);
         if (Pattern.matches(OPEN_BRACKET_REGEX, commandName)) {
             String nextInstruction = myInstructions.nextToken();
+            System.out.println("new bracket opened");
             while (!(Pattern.matches(CLOSE_BRACKET_REGEX, nextInstruction))) {
                 c.addChild(makeTree(nextInstruction));
 
@@ -76,6 +78,7 @@ class Parser {
                 nextInstruction = myInstructions.nextToken();
 
             }
+            System.out.println("bracket closed");
             return c;
         }
 
@@ -84,12 +87,14 @@ class Parser {
         }
 
         else if (Pattern.matches(COMMAND_REGEX, commandName)) {
+            System.out.println("command identified");
             while (c.getNumChildrenNeeded() > 0) {
+                System.out.println(c + " needs " + c.getNumChildrenNeeded() + " more children.");
                 c.addChild(makeTree(myInstructions.nextToken()));
             }
         }
         else {
-            // Throw exception
+            throw new InvalidInputException("");
         }
         return c;
     }

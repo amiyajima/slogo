@@ -40,7 +40,9 @@ public abstract class Command {
      */
     public abstract double execute ();
 
-    public abstract String toString ();
+    public String toString (){
+        return this.getClass().toString();
+    }
 
     /**
      * Returns the list of children for this command (its arguments)
@@ -109,5 +111,7 @@ public abstract class Command {
     protected VariableManager getVariableManager(){
         return myVariableManager;
     }
+    
+    
 
 }

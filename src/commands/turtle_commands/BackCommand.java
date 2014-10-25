@@ -30,7 +30,7 @@ public class BackCommand extends TurtleCommand {
 
     @Override
     public String toString () {
-        return "Backward: " + getMyChildren().get(0).execute();
+        return "Backward: " + getMyChildren();
     }
 
     @Override

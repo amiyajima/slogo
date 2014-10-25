@@ -35,8 +35,8 @@ public class ForwardCommand extends TurtleCommand {
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle turtle: turtles) {
-            turtle.moveTurtle(-getValue());
+        for(Turtle t: turtles) {
+            t.moveTurtle(-getValue());
         }
     }
 

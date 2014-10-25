@@ -31,15 +31,14 @@ public class DoTimesCommand extends TwoChildCommand {
         Double result = 0.0;
         myVariable = getMyChildren().get(0);
         VariableManager variableManager = getVariableManager();
-
         for (int i = 1; i <= (int) ((CommandsList) myVariable).getChild(1).execute(); i++) {
             // for each value the var up to limit
             System.out.println(((CommandsList) myVariable).getChild(0).toString());
             myVariables.put(((CommandsList) myVariable).getChild(0).toString(), (double) i);
+            variableManager.setVarProperties(myVariables);
+            getMyChildren().get(1).execute();
+            variableManager.popVarProperties();
         }
-        variableManager.setVarProperties(myVariables);
-        getMyChildren().get(1).execute();
-        variableManager.popVarProperties();
         return result;
     }
 
