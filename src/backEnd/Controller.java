@@ -17,8 +17,7 @@ public class Controller {
 		
 		myView.addControllerAndSetupGui(this);
 		
-		model.setupTurtleManager(view);
-		//view.setupTurtleView(model.getTurtle()); //not needed?
+		myModel.setupTurtleManager(view);
 	}
 
 	public void runScript (String script) {

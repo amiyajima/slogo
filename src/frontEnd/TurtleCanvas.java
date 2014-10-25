@@ -80,9 +80,6 @@ public class TurtleCanvas extends Group {// implements Observer {
 		getChildren().add(turtleView.getStamps());
 	}
 
-//	@Override //not actually overriding, just being called by View
-	// not actually observing Point2D! won't be able to when stop passing Turtle
-	// should change to DoubleProperties
 	public void update(Observable o, Object arg) {
 		System.out.println("HERE!!!!!" + arg.toString());
 		//TODO Change these to Properties to get their names
@@ -90,12 +87,6 @@ public class TurtleCanvas extends Group {// implements Observer {
 			Turtle turtle = (Turtle)arg;
 			addTurtle(turtle);
 		}
-//		else if (arg instanceof Point2D) {
-//			if (turtleView.penIsDown()) turtleView.drawLine((Point2D)arg);
-//			Point2D newPoint = (Point2D)arg;
-//			turtleView.setTurtleX(newPoint.getX());
-//			turtleView.setTurtleY(newPoint.getY());			
-//		}
 	}
 
 	private void addBackground() {
@@ -128,7 +119,7 @@ public class TurtleCanvas extends Group {// implements Observer {
 		myGridLines = new Group();
 		for (int row = 0; row < 20; row++) {
 			for (int col = 0; col < 20; col++) {
-				Rectangle rect = new Rectangle(boundingWidth/20., boundingHeight/20.);
+				Rectangle rect = new Rectangle(boundingWidth/20, boundingHeight/20);
 				rect.setTranslateX(myPadding + rect.getWidth()*col);
 				rect.setTranslateY(myPadding + rect.getHeight()*row);
 				rect.setStroke(Color.LIGHTGRAY);
