@@ -13,6 +13,7 @@ import commands.templates.Command;
 import exceptions.InvalidInputException;
 import exceptions.SLogoException;
 
+
 /**
  * Parser for slogo. If given a string of commands, the parser will
  * split it into tokens and convert them into a list of roots for runnable
@@ -33,6 +34,7 @@ public class Parser {
     private CommandFactory myFactory;
     private StringTokenizer myInstructions;
     private Map<String, Command> myCommandMap;
+
     private VariableManager myVariableManager;
 
     /**
@@ -50,7 +52,7 @@ public class Parser {
      * the commands and add them to the returned list
      *
      * @param script
-     *            Raw input from the user (always error free)
+     *        Raw input from the user (always error free)
      * @return A list of commands to be sent to the ScriptManager
      */
     List<Command> parseScript (String script, TurtleManager turtleManager, VariableManager variableManager) {
@@ -61,7 +63,7 @@ public class Parser {
             Command createdCommand = makeTree(myInstructions.nextToken(), turtleManager, variableManager);
             myRoots.add(createdCommand);
         }
-
+        System.out.println("while loop in parse script completed");
         return myRoots;
     }
 
@@ -77,6 +79,7 @@ public class Parser {
         System.out.println(commandName);
         Command c = myFactory.buildCommand(commandName, turtleManager, variableManager);
         if (Pattern.matches(OPEN_BRACKET_REGEX, commandName)) {
+            System.out.println("in a bracket");
             String nextInstruction = myInstructions.nextToken();
             while (!(Pattern.matches(CLOSE_BRACKET_REGEX, nextInstruction))) {
                 c.addChild(makeTree(nextInstruction, turtleManager, variableManager));
@@ -85,18 +88,22 @@ public class Parser {
                 }
                 nextInstruction = myInstructions.nextToken();
             }
+            System.out.println(" ] REGISTERED");
             return c;
         }
-        else if (Pattern.matches(CONSTANT_REGEX, commandName)) {
+        else if (Pattern.matches(CONSTANT_REGEX, commandName) ||
+                 Pattern.matches(VARIABLE_REGEX, commandName)) {
+            System.out.println("at a const or var");
             return c;
         }
         else if (Pattern.matches(COMMAND_REGEX, commandName)) {
+
             while (c.getNumChildrenNeeded() > 0) {
                 c.addChild(makeTree(myInstructions.nextToken(), turtleManager, variableManager));
             }
-        }      
+        }
         else {
-            throw new InvalidInputException("");
+            throw new InvalidInputException("error in parser");
         }
         return c;
     }

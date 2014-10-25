@@ -8,7 +8,6 @@ public class SumCommand extends TwoChildCommand {
 
     public SumCommand (VariableManager manager) {
         super(manager);
-        // TODO Auto-generated constructor stub
     }
 
     @Override

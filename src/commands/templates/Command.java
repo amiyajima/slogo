@@ -23,7 +23,7 @@ public abstract class Command {
     private List<Command> myChildren;
     private int myNumChildren;
     private double myValue;
-    protected VariableManager myVariableManager;
+    private VariableManager myVariableManager;
 
     /**
      * 
@@ -105,5 +105,9 @@ public abstract class Command {
      * @param m
      */
     public abstract void initializeCommand (TurtleManager turtleManager);
+
+    protected VariableManager getVariableManager () {
+        return myVariableManager;
+    }
 
 }

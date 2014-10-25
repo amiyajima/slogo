@@ -19,7 +19,7 @@ public class MakeCommand extends TwoChildCommand {
         System.out.println("adding var to map");
         try {
             myVarManager.addVar(getMyChildren().get(0).toString(),
-                                String.valueOf(getMyChildren().get(1).execute()));
+                                ((Double)(getMyChildren().get(1).execute())).toString());
         }
         catch (IOException e) {
             e.printStackTrace();

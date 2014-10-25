@@ -27,7 +27,8 @@ public class CommandsList extends Command {
 
     @Override
     public String toString () {
-        return getMyChildren().toString();
+        //return getMyChildren().toString();
+        return "tostring of commandslist";
     }
 
     public Command getChild (int index) {

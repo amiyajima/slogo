@@ -39,7 +39,7 @@ public class ForCommand extends TwoChildCommand {
         while (i < upperBound) {
             System.out.println(((CommandsList) myForList).getChild(0).toString());
             try {
-                myVariableManager.addVar(((CommandsList) myForList).getChild(0).toString(),
+                getVariableManager().addVar(((CommandsList) myForList).getChild(0).toString(),
                                          String.valueOf(i));
             }
             catch (IOException e) {
