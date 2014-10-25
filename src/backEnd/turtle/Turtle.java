@@ -15,8 +15,9 @@ import frontEnd.View;
 
 public class Turtle extends Observable {
 
-    private static final boolean INITIAL_PEN = true;
-    private static final boolean INITIAL_CLEAR = false;
+    public static final double INITIAL_ORIENTATION = 0;
+    public static final boolean INITIAL_PEN = true;
+    public static final boolean INITIAL_CLEAR = false;
     public static final int INITIAL_IMAGE_INDEX = 1;
     private BooleanProperty isPenDown;
     private TurtlePoint myPosition;
@@ -25,7 +26,6 @@ public class Turtle extends Observable {
     private BooleanProperty linesCleared;
     private String myId;
     private DoubleProperty myImageIndex;
-    public static final double INITIAL_ORIENTATION = 0;
 
     private Point2D myHome;
 
@@ -94,6 +94,15 @@ public class Turtle extends Observable {
     	linesCleared.set(false);
     }
 
+    // TODO IMPLEMENT THESE
+    public void setStamp() {
+        
+    }
+    
+    public void clearStamp() {
+        
+    }
+    
     public double goTo (double x, double y) {
         double distance = myPosition.distance(x, y);
         myPosition.set(x, y);
