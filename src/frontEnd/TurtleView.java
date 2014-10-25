@@ -22,13 +22,17 @@ import drawer.SimpleDrawer;
 
 public class TurtleView {
 	
+	public static final int HALF_CIRCLE = 180;
+	public static final int RIGHT_ORIENTATION = 90;
 	private ImageView myImageView;
 	private Group myPenLines;
 	private Group myStamps;
 	private Drawer myDrawer;
 	private Color myPenColor;
 	
-//	private Point2D myLocation;
+	private double myLineStartX;
+	private double myLineStartY;
+	
 	private DoubleProperty myXPosition;
 	private DoubleProperty myYPosition;
 	
@@ -47,6 +51,10 @@ public class TurtleView {
 		double initialY = boundingHeight/2 - getImage().getHeight()/2;
 		myImageView.setX(initialX);
 		myImageView.setY(initialY);
+		
+		myLineStartX = myXPosition.get();
+		myLineStartY = myYPosition.get();
+		
 		myOrientation = new SimpleDoubleProperty(0);
 		myPenLines = new Group();
 		myStamps = new Group();
@@ -81,10 +89,13 @@ public class TurtleView {
 	}
 	
 	public void drawLine(Point2D endPoint) {
-		Point2D startPoint = new Point2D(myXPosition.get(), myYPosition.get());
+		System.out.println("\n\ndrew a line\n\n");
+		Point2D startPoint = new Point2D(myLineStartX, myLineStartY);
 		Line line = myDrawer.makeLine(myPenColor, startPoint, endPoint);
 		myPenLines.getChildren().add(line);
 //		canvas.getChildren().add(line);
+//		myLineStartX = myXPosition.get();
+//		myLineStartY = myYPosition.get();
 	}
 	
 	public void drawStamp() {
@@ -119,6 +130,7 @@ public class TurtleView {
 		myImageView.setRotate(myOrientation.get());
 	}
 	
+	// extract methods
 	private void addListeners() {
 		myXPosition.addListener(new ChangeListener<Object>() {
 			@Override
@@ -126,6 +138,14 @@ public class TurtleView {
 					Object oldValue, Object newValue) {
 				// TODO Auto-generated method stub
 				setTurtleX(myXPosition.get());
+				if(facingHorizontal()) {
+					if(penDown.get()) {
+						Point2D lineEnd = new Point2D(myXPosition.get(), myYPosition.get());
+						drawLine(lineEnd);
+					}
+					myLineStartX = myXPosition.get();
+					myLineStartY = myYPosition.get(); //not actually needed, but more readable
+				}
 			}
 		});
 		myYPosition.addListener(new ChangeListener<Object>() {
@@ -134,6 +154,10 @@ public class TurtleView {
 					Object oldValue, Object newValue) {
 				// TODO Auto-generated method stub
 				setTurtleY(myYPosition.get());
+				Point2D lineEnd = new Point2D(myXPosition.get(), myYPosition.get());
+				if(penDown.get()) drawLine(lineEnd);
+				myLineStartX = myXPosition.get();
+				myLineStartY = myYPosition.get();
 			}
 		});
 		
@@ -148,7 +172,6 @@ public class TurtleView {
 			@Override
 			public void changed(ObservableValue<? extends Object> observable,
 					Object oldValue, Object newValue) {
-				// TODO Auto-generated method stub	
 				if(linesCleared.get()) {
 					myPenLines.getChildren().clear();
 				}
@@ -156,6 +179,12 @@ public class TurtleView {
 		});
 	}
 	
+	private boolean facingHorizontal() {
+		// TODO Auto-generated method stub
+		if(myOrientation.get()%HALF_CIRCLE == RIGHT_ORIENTATION) return true;
+		return false;
+	}
+
 	public boolean penIsDown() {
 		return penDown.get();
 	}
