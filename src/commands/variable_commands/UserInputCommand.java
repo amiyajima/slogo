@@ -38,12 +38,9 @@ public class UserInputCommand extends Command {
 
     @Override
     public double execute () {
-        System.out.println(getMyChildren());
         VariableManager variablemanager = getVariableManager();
-        System.out.println("variable manager setting success");
 
         CommandsList myVariableList = (CommandsList) getMyChildren().get(0);
-        System.out.println(myLocalVariables);
         // works up to here then UnsupportedOperationException
         for (int i = 0; i < myVariableList.getNumChildren(); i++) {
             if (myVariableList.getChild(i) instanceof Variable) {
@@ -57,7 +54,6 @@ public class UserInputCommand extends Command {
                 throw new SLogoException("cannot create command -- enter in correct format");
             }
         }
-        System.out.println("my local variables are " + myLocalVariables);
         try {
             variablemanager.pushVarProperties(myLocalVariables);
         }
@@ -69,9 +65,7 @@ public class UserInputCommand extends Command {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.println("calling execute now");
         getMyChildren().get(1).execute();
-        System.out.println("execute finished in userinput");
         try {
             variablemanager.popVarProperties();
         }

@@ -18,7 +18,6 @@ public class CommandsList extends Command {
     @Override
     public double execute () {
         double value = 0;
-        System.out.println(getMyChildren().size());
         for (int i = 0; i < getMyChildren().size(); i++) {
             value += getMyChildren().get(i).execute();
         }

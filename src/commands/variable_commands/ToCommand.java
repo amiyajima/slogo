@@ -9,14 +9,15 @@ public class ToCommand extends OneChildCommand {
 
     public ToCommand (VariableManager manager) {
         super(manager);
-        // TODO Auto-generated constructor stub
+    }
+
+    public ToCommand (VariableManager manager, ToCommand original) {
+        this(manager);
+        this.addChild(original.getMyChildren().get(0));
     }
 
     public double execute () {
-        System.out.println("execute called on to");
-
         if (getMyChildren().get(0) instanceof UserInputCommand) {
-            System.out.println("execute called on user input command");
             getMyChildren().get(0).execute();
         }
         else {

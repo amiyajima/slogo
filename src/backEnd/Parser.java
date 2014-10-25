@@ -62,14 +62,12 @@ class Parser {
 
         while (myInstructions.hasMoreTokens()) {
             Command createdCommand = makeTree(myInstructions.nextToken());
-            System.out.println("NEW ROOT REGISTERED");
-            if(createdCommand instanceof ToCommand){
-                System.out.println("TO COMMAND CREATED AND REGISTERED");
-                myCommandsMap.put(createdCommand.toString(), createdCommand);
+            if (createdCommand instanceof ToCommand) {
+                Command nextToAdd = new ToCommand(myVariableManager, (ToCommand) createdCommand);
+                myCommandsMap.put(nextToAdd.toString(), nextToAdd);
             }
             myRoots.add(createdCommand);
         }
-        System.out.println("while loop in parse script completed");
         return myRoots;
     }
 
@@ -84,22 +82,17 @@ class Parser {
     private Command makeTree (String commandName) {
         Command c = myFactory.buildCommand(commandName);
         if (Pattern.matches(OPEN_BRACKET_REGEX, commandName)) {
-            System.out.println("in a bracket");
             String nextInstruction = myInstructions.nextToken();
             while (!(Pattern.matches(CLOSE_BRACKET_REGEX, nextInstruction))) {
                 c.addChild(makeTree(nextInstruction));
                 if (!myInstructions.hasMoreElements()) { throw new InvalidInputException(
                                                                                          "Open brackets must have a corresponding ']'"); }
                 nextInstruction = myInstructions.nextToken();
-                System.out.println("NEXT TOKEN IS " + nextInstruction);
             }
-            System.out.println(" ] REGISTERED");
-            System.out.println("num children needed = " + c.getNumChildrenNeeded());
             return c;
         }
         else if (Pattern.matches(CONSTANT_REGEX, commandName) ||
                  Pattern.matches(VARIABLE_REGEX, commandName)) {
-            System.out.println("at a const or var");
             return c;
         }
         else if (Pattern.matches(COMMAND_REGEX, commandName)) {

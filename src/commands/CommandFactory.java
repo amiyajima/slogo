@@ -157,7 +157,7 @@ public class CommandFactory {
 
         }
         if (checkUserCommand(type)) {
-            System.out.println(myCommandsMap);
+            System.out.println("COMMAND EXISTS IN THE MAP: " + myCommandsMap);
             return myCommandsMap.get(type);
         }
         return new UserInputCommand(type, myVariableManager);

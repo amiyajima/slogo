@@ -4,6 +4,7 @@ import backEnd.Model;
 import backEnd.VariableManager;
 import commands.templates.Command;
 import commands.templates.OneChildCommand;
+import exceptions.UndefinedVariableException;
 
 
 public class Variable extends Command {
@@ -25,15 +26,12 @@ public class Variable extends Command {
 
     @Override
     public double execute () {
-        System.out.println("execute variable called for " + myValue);
         if (getVariableManager().checkVarExists(myValue)) {
-            System.out.println("checking if " + myValue + " exists");
             return getVariableManager().getVar(myValue);
         }
         else {
-            System.out.println("throw var not found error here (in variable class)");
+            throw new UndefinedVariableException(myValue);
         }
-        return 0;
     }
 
     @Override

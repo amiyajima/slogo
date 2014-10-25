@@ -33,14 +33,11 @@ public class DoTimesCommand extends TwoChildCommand {
         Double result = 0.0;
         myVariable = getMyChildren().get(0);
         VariableManager variablemanager = getVariableManager();
-        System.out.println("variable manager setting success");
         for (int i = 1; i <= (int) ((CommandsList) myVariable).getChild(1).execute(); i++) {
             // for each value the var up to limit
-            System.out.println(((CommandsList) myVariable).getChild(0).toString());
             // replace all instances of
             myLocalVariables.put(((CommandsList) myVariable).getChild(0).toString(),
                                  String.valueOf(i));
-            System.out.println("my local variables are " + myLocalVariables);
             try {
                 variablemanager.pushVarProperties(myLocalVariables);
             }
@@ -53,7 +50,6 @@ public class DoTimesCommand extends TwoChildCommand {
                 e.printStackTrace();
             }
             getMyChildren().get(1).execute();
-            System.out.println("execute finished in dotimes");
             try {
                 variablemanager.popVarProperties();
             }

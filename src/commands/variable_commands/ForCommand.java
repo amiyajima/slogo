@@ -35,10 +35,9 @@ public class ForCommand extends TwoChildCommand {
         int increment = (int) ((CommandsList) myForList).getChild(3).execute();
 
         while (i < upperBound) {
-            System.out.println(((CommandsList) myForList).getChild(0).toString());
             try {
                 getVariableManager().addVar(((CommandsList) myForList).getChild(0).toString(),
-                                         String.valueOf(i));
+                                            String.valueOf(i));
             }
             catch (IOException e) {
                 // TODO Auto-generated catch block

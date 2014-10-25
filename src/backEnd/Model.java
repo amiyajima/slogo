@@ -56,7 +56,7 @@ public class Model {
             c.execute();
         }
         // print root commands here AKA the compiled tree
-        System.out.println(rootCommands);
+        System.out.println("root commands are " + rootCommands);
         return 0;
     }
 

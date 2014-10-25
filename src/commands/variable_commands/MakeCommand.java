@@ -16,10 +16,9 @@ public class MakeCommand extends TwoChildCommand {
 
     @Override
     public double execute () {
-        System.out.println("adding var to map");
         try {
             myVarManager.addVar(getMyChildren().get(0).toString(),
-                                ((Double)(getMyChildren().get(1).execute())).toString());
+                                ((Double) (getMyChildren().get(1).execute())).toString());
         }
         catch (IOException e) {
             e.printStackTrace();
