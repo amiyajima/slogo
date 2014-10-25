@@ -21,7 +21,7 @@ import exceptions.SLogoException;
  */
 public class UserInputCommand extends Command {
 
-    public static final int NUM_CHILDREN = 3;
+    public static final int NUM_CHILDREN = 2;
     public static String myName;
     private Map<String, String> myLocalVariables;
 

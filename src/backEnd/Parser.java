@@ -84,8 +84,10 @@ class Parser {
                 if (!myInstructions.hasMoreElements()) { throw new InvalidInputException(
                                                                                          "Open brackets must have a corresponding ']'"); }
                 nextInstruction = myInstructions.nextToken();
+                System.out.println("NEXT TOKEN IS " + nextInstruction);
             }
             System.out.println(" ] REGISTERED");
+            System.out.println("num children needed = " + c.getNumChildrenNeeded());
             return c;
         }
         else if (Pattern.matches(CONSTANT_REGEX, commandName) ||
