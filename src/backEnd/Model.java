@@ -1,10 +1,10 @@
 package backEnd;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,8 +16,9 @@ import commands.templates.Command;
 
 import frontEnd.View;
 
+
 /**
- * Model for SLogo. The model holds a turtle manager which holds the 
+ * Model for SLogo. The model holds a turtle manager which holds the
  * turtles for the workspace.
  * 
  * @author Brian Bolze
@@ -37,10 +38,10 @@ public class Model {
     private DoubleProperty myBackgroundIndex = new SimpleDoubleProperty();
     private StringProperty myPalette;
 
-
     /**
      * Constructor for model. Initializes the variable manager, commandList,
      * and the initial background index for the workspace
+     * 
      * @param parser Parser which can be used in the workspace
      */
     public Model (Parser parser) {
@@ -54,6 +55,7 @@ public class Model {
     /**
      * Sets up the turtleManager by adding an observer to it so it can be tracked
      * by the front end
+     * 
      * @param view View for the workspace
      */
     public void setupTurtleManager (View view) {
@@ -89,6 +91,7 @@ public class Model {
 
     /**
      * Adds turtle observer to the view
+     * 
      * @param view view for the workspace
      */
     public void setTurtleObserver (View view) {
@@ -97,6 +100,7 @@ public class Model {
 
     /**
      * Returns the model's turtle manager
+     * 
      * @return turtleManager
      */
     public TurtleManager getTurtleManager () {
@@ -105,35 +109,41 @@ public class Model {
 
     /**
      * Return a map mapping string and commands
+     * 
      * @return
      */
     public Map<String, Command> getCommandsMap () {
         return myCommandsList;
     }
-    
+
     /**
      * Returns the background index for the workspace
+     * 
      * @return background index
      */
     public DoubleProperty getBackgroundIndex () {
         return myBackgroundIndex;
     }
-    
+
     /**
      * Set the index for the background
+     * 
      * @param index index for the background index
      */
     public void setBackgroundIndex (double index) {
         myBackgroundIndex.setValue(index);
     }
-    
-    
-    public void setPaletteArguments(int index, int red, int green, int blue) {
-        String color = index + ": rgb("+ red + "," + green + "," + blue +")";
+
+    public void setPaletteArguments (int index, int red, int green, int blue) {
+        String color = index + ": rgb(" + red + "," + green + "," + blue + ")";
         myPalette.set(color);
     }
-    
-    public StringProperty getPaletteArguments() {
+
+    public StringProperty getPaletteArguments () {
         return myPalette;
+    }
+
+    public void setVariableProperties (File f) {
+        myVariableManager.setVarProperties(f);
     }
 }

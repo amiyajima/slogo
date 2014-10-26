@@ -1,7 +1,6 @@
 package titlePanes;
 
 import java.io.File;
-
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -14,78 +13,76 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import backEnd.Controller;
 
+
 public class DisplayTitlePane extends TitledPane {
 
-	public DisplayTitlePane(Controller contr) {
+    public DisplayTitlePane (Controller contr) {
+        setText("Display");
+        VBox root = new VBox();
+        root.getChildren().add(makeBackgroundColorBox(contr));
+        root.getChildren().add(makeGridLinesBox(contr));
+        root.getChildren().add(makeTurtleImageChooser(contr));
+        setContent(root);
 
-		setText("Display");
+    }
 
-		VBox root = new VBox();
+    private Node makeBackgroundColorBox (Controller contr) {
+        VBox vbox = new VBox();
 
-		root.getChildren().add(makeBackgroundColorBox(contr));
-		root.getChildren().add(makeGridLinesBox(contr));
-		root.getChildren().add(makeTurtleImageChooser(contr));
+        Label label = new Label("Background color: ");
+        vbox.getChildren().add(label);
 
-		setContent(root);
+        ColorPicker colorPicker = new ColorPicker();
+        colorPicker.setValue(Color.WHITE);
+        vbox.getChildren().add(colorPicker);
 
-	}
+        colorPicker.setOnAction(event -> contr
+                .changeBackgroundColor(colorPicker.getValue()));
 
-	private Node makeBackgroundColorBox(Controller contr) {
-		VBox vbox = new VBox();
+        return vbox;
+    }
 
-		Label label = new Label("Background color: ");
-		vbox.getChildren().add(label);
+    private Node makeGridLinesBox (Controller contr) {
+        VBox container = new VBox();
 
-		ColorPicker colorPicker = new ColorPicker();
-		colorPicker.setValue(Color.WHITE);
-		vbox.getChildren().add(colorPicker);
+        Label label = new Label("Grid lines (on/off): ");
 
-		colorPicker.setOnAction(event -> contr
-				.changeBackgroundColor(colorPicker.getValue()));
+        ToggleButton tb = new ToggleButton();
 
-		return vbox;
-	}
+        tb.setOnAction(event -> contr.toggleGridLines());
 
-	private Node makeGridLinesBox(Controller contr) {
-		VBox container = new VBox();
+        container.getChildren().addAll(label, tb);
 
-		Label label = new Label("Grid lines (on/off): ");
+        return container;
+    }
 
-		ToggleButton tb = new ToggleButton();
+    private Node makeTurtleImageChooser (Controller contr) {
+        VBox container = new VBox();
 
-		tb.setOnAction(event -> contr.toggleGridLines());
+        Label label = new Label("Change Turtle Image: ");
 
-		container.getChildren().addAll(label, tb);
+        Button button = new Button("Open File");
+        button.setOnAction(event -> openFile(contr));
 
-		return container;
-	}
+        container.getChildren().addAll(label, button);
 
-	private Node makeTurtleImageChooser(Controller contr) {
-		VBox container = new VBox();
+        return container;
+    }
 
-		Label label = new Label("Change Turtle Image: ");
+    private void openFile (Controller contr) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Upload Image");
+        fileChooser.getExtensionFilters().addAll(
+                                                 new FileChooser.ExtensionFilter("All Images",
+                                                                                 "*.*"),
+                                                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                                                 new FileChooser.ExtensionFilter("PNG", "*.png"));
 
-		Button button = new Button("Open File");
-		button.setOnAction(event -> openFile(contr));
+        Stage fileStage = new Stage();
+        File file = fileChooser.showOpenDialog(fileStage);
+        if (file != null)
+            contr.changeTurtleImage(file);
 
-		container.getChildren().addAll(label, button);
-
-		return container;
-	}
-
-	private void openFile(Controller contr) {
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Upload Image");
-		fileChooser.getExtensionFilters().addAll(
-				new FileChooser.ExtensionFilter("All Images", "*.*"),
-				new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-				new FileChooser.ExtensionFilter("PNG", "*.png"));
-
-		Stage fileStage = new Stage();
-		File file = fileChooser.showOpenDialog(fileStage);
-		if (file != null)
-			contr.changeTurtleImage(file);
-
-	}
+    }
 
 }
