@@ -1,8 +1,10 @@
 package frontEnd;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Properties;
 
@@ -54,7 +56,7 @@ public class Workspace extends VBox {
 		return myController.myMouseListener;
 	}
 
-	public void writePropertiesToFile(File file) {
+	public void savePropertiesToFile(File file) {
 		try {
 			OutputStream fileOS = new FileOutputStream(file);
 			myDisplayProperties.store(fileOS, null);
@@ -64,8 +66,19 @@ public class Workspace extends VBox {
 		}
 	}
 	
-	public void readPropertiesFromFile(File file) {
-		
+	public void loadPropertiesFromFile(File file) {
+		try {
+			InputStream fileIS = new FileInputStream(file);
+			myDisplayProperties.load(fileIS);
+		} catch (IOException e) {
+			System.out.println(e.toString() + ": " + file.toString());
+		}
+		printProps();
+	}
+	private void printProps() {
+		for (Object s:myDisplayProperties.keySet()) {
+			System.out.println(s);
+		}
 	}
 
 }

@@ -21,7 +21,7 @@ public class MasterMenuBar extends MenuBar {
 	}
 	private Menu buildFileMenu() {
 		Menu menu = new Menu("File");
-		menu.getItems().addAll(buildNewWorkspaceMenuItem(), buildSavePreferencesMenuItem());
+		menu.getItems().addAll(buildNewWorkspaceMenuItem(), buildLoadPreferencesMenuItem(), buildSavePreferencesMenuItem());
 		return menu;
 	}
 	private Menu buildEditMenu() {
@@ -56,16 +56,33 @@ public class MasterMenuBar extends MenuBar {
 		menu.setOnAction(event -> saveWorkspacePreferences());
 		return menu;
 	}
+	private MenuItem buildLoadPreferencesMenuItem() {
+		MenuItem menu = new MenuItem("Load Workspace Preferences");
+		menu.setOnAction(event -> loadWorkspacePreferences());
+		return menu;
+	}
 	private void saveWorkspacePreferences() {
 		FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Properties");
         fileChooser.getExtensionFilters().addAll(
                                                  new FileChooser.ExtensionFilter("Properties Files",
-                                                                                 "*.properties*"));
+                                                                                 "*.properties"));
 
         Stage fileStage = new Stage();
         File file = fileChooser.showSaveDialog(fileStage);
         if (file != null) 
             myMaster.saveWorkspacePreferences(file);
+	}
+	private void loadWorkspacePreferences() {
+		FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Load Properties");
+        fileChooser.getExtensionFilters().addAll(
+                                                 new FileChooser.ExtensionFilter("Properties Files",
+                                                                                 "*.properties"));
+
+        Stage fileStage = new Stage();
+        File file = fileChooser.showOpenDialog(fileStage);
+        if (file != null) 
+            myMaster.loadWorkspacePreferences(file);
 	}
 }

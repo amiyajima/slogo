@@ -57,7 +57,10 @@ public class MasterWindow extends Application {
 		myTabs.getSelectionModel().select(tab);
 	}
 	void saveWorkspacePreferences(File file) {
-		myCurrentWorkspace.writePropertiesToFile(file);
+		myCurrentWorkspace.savePropertiesToFile(file);
+	}
+	void loadWorkspacePreferences(File file) {
+		myCurrentWorkspace.loadPropertiesFromFile(file);
 	}
 	
 	private void tabChanged(Tab tab) {
