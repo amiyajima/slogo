@@ -6,6 +6,6 @@ import javafx.scene.shape.Line;
 
 public interface Drawer {
 
-	public Line makeLine(Color lineColor, Point2D start, Point2D end);
+	public Line makeLine(Color lineColor, double lineWidth, Point2D start, Point2D end);
 	
 }

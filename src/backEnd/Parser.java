@@ -54,23 +54,21 @@ public class Parser {
      */
 
     List<Command> parseScript (String script, Model model, VariableManager variableManager) {
-
         Map<String, Command> commandsMap = model.getCommandsMap();
-
         List<Command> myRoots = new ArrayList<Command>();
         script = removeComments(script);
         myInstructions = new StringTokenizer(script);
 
         while (myInstructions.hasMoreTokens()) {
             Command createdCommand =
-                    makeTree(myInstructions.nextToken(), model, variableManager);
+                    makeTree(myInstructions.nextToken(), model, variableManager, commandsMap);
             if (createdCommand instanceof ToCommand) {
                 Command nextToAdd = new ToCommand(myVariableManager, (ToCommand)createdCommand);
                 commandsMap.put(nextToAdd.toString(), nextToAdd);
             }
-
             myRoots.add(createdCommand);
         }
+        System.out.println("commands map in parser: " + commandsMap);
         return myRoots;
     }
 
@@ -99,13 +97,14 @@ public class Parser {
      * @throws RuntimeException
      */
 
-    public Command makeTree (String commandName, Model model, VariableManager variableManager) {
+    public Command makeTree (String commandName, Model model, VariableManager variableManager, Map<String, Command> commandsmap) {
+        Map<String, Command> commandsMap = model.getCommandsMap();
         System.out.println(commandName);
         Command c = myFactory.buildCommand(commandName, model, variableManager);
         if (Pattern.matches(OPEN_BRACKET_REGEX, commandName)) {
             String nextInstruction = myInstructions.nextToken();
             while (!(Pattern.matches(CLOSE_BRACKET_REGEX, nextInstruction))) {
-                c.addChild(makeTree(nextInstruction, model, variableManager));
+                c.addChild(makeTree(nextInstruction, model, variableManager, commandsMap));
                 if (!myInstructions.hasMoreElements()) { 
                     throw new InvalidInputException("Open brackets must have a corresponding ']'"); 
                 }
@@ -117,10 +116,10 @@ public class Parser {
                 Pattern.matches(VARIABLE_REGEX, commandName)) {
             return c;
         }
-        else if (Pattern.matches(COMMAND_REGEX, commandName)) {
-
+        else if (Pattern.matches(COMMAND_REGEX, commandName) || commandsMap.keySet().contains(commandName)) {
             while (c.getNumChildrenNeeded() > 0) {
-                c.addChild(makeTree(myInstructions.nextToken(), model, variableManager));
+                System.out.println("ADDING A CHILD");
+                c.addChild(makeTree(myInstructions.nextToken(), model, variableManager, commandsMap));
             }
         }
         else {

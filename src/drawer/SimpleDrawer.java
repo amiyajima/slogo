@@ -11,13 +11,15 @@ public class SimpleDrawer implements Drawer {
 	}
 
 	@Override
-	public Line makeLine(Color lineColor, Point2D start, Point2D end) {
+	public Line makeLine(Color lineColor, double lineWidth, Point2D start, Point2D end) {
 		Line line = new Line();
 		line.setStroke(lineColor);
 		line.setStartX(start.getX());
 		line.setStartY(start.getY());
 		line.setEndX(end.getX());
 		line.setEndY(end.getY());
+		
+		line.setStrokeWidth(lineWidth);
 		
 		return line;
 	}

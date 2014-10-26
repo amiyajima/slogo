@@ -21,7 +21,7 @@ public class ScriptPanel extends Pane {
 		Button runButton = new Button("RUN");
 		
 		runButton.setOnAction(event -> handler(controller, myTextArea));
-		
+				
 		myTextArea.setPrefSize(3.*width/4., height);
 		runButton.setPrefSize(width/4., height);
 		

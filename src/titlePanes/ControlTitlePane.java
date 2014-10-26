@@ -51,10 +51,10 @@ public class ControlTitlePane extends TitledPane {
 		
 		setSize(new Button[]{upButton, leftButton, rightButton, downButton});
 		
-		upButton.setOnAction(event -> handle(contr, "forward 15"));
-		downButton.setOnAction(event -> handle(contr, "back 15"));
-		rightButton.setOnAction(event -> handle(contr, "right 15"));
-		leftButton.setOnAction(event -> handle(contr, "left 15"));
+		upButton.setOnAction(event -> handle(contr, "Forward"));
+		downButton.setOnAction(event -> handle(contr, "Backward"));
+		rightButton.setOnAction(event -> handle(contr, "Right"));
+		leftButton.setOnAction(event -> handle(contr, "Left"));
 		
 		hbox.getChildren().addAll(leftButton, downButton, rightButton);
 		
@@ -66,7 +66,7 @@ public class ControlTitlePane extends TitledPane {
 	
 	private void handle(Controller c, String s) {
 		try {
-			c.runScript(s);
+			c.move10(s);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

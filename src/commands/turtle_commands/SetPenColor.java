@@ -23,8 +23,8 @@ public class SetPenColor extends TurtleCommand {
 
     @Override
     public double execute () {
+    	setValue(getMyChildren().get(0).execute());
         executeTurtleCommand(getMyTurtleManager());
-        setValue(getMyChildren().get(0).execute());
         return getValue();
     }
 
