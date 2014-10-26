@@ -153,7 +153,7 @@ public class CommandFactory {
             UserInputCommand premadeCommand =
                     (UserInputCommand) (commandsMap.get(type).getMyChildren().get(0));
             Command userCommand =
-                    new UserDefinedCommand(variableManager, premadeCommand.getParameterList());
+                    new UserDefinedCommand(variableManager, premadeCommand);
             return userCommand;
         }
 

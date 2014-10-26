@@ -65,9 +65,9 @@ public class Parser {
                 Command nextToAdd = new ToCommand(myVariableManager, (ToCommand) createdCommand);
                 commandsMap.put(nextToAdd.toString(), nextToAdd);
             }
-
             myRoots.add(createdCommand);
         }
+        System.out.println("commands map in parser: " + commandsMap);
         return myRoots;
     }
 
@@ -101,6 +101,7 @@ public class Parser {
         }
         else if (Pattern.matches(COMMAND_REGEX, commandName) || commandsMap.keySet().contains(commandName)) {
             while (c.getNumChildrenNeeded() > 0) {
+                System.out.println("ADDING A CHILD");
                 c.addChild(makeTree(myInstructions.nextToken(), model, variableManager, commandsMap));
             }
         }
