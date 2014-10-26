@@ -34,7 +34,9 @@ in the resources package.
 
 ####IMPORTANT PORGRAM INFORMATION:
 When running the tell command a command like tell [ 7 ], only one new turtle with an id of 7 will be made, 
-not 6 new turtles with ids from 2 - 7.
+not 6 new turtles with ids from 2 - 7. 
+
+When entering a double in a command, you must begin with 0. if the double is greater than -1 and less than 1.
 
 
 ####KNOWN ISSUES:
