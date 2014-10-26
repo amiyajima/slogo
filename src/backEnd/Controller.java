@@ -11,6 +11,11 @@ import javafx.scene.paint.Color;
 import main.ResourceFinder;
 import frontEnd.View;
 
+/**
+ * 
+ * @author Brian Bolze
+ *
+ */
 public class Controller {
 	
 	public EventHandler<MouseEvent> myMouseListener;
@@ -29,7 +34,7 @@ public class Controller {
 		buildMouseListener();
 		buildKeyListener();
 
-		myView.bindToModelProperties(myModel.getBackgroundIndex()); //to set up later
+		myView.bindToModelProperties(myModel.getBackgroundIndex());
 	}
 
 	public void runScript (String script) {

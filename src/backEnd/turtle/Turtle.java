@@ -25,7 +25,7 @@ public class Turtle extends Observable {
     public static final boolean INITIAL_PEN = true;
     public static final boolean INITIAL_CLEAR = false;
     public static final double INITIAL_STAMP_COUNT = 0;
-    public static final int INITIAL_IMAGE_INDEX = 1;
+    public static final int INITIAL_SHAPE_INDEX = 0;
     public static final int DEGREES_IN_A_CIRCLE = 360;
     private BooleanProperty myPenDown;
     private TurtlePoint myPosition;
@@ -34,7 +34,7 @@ public class Turtle extends Observable {
     private double myCanvasHeight;
     private BooleanProperty myClearLines;
     private String myId;
-    private DoubleProperty myImageIndex;
+    private DoubleProperty myShapeIndex;
     private DoubleProperty myStampCount;
 
     private Point2D myHome;
@@ -59,7 +59,7 @@ public class Turtle extends Observable {
         myVisibility = new SimpleBooleanProperty(INITIAL_VISIBILITY);
         myPenDown = new SimpleBooleanProperty(INITIAL_PEN);
         myClearLines = new SimpleBooleanProperty(INITIAL_CLEAR);
-        myImageIndex = new SimpleDoubleProperty(INITIAL_IMAGE_INDEX);
+        myShapeIndex = new SimpleDoubleProperty(INITIAL_SHAPE_INDEX);
         myStampCount = new SimpleDoubleProperty(INITIAL_STAMP_COUNT);
         myId = id;
         myPen = new Pen();
@@ -128,10 +128,6 @@ public class Turtle extends Observable {
         return distance;
     }
 
-    // TODO improve design?
-    // sets true to clear lines, sets back to false after lines cleared
-    // linesCleared is binded to BooleanProperty in front-end that causes
-    // lines stored on front-end to clear
     /**
      * Clears the lines the turtle has drawn
      */
@@ -140,7 +136,7 @@ public class Turtle extends Observable {
     	myClearLines.set(false);
     }
 
-    // TODO IMPLEMENT THESE
+
     /**
      * Sets a stamp of the turtle on the canvas
      */
@@ -302,7 +298,8 @@ public class Turtle extends Observable {
     public TurtleProperties getTurtleProperties () {
     	TurtleProperties tProps = new 
     	        TurtleProperties(myPosition, myOrientation, myPenDown, 
-    	        		myClearLines, myVisibility, myStampCount, myPen);
+    	        		myClearLines, myVisibility, myStampCount, myPen, 
+    	        		myShapeIndex);
     	return tProps;
     }
     
@@ -323,18 +320,18 @@ public class Turtle extends Observable {
     }
     
     /**
-     * Set the index of the image the turtle will be using
+     * Set the index of the shape the turtle will be using
      * @param index index to be used
      */
-    public void setImageIndex (double index) {
-        myImageIndex.set(index);
+    public void setShapeIndex (double index) {
+        myShapeIndex.set(index);
     }
     
     /**
      * Return the index the turtle is using as an image
      * @return index used
      */
-    public DoubleProperty getImageIndex () {
-        return myImageIndex;
+    public DoubleProperty getShapeIndex () {
+        return myShapeIndex;
     }
 }

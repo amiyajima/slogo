@@ -1,11 +1,13 @@
 package frontEnd;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;

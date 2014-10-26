@@ -56,13 +56,14 @@ public class Parser {
     List<Command> parseScript (String script, Model model, VariableManager variableManager) {
         Map<String, Command> commandsMap = model.getCommandsMap();
         List<Command> myRoots = new ArrayList<Command>();
+        script = removeComments(script);
         myInstructions = new StringTokenizer(script);
 
         while (myInstructions.hasMoreTokens()) {
             Command createdCommand =
                     makeTree(myInstructions.nextToken(), model, variableManager, commandsMap);
             if (createdCommand instanceof ToCommand) {
-                Command nextToAdd = new ToCommand(myVariableManager, (ToCommand) createdCommand);
+                Command nextToAdd = new ToCommand(myVariableManager, (ToCommand)createdCommand);
                 commandsMap.put(nextToAdd.toString(), nextToAdd);
             }
             myRoots.add(createdCommand);
@@ -71,6 +72,19 @@ public class Parser {
         return myRoots;
     }
 
+    
+    private String removeComments (String script) {
+        String lines[] = script.split("\\n");
+        String s = "";
+        for(String line : lines) {
+            if(!line.startsWith("#")) {
+                s += line + " ";
+            }
+        }
+        return s;
+        
+    }
+    
     /**
      * Creates commands from strings and inserts them as children of existing
      * commands Recursive method, returns root of the tree

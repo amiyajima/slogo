@@ -30,7 +30,7 @@ public class GetShapeCommand extends TurtleCommand {
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        setValue(turtles.get(turtles.size() - 1).getImageIndex().getValue());
+        setValue(turtles.get(turtles.size() - 1).getShapeIndex().getValue());
     }
 
     @Override

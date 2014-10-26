@@ -3,7 +3,11 @@ package commands.onechild;
 import backEnd.VariableManager;
 import commands.templates.OneChildCommand;
 
-
+/**
+ * Command to get the tangent of the first child's value.
+ * @author Ethan Chang
+ *
+ */
 public class TangentCommand extends OneChildCommand {
 
     public TangentCommand (VariableManager manager) {

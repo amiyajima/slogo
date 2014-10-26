@@ -3,7 +3,11 @@ package commands.onechild;
 import backEnd.VariableManager;
 import commands.templates.OneChildCommand;
 
-
+/**
+ * Command to get the negative of the first child
+ * @author Ethan Chang
+ *
+ */
 public class MinusCommand extends OneChildCommand {
 
     public MinusCommand (VariableManager manager) {
