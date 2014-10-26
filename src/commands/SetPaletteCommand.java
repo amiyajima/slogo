@@ -18,7 +18,7 @@ public class SetPaletteCommand extends Command {
         double index = getMyChildren().get(0).execute();
         double red = getMyChildren().get(1).execute();
         double green = getMyChildren().get(2).execute();
-        double blue = getMyChildren().get(4).execute();
+        double blue = getMyChildren().get(3).execute();
         myModel.setPaletteArguments((int)index, (int)red, (int)green, (int)blue);
         return index;
     }

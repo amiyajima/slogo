@@ -3,9 +3,9 @@ package titlePanes.decorators;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 
-public class ScrollableDecorator extends TitlePaneDecorator {
+public class VScrollableDecorator extends TitlePaneDecorator {
 
-	public ScrollableDecorator(TitledPane pane, double height) {
+	public VScrollableDecorator(TitledPane pane, double height) {
 		super(pane);
 		wrap(height);
 	}

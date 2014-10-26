@@ -1,6 +1,7 @@
 package panels;
 
 import java.util.Map;
+
 import javafx.scene.control.Accordion;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
@@ -12,7 +13,7 @@ import titlePanes.HelpTitlePane;
 import titlePanes.HistoryTitlePane;
 import titlePanes.LoadPropertiesTitlePane;
 import titlePanes.VariableTitlePane;
-import titlePanes.decorators.ScrollableDecorator;
+import titlePanes.decorators.VScrollableDecorator;
 import backEnd.Controller;
 
 
@@ -68,9 +69,9 @@ public class ParameterPanel extends Pane {
 
     private void addDecorations () {
         double maxHeight = getMinHeight() - 200;
-        new ScrollableDecorator(myHistoryTitlePane, maxHeight);
-        new ScrollableDecorator(myVariableTitlePane, maxHeight);
-        new ScrollableDecorator(myCommandTitlePane, maxHeight);
+        new VScrollableDecorator(myHistoryTitlePane, maxHeight);
+        new VScrollableDecorator(myVariableTitlePane, maxHeight);
+        new VScrollableDecorator(myCommandTitlePane, maxHeight);
     }
 
 }

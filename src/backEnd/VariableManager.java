@@ -10,7 +10,18 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Stack;
 import exceptions.InvalidPropertyFileException;
+import exceptions.UndefinedVariableException;
 
+
+/**
+ * A variable manager that reads in variable values from properties files or maps for use by
+ * commands
+ * Also allows variable commands to set values in the properties object.
+ * Writes variable values to the properties file.
+ * 
+ * @author annamiyajima
+ *
+ */
 public class VariableManager {
 
     private Properties myVariables;
@@ -21,7 +32,7 @@ public class VariableManager {
         myVariables = new Properties();
         try {
             setInitialVarProperties();
-        } 
+        }
         catch (IOException e) {
             throw new InvalidPropertyFileException("Invalid property file loaded");
         }
@@ -31,27 +42,25 @@ public class VariableManager {
         InputStream fileInput = getClass().getResourceAsStream("/resources/Variables.properties");
         myVariables.load(fileInput);
     }
-    
+
     public void setVarProperties (File f) {
         FileInputStream fileInput = null;
         try {
             fileInput = new FileInputStream(f);
         }
         catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new UndefinedVariableException("variable properties file invalid");
         }
         try {
             myVariables.load(fileInput);
         }
         catch (IOException e) {
-            e.printStackTrace();
+            throw new UndefinedVariableException("variable properties file cannot load");
         }
         System.out.println(myVariables);
     }
 
     public void pushVarProperties (Map<String, String> variableMap) throws IOException {
-        System.out.println("entered pushvarproperties. myVariables are " + myVariables);
-        System.out.println("stack before push is: " + myStoredVariables);
         Properties addToStack = new Properties();
         for (Object s : myVariables.keySet()) {
             addToStack.setProperty((String)s, (String)myVariables.get(s));
@@ -66,9 +75,7 @@ public class VariableManager {
         return Double.parseDouble(myVariables.getProperty(var));
     }
 
-
     public void popVarProperties () throws IOException {
-        System.out.println("stack before pop is: " + myStoredVariables);
         myVariables = myStoredVariables.pop();
         writeVarsToFile();
     }

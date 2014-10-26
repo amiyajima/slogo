@@ -6,14 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.Command;
+
 import frontEnd.View;
 
 
@@ -49,7 +49,7 @@ public class Model {
         myParser = parser;
         myCommandsList = new HashMap<String, Command>();
         myBackgroundIndex = new SimpleDoubleProperty(INITIAL_BACKGROUND_INDEX);
-        myPalette = new SimpleStringProperty();
+        myPalette = new SimpleStringProperty("");
     }
 
     /**
