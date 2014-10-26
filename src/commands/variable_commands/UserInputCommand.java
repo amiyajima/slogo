@@ -1,16 +1,12 @@
 package commands.variable_commands;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 import backEnd.Model;
 import backEnd.VariableManager;
-import commands.ConstantCommand;
+
 import commands.templates.Command;
-import exceptions.SLogoException;
 
 
 /**

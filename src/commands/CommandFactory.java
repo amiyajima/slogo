@@ -2,18 +2,18 @@ package commands;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+
 import main.ResourceFinder;
 import backEnd.Model;
 import backEnd.VariableManager;
+
 import commands.templates.Command;
-import commands.templates.TurtleCommand;
-import commands.variable_commands.ToCommand;
 import commands.variable_commands.UserDefinedCommand;
 import commands.variable_commands.UserInputCommand;
 import commands.variable_commands.Variable;
+
 import exceptions.InvalidInputException;
 
 

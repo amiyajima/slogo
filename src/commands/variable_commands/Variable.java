@@ -2,9 +2,9 @@ package commands.variable_commands;
 
 import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.TurtleManager;
+
 import commands.templates.Command;
-import commands.templates.OneChildCommand;
+
 import exceptions.UndefinedVariableException;
 
 

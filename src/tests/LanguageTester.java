@@ -7,13 +7,11 @@ public class LanguageTester {
 //	private static ResourceBundle rb;
 //
 //	private static final String LANGUAGE = "French";
-//	private static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
-	private static final ResourceFinder rs = new ResourceFinder();
-	
+//	private static final String DEFAULT_RESOURCE_PACKAGE = "resources/";	
 
 	public static void main(String[] args) {
 		//openFile(DEFAULT_RESOURCE_PACKAGE + LANGUAGE + ".properties");
-		for (String s : rs.getPossibleLanguages()) {
+		for (String s : ResourceFinder.getPossibleLanguages()) {
 			System.out.println(s);
 		}
 	}

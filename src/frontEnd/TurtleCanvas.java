@@ -1,12 +1,10 @@
 package frontEnd;
 
 import java.io.File;
-import java.util.List;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

@@ -12,7 +12,7 @@ import titlePanes.DisplayTitlePane;
 import titlePanes.HelpTitlePane;
 import titlePanes.HistoryTitlePane;
 import titlePanes.VariableTitlePane;
-import titlePanes.decorators.ScrollableDecorator;
+import titlePanes.decorators.VScrollableDecorator;
 import backEnd.Controller;
 
 public class ParameterPanel extends Pane {
@@ -66,9 +66,11 @@ public class ParameterPanel extends Pane {
 
 	private void addDecorations() {
 		double maxHeight = getMinHeight() - 200;
-		new ScrollableDecorator(myHistoryTitlePane, maxHeight);
-		new ScrollableDecorator(myVariableTitlePane, maxHeight);
-		new ScrollableDecorator(myCommandTitlePane, maxHeight);
+		new VScrollableDecorator(myHistoryTitlePane, maxHeight);
+		new VScrollableDecorator(myVariableTitlePane, maxHeight);
+		new VScrollableDecorator(myCommandTitlePane, maxHeight);
+		//new VScrollableDecorator(myHelpTitlePane, maxHeight);
+		//new HScrollableDecorator(myHelpTitlePane, getMinWidth());
 	}
 
 }
