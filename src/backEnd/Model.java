@@ -73,5 +73,9 @@ public class Model {
     public TurtleManager getTurtleManager() {
     	return myTurtleManager;
     }
+    
+    public void changeLanguage(String language) {
+    	myParser.changeLanguage(language);
+    }
 
 }

@@ -17,8 +17,7 @@ import backEnd.Controller;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleProperties;
 
-public class TurtleCanvas extends Group {// implements Observer {
-//observer commented out
+public class TurtleCanvas extends Group {
 	
 	private double boundingWidth, boundingHeight, myPadding;
 	private DoubleProperty myWidth, myHeight;

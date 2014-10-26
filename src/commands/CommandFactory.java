@@ -57,6 +57,11 @@ public class CommandFactory {
         }
         return false;
     }
+    
+    public void changeLanguage(String language) {
+    	myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "languages/"
+                + language);
+    }
 
     private boolean checkVar (String type) {
         return type.startsWith(":");

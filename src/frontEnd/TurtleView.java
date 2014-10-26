@@ -40,6 +40,8 @@ public class TurtleView {
 	private BooleanProperty penDown;
 	private BooleanProperty linesCleared;
 	
+	private DoubleProperty myStampCount;
+	
 	public TurtleView(TurtleProperties tProps, double boundingWidth, double boundingHeight, ImageView imageView) {
 		myImageView = imageView;
 		myDrawer = new SimpleDrawer();
@@ -149,7 +151,6 @@ public class TurtleView {
 				if(penDown.get()) drawLine(lineEnd);
 				myLineStartX = myXPosition.get();
 				myLineStartY = myYPosition.get();
-				System.out.println(myXPosition.get() + ", " + myYPosition.get());
 			}
 		});
 		
