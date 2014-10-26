@@ -1,10 +1,7 @@
 package frontEnd;
 
-import java.util.Map;
-
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
@@ -15,7 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleProperties;
 import drawer.Drawer;
 import drawer.SimpleDrawer;

@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.TurtleManager;
+
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import commands.variable_commands.UserInputCommand;
@@ -93,8 +93,8 @@ public class CommandFactory {
         type = checkCaps(type);
         if (checkLanguage(type)) {
             try {
-                Class newCommandClass = Class.forName(MYCOMMANDRESOURCES.getString(myClassKey));
-                Constructor con = null;
+                Class<?> newCommandClass = Class.forName(MYCOMMANDRESOURCES.getString(myClassKey));
+                Constructor<?> con = null;
                 try {
                     con = newCommandClass.getConstructor(VariableManager.class);
                 } catch (NoSuchMethodException e) {
