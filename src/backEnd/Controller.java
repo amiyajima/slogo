@@ -32,6 +32,15 @@ public class Controller {
 			myView.addToHistory(script);
 		}
 	}
+	
+//	public void moveForward() {
+//		try {
+//			//myModel.moveForward();
+//			//myModel.runScript(commandList.getBaseBundleName("Foward"));
+//		} catch (Exception e) {
+//			System.out.println(e.toString());
+//		}
+//	}
 
 	public void changeBackgroundColor (Color c) {
 		myView.changeBackgroundColor(c);
@@ -47,10 +56,6 @@ public class Controller {
 
 	public void toggleGridLines () {
 		myView.toggleGridLines();
-	}
-	
-	public void changeLanguage (String language) {
-		myModel.changeLanguage(language);
 	}
 
 }

@@ -1,9 +1,7 @@
 package backEnd;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
@@ -32,15 +30,11 @@ public class Parser {
 
     private CommandFactory myFactory;
     private StringTokenizer myInstructions;
-    private Map<String, Command> myCommandMap;
-
-    private VariableManager myVariableManager;
-
+    
     /**
      * Constructor for the parser
      */
     public Parser (CommandFactory commandFactory) {
-        myCommandMap = new HashMap<String, Command>();
         myFactory = commandFactory;
     }
 
@@ -105,9 +99,5 @@ public class Parser {
             throw new InvalidInputException("error in parser");
         }
         return c;
-    }
-    
-    public void changeLanguage(String language) {
-    	myFactory.changeLanguage(language);
     }
 }

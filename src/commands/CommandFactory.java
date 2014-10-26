@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ResourceBundle;
 
+import main.ResourceFinder;
 import backEnd.Model;
 import backEnd.VariableManager;
 
@@ -19,10 +20,7 @@ import commands.variable_commands.Variable;
  *
  */
 public class CommandFactory {
-    public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
-    public static final ResourceBundle MYCOMMANDRESOURCES = ResourceBundle
-            .getBundle("resources/Commands");
-    private ResourceBundle myLanguageResources;
+	
     private String myClassKey;
 
     /**
@@ -31,9 +29,7 @@ public class CommandFactory {
      * @param language
      *            The language commands are being put into the text field
      */
-    public CommandFactory (String language) {
-        myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "languages/"
-                + language);
+    public CommandFactory () {
 
     }
 
@@ -46,8 +42,11 @@ public class CommandFactory {
      * @return Return true if the command is valid
      */
     private boolean checkLanguage (String type) {
-        for (String s : myLanguageResources.keySet()) {
-            String[] possibilities = myLanguageResources.getString(s).split(",");
+    	
+    	ResourceBundle languageResources = ResourceFinder.getMyLanguageResources();
+    	
+        for (String s : languageResources.keySet()) {
+            String[] possibilities = languageResources.getString(s).split(",");
             for (String possibility : possibilities) {
                 if (type.equals(possibility)) {
                     myClassKey = s;
@@ -56,11 +55,6 @@ public class CommandFactory {
             }
         }
         return false;
-    }
-    
-    public void changeLanguage(String language) {
-    	myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "languages/"
-                + language);
     }
 
     private boolean checkVar (String type) {
@@ -95,10 +89,13 @@ public class CommandFactory {
 
     public Command buildCommand (String type, Model model,
             VariableManager variableManager) {
+    	
+    	ResourceBundle commandResources = ResourceFinder.getMyCommandResources();
+    	
         type = checkCaps(type);
         if (checkLanguage(type)) {
             try {
-                Class<?> newCommandClass = Class.forName(MYCOMMANDRESOURCES.getString(myClassKey));
+                Class<?> newCommandClass = Class.forName(commandResources.getString(myClassKey));
                 Constructor<?> con = null;
                 try {
                     con = newCommandClass.getConstructor(VariableManager.class);

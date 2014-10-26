@@ -5,7 +5,9 @@ import java.util.List;
 
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.Command;
+
 import frontEnd.View;
 
 public class Model {
@@ -14,9 +16,6 @@ public class Model {
     private Turtle myTurtle;
     private VariableManager myVariableManager;
     private TurtleManager myTurtleManager;
-
-    // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657,
-    // 524);
 
     public Model (Parser parser) {
 
@@ -29,7 +28,6 @@ public class Model {
         myTurtleManager = new TurtleManager(view.getCanvasWidth(), view.getCanvasHeight());
         myTurtleManager.addObserver(view);
         myTurtleManager.updateActiveTurtleList(Arrays.asList(1.0));
-        // myTurtle.bindProperties(view);
     }
 
     /**
@@ -70,10 +68,6 @@ public class Model {
 
     public TurtleManager getTurtleManager () {
         return myTurtleManager;
-    }
-    
-    public void changeLanguage(String language) {
-    	myParser.changeLanguage(language);
     }
 
 }
