@@ -11,7 +11,6 @@ import exceptions.InvalidPropertyFileException;
 
 public class VariableManager {
 
-    private static final String RESOURCES_VARIABLES_PATH = "src/resources/Variables.properties";
     private Properties myVariables;
     private Stack<Properties> myStoredVariables;
 
@@ -27,7 +26,7 @@ public class VariableManager {
     }
 
     private void setInitialVarProperties () throws IOException {
-        InputStream fileInput = getClass().getResourceAsStream("RESOURCES_VARIABLES_PATH");
+        InputStream fileInput = getClass().getResourceAsStream("/resources/Variables.properties");
         myVariables.load(fileInput);
     }
 
@@ -61,7 +60,7 @@ public class VariableManager {
     }
 
     private void writeVarsToFile () throws IOException {
-        FileOutputStream myFileOutput = new FileOutputStream(RESOURCES_VARIABLES_PATH);
+        FileOutputStream myFileOutput = new FileOutputStream("src/resources/Variables.properties");
         myVariables.store(myFileOutput, "adding vars");
     }
 
