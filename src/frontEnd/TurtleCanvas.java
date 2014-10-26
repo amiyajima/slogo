@@ -1,11 +1,15 @@
 package frontEnd;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Observable;
-import java.util.ResourceBundle;
+import java.util.Properties;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Group;
@@ -26,10 +30,11 @@ public class TurtleCanvas extends Group {
 	private TurtleView turtleView;
 	
 	private DoubleProperty myBackgroundIndex;
+	private StringProperty myPalette;
 	
-	private ResourceBundle myColorResources;
+	private Properties myColorProperties;
 
-	public TurtleCanvas(double width, double height, double padding, Controller controller) {
+	public TurtleCanvas(double width, double height, double padding, Controller controller) throws IOException {
 		super();
 		
 		myWidth = new SimpleDoubleProperty(width);
@@ -44,8 +49,11 @@ public class TurtleCanvas extends Group {
 		addClipper();
 		
 		myBackgroundIndex = new SimpleDoubleProperty(0);
+		myPalette = new SimpleStringProperty("");
 		
-		myColorResources = ResourceBundle.getBundle("resources/PenColors");
+		myColorProperties = new Properties();
+		InputStream fileInput = getClass().getResourceAsStream("/resources/PenColors.properties");
+		myColorProperties.load(fileInput);
 		
 		addListeners();
 	}
@@ -78,17 +86,17 @@ public class TurtleCanvas extends Group {
 		myGridLines.setVisible(!myGridLines.isVisible());
 	}
 	
-	public void addTurtle(Turtle turtle) {
+	public void addTurtle(Turtle turtle) throws IOException {
 		ImageView turtleImage = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
 		TurtleProperties tProps = turtle.getTurtleProperties();
-		turtleView = new TurtleView(tProps, boundingWidth, boundingHeight, turtleImage);
+		turtleView = new TurtleView(tProps, boundingWidth, boundingHeight, turtleImage, myColorProperties);
 		//change to just adding group for turtle?
 		getChildren().add(turtleView.getImageView());
 		getChildren().add(turtleView.getPenLines());
 		getChildren().add(turtleView.getStamps());
 	}
 
-	public void update(Observable o, Object arg) {
+	public void update(Observable o, Object arg) throws IOException {
 		System.out.println("HERE!!!!!" + arg.toString());
 		//TODO Change these to Properties to get their names
 		if(arg instanceof Turtle) {
@@ -147,8 +155,9 @@ public class TurtleCanvas extends Group {
 		return boundingHeight;
 	}
 	
-	public void bindToModelProperties(DoubleProperty backgroundIndex) {
+	public void bindToModelProperties(DoubleProperty backgroundIndex, StringProperty palette) {
 		myBackgroundIndex.bindBidirectional(backgroundIndex);
+		myPalette.bindBidirectional(palette);
 	}
 	
 	private void addListeners() {
@@ -156,9 +165,21 @@ public class TurtleCanvas extends Group {
 			@Override
 			public void changed(ObservableValue<? extends Object> observable,
 					Object oldValue, Object newValue) {
-				String str = myColorResources.getString(myBackgroundIndex.getValue().intValue() + "");
+//				String str = myColorResources.getString(myBackgroundIndex.getValue().intValue() + "");
+				String str = myColorProperties.getProperty(myBackgroundIndex.getValue().intValue() + "");
 				Color c = Color.valueOf(str);
 				changeBackgroundColor(c);
+			}
+		});
+		myPalette.addListener(new ChangeListener<Object>() {
+			@Override
+			public void changed(ObservableValue<? extends Object> observable,
+					Object oldValue, Object newValue) {
+				// write to property object
+				String[] strArray = myPalette.get().split(": ");
+				String key = strArray[0];
+				String value = strArray[1];
+				myColorProperties.setProperty(key, value);
 			}
 		});
 	}

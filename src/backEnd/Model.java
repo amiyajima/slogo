@@ -49,7 +49,7 @@ public class Model {
         myParser = parser;
         myCommandsList = new HashMap<String, Command>();
         myBackgroundIndex = new SimpleDoubleProperty(INITIAL_BACKGROUND_INDEX);
-        myPalette = new SimpleStringProperty();
+        myPalette = new SimpleStringProperty("");
     }
 
     /**

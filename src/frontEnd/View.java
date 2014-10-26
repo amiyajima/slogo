@@ -1,11 +1,13 @@
 package frontEnd;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -66,7 +68,12 @@ public class View extends VBox implements Observer {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		myCanvas.update(o, arg);
+		try {
+			myCanvas.update(o, arg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			printException(e);
+		}
 	}
 	
 	public void addToHistory(String script) {
@@ -93,7 +100,12 @@ public class View extends VBox implements Observer {
 	}
 	
 	private Node buildCanvas() {
-		myCanvas = new TurtleCanvas(3.*myWidth/4., 3.*myHeight/4., PADDING, myController);
+		try {
+			myCanvas = new TurtleCanvas(3.*myWidth/4., 3.*myHeight/4., PADDING, myController);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			printException(e);
+		}
 		return myCanvas;
 	}
 	
@@ -123,7 +135,7 @@ public class View extends VBox implements Observer {
 		myCanvas.toggleGridLines();
 	}
 	
-	public void bindToModelProperties (DoubleProperty backgroundIndex) {
-		myCanvas.bindToModelProperties(backgroundIndex);
+	public void bindToModelProperties (DoubleProperty backgroundIndex, StringProperty palette) {
+		myCanvas.bindToModelProperties(backgroundIndex, palette);
 	}
 }
