@@ -6,8 +6,8 @@ import javafx.beans.property.DoubleProperty;
 /**
  * Data object used to hold properties about Turtle that later are bound to 
  * TurtleView. Has no behavior on its own. Was created to replace need for 
- * map to pass properties from model to view. User-created data structure 
- * to replace already made data structure (i.e., map)
+ * list or map to pass properties from model to view. User-created data 
+ * structure to replace already made data structure (e.g., list, map)
  * 
  * @author Eli Lichtenberg
  *
@@ -19,15 +19,17 @@ public class TurtleProperties {
 	private BooleanProperty myPenState;
 	private BooleanProperty myLinesCleared;
 	private BooleanProperty myVisibility;
+	private DoubleProperty myStampCount;
 	
 	public TurtleProperties (TurtlePoint position, DoubleProperty orientation, 
 	        BooleanProperty isPenDown, BooleanProperty linesCleared, 
-	        BooleanProperty isVisible) {
+	        BooleanProperty isVisible, DoubleProperty stampCount) {
 		myPosition = position;
 		myOrientation = orientation;
 		myPenState = isPenDown;
 		myLinesCleared = linesCleared;
 		myVisibility = isVisible;
+		myStampCount = stampCount;
 	}
 	
 	public DoubleProperty getXPosition () {
@@ -38,9 +40,17 @@ public class TurtleProperties {
 		return myPosition.getBindableY();
 	}
 	
+//	public void setPosition (TurtlePoint position) {
+//		myPosition = position;
+//	}
+	
 	public DoubleProperty getOrientation () {
 		return myOrientation;
 	}
+	
+//	public void setOrientation (DoubleProperty orientation) {
+//		myOrientation = orientation;
+//	}
 	
 	public BooleanProperty getIsPenDown () {
 		return myPenState;
@@ -52,5 +62,9 @@ public class TurtleProperties {
 	
 	public BooleanProperty getVisibility () {
 		return myVisibility;
+	}
+	
+	public DoubleProperty getStampCount () {
+		return myStampCount;
 	}
 }

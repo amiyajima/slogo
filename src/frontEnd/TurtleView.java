@@ -59,6 +59,7 @@ public class TurtleView {
 		penDown = new SimpleBooleanProperty(true);
 		linesCleared = new SimpleBooleanProperty(false);
 		myVisibility = new SimpleBooleanProperty(true);
+		myStampCount = new SimpleDoubleProperty(0);
 		addListeners();
 		bindProperties(tProps);
 	}
@@ -96,6 +97,7 @@ public class TurtleView {
 		ImageView stamp = new ImageView(myImageView.getImage());
 		stamp.setX(myXPosition.get() - getImage().getWidth()/2); //repeated code
 		stamp.setY(myYPosition.get() - getImage().getHeight()/2); //repeated code
+		stamp.setRotate(myOrientation.get());
 		myStamps.getChildren().add(stamp);
 	}
 	
@@ -171,8 +173,19 @@ public class TurtleView {
 			@Override
 			public void changed(ObservableValue<? extends Object> observable,
 					Object oldValue, Object newValue) {
-				// TODO Auto-generated method stub
 				myImageView.setVisible(myVisibility.get());
+			}
+		});
+		myStampCount.addListener(new ChangeListener<Object>() {
+			@Override
+			public void changed(ObservableValue<? extends Object> observable,
+					Object oldValue, Object newValue) {
+				if(myStampCount.get() == 0) {
+					myStamps.getChildren().clear();
+				}
+				else {
+					drawStamp();
+				}
 			}
 		});
 	}
@@ -195,5 +208,6 @@ public class TurtleView {
 		penDown.bindBidirectional(tProps.getIsPenDown());
 		linesCleared.bindBidirectional(tProps.getLinesCleared());
 		myVisibility.bindBidirectional(tProps.getVisibility());
+		myStampCount.bindBidirectional(tProps.getStampCount());
 	}
 }

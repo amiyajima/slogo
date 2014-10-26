@@ -301,7 +301,8 @@ public class Turtle extends Observable {
      */
     public TurtleProperties getTurtleProperties () {
     	TurtleProperties tProps = new 
-    	        TurtleProperties(myPosition, myOrientation, myPenDown, myClearLines, myVisibility);
+    	        TurtleProperties(myPosition, myOrientation, myPenDown, 
+    	        		myClearLines, myVisibility, myStampCount);
     	return tProps;
     }
     
