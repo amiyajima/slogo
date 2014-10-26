@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Stack;
 
+import exceptions.InvalidPropertyFileException;
+
 public class VariableManager {
 
     private Properties myVariables;
@@ -17,8 +19,9 @@ public class VariableManager {
         myVariables = new Properties();
         try {
             setInitialVarProperties();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } 
+        catch (IOException e) {
+            throw new InvalidPropertyFileException("Invalid property file loaded");
         }
     }
 
@@ -32,7 +35,7 @@ public class VariableManager {
         System.out.println("stack before push is: " + myStoredVariables);
         Properties addToStack = new Properties();
         for (Object s : myVariables.keySet()) {
-            addToStack.setProperty((String) s, (String) myVariables.get(s));
+            addToStack.setProperty((String)s, (String)myVariables.get(s));
         }
         myStoredVariables.push(addToStack);
         myVariables.clear();

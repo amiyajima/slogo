@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+
 import main.ResourceFinder;
 import backEnd.Model;
 import backEnd.VariableManager;
@@ -13,6 +14,7 @@ import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import commands.variable_commands.UserInputCommand;
 import commands.variable_commands.Variable;
+import exceptions.InvalidInputException;
 
 
 /**
@@ -99,27 +101,27 @@ public class CommandFactory {
         type = checkCaps(type);
         if (checkLanguage(type)) {
             try {
-                Class<?> newCommandClass = Class.forName(ResourceFinder.getMyCommandResources().getString(myClassKey));
+                Class<?> newCommandClass = Class.forName(ResourceFinder.
+                        getMyCommandResources().getString(myClassKey));
                 Constructor<?> con = null;
                 try {
                     con = newCommandClass.getConstructor(VariableManager.class);
                 }
                 catch (NoSuchMethodException e) {
-                    e.printStackTrace();
+                    throw new InvalidInputException("%s is an invalid input", type);
                 }
                 catch (SecurityException e) {
-                    e.printStackTrace();
+                    throw new InvalidInputException("%s is an invalid input", type);
                 }
                 Command newCommand = null;
                 try {
-                    newCommand = (Command) con.newInstance(variableManager);
+                    newCommand = (Command)con.newInstance(variableManager);
                 }
                 catch (IllegalArgumentException e) {
-
-                    e.printStackTrace();
+                    throw new InvalidInputException("%s is an invalid input", type);
                 }
                 catch (InvocationTargetException e) {
-                    e.printStackTrace();
+                    throw new InvalidInputException("%s is an invalid input", type);
                 }
                 if (newCommand instanceof TurtleCommand) {
                     newCommand.initializeCommand(model);
@@ -127,13 +129,13 @@ public class CommandFactory {
                 return newCommand;
             }
             catch (InstantiationException e) {
-                e.printStackTrace();
+                throw new InvalidInputException("%s is an invalid input", type);
             }
             catch (IllegalAccessException e) {
-                e.printStackTrace();
+                throw new InvalidInputException("%s is an invalid input", type);
             }
             catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                throw new InvalidInputException("%s is an invalid input", type);
             }
         }
 
