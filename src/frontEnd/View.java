@@ -24,6 +24,7 @@ public class View extends VBox implements Observer {
 	private double myWidth, myHeight;
 	private static final double PADDING = 20;
 	private ParameterPanel mySidePanel;
+	private ScriptPanel myScriptPanel;
 	
 	public View(double width, double height, String language) {
 		super();
@@ -40,6 +41,10 @@ public class View extends VBox implements Observer {
 	public void addControllerAndSetupGui(Controller controller) {
 		myController = controller;
 		setupGui();
+	}
+	
+	public void printException(Exception e) {
+		myScriptPanel.printException(e);
 	}
 	
 	/**
@@ -94,7 +99,8 @@ public class View extends VBox implements Observer {
 	}
 	
 	private Node buildScriptPanel() {
-		return new ScriptPanel(myWidth, myHeight/4., myController);
+		myScriptPanel = new ScriptPanel(myWidth, myHeight/4., myController);
+		return myScriptPanel;
 	}
 
 	public void changeBackgroundColor(Color c) {

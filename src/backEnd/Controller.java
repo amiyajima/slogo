@@ -3,7 +3,6 @@ package backEnd;
 import java.io.File;
 
 import javafx.scene.paint.Color;
-import exceptions.SLogoException;
 import frontEnd.View;
 
 public class Controller {
@@ -26,12 +25,21 @@ public class Controller {
 			try {
 			    myModel.runScript(script);
 			}
-			catch (SLogoException e) {
-			    System.out.println(e.getMessage());
+			catch (Exception e) {
+				myView.printException(e);
 			}
 			myView.addToHistory(script);
 		}
 	}
+	
+//	public void moveForward() {
+//		try {
+//			//myModel.moveForward();
+//			//myModel.runScript(commandList.getBaseBundleName("Foward"));
+//		} catch (Exception e) {
+//			System.out.println(e.toString());
+//		}
+//	}
 
 	public void changeBackgroundColor (Color c) {
 		myView.changeBackgroundColor(c);
@@ -47,10 +55,6 @@ public class Controller {
 
 	public void toggleGridLines () {
 		myView.toggleGridLines();
-	}
-	
-	public void changeLanguage (String language) {
-		myModel.changeLanguage(language);
 	}
 
 }

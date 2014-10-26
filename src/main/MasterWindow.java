@@ -1,17 +1,16 @@
 package main;
 
-import java.io.File;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import backEnd.Parser;
 
@@ -20,7 +19,7 @@ import commands.CommandFactory;
 import frontEnd.Workspace;
 
 public class MasterWindow extends Application {
-
+	
 	private Stage myStage;
 	private Scene myScene;
 
@@ -39,12 +38,14 @@ public class MasterWindow extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 	
+		new ResourceFinder("English");
+		
 		buildMenuBar();
 		myRoot.getChildren().addAll(myMenuBar, myTabs);
 		
 		myScene = new Scene(myRoot);
 		
-		myCommandFactory = new CommandFactory("english");
+		myCommandFactory = new CommandFactory();
         myParser = new Parser(myCommandFactory);
 
 		
@@ -104,13 +105,13 @@ public class MasterWindow extends Application {
 
 	private Menu buildFileMenu() {
 		Menu menu = new Menu("File");
-		menu.getItems().add(buildNewWorkspaceMenuItem());
+		menu.getItems().addAll(buildNewWorkspaceMenuItem());
 		return menu;
 	}
 
 	private Menu buildEditMenu() {
 		Menu menu = new Menu("Edit");
-		menu.getItems().add(buildImageChooserMenuItem());
+		menu.getItems().addAll(buildLanguageChooserMenuItem());
 		return menu;
 	}
 
@@ -119,28 +120,25 @@ public class MasterWindow extends Application {
 		menu.setOnAction(event -> buildWorkspace());
 		return menu;
 	}
+	
+	private Menu buildLanguageChooserMenuItem() {
+		Menu menu = new Menu("Change Language");
 
-	private MenuItem buildImageChooserMenuItem() {
-
-		MenuItem menu = new MenuItem("Change Turtle Image");
-
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Upload Image");
-		fileChooser.getExtensionFilters().addAll(
-				new FileChooser.ExtensionFilter("All Images", "*.*"),
-				new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-				new FileChooser.ExtensionFilter("PNG", "*.png"));
-
-		menu.setOnAction(event -> turtleImageFileChooser(fileChooser));
-
+		final ToggleGroup languageSelector = new ToggleGroup();
+		for (String language : ResourceFinder.getPossibleLanguages()) {
+		    RadioMenuItem itemEffect = new RadioMenuItem(language);
+		    itemEffect.setUserData(language);
+		    itemEffect.setToggleGroup(languageSelector);
+		    if (language.equals("English")) itemEffect.setSelected(true);
+		    menu.getItems().add(itemEffect);
+		    itemEffect.setOnAction(event -> setLanguage((String) itemEffect.getUserData()));
+		}
+		
 		return menu;
 	}
 	
-	private void turtleImageFileChooser(FileChooser fileChooser) {
-		File file = fileChooser.showOpenDialog(myStage);
-		if (file != null) {
-			//myController.changeTurtleImage(file);
-		}
+	private void setLanguage(String s) {
+		ResourceFinder.setLanguage(s);
 	}
 
 }
