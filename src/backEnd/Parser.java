@@ -76,14 +76,11 @@ public class Parser {
     private String removeComments (String script) {
         String lines[] = script.split("\\n");
         String s = "";
-        System.out.println("We testin tho");
         for(String line : lines) {
             if(!line.startsWith("#")) {
                 s += line + " ";
             }
         }
-        System.out.println(s);
-
         return s;
         
     }

@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
-
 import commands.templates.Command;
-
 import frontEnd.View;
 
 /**
@@ -33,6 +33,10 @@ public class Model {
     private TurtleManager myTurtleManager;
     private HashMap<String, Command> myCommandsList;
     private DoubleProperty myBackgroundIndex = new SimpleDoubleProperty();
+    private IntegerProperty myPaletteIndex;
+    private IntegerProperty myPaletteRed;
+    private IntegerProperty myPaletteBlue;
+    private IntegerProperty myPaletteGreen;
 
     /**
      * Constructor for model. Initializes the variable manager, commandList,
@@ -44,6 +48,10 @@ public class Model {
         myParser = parser;
         myCommandsList = new HashMap<String, Command>();
         myBackgroundIndex = new SimpleDoubleProperty(INITIAL_BACKGROUND_INDEX);
+        myPaletteIndex = new SimpleIntegerProperty();
+        myPaletteRed = new SimpleIntegerProperty();
+        myPaletteBlue = new SimpleIntegerProperty();
+        myPaletteGreen = new SimpleIntegerProperty();
     }
 
     /**
@@ -121,5 +129,20 @@ public class Model {
     public void setBackgroundIndex (double index) {
         myBackgroundIndex.setValue(index);
     }
-
+    
+    
+    public void setPaletteArguments(int index, int red, int green, int blue) {
+        myPaletteIndex.set(index);
+        myPaletteRed.set(red);
+        myPaletteGreen.set(green);
+        myPaletteBlue.set(blue);
+    }
+    
+    public List<IntegerProperty> getPaletteArguments() {
+        return Arrays.asList(myPaletteIndex,
+            myPaletteRed,
+            myPaletteGreen,
+            myPaletteBlue  
+        );
+    }
 }
