@@ -338,11 +338,11 @@ public class Turtle extends Observable {
         return myShapeIndex;
     }
     
-    public void setIsActive(boolean alive) {
+    public void setIsActive (boolean alive) {
         myActivity.set(alive);
     }
     
-    public BooleanProperty getIsActive() {
+    public BooleanProperty getIsActive () {
         return myActivity;
     }
 }
