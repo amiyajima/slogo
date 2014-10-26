@@ -12,7 +12,6 @@ import javafx.scene.paint.Color;
 import panels.ParameterPanel;
 import panels.ScriptPanel;
 import backEnd.Controller;
-import backEnd.turtle.Turtle;
 
 public class View extends VBox implements Observer {
 	
@@ -47,14 +46,6 @@ public class View extends VBox implements Observer {
 		myController = controller;
 		setupGui();
 	}
-	
-	/**
-	 * Called by Controller constructor
-	 */
-	//not needed?
-//	public void setupTurtleView(AbstractTurtle turtle) {
-//		myCanvas.addTurtle(turtle);
-//	}
 	
 	/**
 	 * Called by Model when it sets up its turtle
@@ -112,22 +103,18 @@ public class View extends VBox implements Observer {
 	}
 
 	public void changeBackgroundColor(Color c) {
-		// TODO Auto-generated method stub
 		myCanvas.changeBackgroundColor(c);
 	}
 
 	public void changePenColor(Color c) {
-		// TODO Auto-generated method stub
 		myCanvas.changePenColor(c);
 	}
 
 	public void changeTurtleImage(File f) {
-		// TODO Auto-generated method stub
 		myCanvas.changeTurtleImage(f);
 	}
 
 	public void toggleGridLines() {
-		// TODO Auto-generated method stub
 		myCanvas.toggleGridLines();
 	}
 	

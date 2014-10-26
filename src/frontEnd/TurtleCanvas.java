@@ -1,13 +1,10 @@
 package frontEnd;
 
 import java.io.File;
-import java.util.Map;
 import java.util.Observable;
 
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.Property;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -71,7 +68,6 @@ public class TurtleCanvas extends Group {// implements Observer {
 	
 	public void addTurtle(Turtle turtle) {
 		ImageView turtleImage = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
-		@SuppressWarnings("rawtypes")
 		TurtleProperties tProps = turtle.getTurtleProperties();
 		turtleView = new TurtleView(tProps, boundingWidth, boundingHeight, turtleImage);
 		//change to just adding group for turtle?
