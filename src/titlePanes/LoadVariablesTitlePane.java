@@ -1,19 +1,20 @@
 package titlePanes;
 
 import java.io.File;
-import backEnd.Controller;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import backEnd.Controller;
 
 
-public class LoadPropertiesTitlePane extends TitledPane {
+public class LoadVariablesTitlePane extends TitledPane {
 
     public String DEFAULT_XML_DIRECTORY = "./src/resources";
     
-    public LoadPropertiesTitlePane (Controller controller) {
+    public LoadVariablesTitlePane (Controller controller) {
         setText("Load Properties");
         VBox root = new VBox();
         root.setSpacing(30);
