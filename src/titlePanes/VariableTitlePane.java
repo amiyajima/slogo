@@ -1,6 +1,9 @@
 package titlePanes;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import javafx.scene.control.Label;
@@ -12,22 +15,27 @@ public class VariableTitlePane extends TitledPane {
 	
 	private VBox myRoot;
 	@SuppressWarnings("unused")
-	private Map<String,Double> varMap; //ACTUAL MAP from model, might be bad design
-									   //need to address this later
+	private Properties myVarProps;
 	
-	public VariableTitlePane(Controller contr) {
+	public VariableTitlePane(Controller contr) throws IOException {
 		setText("Variables");
 		myRoot = new VBox();
 		setContent(myRoot);
+		
+		myVarProps = new Properties();
+		InputStream fileInput = getClass().getResourceAsStream("/resources/Variables.properties");
+		myVarProps.load(fileInput);
 	}
 	
-	public void setupVariableMap(Map<String, Double> varMap) {
-		Set<String> variables = varMap.keySet();
-		for(String varName : variables) {
-			Label variable = new Label(varName + ": " + varMap.get(varName));
-			myRoot.getChildren().add(variable);
-		}
-	}
+	
+	
+//	public void setupVariableMap(Map<String, Double> varMap) {
+//		Set<String> variables = varMap.keySet();
+//		for(String varName : variables) {
+//			Label variable = new Label(varName + ": " + varMap.get(varName));
+//			myRoot.getChildren().add(variable);
+//		}
+//	}
 	
 //	private void addListeners() {
 //		varMap.addL
