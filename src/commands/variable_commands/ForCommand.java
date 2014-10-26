@@ -1,11 +1,10 @@
 package commands.variable_commands;
 
 import java.io.IOException;
-
 import backEnd.VariableManager;
-
 import commands.templates.Command;
 import commands.templates.TwoChildCommand;
+
 
 /**
  * A for loop command.
@@ -34,11 +33,12 @@ public class ForCommand extends TwoChildCommand {
         int increment = (int) ((CommandsList) myForList).getChild(THIRD_CHILD).execute();
 
         while (i < upperBound) {
-            System.out.println(((CommandsList) myForList).getChild(0).toString());
             try {
                 getVariableManager().addVar(((CommandsList) myForList).getChild(0).toString(),
-                        String.valueOf(i));
-            } catch (IOException e) {
+                                            String.valueOf(i));
+            }
+            catch (IOException e) {
+
                 e.printStackTrace();
             }
             result += getMyChildren().get(1).execute();
@@ -51,9 +51,9 @@ public class ForCommand extends TwoChildCommand {
     @Override
     public String toString () {
         return "for " + ((CommandsList) myForList).getChild(0) + " from "
-                + ((CommandsList) myForList).getChild(1) + " to "
-                + ((CommandsList) myForList).getChild(2) + " incrementing by "
-                + ((CommandsList) myForList).getChild(THIRD_CHILD) + " execute "
-                + getMyChildren().get(1).toString();
+               + ((CommandsList) myForList).getChild(1) + " to "
+               + ((CommandsList) myForList).getChild(2) + " incrementing by "
+               + ((CommandsList) myForList).getChild(THIRD_CHILD) + " execute "
+               + getMyChildren().get(1).toString();
     }
 }

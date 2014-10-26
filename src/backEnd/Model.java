@@ -1,12 +1,14 @@
 package backEnd;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
 import commands.templates.Command;
 import frontEnd.View;
+
 
 public class Model {
 
@@ -14,15 +16,15 @@ public class Model {
     private Turtle myTurtle;
     private VariableManager myVariableManager;
     private TurtleManager myTurtleManager;
+    private HashMap<String, Command> myCommandsList;
 
     // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657,
     // 524);
 
     public Model (Parser parser) {
-
         myVariableManager = new VariableManager();
         myParser = parser;
-
+        myCommandsList = new HashMap<String, Command>();
     }
 
     public void setupTurtleManager (View view) {
@@ -38,7 +40,7 @@ public class Model {
      * package also
      * 
      * @param script
-     *            The input string of syntax from the text-field
+     *        The input string of syntax from the text-field
      * 
      * @return Returns 0 if the input is valid. Returns 1 if there is a syntax
      *         error. Can be extended to return different Doubles for different
@@ -48,7 +50,7 @@ public class Model {
     int runScript (String script) {
 
         List<Command> rootCommands = myParser.parseScript(script, this,
-                myVariableManager);
+                                                          myVariableManager);
 
         // System.out.println("beginning execution " + rootCommands);
 
@@ -56,7 +58,7 @@ public class Model {
             c.execute();
         }
         // print root commands here AKA the compiled tree
-        System.out.println(rootCommands);
+        System.out.println("root commands are " + rootCommands);
         return 0;
     }
 
@@ -71,9 +73,14 @@ public class Model {
     public TurtleManager getTurtleManager () {
         return myTurtleManager;
     }
-    
-    public void changeLanguage(String language) {
-    	myParser.changeLanguage(language);
+
+    public Map<String, Command> getCommandsMap () {
+        return myCommandsList;
+    }
+
+    public void changeLanguage (String language) {
+        myParser.changeLanguage(language);
+
     }
 
 }

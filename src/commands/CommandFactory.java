@@ -2,15 +2,15 @@ package commands;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 import java.util.ResourceBundle;
-
 import backEnd.Model;
 import backEnd.VariableManager;
-
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import commands.variable_commands.UserInputCommand;
 import commands.variable_commands.Variable;
+
 
 /**
  * This factory is part of the command pattern implementation. It contains a
@@ -29,12 +29,12 @@ public class CommandFactory {
      * Initializes a command factory
      *
      * @param language
-     *            The language commands are being put into the text field
+     *        The language commands are being put into the text field
      */
+
     public CommandFactory (String language) {
         myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "languages/"
-                + language);
-
+                                                       + language);
     }
 
     /**
@@ -42,7 +42,7 @@ public class CommandFactory {
      * language properties file. If it can, return true, if not false.
      *
      * @param type
-     *            command type being checked
+     *        command type being checked
      * @return Return true if the command is valid
      */
     private boolean checkLanguage (String type) {
@@ -57,10 +57,10 @@ public class CommandFactory {
         }
         return false;
     }
-    
-    public void changeLanguage(String language) {
-    	myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "languages/"
-                + language);
+
+    public void changeLanguage (String language) {
+        myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "languages/"
+                                                       + language);
     }
 
     private boolean checkVar (String type) {
@@ -84,17 +84,29 @@ public class CommandFactory {
     }
 
     /**
+     * Checks if the command has been previously defined by the user
+     * 
+     * @param type
+     * @return
+     */
+    private boolean checkUserCommand (String type, Map<String, Command> commandsMap) {
+        return commandsMap.containsKey(type);
+    }
+
+    /**
      * If a command is valid, create an instance of that command and return it.
      * If it is a constant, return a constant command instead. If it is invalid,
      * return an error
      *
      * @param type
-     *            Command being tested
+     *        Command being tested
      * @return Either the type of command requested, or an exception
      */
 
-    public Command buildCommand (String type, Model model,
-            VariableManager variableManager) {
+    public Command buildCommand (String type,
+                                 Model model,
+                                 VariableManager variableManager) {
+        Map<String, Command> commandsMap = model.getCommandsMap();
         type = checkCaps(type);
         if (checkLanguage(type)) {
             try {
@@ -102,28 +114,36 @@ public class CommandFactory {
                 Constructor<?> con = null;
                 try {
                     con = newCommandClass.getConstructor(VariableManager.class);
-                } catch (NoSuchMethodException e) {
+                }
+                catch (NoSuchMethodException e) {
                     e.printStackTrace();
-                } catch (SecurityException e) {
+                }
+                catch (SecurityException e) {
                     e.printStackTrace();
                 }
                 Command newCommand = null;
                 try {
                     newCommand = (Command) con.newInstance(variableManager);
-                } catch (IllegalArgumentException e) {
+                }
+                catch (IllegalArgumentException e) {
+
                     e.printStackTrace();
-                } catch (InvocationTargetException e) {
+                }
+                catch (InvocationTargetException e) {
                     e.printStackTrace();
                 }
                 if (newCommand instanceof TurtleCommand) {
                     newCommand.initializeCommand(model);
                 }
                 return newCommand;
-            } catch (InstantiationException e) {
+            }
+            catch (InstantiationException e) {
                 e.printStackTrace();
-            } catch (IllegalAccessException e) {
+            }
+            catch (IllegalAccessException e) {
                 e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            }
+            catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
@@ -134,11 +154,16 @@ public class CommandFactory {
                 return varCommand;
             }
 
-            if (isNumeric(type)) {
-                return new ConstantCommand(type, variableManager);
-            }
+            if (isNumeric(type)) { return new ConstantCommand(type, variableManager); }
 
         }
+
+        if (checkUserCommand(type, commandsMap)) {
+            System.out.println("COMMAND EXISTS IN THE MAP: " + commandsMap);
+            return commandsMap.get(type);
+        }
+
         return new UserInputCommand(type, variableManager);
+
     }
 }
