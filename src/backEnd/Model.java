@@ -16,7 +16,7 @@ import frontEnd.View;
 
 /**
  * Model for SLogo. The model holds a turtle manager which holds the 
- * turtles
+ * turtles for the workspace.
  * 
  * @author Brian Bolze
  * @author Ethan Chang
@@ -32,15 +32,25 @@ public class Model {
     private VariableManager myVariableManager;
     private TurtleManager myTurtleManager;
     private HashMap<String, Command> myCommandsList;
-    private DoubleProperty backgroundIndex = new SimpleDoubleProperty();
+    private DoubleProperty myBackgroundIndex = new SimpleDoubleProperty();
 
+    /**
+     * Constructor for model. Initializes the variable manager, commandList,
+     * and the initial background index for the workspace
+     * @param parser Parser which can be used in the workspace
+     */
     public Model (Parser parser) {
         myVariableManager = new VariableManager();
         myParser = parser;
         myCommandsList = new HashMap<String, Command>();
-        backgroundIndex = new SimpleDoubleProperty(INITIAL_BACKGROUND_INDEX);
+        myBackgroundIndex = new SimpleDoubleProperty(INITIAL_BACKGROUND_INDEX);
     }
 
+    /**
+     * Sets up the turtleManager by adding an observer to it so it can be tracked
+     * by the front end
+     * @param view View for the workspace
+     */
     public void setupTurtleManager (View view) {
         myTurtleManager = new TurtleManager(view.getCanvasWidth(), view.getCanvasHeight());
         myTurtleManager.addObserver(view);
@@ -72,24 +82,44 @@ public class Model {
         return 0;
     }
 
+    /**
+     * Adds turtle observer to the view
+     * @param view view for the workspace
+     */
     public void setTurtleObserver (View view) {
         myTurtle.addObserver(view);
     }
 
+    /**
+     * Returns the model's turtle manager
+     * @return turtleManager
+     */
     public TurtleManager getTurtleManager () {
         return myTurtleManager;
     }
 
+    /**
+     * Return a map mapping string and commands
+     * @return
+     */
     public Map<String, Command> getCommandsMap () {
         return myCommandsList;
     }
     
+    /**
+     * Returns the background index for the workspace
+     * @return background index
+     */
     public DoubleProperty getBackgroundIndex () {
-        return backgroundIndex;
+        return myBackgroundIndex;
     }
     
+    /**
+     * Set the index for the background
+     * @param index index for the background index
+     */
     public void setBackgroundIndex (double index) {
-        backgroundIndex.setValue(index);
+        myBackgroundIndex.setValue(index);
     }
 
 }

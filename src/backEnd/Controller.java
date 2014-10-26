@@ -5,6 +5,11 @@ import java.io.File;
 import javafx.scene.paint.Color;
 import frontEnd.View;
 
+/**
+ * 
+ * @author Brian Bolze
+ *
+ */
 public class Controller {
 	
 	private Model myModel;

@@ -3,7 +3,11 @@ package commands.onechild;
 import backEnd.VariableManager;
 import commands.templates.OneChildCommand;
 
-
+/**
+ * Command to get the natural log of the first child's value
+ * @author Ethan Chang
+ *
+ */
 public class NaturalLogCommand extends OneChildCommand {
 
     public NaturalLogCommand (VariableManager manager) {

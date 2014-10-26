@@ -3,7 +3,11 @@ package commands.onechild;
 import backEnd.VariableManager;
 import commands.templates.OneChildCommand;
 
-
+/**
+ * Command to get the 1 if 0 and 0 if 1
+ * @author Ethan Chang
+ *
+ */
 public class NotCommand extends OneChildCommand {
 
     public NotCommand (VariableManager manager) {

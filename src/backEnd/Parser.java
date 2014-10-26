@@ -58,13 +58,14 @@ public class Parser {
         Map<String, Command> commandsMap = model.getCommandsMap();
 
         List<Command> myRoots = new ArrayList<Command>();
+        script = removeComments(script);
         myInstructions = new StringTokenizer(script);
 
         while (myInstructions.hasMoreTokens()) {
             Command createdCommand =
                     makeTree(myInstructions.nextToken(), model, variableManager);
             if (createdCommand instanceof ToCommand) {
-                Command nextToAdd = new ToCommand(myVariableManager, (ToCommand) createdCommand);
+                Command nextToAdd = new ToCommand(myVariableManager, (ToCommand)createdCommand);
                 commandsMap.put(nextToAdd.toString(), nextToAdd);
             }
 
@@ -73,6 +74,22 @@ public class Parser {
         return myRoots;
     }
 
+    
+    private String removeComments (String script) {
+        String lines[] = script.split("\\n");
+        String s = "";
+        System.out.println("We testin tho");
+        for(String line : lines) {
+            if(!line.startsWith("#")) {
+                s += line + " ";
+            }
+        }
+        System.out.println(s);
+
+        return s;
+        
+    }
+    
     /**
      * Creates commands from strings and inserts them as children of existing
      * commands Recursive method, returns root of the tree

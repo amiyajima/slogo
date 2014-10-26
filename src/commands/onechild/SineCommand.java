@@ -3,7 +3,12 @@ package commands.onechild;
 import backEnd.VariableManager;
 import commands.templates.OneChildCommand;
 
-
+/**
+ * Command to get the sine of of the first child's
+ * value
+ * @author Ethan Chang
+ *
+ */
 public class SineCommand extends OneChildCommand {
     public SineCommand (VariableManager manager) {
         super(manager);

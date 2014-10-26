@@ -128,10 +128,6 @@ public class Turtle extends Observable {
         return distance;
     }
 
-    // TODO improve design?
-    // sets true to clear lines, sets back to false after lines cleared
-    // linesCleared is binded to BooleanProperty in front-end that causes
-    // lines stored on front-end to clear
     /**
      * Clears the lines the turtle has drawn
      */
@@ -140,7 +136,7 @@ public class Turtle extends Observable {
     	myClearLines.set(false);
     }
 
-    // TODO IMPLEMENT THESE
+
     /**
      * Sets a stamp of the turtle on the canvas
      */
