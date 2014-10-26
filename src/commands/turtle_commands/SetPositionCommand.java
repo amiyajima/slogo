@@ -4,11 +4,15 @@ import java.util.List;
 
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.TurtleCommand;
 
-
+/**
+ * Command to set the position for a turtle
+ * @author ethanchang
+ *
+ */
 public class SetPositionCommand extends TurtleCommand {
     public static final int NUM_CHILDREN = 2;
 
@@ -26,7 +30,7 @@ public class SetPositionCommand extends TurtleCommand {
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle t : turtles) {
+        for (Turtle t : turtles) {
             setValue(t.goTo(getMyChildren().get(0).execute(), getMyChildren().get(1).execute()));
         }
     }

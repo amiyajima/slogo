@@ -2,17 +2,21 @@ package commands.templates;
 
 import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.TurtleManager;
 
+/**
+ * Command superclass for commands with one child
+ * @author Anna Miyajima
+ *
+ */
 public abstract class OneChildCommand extends Command {
 
     public static final int NUM_CHILDREN = 1;
-    
+
     public OneChildCommand (VariableManager manager) {
         super(manager);
         setNumChildren(NUM_CHILDREN);
     }
-    
+
     @Override
     public double execute () {
         return 0;
@@ -24,7 +28,7 @@ public abstract class OneChildCommand extends Command {
     }
 
     @Override
-    public void initializeCommand (TurtleManager turtleManager) {
+    public void initializeCommand (Model model) {
     }
 
 }

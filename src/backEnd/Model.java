@@ -5,11 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import backEnd.turtle.Turtle;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
-import commands.CommandFactory;
 import commands.templates.Command;
-import exceptions.SLogoException;
 import frontEnd.View;
 
 
@@ -21,7 +18,8 @@ public class Model {
     private TurtleManager myTurtleManager;
     private HashMap<String, Command> myCommandsList;
 
-    // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657, 524);
+    // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657,
+    // 524);
 
     public Model (Parser parser) {
         myVariableManager = new VariableManager();
@@ -51,8 +49,8 @@ public class Model {
      */
     int runScript (String script) {
 
-        List<Command> rootCommands =
-                myParser.parseScript(script, myTurtleManager, myVariableManager, myCommandsList);
+        List<Command> rootCommands = myParser.parseScript(script, this,
+                                                          myVariableManager);
 
         // System.out.println("beginning execution " + rootCommands);
 
@@ -76,8 +74,13 @@ public class Model {
         return myTurtleManager;
     }
 
-    public Map<String, Command> getCommandsList () {
+    public Map<String, Command> getCommandsMap () {
         return myCommandsList;
+    }
+
+    public void changeLanguage (String language) {
+        myParser.changeLanguage(language);
+
     }
 
 }

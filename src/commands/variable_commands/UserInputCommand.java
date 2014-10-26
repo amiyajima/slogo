@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.TurtleManager;
 import commands.ConstantCommand;
 import commands.templates.Command;
 import exceptions.SLogoException;
@@ -14,9 +13,9 @@ import exceptions.SLogoException;
 
 /**
  * A user created command
- * 
+ *
  * TO newcommand [ :k 5 :x 2 ] [ sum :k 5 forward :x ]
- * 
+ *
  * @author annamiyajima
  *
  */
@@ -40,7 +39,6 @@ public class UserInputCommand extends Command {
     @Override
     public double execute () {
         VariableManager variablemanager = getVariableManager();
-
         CommandsList myVariableList = (CommandsList) getMyChildren().get(0);
         // works up to here then UnsupportedOperationException
         for (int i = 0; i < myVariableList.getNumChildren(); i++) {
@@ -87,7 +85,7 @@ public class UserInputCommand extends Command {
     }
 
     @Override
-    public void initializeCommand (TurtleManager turtleManager) {
+    public void initializeCommand (Model model) {
         // TODO Auto-generated method stub
 
     }

@@ -4,15 +4,14 @@ import java.util.List;
 
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
-import commands.templates.TurtleCommand;
 
+import commands.templates.TurtleCommand;
 
 public class SetHeadingCommand extends TurtleCommand {
 
-    private double myNewOrientation;
     public static final int NUM_CHILDREN = 1;
+    private double myNewOrientation;
 
     public SetHeadingCommand (VariableManager manager) {
         super(manager);
@@ -29,10 +28,9 @@ public class SetHeadingCommand extends TurtleCommand {
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         myNewOrientation = getMyChildren().get(0).execute();
-        
-        turtleManager = getMyTurtleManager();
+
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle t : turtles) {
+        for (Turtle t : turtles) {
             t.setOrientation(myNewOrientation);
             setValue(myNewOrientation - t.getOrientation());
         }

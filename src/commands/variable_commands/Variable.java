@@ -41,7 +41,7 @@ public class Variable extends Command {
     }
 
     @Override
-    public void initializeCommand (TurtleManager turtleManager) {
+    public void initializeCommand (Model model) {
 
     }
 

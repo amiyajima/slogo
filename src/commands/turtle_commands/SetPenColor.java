@@ -5,11 +5,17 @@ import java.util.List;
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.TurtleCommand;
 
+/**
+ * Command to set the pen color
+ * @author Ethan Chang
+ *
+ */
 public class SetPenColor extends TurtleCommand {
     public static final int NUM_CHILDREN = 1;
-    
+
     public SetPenColor (VariableManager manager) {
         super(manager);
         setNumChildren(NUM_CHILDREN);
@@ -25,7 +31,7 @@ public class SetPenColor extends TurtleCommand {
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle turtle : turtles) {
+        for (Turtle turtle : turtles) {
             turtle.getPen().setMyPenColor(getValue());
         }
     }

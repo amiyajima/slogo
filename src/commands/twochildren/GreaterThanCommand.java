@@ -1,14 +1,18 @@
 package commands.twochildren;
 
 import backEnd.VariableManager;
+
 import commands.templates.TwoChildCommand;
 
-
+/**
+ * Command to check if the first child is greater than the second
+ * @author Ethan Chang
+ *
+ */
 public class GreaterThanCommand extends TwoChildCommand {
 
     public GreaterThanCommand (VariableManager manager) {
         super(manager);
-        // TODO Auto-generated constructor stub
     }
 
     @Override

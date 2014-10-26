@@ -20,12 +20,14 @@ public class ToCommand extends OneChildCommand {
         if (getMyChildren().get(0) instanceof UserInputCommand) {
             getMyChildren().get(0).execute();
         }
+
         else {
             throw new SLogoException("cannot create command -- enter in correct format");
         }
         return 0.0;
     }
 
+    @Override
     public String toString () {
         return getMyChildren().get(0).toString();
 

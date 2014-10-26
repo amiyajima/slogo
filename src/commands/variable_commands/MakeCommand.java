@@ -7,7 +7,7 @@ import commands.templates.TwoChildCommand;
 
 public class MakeCommand extends TwoChildCommand {
 
-    VariableManager myVarManager;
+    private VariableManager myVarManager;
 
     public MakeCommand (VariableManager manager) {
         super(manager);
@@ -28,7 +28,6 @@ public class MakeCommand extends TwoChildCommand {
 
     @Override
     public String toString () {
-        return "create var " + getMyChildren().get(0).toString() + " = " +
-               getMyChildren().get(1);
+        return "create var " + getMyChildren().get(0).toString() + " = " + getMyChildren().get(1);
     }
 }

@@ -12,32 +12,25 @@ import javafx.scene.paint.Color;
 import panels.ParameterPanel;
 import panels.ScriptPanel;
 import backEnd.Controller;
-import backEnd.turtle.Turtle;
 
 public class View extends VBox implements Observer {
 	
-	private TurtleCanvas myCanvas;
-
 	@SuppressWarnings("unused")
 	private String myLanguage;
 	private Controller myController;
+	private TurtleCanvas myCanvas;
 	
-	private double WIDTH, HEIGHT;
+	private double myWidth, myHeight;
 	private static final double PADDING = 20;
 	private ParameterPanel mySidePanel;
 	
 	public View(double width, double height, String language) {
 		super();
 		
-		myLanguage = language;
-		
-		WIDTH = width;
-		HEIGHT = height;
-		
-		setMinWidth(WIDTH);
-		setMinHeight(HEIGHT);
-		setMaxWidth(WIDTH);
-		setMaxHeight(HEIGHT);
+		myLanguage = language;	
+		myWidth = width;
+		myHeight = height;
+
 	}
 
 	/**
@@ -47,14 +40,6 @@ public class View extends VBox implements Observer {
 		myController = controller;
 		setupGui();
 	}
-	
-	/**
-	 * Called by Controller constructor
-	 */
-	//not needed?
-//	public void setupTurtleView(AbstractTurtle turtle) {
-//		myCanvas.addTurtle(turtle);
-//	}
 	
 	/**
 	 * Called by Model when it sets up its turtle
@@ -90,44 +75,40 @@ public class View extends VBox implements Observer {
 	private void setupGui() {
 		
 		HBox hbox = new HBox();
-		hbox.setMinHeight(3.*HEIGHT/4.);
-		hbox.setMinWidth(WIDTH);
+		hbox.setMinHeight(3.*myHeight/4.);
+		hbox.setMinWidth(myWidth);
 		hbox.getChildren().addAll(buildCanvas(), buildSidePanel());
 		
 		getChildren().addAll(hbox, buildScriptPanel());
 	}
 	
 	private Node buildCanvas() {
-		myCanvas = new TurtleCanvas(3.*WIDTH/4., 3.*HEIGHT/4., PADDING, myController);
+		myCanvas = new TurtleCanvas(3.*myWidth/4., 3.*myHeight/4., PADDING, myController);
 		return myCanvas;
 	}
 	
 	private Node buildSidePanel() {
-		mySidePanel = new ParameterPanel(WIDTH/4., 3.*HEIGHT/4., myController);
+		mySidePanel = new ParameterPanel(myWidth/4., 3.*myHeight/4., myController);
 		return mySidePanel;
 	}
 	
 	private Node buildScriptPanel() {
-		return new ScriptPanel(WIDTH, HEIGHT/4., myController);
+		return new ScriptPanel(myWidth, myHeight/4., myController);
 	}
 
 	public void changeBackgroundColor(Color c) {
-		// TODO Auto-generated method stub
 		myCanvas.changeBackgroundColor(c);
 	}
 
 	public void changePenColor(Color c) {
-		// TODO Auto-generated method stub
 		myCanvas.changePenColor(c);
 	}
 
 	public void changeTurtleImage(File f) {
-		// TODO Auto-generated method stub
 		myCanvas.changeTurtleImage(f);
 	}
 
 	public void toggleGridLines() {
-		// TODO Auto-generated method stub
 		myCanvas.toggleGridLines();
 	}
 	

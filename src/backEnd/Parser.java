@@ -11,7 +11,6 @@ import commands.CommandFactory;
 import commands.templates.Command;
 import commands.variable_commands.ToCommand;
 import exceptions.InvalidInputException;
-import exceptions.SLogoException;
 
 
 /**
@@ -53,19 +52,22 @@ public class Parser {
      *        Raw input from the user (always error free)
      * @return A list of commands to be sent to the ScriptManager
      */
-    List<Command> parseScript (String script,
-                               TurtleManager turtleManager,
-                               VariableManager variableManager, Map<String, Command> commandsMap) {
+
+    List<Command> parseScript (String script, Model model, VariableManager variableManager) {
+
+        Map<String, Command> commandsMap = model.getCommandsMap();
+        
         List<Command> myRoots = new ArrayList<Command>();
         myInstructions = new StringTokenizer(script);
-
+        
         while (myInstructions.hasMoreTokens()) {
             Command createdCommand =
-                    makeTree(myInstructions.nextToken(), turtleManager, variableManager, commandsMap);
+                    makeTree(myInstructions.nextToken(), model, variableManager);
             if (createdCommand instanceof ToCommand) {
                 Command nextToAdd = new ToCommand(myVariableManager, (ToCommand) createdCommand);
                 commandsMap.put(nextToAdd.toString(), nextToAdd);
             }
+
             myRoots.add(createdCommand);
         }
         return myRoots;
@@ -79,17 +81,15 @@ public class Parser {
      * @return
      * @throws RuntimeException
      */
-    public Command makeTree (String commandName,
-                             TurtleManager turtleManager,
-                             VariableManager variableManager, Map<String, Command> commandsMap) {
+
+    public Command makeTree (String commandName, Model model, VariableManager variableManager) {
         System.out.println(commandName);
-        Command c = myFactory.buildCommand(commandName, turtleManager, variableManager, commandsMap);
+        Command c = myFactory.buildCommand(commandName, model, variableManager);
         if (Pattern.matches(OPEN_BRACKET_REGEX, commandName)) {
             String nextInstruction = myInstructions.nextToken();
             while (!(Pattern.matches(CLOSE_BRACKET_REGEX, nextInstruction))) {
-                c.addChild(makeTree(nextInstruction, turtleManager, variableManager, commandsMap));
-                if (!myInstructions.hasMoreElements()) { throw new InvalidInputException(
-                                                                                         "Open brackets must have a corresponding ']'"); }
+                c.addChild(makeTree(nextInstruction, model, variableManager));
+                if (!myInstructions.hasMoreElements()) { throw new InvalidInputException("Open brackets must have a corresponding ']'"); }
                 nextInstruction = myInstructions.nextToken();
             }
             return c;
@@ -101,12 +101,16 @@ public class Parser {
         else if (Pattern.matches(COMMAND_REGEX, commandName)) {
 
             while (c.getNumChildrenNeeded() > 0) {
-                c.addChild(makeTree(myInstructions.nextToken(), turtleManager, variableManager, commandsMap));
+                c.addChild(makeTree(myInstructions.nextToken(), model, variableManager));
             }
         }
         else {
             throw new InvalidInputException("error in parser");
         }
         return c;
+    }
+    
+    public void changeLanguage(String language) {
+    	myFactory.changeLanguage(language);
     }
 }

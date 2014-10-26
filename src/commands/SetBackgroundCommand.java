@@ -1,21 +1,20 @@
-package commands.templates;
+package commands;
 
 import backEnd.Model;
 import backEnd.VariableManager;
+import commands.templates.Command;
 
-/**
- * Command superclass for command that don't have children
- * @author Anna Miyajima
- *
- */
-public abstract class NoChildCommand extends Command {
-
-    public NoChildCommand (VariableManager manager) {
+public class SetBackgroundCommand extends Command {
+    private Model myModel;
+    
+    public SetBackgroundCommand (VariableManager manager) {
         super(manager);
     }
 
     @Override
     public double execute () {
+        setValue(getMyChildren().get(0).execute());
+        
         return 0;
     }
 
@@ -26,7 +25,7 @@ public abstract class NoChildCommand extends Command {
 
     @Override
     public void initializeCommand (Model model) {
-
+        myModel = model;        
     }
 
 }

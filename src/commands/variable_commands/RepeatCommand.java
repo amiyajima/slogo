@@ -2,15 +2,13 @@ package commands.variable_commands;
 
 import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.TurtleManager;
-import commands.templates.TwoChildCommand;
 
+import commands.templates.TwoChildCommand;
 
 public class RepeatCommand extends TwoChildCommand {
 
     public RepeatCommand (VariableManager manager) {
         super(manager);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
@@ -24,12 +22,12 @@ public class RepeatCommand extends TwoChildCommand {
 
     @Override
     public String toString () {
-        return "repeat " + getMyChildren().get(1).toString() + " " +
-               getMyChildren().get(0).execute() + " times.";
+        return "repeat " + getMyChildren().get(1).toString() + " "
+                + getMyChildren().get(0).execute() + " times.";
     }
 
     @Override
-    public void initializeCommand (TurtleManager turtleManager) {
+    public void initializeCommand (Model model) {
 
     }
 

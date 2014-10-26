@@ -2,11 +2,10 @@ package commands;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.TurtleManager;
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import commands.variable_commands.UserInputCommand;
@@ -59,6 +58,11 @@ public class CommandFactory {
         return false;
     }
 
+    public void changeLanguage (String language) {
+        myLanguageResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "languages/"
+                                                       + language);
+    }
+
     private boolean checkVar (String type) {
         return type.startsWith(":");
     }
@@ -100,13 +104,14 @@ public class CommandFactory {
      */
 
     public Command buildCommand (String type,
-                                 TurtleManager turtleManager,
-                                 VariableManager variableManager, Map<String, Command> commandsMap) {
+                                 Model model,
+                                 VariableManager variableManager) {
+        Map<String, Command> commandsMap = model.getCommandsMap();
         type = checkCaps(type);
         if (checkLanguage(type)) {
             try {
-                Class newCommandClass = Class.forName(MYCOMMANDRESOURCES.getString(myClassKey));
-                Constructor con = null;
+                Class<?> newCommandClass = Class.forName(MYCOMMANDRESOURCES.getString(myClassKey));
+                Constructor<?> con = null;
                 try {
                     con = newCommandClass.getConstructor(VariableManager.class);
                 }
@@ -121,13 +126,14 @@ public class CommandFactory {
                     newCommand = (Command) con.newInstance(variableManager);
                 }
                 catch (IllegalArgumentException e) {
+
                     e.printStackTrace();
                 }
                 catch (InvocationTargetException e) {
                     e.printStackTrace();
                 }
                 if (newCommand instanceof TurtleCommand) {
-                    newCommand.initializeCommand(turtleManager);
+                    newCommand.initializeCommand(model);
                 }
                 return newCommand;
             }

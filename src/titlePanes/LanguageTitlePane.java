@@ -1,5 +1,8 @@
 package titlePanes;
 
+import java.util.ResourceBundle;
+import java.util.Set;
+
 import backEnd.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -32,8 +35,18 @@ public class LanguageTitlePane extends TitledPane {
 		cb.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue ov, Number value, Number new_value) {
 				System.out.println("old selection: " + value + "  new selection: " + new_value);
-				contr.changeLanguage();
+				String language = pickLanguage(new_value);
+				System.out.println("STILL NEED TO CONSTRUCT LANGUAGE!");
+				contr.changeLanguage(language);
 			}
 		});
+	}
+
+	private String pickLanguage(Number new_value) {
+		// TODO Auto-generated method stub
+		ResourceBundle languagePicker = ResourceBundle.getBundle("resources/languages/Languages");
+		String index = new_value + "";
+		String language = languagePicker.getString(index);
+		return language;
 	}
 }

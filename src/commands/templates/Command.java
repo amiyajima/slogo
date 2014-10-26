@@ -1,19 +1,15 @@
 package commands.templates;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.TurtleManager;
-
 
 /**
- * Superclass for commands. Each sets the number of children that it can hold. i.e. sum can take
- * two children, so its numchildren is set to 0. Commands can then be executed, which returns
- * a double.
+ * Superclass for commands. Each sets the number of children that it can hold.
+ * i.e. sum can take two children, so its numchildren is set to 0. Commands can
+ * then be executed, which returns a double.
  * 
  * @author Ethan Chang
  * @author Anna Miyajima
@@ -55,7 +51,8 @@ public abstract class Command {
     /**
      * Sets the number of children/arguments the command will take
      * 
-     * @param numChildren number of arguments command will take
+     * @param numChildren
+     *            number of arguments command will take
      */
     protected void setNumChildren (int numChildren) {
         myNumChildren = numChildren;
@@ -64,7 +61,8 @@ public abstract class Command {
     /**
      * Stores the value the command returns
      * 
-     * @param value value command returns
+     * @param value
+     *            value command returns
      */
     protected void setValue (Double value) {
         myValue = value;
@@ -82,7 +80,8 @@ public abstract class Command {
     /**
      * Add child to the command
      * 
-     * @param c command to be added
+     * @param c
+     *            command to be added
      */
     public void addChild (Command c) {
         myChildren.add(c);
@@ -98,12 +97,12 @@ public abstract class Command {
     }
 
     /**
-     * Adds anything that the command might need from the model
-     * i.e. turtles for turtle commands
+     * Adds anything that the command might need from the model i.e. turtles for
+     * turtle commands
      * 
      * @param m
      */
-    public abstract void initializeCommand (TurtleManager turtleManager);
+    public abstract void initializeCommand (Model model);
 
     protected VariableManager getVariableManager () {
         return myVariableManager;

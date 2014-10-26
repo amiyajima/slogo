@@ -1,9 +1,15 @@
 package commands.twochildren;
 
 import backEnd.VariableManager;
+
 import commands.templates.TwoChildCommand;
 
-
+/**
+ * Command to check if a first child is less than the
+ * second
+ * @author Ethan Chang
+ *
+ */
 public class LessThanCommand extends TwoChildCommand {
 
     public LessThanCommand (VariableManager manager) {

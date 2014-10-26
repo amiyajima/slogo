@@ -8,16 +8,11 @@ import backEnd.turtle.TurtleManager;
 
 import commands.templates.TurtleCommand;
 
-/**
- * Hides a turtle
- * @author Ethan Chang
- *
- */
-public class HideTurtleCommand extends TurtleCommand {
-    public static final int HIDE_TURTLE = 0;
+public class StampCommand extends TurtleCommand {
+
     public static final int NUM_CHILDREN = 0;
 
-    public HideTurtleCommand (VariableManager manager) {
+    public StampCommand (VariableManager manager) {
         super(manager);
         setNumChildren(NUM_CHILDREN);
     }
@@ -25,20 +20,22 @@ public class HideTurtleCommand extends TurtleCommand {
     @Override
     public double execute () {
         executeTurtleCommand(getMyTurtleManager());
-        return HIDE_TURTLE;
+        return getValue();
     }
 
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for (Turtle t : turtles) {
-            t.toggleVisibility(HIDE_TURTLE);
+        for (Turtle turtle : turtles) {
+            turtle.setStamp();
+            setValue(turtle.getImageIndex().getValue());
         }
+
     }
 
     @Override
     public String toString () {
-        return "Hide turtle";
+        return null;
     }
 
 }

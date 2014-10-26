@@ -2,8 +2,6 @@ package main;
 
 import java.io.File;
 
-import commands.CommandFactory;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
@@ -15,20 +13,24 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import frontEnd.Workspace;
 import backEnd.Parser;
 
+import commands.CommandFactory;
+
+import frontEnd.Workspace;
+
 public class MasterWindow extends Application {
-	
-	public Workspace currentWorkspace;
-	
-	private Stage stage;
-	private Scene scene;
-	private Pane root = new VBox();
-	private TabPane tabs = new TabPane();
-	private MenuBar menubar;
-	private CommandFactory myCommandFactory;
+
+	private Stage myStage;
+	private Scene myScene;
+
 	private Parser myParser;
+	private Workspace myCurrentWorkspace;
+	private CommandFactory myCommandFactory;
+	
+	private Pane myRoot = new VBox();
+	private TabPane myTabs = new TabPane();
+	private MenuBar myMenuBar;
 
 	static public void main(String[] args) {
 		launch(args);
@@ -38,50 +40,53 @@ public class MasterWindow extends Application {
 	public void start(Stage primaryStage) throws Exception {
 	
 		buildMenuBar();
-		root.getChildren().addAll(menubar, tabs);
-		scene = new Scene(root);
+		myRoot.getChildren().addAll(myMenuBar, myTabs);
+		
+		myScene = new Scene(myRoot);
+		
 		myCommandFactory = new CommandFactory("english");
         myParser = new Parser(myCommandFactory);
 
 		
 		buildWorkspace();
 		
-		stage = primaryStage;
-		stage.setScene(scene);
-		stage.setTitle("SLogo");
-		stage.show();
+		myStage = primaryStage;
+		myStage.setScene(myScene);
+		myStage.setTitle("SLogo");
+		myStage.show();
 	}
 
 	private void buildWorkspace() {
 		
-		currentWorkspace = new Workspace(myParser);
+		myCurrentWorkspace = new Workspace(myParser);
 		setKeyListener();
 		setMouseListener();
 		
-		Tab tab = new Tab("Workspace " + (tabs.getTabs().size() + 1));
-		tab.setContent(currentWorkspace);
+		Tab tab = new Tab("Workspace " + (myTabs.getTabs().size() + 1));
+		
+		tab.setContent(myCurrentWorkspace);
 		tab.getContent().setFocusTraversable(true);
 		tab.setOnSelectionChanged(event -> tabChanged(tab));
 		
-		tabs.getTabs().add(tab);
-		tabs.getSelectionModel().select(tab);
+		myTabs.getTabs().add(tab);
+		myTabs.getSelectionModel().select(tab);
 
 	}
 	
 	private void tabChanged(Tab tab) {
 		if (tab.isSelected()) {
 			tab.getContent().requestFocus();
-			currentWorkspace = (Workspace) tab.getContent();
+			myCurrentWorkspace = (Workspace) tab.getContent();
 			setKeyListener();
 		}
 	}
 	
 	private void setKeyListener() {
-		scene.setOnKeyReleased(currentWorkspace.getKeyListener());
+		myScene.setOnKeyReleased(myCurrentWorkspace.getKeyListener());
 	}
 	
 	private void setMouseListener() {
-		scene.setOnMouseClicked(currentWorkspace.getMouseListener());
+		myScene.setOnMouseClicked(myCurrentWorkspace.getMouseListener());
 	}
 
 /////////////////////// MENU STUFF ////////////////////////
@@ -89,12 +94,12 @@ public class MasterWindow extends Application {
 	 * TODO EXTRACT out all of this MenuBar stuff into its own class
 	 */
 	private void buildMenuBar() {
-		menubar = new MenuBar();
+		myMenuBar = new MenuBar();
 
 		Menu fileMenu = buildFileMenu();
 		Menu editMenu = buildEditMenu();
 
-		menubar.getMenus().addAll(fileMenu, editMenu);
+		myMenuBar.getMenus().addAll(fileMenu, editMenu);
 	}
 
 	private Menu buildFileMenu() {
@@ -132,7 +137,7 @@ public class MasterWindow extends Application {
 	}
 	
 	private void turtleImageFileChooser(FileChooser fileChooser) {
-		File file = fileChooser.showOpenDialog(stage);
+		File file = fileChooser.showOpenDialog(myStage);
 		if (file != null) {
 			//myController.changeTurtleImage(file);
 		}

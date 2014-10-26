@@ -1,15 +1,12 @@
 package commands.turtle_commands;
 
 import java.util.List;
-import java.util.Map;
 
-import commands.templates.Command;
-import commands.templates.TurtleCommand;
 import backEnd.VariableManager;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
 
+import commands.templates.TurtleCommand;
 
 public class BackCommand extends TurtleCommand {
 
@@ -36,7 +33,7 @@ public class BackCommand extends TurtleCommand {
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle t : turtles) {
+        for (Turtle t : turtles) {
             t.moveTurtle(getValue());
         }
     }

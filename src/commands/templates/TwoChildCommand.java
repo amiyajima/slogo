@@ -2,9 +2,12 @@ package commands.templates;
 
 import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.TurtleManager;
 
-
+/**
+ * Command superclass for commands with two children
+ * @author Anna Miyajima
+ *
+ */
 public abstract class TwoChildCommand extends Command {
 
     public static final int NUM_CHILDREN = 2;
@@ -20,7 +23,7 @@ public abstract class TwoChildCommand extends Command {
     }
 
     @Override
-    public void initializeCommand (TurtleManager turtleManager) {
+    public void initializeCommand (Model model) {
     }
 
 }
