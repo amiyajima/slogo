@@ -24,6 +24,7 @@ public class Turtle extends Observable {
 	public static final double INITIAL_ORIENTATION = 0;
     public static final boolean INITIAL_PEN = true;
     public static final boolean INITIAL_CLEAR = false;
+    public static final boolean INITIAL_ACTIVITY = true;
     public static final double INITIAL_STAMP_COUNT = 0;
     public static final int INITIAL_SHAPE_INDEX = 0;
     public static final int DEGREES_IN_A_CIRCLE = 360;
@@ -36,6 +37,7 @@ public class Turtle extends Observable {
     private String myId;
     private DoubleProperty myShapeIndex;
     private DoubleProperty myStampCount;
+    private BooleanProperty myActivity;
 
     private Point2D myHome;
 
@@ -61,6 +63,7 @@ public class Turtle extends Observable {
         myClearLines = new SimpleBooleanProperty(INITIAL_CLEAR);
         myShapeIndex = new SimpleDoubleProperty(INITIAL_SHAPE_INDEX);
         myStampCount = new SimpleDoubleProperty(INITIAL_STAMP_COUNT);
+        myActivity = new SimpleBooleanProperty(INITIAL_ACTIVITY);
         myId = id;
         myPen = new Pen();
     }
@@ -333,5 +336,13 @@ public class Turtle extends Observable {
      */
     public DoubleProperty getShapeIndex () {
         return myShapeIndex;
+    }
+    
+    public void setIsActive(boolean alive) {
+        myActivity.set(alive);
+    }
+    
+    public BooleanProperty getIsActive() {
+        return myActivity;
     }
 }
