@@ -152,4 +152,8 @@ public class View extends VBox implements Observer {
 			printException(e);
 		}
 	}
+
+	public String getBackgroundColor() {
+		return myCanvas.getBackgroundColor();
+	}
 }

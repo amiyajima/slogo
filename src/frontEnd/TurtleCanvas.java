@@ -23,26 +23,33 @@ import backEnd.turtle.TurtleProperties;
 
 public class TurtleCanvas extends Group {
 	
-	private double boundingWidth, boundingHeight, myPadding;
-	private DoubleProperty myWidth, myHeight;
+	private static final double GRID_LINE_WIDTH = .4;
+	private static final int NUM_COLS = 20;
+	private static final int NUM_ROWS = 20;
+	private double myBoundingWidth;
+	private double myBoundingHeight;
+	private double myPadding;
+	private DoubleProperty myWidth;
+	private DoubleProperty myHeight;
 	private Rectangle myBackground;
 	private Group myGridLines;
-	private TurtleView turtleView;
+	private TurtleView myTurtleView;
 	
 	private DoubleProperty myBackgroundIndex;
 	private StringProperty myPalette;
 	
 	private Properties myColorProperties;
 
-	public TurtleCanvas(double width, double height, double padding, Controller controller) throws IOException {
+	public TurtleCanvas (double width, double height, double padding, 
+			Controller controller) throws IOException {
 		super();
 		
 		myWidth = new SimpleDoubleProperty(width);
 		myHeight = new SimpleDoubleProperty(height);
 		myPadding = padding;	
 		
-		boundingWidth = myWidth.get() - 2*myPadding;
-		boundingHeight = myHeight.get() - 2*myPadding;
+		myBoundingWidth = myWidth.get() - 2 * myPadding;
+		myBoundingHeight = myHeight.get() - 2 * myPadding;
 		
 		addBackground();
 		addGridLines();
@@ -59,59 +66,61 @@ public class TurtleCanvas extends Group {
 	}
 	
 	//remove later - currently needed by Controller in changeXPos
-	public void setTurtleX(double x) {
-		turtleView.setTurtleX(x);
+	public void setTurtleX (double x) {
+		myTurtleView.setTurtleX(x);
 	}
 	
 	//remove later - corresponding method for X currently needed by controller
-	public void setTurtleY(double y) {
-		turtleView.setTurtleY(y);
+	public void setTurtleY (double y) {
+		myTurtleView.setTurtleY(y);
 	}
 	
-	public void changeBackgroundColor(Color c) {
+	public void changeBackgroundColor (Color c) {
 		myBackground.setFill(c);
 	}
 	
 	//remove later - currently needed by controller
-	public void changePenColor(Color c) {
+	public void changePenColor (Color c) {
 		//penColor = c;
-		turtleView.changePenColor(c);
+		myTurtleView.changePenColor(c);
 	}
 	
-	public void changeTurtleImage(File f) {
-		turtleView.setImage(new Image("file:"+f.getAbsolutePath()));
+	public void changeTurtleImage (File f) {
+		myTurtleView.setImage(new Image("file:" + f.getAbsolutePath()));
 	}
 	
-	public void toggleGridLines() {
+	public void toggleGridLines () {
 		myGridLines.setVisible(!myGridLines.isVisible());
 	}
 	
-	public void addTurtle(Turtle turtle) throws IOException {
-		ImageView turtleImage = new ImageView(new Image(getClass().getResourceAsStream("../resources/images/rcd.png")));
+	public void addTurtle (Turtle turtle) throws IOException {
+		ImageView turtleImage = new ImageView(new Image(getClass().
+				getResourceAsStream("../resources/images/rcd.png")));
 		TurtleProperties tProps = turtle.getTurtleProperties();
-		turtleView = new TurtleView(tProps, boundingWidth, boundingHeight, turtleImage, myColorProperties);
+		myTurtleView = new TurtleView(tProps, myBoundingWidth, 
+				myBoundingHeight, turtleImage, myColorProperties);
 		//change to just adding group for turtle?
-		getChildren().add(turtleView.getImageView());
-		getChildren().add(turtleView.getPenLines());
-		getChildren().add(turtleView.getStamps());
+		getChildren().add(myTurtleView.getImageView());
+		getChildren().add(myTurtleView.getPenLines());
+		getChildren().add(myTurtleView.getStamps());
 	}
 
-	public void update(Observable o, Object arg) throws IOException {
+	public void update (Observable o, Object arg) throws IOException {
 		System.out.println("HERE!!!!!" + arg.toString());
 		//TODO Change these to Properties to get their names
-		if(arg instanceof Turtle) {
+		if (arg instanceof Turtle) {
 			Turtle turtle = (Turtle)arg;
 			addTurtle(turtle);
 		}
 	}
 
-	private void addBackground() {
+	private void addBackground () {
 		
 		Rectangle container = makeRect(myWidth.doubleValue(), myHeight.doubleValue(), 0, 0);
 		container.setFill(Color.WHITE);
 		container.setStroke(Color.BLACK);
 		
-		myBackground = makeRect(boundingWidth, boundingHeight, myPadding, myPadding);
+		myBackground = makeRect(myBoundingWidth, myBoundingHeight, myPadding, myPadding);
 		myBackground.setFill(Color.WHITE);
 		myBackground.setStroke(Color.BLACK);
 
@@ -119,27 +128,29 @@ public class TurtleCanvas extends Group {
 		getChildren().addAll(container, myBackground);
 	}
 	
-	private void addClipper() {
-		Rectangle container = makeRect(boundingWidth, boundingHeight, myPadding, myPadding);
+	private void addClipper () {
+		Rectangle container = makeRect(myBoundingWidth, myBoundingHeight, myPadding, myPadding);
 		setClip(container);
 	}
 	
-	private Rectangle makeRect(double width, double height, double xpos, double ypos) {
+	private Rectangle makeRect (double width, double height, 
+			double xpos, double ypos) {
 		Rectangle rect = new Rectangle(width, height);
 		rect.setX(xpos);
 		rect.setY(ypos);
 		return rect;
 	}
 	
-	private void addGridLines() {
+	private void addGridLines () {
 		myGridLines = new Group();
-		for (int row = 0; row < 20; row++) {
-			for (int col = 0; col < 20; col++) {
-				Rectangle rect = new Rectangle(boundingWidth/20, boundingHeight/20);
-				rect.setTranslateX(myPadding + rect.getWidth()*col);
-				rect.setTranslateY(myPadding + rect.getHeight()*row);
+		for (int row = 0; row < NUM_ROWS; row++) {
+			for (int col = 0; col < NUM_COLS; col++) {
+				Rectangle rect = new Rectangle(myBoundingWidth / NUM_COLS, 
+						myBoundingHeight / NUM_ROWS);
+				rect.setTranslateX(myPadding + rect.getWidth() * col);
+				rect.setTranslateY(myPadding + rect.getHeight() * row);
 				rect.setStroke(Color.LIGHTGRAY);
-				rect.setStrokeWidth(.4);
+				rect.setStrokeWidth(GRID_LINE_WIDTH);
 				rect.setFill(null);
 				myGridLines.getChildren().add(rect);
 			}
@@ -147,33 +158,34 @@ public class TurtleCanvas extends Group {
 		getChildren().add(myGridLines);
 	}
 		
-	public double getBoundingWidth() {
-		return boundingWidth;
+	public double getBoundingWidth () {
+		return myBoundingWidth;
 	}
 	
-	public double getBoundingHeight() {
-		return boundingHeight;
+	public double getBoundingHeight () {
+		return myBoundingHeight;
 	}
 	
-	public void bindToModelProperties(DoubleProperty backgroundIndex, StringProperty palette) {
+	public void bindToModelProperties (DoubleProperty backgroundIndex, 
+			StringProperty palette) {
 		myBackgroundIndex.bindBidirectional(backgroundIndex);
 		myPalette.bindBidirectional(palette);
 	}
 	
-	private void addListeners() {
+	private void addListeners () {
 		myBackgroundIndex.addListener(new ChangeListener<Object>() {
 			@Override
-			public void changed(ObservableValue<? extends Object> observable,
+			public void changed (ObservableValue<? extends Object> observable,
 					Object oldValue, Object newValue) {
-//				String str = myColorResources.getString(myBackgroundIndex.getValue().intValue() + "");
-				String str = myColorProperties.getProperty(myBackgroundIndex.getValue().intValue() + "");
+				String str = myColorProperties.getProperty(
+						myBackgroundIndex.getValue().intValue() + "");
 				Color c = Color.valueOf(str);
 				changeBackgroundColor(c);
 			}
 		});
 		myPalette.addListener(new ChangeListener<Object>() {
 			@Override
-			public void changed(ObservableValue<? extends Object> observable,
+			public void changed (ObservableValue<? extends Object> observable,
 					Object oldValue, Object newValue) {
 				// write to property object
 				String[] strArray = myPalette.get().split(": ");
@@ -182,5 +194,9 @@ public class TurtleCanvas extends Group {
 				myColorProperties.setProperty(key, value);
 			}
 		});
+	}
+
+	public String getBackgroundColor () {
+		return myBackground.getFill().toString();
 	}
 }

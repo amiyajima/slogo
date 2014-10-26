@@ -12,13 +12,16 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import backEnd.Controller;
 import backEnd.Model;
 import backEnd.Parser;
 
 public class Workspace extends VBox {
 
-	public Properties myDisplayProperties;
+	private static final String BACKGROUND = "background";
+
+	private Properties myDisplayProperties;
 
 	private Model myModel;
 	private View myView;
@@ -58,6 +61,7 @@ public class Workspace extends VBox {
 
 	public void savePropertiesToFile(File file) {
 		try {
+			saveDisplayProperties();
 			OutputStream fileOS = new FileOutputStream(file);
 			myDisplayProperties.store(fileOS, null);
 			fileOS.close();
@@ -70,15 +74,26 @@ public class Workspace extends VBox {
 		try {
 			InputStream fileIS = new FileInputStream(file);
 			myDisplayProperties.load(fileIS);
+			loadDisplayProperties();
 		} catch (IOException e) {
 			System.out.println(e.toString() + ": " + file.toString());
 		}
 		printProps();
 	}
+
 	private void printProps() {
 		for (Object s:myDisplayProperties.keySet()) {
 			System.out.println(s);
 		}
 	}
-
+	
+	private void loadDisplayProperties() {
+		String str = myDisplayProperties.getProperty(BACKGROUND);
+		Color c = Color.valueOf(str);
+		myView.changeBackgroundColor(c);
+	}
+	
+	private void saveDisplayProperties() {
+		myDisplayProperties.setProperty(BACKGROUND, myView.getBackgroundColor());
+	}
 }

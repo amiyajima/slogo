@@ -38,7 +38,6 @@ public class VariableTitlePane extends TitledPane {
 		for(Object o : keys) {
 			String key = (String)o;
 			String val = myVarProps.getProperty(key);
-			System.out.println(keys);
 			if(!myVarMap.containsKey(key) || !myVarMap.get(key).equals(val) 
 					|| myVarMap.keySet().size()!=keys.size()) {
 				writeVariables(keys);
