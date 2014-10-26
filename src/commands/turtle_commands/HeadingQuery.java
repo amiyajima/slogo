@@ -2,13 +2,17 @@ package commands.turtle_commands;
 
 import java.util.List;
 
-import commands.templates.TurtleCommand;
 import backEnd.VariableManager;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
 
+import commands.templates.TurtleCommand;
 
+/**
+ * Retrieve orientation of turtle
+ * @author Ethan Chang
+ *
+ */
 public class HeadingQuery extends TurtleCommand {
 
     public static final int NUM_CHILDREN = 0;
@@ -21,7 +25,7 @@ public class HeadingQuery extends TurtleCommand {
     @Override
     public double execute () {
         List<Turtle> turtles = getMyTurtleManager().getTurtleList();
-        setValue(turtles.get(turtles.size()-1).getOrientation());
+        setValue(turtles.get(turtles.size() - 1).getOrientation());
         return getValue();
     }
 

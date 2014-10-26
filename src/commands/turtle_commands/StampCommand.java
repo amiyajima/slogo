@@ -5,12 +5,13 @@ import java.util.List;
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.TurtleCommand;
 
 public class StampCommand extends TurtleCommand {
-    
+
     public static final int NUM_CHILDREN = 0;
-    
+
     public StampCommand (VariableManager manager) {
         super(manager);
         setNumChildren(NUM_CHILDREN);
@@ -25,15 +26,14 @@ public class StampCommand extends TurtleCommand {
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle turtle : turtles) {
+        for (Turtle turtle : turtles) {
             turtle.setStamp();
         }
-        
+
     }
 
     @Override
     public String toString () {
-        // TODO Auto-generated method stub
         return null;
     }
 

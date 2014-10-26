@@ -2,9 +2,8 @@ package commands.variable_commands;
 
 import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.TurtleManager;
-import commands.templates.Command;
 
+import commands.templates.Command;
 
 public class CommandsList extends Command {
 
@@ -13,8 +12,8 @@ public class CommandsList extends Command {
     }
 
     /**
-     * Executes every command in commandsList.
-     * returns the value of this whole branch.
+     * Executes every command in commandsList. returns the value of this whole
+     * branch.
      */
     @Override
     public double execute () {
@@ -27,20 +26,20 @@ public class CommandsList extends Command {
 
     @Override
     public String toString () {
-        //return getMyChildren().toString();
+        // return getMyChildren().toString();
         return "tostring of commandslist";
     }
 
     public Command getChild (int index) {
         return getMyChildren().get(index);
     }
-    
-    public int getNumChildren(){
+
+    public int getNumChildren () {
         return getMyChildren().size();
     }
 
     @Override
-    public void initializeCommand (TurtleManager turtleManager) {
+    public void initializeCommand (Model model) {
     }
 
 }

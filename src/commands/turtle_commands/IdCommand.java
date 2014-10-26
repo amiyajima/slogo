@@ -5,11 +5,16 @@ import java.util.List;
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.TurtleCommand;
 
-public class IdCommand extends TurtleCommand{
+/**
+ * Returns the last active turtle's id
+ * @author Ethan Chang
+ *
+ */
+public class IdCommand extends TurtleCommand {
     public static final int NUM_CHILDREN = 0;
-
 
     public IdCommand (VariableManager manager) {
         super(manager);
@@ -25,7 +30,7 @@ public class IdCommand extends TurtleCommand{
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtleList = turtleManager.getTurtleList();
-        setValue(Double.parseDouble(turtleList.get(turtleList.size()-1).getId()));
+        setValue(Double.parseDouble(turtleList.get(turtleList.size() - 1).getId()));
     }
 
     @Override

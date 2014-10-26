@@ -1,26 +1,23 @@
 package commands.variable_commands;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
-import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.TurtleManager;
+
 import commands.templates.Command;
 import commands.templates.TwoChildCommand;
 
-
 /**
  * A for loop command.
- * 
+ *
  * Input format: for [ :x 1 10 1 ] [ forward :x ]
- * 
+ *
  * @author annamiyajima
  *
  */
 public class ForCommand extends TwoChildCommand {
 
+    public static final int THIRD_CHILD = 3;
     private Command myForList;
 
     public ForCommand (VariableManager manager) {
@@ -34,15 +31,14 @@ public class ForCommand extends TwoChildCommand {
         myForList = getMyChildren().get(0);
         int i = (int) ((CommandsList) myForList).getChild(1).execute();
         int upperBound = (int) ((CommandsList) myForList).getChild(2).execute();
-        int increment = (int) ((CommandsList) myForList).getChild(3).execute();
+        int increment = (int) ((CommandsList) myForList).getChild(THIRD_CHILD).execute();
 
         while (i < upperBound) {
             System.out.println(((CommandsList) myForList).getChild(0).toString());
             try {
                 getVariableManager().addVar(((CommandsList) myForList).getChild(0).toString(),
-                                         String.valueOf(i));
-            }
-            catch (IOException e) {
+                        String.valueOf(i));
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             result += getMyChildren().get(1).execute();
@@ -54,10 +50,10 @@ public class ForCommand extends TwoChildCommand {
 
     @Override
     public String toString () {
-        return "for " + ((CommandsList) myForList).getChild(0) + " from " +
-               ((CommandsList) myForList).getChild(1) + " to " +
-               ((CommandsList) myForList).getChild(2) +
-               " incrementing by " + ((CommandsList) myForList).getChild(3) + " execute " +
-               getMyChildren().get(1).toString();
+        return "for " + ((CommandsList) myForList).getChild(0) + " from "
+                + ((CommandsList) myForList).getChild(1) + " to "
+                + ((CommandsList) myForList).getChild(2) + " incrementing by "
+                + ((CommandsList) myForList).getChild(THIRD_CHILD) + " execute "
+                + getMyChildren().get(1).toString();
     }
 }

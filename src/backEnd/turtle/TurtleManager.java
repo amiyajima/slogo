@@ -134,6 +134,10 @@ public class TurtleManager extends Observable {
         }
     }
     
+    /**
+     * Returns number of turtles in the manager
+     * @return number of turtles
+     */
     public int getNumberOfTurtles () {
         return myTurtles.size();
     }

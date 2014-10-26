@@ -1,13 +1,11 @@
 package backEnd;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Stack;
-
 
 public class VariableManager {
 
@@ -19,9 +17,7 @@ public class VariableManager {
         myVariables = new Properties();
         try {
             setInitialVarProperties();
-        }
-        catch (IOException e) {
-            // TODO Auto-generated catch block
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -30,8 +26,7 @@ public class VariableManager {
         InputStream fileInput = getClass().getResourceAsStream("/resources/Variables.properties");
     }
 
-    public void pushVarProperties (Map<String, String> variableMap) throws FileNotFoundException,
-                                                                   IOException {
+    public void pushVarProperties (Map<String, String> variableMap) throws IOException {
         System.out.println("entered pushvarproperties. myVariables are " + myVariables);
         System.out.println("stack before push is: " + myStoredVariables);
         Properties addToStack = new Properties();
@@ -56,7 +51,7 @@ public class VariableManager {
         return Double.parseDouble(myVariables.getProperty(var));
     }
 
-    public void popVarProperties () throws FileNotFoundException, IOException {
+    public void popVarProperties () throws IOException {
         System.out.println("stack before pop is: " + myStoredVariables);
         myVariables = myStoredVariables.pop();
         System.out.println("stack after pop is: " + myStoredVariables);
@@ -69,7 +64,7 @@ public class VariableManager {
         writeVarsToFile();
     }
 
-    private void writeVarsToFile () throws FileNotFoundException, IOException {
+    private void writeVarsToFile () throws IOException {
         FileOutputStream myFileOutput = new FileOutputStream("src/resources/Variables.properties");
         myVariables.store(myFileOutput, "adding vars");
     }

@@ -5,12 +5,18 @@ import java.util.List;
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.TurtleCommand;
 
+/**
+ * Clears a stamp
+ * @author ethanchang
+ *
+ */
 public class ClearStampCommand extends TurtleCommand {
 
     public static final int NUM_CHILDREN = 0;
-    
+
     public ClearStampCommand (VariableManager manager) {
         super(manager);
         setNumChildren(NUM_CHILDREN);
@@ -25,7 +31,7 @@ public class ClearStampCommand extends TurtleCommand {
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle turtle : turtles) {
+        for (Turtle turtle : turtles) {
             turtle.clearStamp();
         }
     }

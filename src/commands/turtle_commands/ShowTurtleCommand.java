@@ -4,11 +4,15 @@ import java.util.List;
 
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.TurtleCommand;
 
-
+/**
+ * Command to show a turtle
+ * @author Ethan Chang
+ *
+ */
 public class ShowTurtleCommand extends TurtleCommand {
     public static final int SHOW_TURTLE = 1;
     public static final int NUM_CHILDREN = 0;
@@ -27,7 +31,7 @@ public class ShowTurtleCommand extends TurtleCommand {
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
-        for(Turtle t : turtles) {
+        for (Turtle t : turtles) {
             t.toggleVisibility(SHOW_TURTLE);
         }
     }

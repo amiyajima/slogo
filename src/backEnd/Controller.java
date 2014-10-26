@@ -11,7 +11,7 @@ public class Controller {
 	private Model myModel;
 	private View myView;
 
-	public Controller(Model model, View view) {
+	public Controller (Model model, View view) {
 		myModel = model;
 		myView = view;
 		
@@ -21,36 +21,35 @@ public class Controller {
 //		myView.bindToModelProperties(myModel.getBackgroundIndex()); //to set up later
 	}
 
-	public void runScript(String script) {
+	public void runScript (String script) {
 		if (script != null) {
 			try {
 			    myModel.runScript(script);
 			}
-			catch(SLogoException e) {
+			catch (SLogoException e) {
 			    System.out.println(e.getMessage());
 			}
 			myView.addToHistory(script);
 		}
 	}
-	
-	public void changeBackgroundColor(Color c) {
+
+	public void changeBackgroundColor (Color c) {
 		myView.changeBackgroundColor(c);
 	}
 
-	public void changePenColor(Color c) {
+	public void changePenColor (Color c) {
 		myView.changePenColor(c);
 	}
 
-	public void changeTurtleImage(File f) {
+	public void changeTurtleImage (File f) {
 		myView.changeTurtleImage(f);
 	}
 
-	public void toggleGridLines() {
+	public void toggleGridLines () {
 		myView.toggleGridLines();
 	}
 	
-	public void changeLanguage(String language) {
-		//TODO
+	public void changeLanguage (String language) {
 		myModel.changeLanguage(language);
 	}
 

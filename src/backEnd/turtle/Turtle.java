@@ -14,7 +14,6 @@ import javafx.geometry.Point2D;
  * it can raise and lower, altering when lines are drawn. It always begins at the
  * origin and can return home.
  * @author Ethan Chang
- * @author Anna Miyajima
  * @author Eli Lichtenberg
  *
  */
@@ -24,6 +23,7 @@ public class Turtle extends Observable {
     public static final boolean INITIAL_PEN = true;
     public static final boolean INITIAL_CLEAR = false;
     public static final int INITIAL_IMAGE_INDEX = 1;
+    public static final int DEGREES_IN_A_CIRCLE = 360;
     private BooleanProperty myPenDown;
     private TurtlePoint myPosition;
     private DoubleProperty myOrientation;
@@ -66,7 +66,7 @@ public class Turtle extends Observable {
      */
     public void moveTurtle (double distance) {
         int penState = isPenDown() ? 1 : 0;
-        double direction = distance <0 ? -1 : 1;
+        double direction = distance < 0 ? -1 : 1;
         
         for (int i = 0; i < Math.abs(distance); i++) {
             movementHelper(direction, penState);
@@ -94,7 +94,7 @@ public class Turtle extends Observable {
      * @param change factor the orientation changes
      */
     public void turnTurtle (double change) {
-        setOrientation(getOrientation() + change);
+        setOrientation((getOrientation() + change) % DEGREES_IN_A_CIRCLE);
     }
     
     /**
@@ -245,7 +245,7 @@ public class Turtle extends Observable {
             newX = 0;
         }
         
-        if (myPosition.getY()< 0) {
+        if (myPosition.getY() < 0) {
             togglePen(0);
             newY = myCanvasHeight;
         }

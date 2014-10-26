@@ -1,17 +1,14 @@
 package commands.variable_commands;
 
-import java.util.Map;
-
 import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.TurtleManager;
+
 import commands.templates.Command;
 
-
 /**
- * 
+ *
  * ifelse 5 [ sum 3 5 ] [ forward 50 ]
- * 
+ *
  * @author annamiyajima
  *
  */
@@ -29,8 +26,7 @@ public class IfElseCommand extends Command {
         if (getMyChildren().get(0).execute() != 0) {
 
             return getMyChildren().get(1).execute();
-        }
-        else {
+        } else {
 
             return getMyChildren().get(2).execute();
         }
@@ -38,12 +34,13 @@ public class IfElseCommand extends Command {
 
     @Override
     public String toString () {
-        return "If " + getMyChildren().get(0).execute() + " != 0, execute " +
-               getMyChildren().get(1) + " if " + getMyChildren().get(0).execute() +
-               " == 0, execute " + getMyChildren().get(2);
+        return "If " + getMyChildren().get(0).execute() + " != 0, execute "
+                + getMyChildren().get(1) + " if " + getMyChildren().get(0).execute()
+                + " == 0, execute " + getMyChildren().get(2);
     }
+
     @Override
-    public void initializeCommand (TurtleManager turtleManager) {
+    public void initializeCommand (Model model) {
 
     }
 

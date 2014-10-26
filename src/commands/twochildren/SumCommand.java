@@ -1,9 +1,14 @@
 package commands.twochildren;
 
 import backEnd.VariableManager;
+
 import commands.templates.TwoChildCommand;
 
-
+/**
+ * Command to find the sum of two children
+ * @author Ethan Chang
+ *
+ */
 public class SumCommand extends TwoChildCommand {
 
     public SumCommand (VariableManager manager) {

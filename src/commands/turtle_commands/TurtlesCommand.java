@@ -2,13 +2,18 @@ package commands.turtle_commands;
 
 import backEnd.VariableManager;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.TurtleCommand;
 
+/**
+ * Command to return the number of turtles
+ * @author ethanchang
+ *
+ */
 public class TurtlesCommand extends TurtleCommand {
 
     public TurtlesCommand (VariableManager manager) {
         super(manager);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
@@ -26,6 +31,5 @@ public class TurtlesCommand extends TurtleCommand {
     public String toString () {
         return Double.toString(getValue());
     }
-
 
 }

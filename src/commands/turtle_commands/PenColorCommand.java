@@ -5,10 +5,11 @@ import java.util.List;
 import backEnd.VariableManager;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.TurtleCommand;
 
 /**
- * 
+ *Command to set the color of the pen
  * @author Ethan Chang
  *
  */
@@ -36,6 +37,5 @@ public class PenColorCommand extends TurtleCommand {
     public String toString () {
         return null;
     }
-
 
 }
