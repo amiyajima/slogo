@@ -28,13 +28,13 @@ public class ForCommand extends TwoChildCommand {
     public double execute () {
         double result = 0;
         myForList = getMyChildren().get(0);
-        int i = (int) ((CommandsList) myForList).getChild(1).execute();
-        int upperBound = (int) ((CommandsList) myForList).getChild(2).execute();
-        int increment = (int) ((CommandsList) myForList).getChild(THIRD_CHILD).execute();
+        int i = (int)((CommandsList)myForList).getChild(1).execute();
+        int upperBound = (int)((CommandsList)myForList).getChild(2).execute();
+        int increment = (int)((CommandsList)myForList).getChild(THIRD_CHILD).execute();
 
         while (i < upperBound) {
             try {
-                getVariableManager().addVar(((CommandsList) myForList).getChild(0).toString(),
+                getVariableManager().addVar(((CommandsList)myForList).getChild(0).toString(),
                                             String.valueOf(i));
             }
             catch (IOException e) {
@@ -50,10 +50,10 @@ public class ForCommand extends TwoChildCommand {
 
     @Override
     public String toString () {
-        return "for " + ((CommandsList) myForList).getChild(0) + " from "
-               + ((CommandsList) myForList).getChild(1) + " to "
-               + ((CommandsList) myForList).getChild(2) + " incrementing by "
-               + ((CommandsList) myForList).getChild(THIRD_CHILD) + " execute "
+        return "for " + ((CommandsList)myForList).getChild(0) + " from "
+               + ((CommandsList)myForList).getChild(1) + " to "
+               + ((CommandsList)myForList).getChild(2) + " incrementing by "
+               + ((CommandsList)myForList).getChild(THIRD_CHILD) + " execute "
                + getMyChildren().get(1).toString();
     }
 }

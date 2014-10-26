@@ -4,7 +4,14 @@ import backEnd.Model;
 import backEnd.VariableManager;
 
 import commands.templates.TwoChildCommand;
-
+/**
+ * Repeat Command, repeats commands expr times
+ * 
+ * Input format: repeat expr [ commands ] 
+ * 
+ * @author annamiyajima
+ *
+ */
 public class RepeatCommand extends TwoChildCommand {
 
     public RepeatCommand (VariableManager manager) {

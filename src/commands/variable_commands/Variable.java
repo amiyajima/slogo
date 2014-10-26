@@ -2,12 +2,16 @@ package commands.variable_commands;
 
 import backEnd.Model;
 import backEnd.VariableManager;
-
 import commands.templates.Command;
-
 import exceptions.UndefinedVariableException;
 
 
+/**
+ * A variable command. Contains only its value (ie. :x)
+ * 
+ * @author annamiyajima
+ *
+ */
 public class Variable extends Command {
 
     private String myValue;

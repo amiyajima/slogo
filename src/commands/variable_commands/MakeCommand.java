@@ -4,7 +4,12 @@ import java.io.IOException;
 import backEnd.VariableManager;
 import commands.templates.TwoChildCommand;
 
-
+/**
+ * Make command, assigns value expr to var
+ * Input format: make var expr
+ * @author annamiyajima
+ *
+ */
 public class MakeCommand extends TwoChildCommand {
 
     private VariableManager myVarManager;
@@ -18,7 +23,7 @@ public class MakeCommand extends TwoChildCommand {
     public double execute () {
         try {
             myVarManager.addVar(getMyChildren().get(0).toString(),
-                                ((Double) (getMyChildren().get(1).execute())).toString());
+                                ((Double)(getMyChildren().get(1).execute())).toString());
         }
         catch (IOException e) {
             e.printStackTrace();

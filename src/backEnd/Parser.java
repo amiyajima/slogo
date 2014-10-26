@@ -74,10 +74,10 @@ public class Parser {
 
     
     private String removeComments (String script) {
-        String lines[] = script.split("\\n");
+        String lines [] = script.split("\\n");
         String s = "";
-        for(String line : lines) {
-            if(!line.startsWith("#")) {
+        for (String line : lines) {
+            if (!line.startsWith("#")) {
                 s += line + " ";
             }
         }
@@ -94,7 +94,10 @@ public class Parser {
      * @throws RuntimeException
      */
 
-    public Command makeTree (String commandName, Model model, VariableManager variableManager, Map<String, Command> commandsmap) {
+    public Command makeTree (String commandName,
+                             Model model,
+                             VariableManager variableManager,
+                             Map<String, Command> commandsmap) {
         Map<String, Command> commandsMap = model.getCommandsMap();
         System.out.println(commandName);
         Command c = myFactory.buildCommand(commandName, model, variableManager);
@@ -110,12 +113,12 @@ public class Parser {
             return c;
         }
         else if (Pattern.matches(CONSTANT_REGEX, commandName) ||
-                Pattern.matches(VARIABLE_REGEX, commandName)) {
+                 Pattern.matches(VARIABLE_REGEX, commandName)) {
             return c;
         }
-        else if (Pattern.matches(COMMAND_REGEX, commandName) || commandsMap.keySet().contains(commandName)) {
+        else if (Pattern.matches(COMMAND_REGEX, commandName) ||
+                 commandsMap.keySet().contains(commandName)) {
             while (c.getNumChildrenNeeded() > 0) {
-                System.out.println("ADDING A CHILD");
                 c.addChild(makeTree(myInstructions.nextToken(), model, variableManager, commandsMap));
             }
         }
