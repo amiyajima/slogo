@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 
 public class LoadPropertiesTitlePane extends TitledPane {
 
+    public String DEFAULT_XML_DIRECTORY = "./src/resources";
+    
     public LoadPropertiesTitlePane (Controller controller) {
         setText("Load Properties");
         VBox root = new VBox();
@@ -24,13 +26,15 @@ public class LoadPropertiesTitlePane extends TitledPane {
     }
 
     private void openFile (Controller contr) {
+        File currentFile = new File(DEFAULT_XML_DIRECTORY);
         FileChooser varPropertiesChooser = new FileChooser();
         varPropertiesChooser.setTitle("Upload Image");
         varPropertiesChooser.getExtensionFilters()
                 .addAll(
                         new FileChooser.ExtensionFilter("VariableProperties",
                                                         "*.properties"));
-
+        varPropertiesChooser.setInitialDirectory(currentFile);
+        
         Stage fileStage = new Stage();
         File file = varPropertiesChooser.showOpenDialog(fileStage);
         if (file != null)
