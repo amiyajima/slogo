@@ -84,9 +84,9 @@ public class View extends VBox implements Observer {
 		myScriptPanel.addTextToScript(command);
 	}
 	
-	public void setupVariableMap(Map<String, Double> varMap) {
-		mySidePanel.setupVariableMap(varMap);
-	}
+//	public void setupVariableMap(Map<String, Double> varMap) {
+//		mySidePanel.setupVariableMap(varMap);
+//	}
 	
 /////////////////  GUI SETUP  //////////////////
 	private void setupGui() {
@@ -110,7 +110,12 @@ public class View extends VBox implements Observer {
 	}
 	
 	private Node buildSidePanel() {
-		mySidePanel = new ParameterPanel(myWidth/4., 3.*myHeight/4., myController);
+		try {
+			mySidePanel = new ParameterPanel(myWidth/4., 3.*myHeight/4., myController);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			printException(e);
+		}
 		return mySidePanel;
 	}
 	

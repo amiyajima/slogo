@@ -1,5 +1,6 @@
 package panels;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javafx.scene.control.Accordion;
@@ -27,7 +28,7 @@ public class ParameterPanel extends Pane {
     private HelpTitlePane myHelpTitlePane;
     private LoadPropertiesTitlePane myLoadPropertiesTitlePane;
 
-    public ParameterPanel (double width, double height, Controller controller) {
+    public ParameterPanel (double width, double height, Controller controller) throws IOException {
 
         setMinWidth(width);
         setMinHeight(height);
@@ -53,11 +54,11 @@ public class ParameterPanel extends Pane {
         myHistoryTitlePane.addToHistory(script);
     }
 
-    public void setupVariableMap (Map<String, Double> varMap) {
-        myVariableTitlePane.setupVariableMap(varMap);
-    }
+//    public void setupVariableMap (Map<String, Double> varMap) {
+//        myVariableTitlePane.setupVariableMap(varMap);
+//    }
 
-    private void setupTitledPanes (Controller controller) {
+    private void setupTitledPanes (Controller controller) throws IOException {
         myDisplayTitlePane = new DisplayTitlePane(controller);
         myHistoryTitlePane = new HistoryTitlePane(controller);
         myControlTitlePane = new ControlTitlePane(controller);
