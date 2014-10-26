@@ -2,7 +2,9 @@ package commands.variable_commands;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import backEnd.Model;
 import backEnd.VariableManager;
@@ -14,7 +16,7 @@ import exceptions.SLogoException;
 /**
  * A user created command
  *
- * TO newcommand [ :k 5 :x 2 ] [ sum :k 5 forward :x ]
+ * TO newcommand [ :k :x ] [ sum :k 5 forward :x ]
  *
  * @author annamiyajima
  *
@@ -23,7 +25,8 @@ public class UserInputCommand extends Command {
 
     public static final int NUM_CHILDREN = 2;
     public String myName;
-    private Map<String, String> myLocalVariables;
+    private List <String> myParameters;
+    //private Map<String, String> myLocalVariables;
 
     public UserInputCommand (VariableManager manager) {
         this("", manager);
@@ -33,12 +36,17 @@ public class UserInputCommand extends Command {
         super(manager);
         myName = commandName;
         setNumChildren(NUM_CHILDREN);
-        myLocalVariables = new HashMap<String, String>();
+        //myLocalVariables = new HashMap<String, String>();
+        myParameters = new ArrayList<String>();
+    }
+    
+    public List<String> getParameterList(){
+     return myParameters;   
     }
 
     @Override
     public double execute () {
-        VariableManager variablemanager = getVariableManager();
+        /*VariableManager variablemanager = getVariableManager();
         CommandsList myVariableList = (CommandsList) getMyChildren().get(0);
         // works up to here then UnsupportedOperationException
         for (int i = 0; i < myVariableList.getNumChildren(); i++) {
@@ -75,7 +83,12 @@ public class UserInputCommand extends Command {
         catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }*/
+        CommandsList myVariableList = (CommandsList) getMyChildren().get(0);
+        for(int i = 0; i<myVariableList.getNumChildren();i++){
+            myParameters.add(myVariableList.getChild(i).toString());
         }
+        System.out.println("list of parameters in userinputcommand are " + myParameters);
         return 1;
     }
 

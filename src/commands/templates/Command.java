@@ -44,7 +44,7 @@ public abstract class Command {
      * 
      * @return
      */
-    protected List<Command> getMyChildren () {
+    public List<Command> getMyChildren () {
         return myChildren;
     }
 

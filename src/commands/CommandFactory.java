@@ -2,16 +2,16 @@ package commands;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-
-
 import main.ResourceFinder;
 import backEnd.Model;
 import backEnd.VariableManager;
-
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
+import commands.variable_commands.ToCommand;
+import commands.variable_commands.UserDefinedCommand;
 import commands.variable_commands.UserInputCommand;
 import commands.variable_commands.Variable;
 import exceptions.InvalidInputException;
@@ -24,11 +24,11 @@ import exceptions.InvalidInputException;
  *
  */
 public class CommandFactory {
-	
+
     private String myClassKey;
 
     public CommandFactory () {
-    	
+
     }
 
     /**
@@ -40,9 +40,9 @@ public class CommandFactory {
      * @return Return true if the command is valid
      */
     private boolean checkLanguage (String type) {
-    	
-    	ResourceBundle languageResources = ResourceFinder.getMyLanguageResources();
-    	
+
+        ResourceBundle languageResources = ResourceFinder.getMyLanguageResources();
+
         for (String s : languageResources.keySet()) {
             String[] possibilities = languageResources.getString(s).split(",");
             for (String possibility : possibilities) {
@@ -115,7 +115,7 @@ public class CommandFactory {
                 }
                 Command newCommand = null;
                 try {
-                    newCommand = (Command)con.newInstance(variableManager);
+                    newCommand = (Command) con.newInstance(variableManager);
                 }
                 catch (IllegalArgumentException e) {
                     throw new InvalidInputException("%s is an invalid input", type);
@@ -123,7 +123,7 @@ public class CommandFactory {
                 catch (InvocationTargetException e) {
                     throw new InvalidInputException("%s is an invalid input", type);
                 }
-                
+
                 newCommand.initializeCommand(model);
                 return newCommand;
             }
@@ -150,7 +150,11 @@ public class CommandFactory {
 
         if (checkUserCommand(type, commandsMap)) {
             System.out.println("COMMAND EXISTS IN THE MAP: " + commandsMap);
-            return commandsMap.get(type);
+            UserInputCommand premadeCommand =
+                    (UserInputCommand) (commandsMap.get(type).getMyChildren().get(0));
+            Command userCommand =
+                    new UserDefinedCommand(variableManager, premadeCommand.getParameterList());
+            return userCommand;
         }
 
         return new UserInputCommand(type, variableManager);
