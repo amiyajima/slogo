@@ -9,10 +9,13 @@ Anna Miyajima, Brian Bolze, Eli Lichtenberg, Ethan Chang
 ___ Man Hours 
 
 ####ROLES:
-Anna - Backend with a focus on variable commands and the parser
-Brian - Frontend
-Eli - Frontend
-Ethan - Backend with a focus on turtle and turtle commands 
+Anna: Backend with a focus on variable commands and the parser
+
+Brian: Frontend
+
+Eli: Frontend
+
+Ethan: Backend with a focus on turtle and turtle commands 
 
 ####RESOURCES: 
 Stackoverflow
