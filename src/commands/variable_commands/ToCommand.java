@@ -4,7 +4,13 @@ import backEnd.VariableManager;
 import commands.templates.OneChildCommand;
 import exceptions.SLogoException;
 
-
+/**
+ * Parent node for user input command. Executes the user input command
+ * Input format: TO commandName [ variables ] [ commands ] 
+ * 
+ * @author annamiyajima
+ *
+ */
 public class ToCommand extends OneChildCommand {
 
     public ToCommand (VariableManager manager) {

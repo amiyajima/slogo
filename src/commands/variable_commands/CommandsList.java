@@ -6,7 +6,12 @@ import backEnd.VariableManager;
 import commands.templates.Command;
 
 public class CommandsList extends Command {
-
+    /**
+     * This command adds all commands within brackets [ ] as children and executes all of these
+     * children
+     * 
+     * @param manager
+     */
     public CommandsList (VariableManager manager) {
         super(manager);
     }
