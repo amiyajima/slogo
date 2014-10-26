@@ -4,10 +4,15 @@ import backEnd.Model;
 import backEnd.VariableManager;
 import backEnd.turtle.TurtleManager;
 import commands.templates.Command;
-import commands.templates.OneChildCommand;
 import exceptions.UndefinedVariableException;
 
 
+/**
+ * A variable command. Contains only its value (ie. :x)
+ * 
+ * @author annamiyajima
+ *
+ */
 public class Variable extends Command {
 
     private String myValue;

@@ -9,6 +9,15 @@ import backEnd.Model;
 import backEnd.VariableManager;
 import commands.templates.Command;
 
+
+/**
+ * This User Defined command is created when a previously defined user command is called
+ * This command takes in variable parameters and uses these in running commands copied in from the
+ * corresponding user input command
+ * 
+ * @author annamiyajima
+ *
+ */
 public class UserDefinedCommand extends Command {
 
     public static final int NUM_CHILDREN = 1;
@@ -16,17 +25,16 @@ public class UserDefinedCommand extends Command {
     private VariableManager myVariableManager;
     private Map<String, String> myLocalVariables;
     private Command myCommandsToExecute;
-    
-    public UserDefinedCommand(VariableManager manager, UserInputCommand premadeCommand){
+
+    public UserDefinedCommand (VariableManager manager, UserInputCommand premadeCommand) {
         super(manager);
-        System.out.println("userdefinedcommand created with list " + premadeCommand);
         myVariables = premadeCommand.getParameterList();
         myVariableManager = getVariableManager();
-        myLocalVariables = new HashMap<String,String>();
+        myLocalVariables = new HashMap<String, String>();
         myCommandsToExecute = premadeCommand.getMyChildren().get(1);
         setNumChildren(NUM_CHILDREN);
     }
-    
+
     @Override
     public double execute () {
         mapVariables();
@@ -36,35 +44,29 @@ public class UserDefinedCommand extends Command {
             myVariableManager.pushVarProperties(myLocalVariables);
         }
         catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.println("executing commands in userdefinedcommand");
         getMyChildren().get(1).execute();
         try {
             myVariableManager.popVarProperties();
         }
         catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return 0;
     }
 
     private void mapVariables () {
-        CommandsList myVariableValues = (CommandsList) getMyChildren().get(0);
-        for(int i = 0; i<myVariables.size(); i++){
-            myLocalVariables.put(myVariables.get(i),myVariableValues.getChild(i).toString());
+        CommandsList myVariableValues = (CommandsList)getMyChildren().get(0);
+        for (int i = 0; i < myVariables.size(); i++) {
+            myLocalVariables.put(myVariables.get(i), myVariableValues.getChild(i).toString());
         }
-        System.out.println("mapVariables completed in userdefinedcommand. myvariables are " + myLocalVariables);
     }
 
     @Override
@@ -74,8 +76,6 @@ public class UserDefinedCommand extends Command {
 
     @Override
     public void initializeCommand (Model model) {
-        // TODO Auto-generated method stub
-
     }
 
 }

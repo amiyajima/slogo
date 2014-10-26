@@ -32,20 +32,18 @@ public class VariableManager {
         myVariables.load(fileInput);
     }
     
-    public void setVarProperties(File f){
+    public void setVarProperties (File f) {
         FileInputStream fileInput = null;
         try {
             fileInput = new FileInputStream(f);
         }
         catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         try {
             myVariables.load(fileInput);
         }
         catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         System.out.println(myVariables);

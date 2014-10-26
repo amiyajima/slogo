@@ -2,12 +2,13 @@ package commands.variable_commands;
 
 import backEnd.Model;
 import backEnd.VariableManager;
-
 import commands.templates.Command;
 
+
 /**
+ * An If else command, runs true commands if expr is not 0, and false commands otherwise
  *
- * ifelse 5 [ sum 3 5 ] [ forward 50 ]
+ * Input format: ifelse expr [ true commands ] [ false commands ]
  *
  * @author annamiyajima
  *
@@ -26,7 +27,8 @@ public class IfElseCommand extends Command {
         if (getMyChildren().get(0).execute() != 0) {
 
             return getMyChildren().get(1).execute();
-        } else {
+        }
+        else {
 
             return getMyChildren().get(2).execute();
         }
@@ -35,9 +37,8 @@ public class IfElseCommand extends Command {
     @Override
     public String toString () {
         return "If " + getMyChildren().get(0).execute() + " != 0, execute "
-                + getMyChildren().get(1) + " if " + getMyChildren().get(0).execute()
-                + " == 0, execute " + getMyChildren().get(2);
-    }
+               + getMyChildren().get(1) + " if " + getMyChildren().get(0).execute()
+               + " == 0, execute " + getMyChildren().get(2); }
 
     @Override
     public void initializeCommand (Model model) {
