@@ -38,11 +38,21 @@ public class VariableManager {
         }
     }
 
+    /**
+     * Sets variable properties file to default values
+     * 
+     * @throws IOException
+     */
     private void setInitialVarProperties () throws IOException {
         InputStream fileInput = getClass().getResourceAsStream("/resources/Variables.properties");
         myVariables.load(fileInput);
     }
 
+    /**
+     * Sets variable properties from a user defined file
+     * 
+     * @param f
+     */
     public void setVarProperties (File f) {
         FileInputStream fileInput = null;
         try {
@@ -60,6 +70,45 @@ public class VariableManager {
         System.out.println(myVariables);
     }
 
+    /**
+     * Returns the value of a variable
+     * 
+     * @param var
+     * @return
+     */
+    public double getVar (String var) {
+        return Double.parseDouble(myVariables.getProperty(var));
+    }
+
+    /**
+     * Adds a variable to the properties file
+     * 
+     * @param var
+     * @param value
+     * @throws IOException
+     */
+    public void addVar (String var, String value) throws IOException {
+        myVariables.setProperty(var, value);
+        writeVarsToFile();
+    }
+
+    /**
+     * Checks if a variable has been defined in the current frame of reference
+     * 
+     * @param var
+     * @return
+     */
+    public boolean checkVarExists (String var) {
+        return myVariables.containsKey(var);
+    }
+
+    /**
+     * Creates a new frame of variables to be defined and read
+     * Used in user defined commands and loops
+     * 
+     * @param variableMap
+     * @throws IOException
+     */
     public void pushVarProperties (Map<String, String> variableMap) throws IOException {
         Properties addToStack = new Properties();
         for (Object s : myVariables.keySet()) {
@@ -71,26 +120,19 @@ public class VariableManager {
         writeVarsToFile();
     }
 
-    public double getVar (String var) {
-        return Double.parseDouble(myVariables.getProperty(var));
-    }
-
+    /**
+     * Pops off variable values from a previous frame of reference
+     * used to exit loops and user defined commands
+     * 
+     * @throws IOException
+     */
     public void popVarProperties () throws IOException {
         myVariables = myStoredVariables.pop();
-        writeVarsToFile();
-    }
-
-    public void addVar (String var, String value) throws IOException {
-        myVariables.setProperty(var, value);
         writeVarsToFile();
     }
 
     private void writeVarsToFile () throws IOException {
         FileOutputStream myFileOutput = new FileOutputStream("src/resources/Variables.properties");
         myVariables.store(myFileOutput, "adding vars");
-    }
-
-    public boolean checkVarExists (String var) {
-        return myVariables.containsKey(var);
     }
 }
