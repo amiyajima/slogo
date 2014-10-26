@@ -28,7 +28,7 @@ public class StampCommand extends TurtleCommand {
         List<Turtle> turtles = turtleManager.getTurtleList();
         for (Turtle turtle : turtles) {
             turtle.setStamp();
-            setValue(turtle.getImageIndex().getValue());
+            setValue(turtle.getShapeIndex().getValue());
         }
 
     }

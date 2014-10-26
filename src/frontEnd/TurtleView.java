@@ -43,8 +43,10 @@ public class TurtleView {
 	
 	private DoubleProperty myPenColorIndex;
 	private DoubleProperty myPenSize;
+	private DoubleProperty myShapeIndex;
 	
 	private ResourceBundle myColorResources;
+	private ResourceBundle myImageResources;
 	
 	public TurtleView(TurtleProperties tProps, double boundingWidth, double boundingHeight, ImageView imageView) {
 		myImageView = imageView;
@@ -58,6 +60,7 @@ public class TurtleView {
 		myImageView.setY(initialY);
 		
 		myColorResources = ResourceBundle.getBundle("resources/PenColors");
+		myImageResources = ResourceBundle.getBundle("resources/images/Images");
 		
 		myLineStartX = myXPosition.get();
 		myLineStartY = myYPosition.get();
@@ -71,6 +74,7 @@ public class TurtleView {
 		myStampCount = new SimpleDoubleProperty(0);
 		myPenColorIndex = new SimpleDoubleProperty(0);
 		myPenSize = new SimpleDoubleProperty(0);
+		myShapeIndex = new SimpleDoubleProperty(0);
 		addListeners();
 		bindProperties(tProps);
 	}
@@ -204,9 +208,17 @@ public class TurtleView {
 			public void changed(ObservableValue<? extends Object> observable,
 					Object oldValue, Object newValue) {
 				String str = myColorResources.getString(myPenColorIndex.getValue().intValue() + "");
-				System.out.println(str);
 				Color c = Color.valueOf(str);
 				changePenColor(c);
+			}
+		});
+		myShapeIndex.addListener(new ChangeListener<Object>() {
+			@Override
+			public void changed(ObservableValue<? extends Object> observable,
+					Object oldValue, Object newValue) {
+				String str = myImageResources.getString(myShapeIndex.getValue().intValue() + "");
+				System.out.println("shape is: " + str);
+				setImage(new Image("/resources/images/" + str));
 			}
 		});
 	}
@@ -233,5 +245,6 @@ public class TurtleView {
 		
 		myPenColorIndex.bindBidirectional(tProps.getPenColorIndex());
 		myPenSize.bindBidirectional(tProps.getPenSize());
+		myShapeIndex.bindBidirectional(tProps.getShapeIndex());
 	}
 }

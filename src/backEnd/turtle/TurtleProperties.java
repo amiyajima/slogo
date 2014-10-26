@@ -22,10 +22,12 @@ public class TurtleProperties {
 	private DoubleProperty myStampCount;
 	private DoubleProperty myPenColorIndex;
 	private DoubleProperty myPenSize;
+	private DoubleProperty myShapeIndex;
 	
 	public TurtleProperties (TurtlePoint position, DoubleProperty orientation, 
 	        BooleanProperty isPenDown, BooleanProperty linesCleared, 
-	        BooleanProperty isVisible, DoubleProperty stampCount, Pen pen) {
+	        BooleanProperty isVisible, DoubleProperty stampCount, Pen pen, 
+	        DoubleProperty shapeIndex) {
 		myPosition = position;
 		myOrientation = orientation;
 		myPenState = isPenDown;
@@ -34,6 +36,7 @@ public class TurtleProperties {
 		myStampCount = stampCount;
 		myPenColorIndex = pen.getMyPenColorProperty();
 		myPenSize = pen.getMyPenSize();
+		myShapeIndex = shapeIndex;
 	}
 	
 	public DoubleProperty getXPosition () {
@@ -78,5 +81,9 @@ public class TurtleProperties {
 	
 	public DoubleProperty getPenSize () {
 		return myPenSize;
+	}
+	
+	public DoubleProperty getShapeIndex () {
+		return myShapeIndex;
 	}
 }
