@@ -75,4 +75,8 @@ public class ParameterPanel extends Pane {
         new VScrollableDecorator(myCommandTitlePane, maxHeight);
     }
 
+	public void updateVariables() throws IOException {
+		myVariableTitlePane.updateVariables();
+	}
+
 }

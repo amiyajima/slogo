@@ -143,4 +143,13 @@ public class View extends VBox implements Observer {
 	public void bindToModelProperties (DoubleProperty backgroundIndex, StringProperty palette) {
 		myCanvas.bindToModelProperties(backgroundIndex, palette);
 	}
+
+	public void updateVariables() {
+		try {
+			mySidePanel.updateVariables();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			printException(e);
+		}
+	}
 }
