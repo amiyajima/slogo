@@ -106,4 +106,8 @@ public class Parser {
         }
         return c;
     }
+    
+    public void changeLanguage(String language) {
+    	myFactory.changeLanguage(language);
+    }
 }

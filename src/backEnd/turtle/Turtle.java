@@ -19,7 +19,8 @@ import javafx.geometry.Point2D;
  */
 public class Turtle extends Observable {
 
-    public static final double INITIAL_ORIENTATION = 0;
+    public static final boolean INITIAL_VISIBILITY = true;
+	public static final double INITIAL_ORIENTATION = 0;
     public static final boolean INITIAL_PEN = true;
     public static final boolean INITIAL_CLEAR = false;
     public static final int INITIAL_IMAGE_INDEX = 1;
@@ -35,7 +36,7 @@ public class Turtle extends Observable {
 
     private Point2D myHome;
 
-    private boolean myVisibility;
+    private BooleanProperty myVisibility;
     private Pen myPen;
 
     /**
@@ -52,7 +53,7 @@ public class Turtle extends Observable {
         myOrientation = new SimpleDoubleProperty(INITIAL_ORIENTATION);
         myCanvasWidth = canvasWidth;
         myCanvasHeight = canvasHeight;
-        myVisibility = true;
+        myVisibility = new SimpleBooleanProperty(INITIAL_VISIBILITY);
         myPenDown = new SimpleBooleanProperty(INITIAL_PEN);
         myClearLines = new SimpleBooleanProperty(INITIAL_CLEAR);
         myImageIndex = new SimpleDoubleProperty(INITIAL_IMAGE_INDEX);
@@ -183,13 +184,11 @@ public class Turtle extends Observable {
      */
     public void toggleVisibility (double d) {
         if (d == 1) {
-            myVisibility = true;
+            myVisibility.set(true);
         }
         else {
-            myVisibility = false;
+            myVisibility.set(false);
         }
-        setChanged();
-        notifyObservers(myVisibility);
     }
 
     /**
@@ -289,7 +288,7 @@ public class Turtle extends Observable {
      * @return the turtle's visibility
      */
     public boolean isVisible () {
-        return myVisibility;
+        return myVisibility.get();
     }
     
     /**
@@ -298,7 +297,7 @@ public class Turtle extends Observable {
      */
     public TurtleProperties getTurtleProperties () {
     	TurtleProperties tProps = new 
-    	        TurtleProperties(myPosition, myOrientation, myPenDown, myClearLines);
+    	        TurtleProperties(myPosition, myOrientation, myPenDown, myClearLines, myVisibility);
     	return tProps;
     }
     
