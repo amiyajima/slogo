@@ -28,6 +28,7 @@ public class VariableManager {
 
     private void setInitialVarProperties () throws IOException {
         InputStream fileInput = getClass().getResourceAsStream("/resources/Variables.properties");
+        myVariables.load(fileInput);
     }
 
     public void pushVarProperties (Map<String, String> variableMap) throws FileNotFoundException,

@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 import backEnd.Model;
 import backEnd.VariableManager;
 import backEnd.turtle.TurtleManager;
@@ -24,7 +23,7 @@ import exceptions.SLogoException;
 public class UserInputCommand extends Command {
 
     public static final int NUM_CHILDREN = 2;
-    public static String myName;
+    public String myName;
     private Map<String, String> myLocalVariables;
 
     public UserInputCommand (VariableManager manager) {
