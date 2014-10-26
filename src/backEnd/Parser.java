@@ -56,10 +56,10 @@ public class Parser {
     List<Command> parseScript (String script, Model model, VariableManager variableManager) {
 
         Map<String, Command> commandsMap = model.getCommandsMap();
-        
+
         List<Command> myRoots = new ArrayList<Command>();
         myInstructions = new StringTokenizer(script);
-        
+
         while (myInstructions.hasMoreTokens()) {
             Command createdCommand =
                     makeTree(myInstructions.nextToken(), model, variableManager);
@@ -89,13 +89,15 @@ public class Parser {
             String nextInstruction = myInstructions.nextToken();
             while (!(Pattern.matches(CLOSE_BRACKET_REGEX, nextInstruction))) {
                 c.addChild(makeTree(nextInstruction, model, variableManager));
-                if (!myInstructions.hasMoreElements()) { throw new InvalidInputException("Open brackets must have a corresponding ']'"); }
+                if (!myInstructions.hasMoreElements()) { 
+                    throw new InvalidInputException("Open brackets must have a corresponding ']'"); 
+                }
                 nextInstruction = myInstructions.nextToken();
             }
             return c;
         }
         else if (Pattern.matches(CONSTANT_REGEX, commandName) ||
-                 Pattern.matches(VARIABLE_REGEX, commandName)) {
+                Pattern.matches(VARIABLE_REGEX, commandName)) {
             return c;
         }
         else if (Pattern.matches(COMMAND_REGEX, commandName)) {

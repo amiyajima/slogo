@@ -7,8 +7,11 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Stack;
 
+import exceptions.InvalidPropertyFileException;
+
 public class VariableManager {
 
+    private static final String RESOURCES_VARIABLES_PATH = "src/resources/Variables.properties";
     private Properties myVariables;
     private Stack<Properties> myStoredVariables;
 
@@ -17,13 +20,14 @@ public class VariableManager {
         myVariables = new Properties();
         try {
             setInitialVarProperties();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } 
+        catch (IOException e) {
+            throw new InvalidPropertyFileException("Invalid property file loaded");
         }
     }
 
     private void setInitialVarProperties () throws IOException {
-        InputStream fileInput = getClass().getResourceAsStream("/resources/Variables.properties");
+        InputStream fileInput = getClass().getResourceAsStream("RESOURCES_VARIABLES_PATH");
         myVariables.load(fileInput);
     }
 
@@ -32,7 +36,7 @@ public class VariableManager {
         System.out.println("stack before push is: " + myStoredVariables);
         Properties addToStack = new Properties();
         for (Object s : myVariables.keySet()) {
-            addToStack.setProperty((String) s, (String) myVariables.get(s));
+            addToStack.setProperty((String)s, (String)myVariables.get(s));
         }
         myStoredVariables.push(addToStack);
         myVariables.clear();
@@ -57,7 +61,7 @@ public class VariableManager {
     }
 
     private void writeVarsToFile () throws IOException {
-        FileOutputStream myFileOutput = new FileOutputStream("src/resources/Variables.properties");
+        FileOutputStream myFileOutput = new FileOutputStream(RESOURCES_VARIABLES_PATH);
         myVariables.store(myFileOutput, "adding vars");
     }
 
