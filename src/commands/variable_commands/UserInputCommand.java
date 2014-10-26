@@ -4,14 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 import backEnd.Model;
 import backEnd.VariableManager;
-
 import commands.ConstantCommand;
 import commands.templates.Command;
-
 import exceptions.SLogoException;
+
 
 /**
  * A user created command
@@ -23,8 +21,8 @@ import exceptions.SLogoException;
  */
 public class UserInputCommand extends Command {
 
-    public static final int NUM_CHILDREN = 3;
-    public static String myName;
+    public static final int NUM_CHILDREN = 2;
+    public String myName;
     private Map<String, String> myLocalVariables;
 
     public UserInputCommand (VariableManager manager) {
@@ -40,40 +38,41 @@ public class UserInputCommand extends Command {
 
     @Override
     public double execute () {
-        System.out.println(getMyChildren());
         VariableManager variablemanager = getVariableManager();
-        System.out.println("variable manager setting success");
-
         CommandsList myVariableList = (CommandsList) getMyChildren().get(0);
-        System.out.println(myLocalVariables);
+        // works up to here then UnsupportedOperationException
         for (int i = 0; i < myVariableList.getNumChildren(); i++) {
             if (myVariableList.getChild(i) instanceof Variable) {
-                myLocalVariables.keySet().add(myVariableList.getChild(i).toString());
-            } else if (myVariableList.getChild(i) instanceof ConstantCommand) {
-                myLocalVariables.put((myVariableList.getChild(i - 1).toString()), myVariableList
-                        .getChild(i).toString());
-            } else {
+                // just skip over variable names
+            }
+            else if (myVariableList.getChild(i) instanceof ConstantCommand) {
+                myLocalVariables.put((myVariableList.getChild(i - 1).toString()),
+                                     myVariableList.getChild(i).toString());
+            }
+            else {
                 throw new SLogoException("cannot create command -- enter in correct format");
             }
         }
-        System.out.println("my local variables are " + myLocalVariables);
         try {
             variablemanager.pushVarProperties(myLocalVariables);
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
+        }
+        catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        getMyChildren().get(2).execute();
-        System.out.println("execute finished in userinput");
-        try {
-            variablemanager.popVarProperties();
-        } catch (FileNotFoundException e) {
+        catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (IOException e) {
+        }
+        getMyChildren().get(1).execute();
+        try {
+            variablemanager.popVarProperties();
+        }
+        catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -82,7 +81,7 @@ public class UserInputCommand extends Command {
 
     @Override
     public String toString () {
-        return "userinputcommand tostring";
+        return myName;
     }
 
     @Override

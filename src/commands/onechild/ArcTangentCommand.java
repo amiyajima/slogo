@@ -8,7 +8,6 @@ public class ArcTangentCommand extends OneChildCommand {
 
     public ArcTangentCommand (VariableManager manager) {
         super(manager);
-        // TODO Auto-generated constructor stub
     }
 
     @Override

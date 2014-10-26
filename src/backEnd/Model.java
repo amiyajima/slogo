@@ -1,8 +1,12 @@
 package backEnd;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
 
@@ -10,18 +14,22 @@ import commands.templates.Command;
 
 import frontEnd.View;
 
+
 public class Model {
 
+    public static final int INITIAL_BACKGROUND_INDEX = 1;
     private Parser myParser;
     private Turtle myTurtle;
     private VariableManager myVariableManager;
     private TurtleManager myTurtleManager;
+    private HashMap<String, Command> myCommandsList;
+    private DoubleProperty backgroundIndex = new SimpleDoubleProperty();
 
     public Model (Parser parser) {
-
         myVariableManager = new VariableManager();
         myParser = parser;
-
+        myCommandsList = new HashMap<String, Command>();
+        backgroundIndex.set(INITIAL_BACKGROUND_INDEX);
     }
 
     public void setupTurtleManager (View view) {
@@ -36,7 +44,7 @@ public class Model {
      * package also
      * 
      * @param script
-     *            The input string of syntax from the text-field
+     *        The input string of syntax from the text-field
      * 
      * @return Returns 0 if the input is valid. Returns 1 if there is a syntax
      *         error. Can be extended to return different Doubles for different
@@ -46,7 +54,7 @@ public class Model {
     int runScript (String script) {
 
         List<Command> rootCommands = myParser.parseScript(script, this,
-                myVariableManager);
+                                                          myVariableManager);
 
         // System.out.println("beginning execution " + rootCommands);
 
@@ -54,7 +62,7 @@ public class Model {
             c.execute();
         }
         // print root commands here AKA the compiled tree
-        System.out.println(rootCommands);
+        System.out.println("root commands are " + rootCommands);
         return 0;
     }
 
@@ -68,6 +76,18 @@ public class Model {
 
     public TurtleManager getTurtleManager () {
         return myTurtleManager;
+    }
+
+    public Map<String, Command> getCommandsMap () {
+        return myCommandsList;
+    }
+    
+    public DoubleProperty getBackgroundIndex () {
+        return backgroundIndex;
+    }
+    
+    public void setBackgroundIndex (double index) {
+        backgroundIndex.setValue(index);
     }
 
 }

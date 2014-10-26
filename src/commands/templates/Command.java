@@ -27,7 +27,6 @@ public abstract class Command {
      */
     public Command (VariableManager manager) {
         myChildren = new ArrayList<>();
-        System.out.println(this.getClass().getName() + " created");
         myVariableManager = manager;
     }
 

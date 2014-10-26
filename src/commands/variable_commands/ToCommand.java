@@ -1,10 +1,9 @@
 package commands.variable_commands;
 
 import backEnd.VariableManager;
-
 import commands.templates.OneChildCommand;
-
 import exceptions.SLogoException;
+
 
 public class ToCommand extends OneChildCommand {
 
@@ -12,12 +11,13 @@ public class ToCommand extends OneChildCommand {
         super(manager);
     }
 
-    @Override
-    public double execute () {
-        System.out.println("execute called on to");
+    public ToCommand (VariableManager manager, ToCommand original) {
+        this(manager);
+        this.addChild(original.getMyChildren().get(0));
+    }
 
+    public double execute () {
         if (getMyChildren().get(0) instanceof UserInputCommand) {
-            System.out.println("execute called on user input command");
             getMyChildren().get(0).execute();
         }
 
@@ -29,7 +29,7 @@ public class ToCommand extends OneChildCommand {
 
     @Override
     public String toString () {
-        return "ToCommand tostring";
+        return getMyChildren().get(0).toString();
 
     }
 

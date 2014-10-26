@@ -19,10 +19,12 @@ import javafx.geometry.Point2D;
  */
 public class Turtle extends Observable {
 
+
     public static final boolean INITIAL_VISIBILITY = true;
 	public static final double INITIAL_ORIENTATION = 0;
     public static final boolean INITIAL_PEN = true;
     public static final boolean INITIAL_CLEAR = false;
+    public static final double INITIAL_STAMP_COUNT = 0;
     public static final int INITIAL_IMAGE_INDEX = 1;
     public static final int DEGREES_IN_A_CIRCLE = 360;
     private BooleanProperty myPenDown;
@@ -33,6 +35,7 @@ public class Turtle extends Observable {
     private BooleanProperty myClearLines;
     private String myId;
     private DoubleProperty myImageIndex;
+    private DoubleProperty myStampCount;
 
     private Point2D myHome;
 
@@ -57,6 +60,7 @@ public class Turtle extends Observable {
         myPenDown = new SimpleBooleanProperty(INITIAL_PEN);
         myClearLines = new SimpleBooleanProperty(INITIAL_CLEAR);
         myImageIndex = new SimpleDoubleProperty(INITIAL_IMAGE_INDEX);
+        myStampCount = new SimpleDoubleProperty(INITIAL_STAMP_COUNT);
         myId = id;
         myPen = new Pen();
     }
@@ -141,14 +145,14 @@ public class Turtle extends Observable {
      * Sets a stamp of the turtle on the canvas
      */
     public void setStamp () {
-        
+        myStampCount.set(myStampCount.getValue() + 1);
     }
     
     /**
      * Remomves all stamps the turtle has drawn.
      */
     public void clearStamp () {
-        
+        myStampCount.set(INITIAL_STAMP_COUNT);
     }
     
     /**
@@ -297,7 +301,8 @@ public class Turtle extends Observable {
      */
     public TurtleProperties getTurtleProperties () {
     	TurtleProperties tProps = new 
-    	        TurtleProperties(myPosition, myOrientation, myPenDown, myClearLines, myVisibility);
+    	        TurtleProperties(myPosition, myOrientation, myPenDown, 
+    	        		myClearLines, myVisibility, myStampCount);
     	return tProps;
     }
     

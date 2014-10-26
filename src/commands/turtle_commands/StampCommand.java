@@ -20,7 +20,7 @@ public class StampCommand extends TurtleCommand {
     @Override
     public double execute () {
         executeTurtleCommand(getMyTurtleManager());
-        return 0;
+        return getValue();
     }
 
     @Override
@@ -28,6 +28,7 @@ public class StampCommand extends TurtleCommand {
         List<Turtle> turtles = turtleManager.getTurtleList();
         for (Turtle turtle : turtles) {
             turtle.setStamp();
+            setValue(turtle.getImageIndex().getValue());
         }
 
     }
