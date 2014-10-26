@@ -31,6 +31,7 @@ public class ClearCommand extends TurtleCommand {
         for (Turtle turtle : turtles) {
             setValue(turtle.goHome());
             turtle.clearMyLines();
+            turtle.setOrientation(0.0);
         }
     }
 

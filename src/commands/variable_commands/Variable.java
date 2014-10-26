@@ -1,7 +1,7 @@
 package commands.variable_commands;
 
+import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.TurtleManager;
 
 import commands.templates.Command;
 
@@ -28,8 +28,7 @@ public class Variable extends Command {
         if (getVariableManager().checkVarExists(myValue)) {
             System.out.println("checking if " + myValue + " exists");
             return getVariableManager().getVar(myValue);
-        }
-        else {
+        } else {
             System.out.println("throw var not found error here (in variable class)");
         }
         return 0;
@@ -41,7 +40,7 @@ public class Variable extends Command {
     }
 
     @Override
-    public void initializeCommand (TurtleManager turtleManager) {
+    public void initializeCommand (Model model) {
 
     }
 

@@ -1,7 +1,7 @@
 package commands;
 
+import backEnd.Model;
 import backEnd.VariableManager;
-import backEnd.turtle.TurtleManager;
 
 import commands.templates.Command;
 
@@ -25,7 +25,7 @@ public class ConstantCommand extends Command {
 
     /**
      * ConstantCommands take in the additional variable of a String
-     * 
+     *
      * @param myVariableMap
      *            map of all variables
      * @param value
@@ -50,7 +50,7 @@ public class ConstantCommand extends Command {
     }
 
     @Override
-    public void initializeCommand (TurtleManager turtleManager) {
+    public void initializeCommand (Model model) {
     }
 
 }

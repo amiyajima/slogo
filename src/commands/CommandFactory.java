@@ -4,9 +4,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ResourceBundle;
 
+import backEnd.Model;
 import backEnd.VariableManager;
 import backEnd.turtle.TurtleManager;
-
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import commands.variable_commands.UserInputCommand;
@@ -88,7 +88,7 @@ public class CommandFactory {
      * @return Either the type of command requested, or an exception
      */
 
-    public Command buildCommand (String type, TurtleManager turtleManager,
+    public Command buildCommand (String type, Model model,
             VariableManager variableManager) {
         type = checkCaps(type);
         if (checkLanguage(type)) {
@@ -111,7 +111,7 @@ public class CommandFactory {
                     e.printStackTrace();
                 }
                 if (newCommand instanceof TurtleCommand) {
-                    newCommand.initializeCommand(turtleManager);
+                    newCommand.initializeCommand(model);
                 }
                 return newCommand;
             } catch (InstantiationException e) {
