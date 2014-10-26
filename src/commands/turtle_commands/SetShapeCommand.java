@@ -33,7 +33,7 @@ public class SetShapeCommand extends TurtleCommand {
     public void executeTurtleCommand (TurtleManager turtleManager) {
         List<Turtle> turtles = turtleManager.getTurtleList();
         for (Turtle turtle : turtles) {
-            turtle.setImageIndex(getValue());
+            turtle.setShapeIndex(getValue());
         }
 
     }
