@@ -21,6 +21,15 @@ import backEnd.Controller;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleProperties;
 
+/**
+ * Portion of GUI on which graphical representation of turtles move.
+ * 
+ * @author Brian Bolze
+ * @author Ethan Chang
+ * @author Eli Lichtenberg
+ * @author Anna Miyajima
+ *
+ */
 public class TurtleCanvas extends Group {
 	
 	private static final double GRID_LINE_WIDTH = .4;
@@ -34,20 +43,24 @@ public class TurtleCanvas extends Group {
 	private Rectangle myBackground;
 	private Group myGridLines;
 	private TurtleView myTurtleView;
-	
 	private DoubleProperty myBackgroundIndex;
 	private StringProperty myPalette;
-	
 	private Properties myColorProperties;
-
-	public TurtleCanvas (double width, double height, double padding, 
-			Controller controller) throws IOException {
+	
+	/**
+	 * Constructor for TurtleCanvas. Sets width, height, and padding.
+	 * 
+	 * @param width Width of canvas GUI element
+	 * @param height Height of canvas GUI element
+	 * @param padding Padding between GUI elements
+	 * @throws IOException
+	 */
+	public TurtleCanvas (double width, double height, double padding) 
+			throws IOException {
 		super();
-		
 		myWidth = new SimpleDoubleProperty(width);
 		myHeight = new SimpleDoubleProperty(height);
 		myPadding = padding;	
-		
 		myBoundingWidth = myWidth.get() - 2 * myPadding;
 		myBoundingHeight = myHeight.get() - 2 * myPadding;
 		
@@ -57,57 +70,57 @@ public class TurtleCanvas extends Group {
 		
 		myBackgroundIndex = new SimpleDoubleProperty(0);
 		myPalette = new SimpleStringProperty("");
-		
 		myColorProperties = new Properties();
 		InputStream fileInput = getClass().getResourceAsStream("/resources/PenColors.properties");
 		myColorProperties.load(fileInput);
-		
 		addListeners();
 	}
 	
-	//remove later - currently needed by Controller in changeXPos
-	public void setTurtleX (double x) {
-		myTurtleView.setTurtleX(x);
-	}
-	
-	//remove later - corresponding method for X currently needed by controller
-	public void setTurtleY (double y) {
-		myTurtleView.setTurtleY(y);
-	}
-	
+	/**
+	 * Sets background color of canvas.
+	 * @param c Color to make canvas background
+	 */
 	public void changeBackgroundColor (Color c) {
 		myBackground.setFill(c);
 	}
 	
-	//remove later - currently needed by controller
+	/**
+	 * Sets color of turtle's pen.
+	 * @param c Color to make pen
+	 */
 	public void changePenColor (Color c) {
-		//penColor = c;
 		myTurtleView.changePenColor(c);
 	}
 	
+	/**
+	 * Changes the image used to display a turtle on the canvas.
+	 * @param f File holding image
+	 */
 	public void changeTurtleImage (File f) {
 		myTurtleView.setImage(new Image("file:" + f.getAbsolutePath()));
 	}
 	
+	/**
+	 * If grid lines are off, turns on grid lines.
+	 * If grid lines are on, turns off grid lines.
+	 */
 	public void toggleGridLines () {
 		myGridLines.setVisible(!myGridLines.isVisible());
 	}
 	
-	public void addTurtle (Turtle turtle) throws IOException {
+	private void addTurtle (Turtle turtle) throws IOException {
 		ImageView turtleImage = new ImageView(new Image(getClass().
 				getResourceAsStream("../resources/images/rcd.png")));
 		TurtleProperties tProps = turtle.getTurtleProperties();
 		myTurtleView = new TurtleView(tProps, myBoundingWidth, 
 				myBoundingHeight, turtleImage, myColorProperties);
-		//change to just adding group for turtle?
 		getChildren().add(myTurtleView.getImageView());
 		getChildren().add(myTurtleView.getPenLines());
 		getChildren().add(myTurtleView.getStamps());
 	}
-
-	public void update (Observable o, Object arg) throws IOException {
+	
+	void update (Observable o, Object arg) throws IOException {
 		System.out.println("HERE!!!!!" + arg.toString());
-		//TODO Change these to Properties to get their names
 		if (arg instanceof Turtle) {
 			Turtle turtle = (Turtle)arg;
 			addTurtle(turtle);
@@ -158,31 +171,34 @@ public class TurtleCanvas extends Group {
 		getChildren().add(myGridLines);
 	}
 		
+	/**
+	 * Returns the width by which turtles are bounded on the canvas.
+	 * @return Bounding width of canvas
+	 */
 	public double getBoundingWidth () {
 		return myBoundingWidth;
 	}
 	
+	/**
+	 * Returns the height by which turtles are bounded on the canvas.
+	 * @return Bounding height of canvas
+	 */
 	public double getBoundingHeight () {
 		return myBoundingHeight;
 	}
 	
-	public void bindToModelProperties (DoubleProperty backgroundIndex, 
+	void bindToModelProperties (DoubleProperty backgroundIndex, 
 			StringProperty palette) {
 		myBackgroundIndex.bindBidirectional(backgroundIndex);
 		myPalette.bindBidirectional(palette);
 	}
 	
 	private void addListeners () {
-		myBackgroundIndex.addListener(new ChangeListener<Object>() {
-			@Override
-			public void changed (ObservableValue<? extends Object> observable,
-					Object oldValue, Object newValue) {
-				String str = myColorProperties.getProperty(
-						myBackgroundIndex.getValue().intValue() + "");
-				Color c = Color.valueOf(str);
-				changeBackgroundColor(c);
-			}
-		});
+		addBackgroundIndexListener();
+		addPaletteListener();
+	}
+
+	private void addPaletteListener () {
 		myPalette.addListener(new ChangeListener<Object>() {
 			@Override
 			public void changed (ObservableValue<? extends Object> observable,
@@ -196,6 +212,23 @@ public class TurtleCanvas extends Group {
 		});
 	}
 
+	private void addBackgroundIndexListener () {
+		myBackgroundIndex.addListener(new ChangeListener<Object>() {
+			@Override
+			public void changed (ObservableValue<? extends Object> observable,
+					Object oldValue, Object newValue) {
+				String str = myColorProperties.getProperty(
+						myBackgroundIndex.getValue().intValue() + "");
+				Color c = Color.valueOf(str);
+				changeBackgroundColor(c);
+			}
+		});
+	}
+	
+	/**
+	 * Returns String representing color of background of canvas.
+	 * @return Background color of canvas as String
+	 */
 	public String getBackgroundColor () {
 		return myBackground.getFill().toString();
 	}

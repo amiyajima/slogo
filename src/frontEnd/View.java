@@ -16,19 +16,38 @@ import panels.ParameterPanel;
 import panels.ScriptPanel;
 import backEnd.Controller;
 
+/**
+ * View for SLogo. Holds a canvas for the graphical representations of turtles
+ * and other GUI elements.
+ * 
+ * @author Brian Bolze
+ * @author Ethan Chang
+ * @author Eli Lichtenberg
+ * @author Anna Miyajima
+ *
+ */
 public class View extends VBox implements Observer {
 	
+	private static final double GUI_CONSTANT = .75;
+	private static final double PADDING = 20;
 	@SuppressWarnings("unused")
 	private String myLanguage;
 	private Controller myController;
 	private TurtleCanvas myCanvas;
 	
-	private double myWidth, myHeight;
-	private static final double PADDING = 20;
+	private double myWidth;
+	private double myHeight;
+	
 	private ParameterPanel mySidePanel;
 	private ScriptPanel myScriptPanel;
 	
-	public View(double width, double height, String language) {
+	/**
+	 * Constructor for view. Sets the language, height, and width of the GUI.
+	 * @param width Width of GUI
+	 * @param height Height of GUI
+	 * @param language Langugage in which commands will be read
+	 */
+	public View (double width, double height, String language) {
 		super();
 		
 		myLanguage = language;	
@@ -40,120 +59,162 @@ public class View extends VBox implements Observer {
 	/**
 	 * Called by Controller constructor
 	 */
-	public void addControllerAndSetupGui(Controller controller) {
+	public void addControllerAndSetupGui (Controller controller) {
 		myController = controller;
 		setupGui();
 	}
 	
-	public void printException(Exception e) {
+	/**
+	 * Prints exception to GUI.
+	 * @param e Exception
+	 */
+	public void printException (Exception e) {
 		myScriptPanel.printException(e);
 	}
 	
 	/**
-	 * Called by Model when it sets up its turtle
+	 * Returns width of the view's canvas.
+	 * @return Width of canvas
 	 */
-	public double getCanvasWidth() {
+	public double getCanvasWidth () {
 		return myCanvas.getBoundingWidth();
 	}
 	
-	public double getCanvasHeight() {
+	/**
+	 * Returns height of the view's canvas.
+	 * @return Height of canvas
+	 */
+	public double getCanvasHeight () {
 		return myCanvas.getBoundingHeight();
 	}
 
 	/**
-	 * Update the view whenever (observed) data changes in the model
+	 * Update the view whenever (observed) data changes in the model.
 	 * 
 	 * @param arg
 	 *            The data that has been changed
 	 */
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update (Observable o, Object arg) {
 		try {
 			myCanvas.update(o, arg);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} 
+		catch (IOException e) {
 			printException(e);
 		}
 	}
 	
-	public void addToHistory(String script) {
+	/**
+	 * Adds the most recently run script to the view's log of past commands.
+	 * @param script Most recently run script
+	 */
+	public void addToHistory (String script) {
 		mySidePanel.addToHistory(script);
 	}
 	
-	public void addTextToScript(String command) {
+	/**
+	 * Adds text to the view's script panel.
+	 * @param command Command to add to script panel
+	 */
+	public void addTextToScript (String command) {
 		myScriptPanel.addTextToScript(command);
 	}
 	
-//	public void setupVariableMap(Map<String, Double> varMap) {
-//		mySidePanel.setupVariableMap(varMap);
-//	}
-	
 /////////////////  GUI SETUP  //////////////////
-	private void setupGui() {
+	private void setupGui () {
 		
 		HBox hbox = new HBox();
-		hbox.setMinHeight(3.*myHeight/4.);
+		hbox.setMinHeight(myHeight * GUI_CONSTANT);
 		hbox.setMinWidth(myWidth);
 		hbox.getChildren().addAll(buildCanvas(), buildSidePanel());
 		
 		getChildren().addAll(hbox, buildScriptPanel());
 	}
 	
-	private Node buildCanvas() {
+	private Node buildCanvas () {
 		try {
-			myCanvas = new TurtleCanvas(3.*myWidth/4., 3.*myHeight/4., PADDING, myController);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			myCanvas = new TurtleCanvas(myWidth * GUI_CONSTANT, 
+					myHeight * GUI_CONSTANT, PADDING);
+		} 
+		catch (IOException e) {
 			printException(e);
 		}
 		return myCanvas;
 	}
 	
-	private Node buildSidePanel() {
+	private Node buildSidePanel () {
 		try {
-			mySidePanel = new ParameterPanel(myWidth/4., 3.*myHeight/4., myController);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			mySidePanel = new ParameterPanel(myWidth / 4., 
+					myHeight * GUI_CONSTANT, myController);
+		} 
+		catch (IOException e) {
 			printException(e);
 		}
 		return mySidePanel;
 	}
 	
-	private Node buildScriptPanel() {
-		myScriptPanel = new ScriptPanel(myWidth, myHeight/4., myController);
+	private Node buildScriptPanel () {
+		myScriptPanel = new ScriptPanel(myWidth, myHeight / 4., myController);
 		return myScriptPanel;
 	}
 
-	public void changeBackgroundColor(Color c) {
+	/**
+	 * Changes background color of canvas.
+	 * @param c Color to change background of canvas
+	 */
+	public void changeBackgroundColor (Color c) {
 		myCanvas.changeBackgroundColor(c);
 	}
 
-	public void changePenColor(Color c) {
+	/**
+	 * Changes color of pen.
+	 * @param c Color by which to change pen
+	 */
+	public void changePenColor (Color c) {
 		myCanvas.changePenColor(c);
 	}
-
-	public void changeTurtleImage(File f) {
+	
+	/**
+	 * Changes image of turtle on canvas.
+	 * @param f File holding image of turtle
+	 */
+	public void changeTurtleImage (File f) {
 		myCanvas.changeTurtleImage(f);
 	}
 
-	public void toggleGridLines() {
+	/**
+	 * Turns on grid lines if previously off, turns off if previously on.
+	 */
+	public void toggleGridLines () {
 		myCanvas.toggleGridLines();
 	}
 	
+	/**
+	 * Binds properties between model and view needed to properly display view.
+	 * @param backgroundIndex Number representing background color from list of colors
+	 * @param palette Wrapped String representing user inputted color
+	 */
 	public void bindToModelProperties (DoubleProperty backgroundIndex, StringProperty palette) {
 		myCanvas.bindToModelProperties(backgroundIndex, palette);
 	}
-
-	public void updateVariables() {
+	
+	/**
+	 * Updates the variables being displayed by the variables pane in the side bar.
+	 */
+	public void updateVariables () {
 		try {
 			mySidePanel.updateVariables();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} 
+		catch (IOException e) {
 			printException(e);
 		}
 	}
 
-	public String getBackgroundColor() {
+	/**
+	 * Returns background color of canvas represented as String.
+	 * @return Background color of canvas
+	 */
+	public String getBackgroundColor () {
 		return myCanvas.getBackgroundColor();
 	}
 }

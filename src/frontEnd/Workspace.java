@@ -32,11 +32,11 @@ public class Workspace extends VBox {
 
 	private static final Properties DEFAULT_DISPLAY_PROPERTIES = new Properties();
 
-	public Workspace(Parser parser) {
+	public Workspace (Parser parser) {
 		this(DEFAULT_DISPLAY_PROPERTIES, parser);
 	}
 
-	public Workspace(Properties preferences, Parser parser) {
+	public Workspace (Properties preferences, Parser parser) {
 
 		myDisplayProperties = preferences;
 
@@ -51,49 +51,51 @@ public class Workspace extends VBox {
 
 	}
 
-	public EventHandler<KeyEvent> getKeyListener() {
+	public EventHandler<KeyEvent> getKeyListener () {
 		return myController.myKeyListener;
 	}
 
-	public EventHandler<MouseEvent> getMouseListener() {
+	public EventHandler<MouseEvent> getMouseListener () {
 		return myController.myMouseListener;
 	}
 
-	public void savePropertiesToFile(File file) {
+	public void savePropertiesToFile (File file) {
 		try {
 			saveDisplayProperties();
 			OutputStream fileOS = new FileOutputStream(file);
 			myDisplayProperties.store(fileOS, null);
 			fileOS.close();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			System.out.println(e.toString() + ": " + file.toString());
 		}
 	}
 	
-	public void loadPropertiesFromFile(File file) {
+	public void loadPropertiesFromFile (File file) {
 		try {
 			InputStream fileIS = new FileInputStream(file);
 			myDisplayProperties.load(fileIS);
 			loadDisplayProperties();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			System.out.println(e.toString() + ": " + file.toString());
 		}
 		printProps();
 	}
 
-	private void printProps() {
+	private void printProps () {
 		for (Object s:myDisplayProperties.keySet()) {
 			System.out.println(s);
 		}
 	}
 	
-	private void loadDisplayProperties() {
+	private void loadDisplayProperties () {
 		String str = myDisplayProperties.getProperty(BACKGROUND);
 		Color c = Color.valueOf(str);
 		myView.changeBackgroundColor(c);
 	}
 	
-	private void saveDisplayProperties() {
+	private void saveDisplayProperties () {
 		myDisplayProperties.setProperty(BACKGROUND, myView.getBackgroundColor());
 	}
 }
