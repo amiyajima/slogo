@@ -302,7 +302,7 @@ public class Turtle extends Observable {
     	TurtleProperties tProps = new 
     	        TurtleProperties(myPosition, myOrientation, myPenDown, 
     	        		myClearLines, myVisibility, myStampCount, myPen, 
-    	        		myShapeIndex);
+    	        		myShapeIndex, myActivity);
     	return tProps;
     }
     

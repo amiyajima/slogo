@@ -47,6 +47,8 @@ public class TurtleView {
 	private DoubleProperty myPenSize;
 	private DoubleProperty myShapeIndex;
 	
+	private BooleanProperty myActivity;
+	
 	private Properties myColorProperties;
 	private ResourceBundle myImageResources;
 	
@@ -77,6 +79,7 @@ public class TurtleView {
 		myPenColorIndex = new SimpleDoubleProperty(0);
 		myPenSize = new SimpleDoubleProperty(0);
 		myShapeIndex = new SimpleDoubleProperty(0);
+		myActivity = new SimpleBooleanProperty(true);
 		addListeners();
 		bindProperties(tProps);
 	}
@@ -222,6 +225,18 @@ public class TurtleView {
 				setImage(new Image("/resources/images/" + str));
 			}
 		});
+		myActivity.addListener(new ChangeListener<Object>() {
+			@Override
+			public void changed(ObservableValue<? extends Object> observable,
+					Object oldValue, Object newValue) {
+				if(myActivity.get()) {
+					myImageView.setOpacity(1);
+				}
+				else {
+					myImageView.setOpacity(.4);
+				}
+			}
+		});
 	}
 	
 	private boolean facingHorizontal() {
@@ -246,5 +261,7 @@ public class TurtleView {
 		myPenColorIndex.bindBidirectional(tProps.getPenColorIndex());
 		myPenSize.bindBidirectional(tProps.getPenSize());
 		myShapeIndex.bindBidirectional(tProps.getShapeIndex());
+		
+		myActivity.bindBidirectional(tProps.getActivity());
 	}
 }
