@@ -17,7 +17,7 @@ import frontEnd.View;
 
 public class Model {
 
-    public static final int INITIAL_BACKGROUND_INDEX = 1;
+    public static final int INITIAL_BACKGROUND_INDEX = 0;
     private Parser myParser;
     private Turtle myTurtle;
     private VariableManager myVariableManager;
@@ -29,7 +29,7 @@ public class Model {
         myVariableManager = new VariableManager();
         myParser = parser;
         myCommandsList = new HashMap<String, Command>();
-        backgroundIndex.set(INITIAL_BACKGROUND_INDEX);
+        backgroundIndex = new SimpleDoubleProperty(INITIAL_BACKGROUND_INDEX);
     }
 
     public void setupTurtleManager (View view) {

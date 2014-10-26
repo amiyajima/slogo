@@ -1,5 +1,7 @@
 package frontEnd;
 
+import java.util.ResourceBundle;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -39,6 +41,11 @@ public class TurtleView {
 	
 	private DoubleProperty myStampCount;
 	
+	private DoubleProperty myPenColorIndex;
+	private DoubleProperty myPenSize;
+	
+	private ResourceBundle myColorResources;
+	
 	public TurtleView(TurtleProperties tProps, double boundingWidth, double boundingHeight, ImageView imageView) {
 		myImageView = imageView;
 		myDrawer = new SimpleDrawer();
@@ -50,6 +57,8 @@ public class TurtleView {
 		myImageView.setX(initialX);
 		myImageView.setY(initialY);
 		
+		myColorResources = ResourceBundle.getBundle("resources/PenColors");
+		
 		myLineStartX = myXPosition.get();
 		myLineStartY = myYPosition.get();
 		
@@ -60,6 +69,8 @@ public class TurtleView {
 		linesCleared = new SimpleBooleanProperty(false);
 		myVisibility = new SimpleBooleanProperty(true);
 		myStampCount = new SimpleDoubleProperty(0);
+		myPenColorIndex = new SimpleDoubleProperty(0);
+		myPenSize = new SimpleDoubleProperty(0);
 		addListeners();
 		bindProperties(tProps);
 	}
@@ -89,7 +100,7 @@ public class TurtleView {
 	
 	public void drawLine(Point2D endPoint) {
 		Point2D startPoint = new Point2D(myLineStartX, myLineStartY);
-		Line line = myDrawer.makeLine(myPenColor, startPoint, endPoint);
+		Line line = myDrawer.makeLine(myPenColor, myPenSize.get(), startPoint, endPoint);
 		myPenLines.getChildren().add(line);
 	}
 	
@@ -188,6 +199,16 @@ public class TurtleView {
 				}
 			}
 		});
+		myPenColorIndex.addListener(new ChangeListener<Object>() {
+			@Override
+			public void changed(ObservableValue<? extends Object> observable,
+					Object oldValue, Object newValue) {
+				String str = myColorResources.getString(myPenColorIndex.getValue().intValue() + "");
+				System.out.println(str);
+				Color c = Color.valueOf(str);
+				changePenColor(c);
+			}
+		});
 	}
 	
 	private boolean facingHorizontal() {
@@ -209,5 +230,8 @@ public class TurtleView {
 		linesCleared.bindBidirectional(tProps.getLinesCleared());
 		myVisibility.bindBidirectional(tProps.getVisibility());
 		myStampCount.bindBidirectional(tProps.getStampCount());
+		
+		myPenColorIndex.bindBidirectional(tProps.getPenColorIndex());
+		myPenSize.bindBidirectional(tProps.getPenSize());
 	}
 }

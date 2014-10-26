@@ -4,8 +4,8 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 
 /**
- * Data object used to hold properties about Turtle that later are bound to 
- * TurtleView. Has no behavior on its own. Was created to replace need for 
+ * Passive data object used to hold properties about Turtle that later are bound 
+ * to TurtleView. Has no behavior on its own. Was created to replace need for 
  * list or map to pass properties from model to view. User-created data 
  * structure to replace already made data structure (e.g., list, map)
  * 
@@ -20,16 +20,20 @@ public class TurtleProperties {
 	private BooleanProperty myLinesCleared;
 	private BooleanProperty myVisibility;
 	private DoubleProperty myStampCount;
+	private DoubleProperty myPenColorIndex;
+	private DoubleProperty myPenSize;
 	
 	public TurtleProperties (TurtlePoint position, DoubleProperty orientation, 
 	        BooleanProperty isPenDown, BooleanProperty linesCleared, 
-	        BooleanProperty isVisible, DoubleProperty stampCount) {
+	        BooleanProperty isVisible, DoubleProperty stampCount, Pen pen) {
 		myPosition = position;
 		myOrientation = orientation;
 		myPenState = isPenDown;
 		myLinesCleared = linesCleared;
 		myVisibility = isVisible;
 		myStampCount = stampCount;
+		myPenColorIndex = pen.getMyPenColorProperty();
+		myPenSize = pen.getMyPenSize();
 	}
 	
 	public DoubleProperty getXPosition () {
@@ -66,5 +70,13 @@ public class TurtleProperties {
 	
 	public DoubleProperty getStampCount () {
 		return myStampCount;
+	}
+	
+	public DoubleProperty getPenColorIndex () {
+		return myPenColorIndex;
+	}
+	
+	public DoubleProperty getPenSize () {
+		return myPenSize;
 	}
 }
