@@ -1,12 +1,13 @@
-package commands;
+package commands.onechild;
 
 import backEnd.Model;
 import backEnd.VariableManager;
-import commands.templates.Command;
+import commands.templates.OneChildCommand;
 
-public class SetBackgroundCommand extends Command {
-    private Model myModel;
+public class SetBackgroundCommand extends OneChildCommand {
     
+    private Model myModel;
+
     public SetBackgroundCommand (VariableManager manager) {
         super(manager);
     }
@@ -14,8 +15,8 @@ public class SetBackgroundCommand extends Command {
     @Override
     public double execute () {
         setValue(getMyChildren().get(0).execute());
-        
-        return 0;
+        myModel.setBackgroundIndex(getValue());
+        return getValue();
     }
 
     @Override

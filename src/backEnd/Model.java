@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javafx.beans.property.DoubleProperty;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
 import commands.templates.Command;
@@ -12,11 +14,13 @@ import frontEnd.View;
 
 public class Model {
 
+    public static final int INITIAL_BACKGROUND_INDEX = 1;
     private Parser myParser;
     private Turtle myTurtle;
     private VariableManager myVariableManager;
     private TurtleManager myTurtleManager;
     private HashMap<String, Command> myCommandsList;
+    private DoubleProperty backgroundIndex;
 
     // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657,
     // 524);
@@ -25,6 +29,7 @@ public class Model {
         myVariableManager = new VariableManager();
         myParser = parser;
         myCommandsList = new HashMap<String, Command>();
+        backgroundIndex.set(INITIAL_BACKGROUND_INDEX);
     }
 
     public void setupTurtleManager (View view) {
@@ -81,6 +86,14 @@ public class Model {
     public void changeLanguage (String language) {
         myParser.changeLanguage(language);
 
+    }
+    
+    public DoubleProperty getBackgroundIndex () {
+        return backgroundIndex;
+    }
+    
+    public void setBackgroundIndex (double index) {
+        backgroundIndex.setValue(index);
     }
 
 }

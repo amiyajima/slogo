@@ -10,7 +10,7 @@ import commands.templates.TurtleCommand;
 
 /**
  * Clears a stamp
- * @author ethanchang
+ * @author Ethan Chang
  *
  */
 public class ClearStampCommand extends TurtleCommand {
