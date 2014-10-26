@@ -10,7 +10,9 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.shape.Rectangle;
 import backEnd.Controller;
 
-
+/*
+ * DEPRECIATED!!!!!
+ */
 public class TitlePaneFactory {
 
 	private Map<String, Class<?>> implementedTitlePanes;
