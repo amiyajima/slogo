@@ -14,10 +14,19 @@ import commands.templates.Command;
 
 import frontEnd.View;
 
-
+/**
+ * Model for SLogo. The model holds a turtle manager which holds the 
+ * turtles
+ * 
+ * @author Brian Bolze
+ * @author Ethan Chang
+ * @author Eli Lichtenberg
+ * @author Anna Miyajima
+ *
+ */
 public class Model {
 
-    public static final int INITIAL_BACKGROUND_INDEX = 1;
+    public static final int INITIAL_BACKGROUND_INDEX = 0;
     private Parser myParser;
     private Turtle myTurtle;
     private VariableManager myVariableManager;
@@ -56,12 +65,9 @@ public class Model {
         List<Command> rootCommands = myParser.parseScript(script, this,
                                                           myVariableManager);
 
-        // System.out.println("beginning execution " + rootCommands);
-
         for (Command c : rootCommands) {
             c.execute();
         }
-        // print root commands here AKA the compiled tree
         System.out.println("root commands are " + rootCommands);
         return 0;
     }
@@ -69,10 +75,6 @@ public class Model {
     public void setTurtleObserver (View view) {
         myTurtle.addObserver(view);
     }
-
-    // public AbstractTurtle getTurtle () {
-    // return myTurtle;
-    // }
 
     public TurtleManager getTurtleManager () {
         return myTurtleManager;
