@@ -11,7 +11,6 @@ import titlePanes.ControlTitlePane;
 import titlePanes.DisplayTitlePane;
 import titlePanes.HelpTitlePane;
 import titlePanes.HistoryTitlePane;
-import titlePanes.LanguageTitlePane;
 import titlePanes.VariableTitlePane;
 import backEnd.Controller;
 
@@ -22,13 +21,14 @@ public class ParameterPanel extends Pane {
 	private ControlTitlePane myControlTitlePane;
 	private CommandTitlePane myCommandTitlePane;
 	private VariableTitlePane myVariableTitlePane;
-	private LanguageTitlePane myLanguageTitlePane;
+	//private LanguageTitlePane myLanguageTitlePane;
 	private HelpTitlePane myHelpTitlePane;
 
 	public ParameterPanel(double width, double height, Controller controller) {
 				
 		setMinWidth(width);
 		setMinHeight(height);
+		
 		double maxTitlePaneHeight = height-200;
 		
 		Accordion accordion = new Accordion();
@@ -37,10 +37,9 @@ public class ParameterPanel extends Pane {
 		myControlTitlePane = new ControlTitlePane(controller);
 		myCommandTitlePane = new CommandTitlePane(controller);
 		myVariableTitlePane = new VariableTitlePane(controller);
-		myLanguageTitlePane = new LanguageTitlePane(controller);
 		myHelpTitlePane = new HelpTitlePane(controller);
 		accordion.getPanes().addAll(myDisplayTitlePane, myHistoryTitlePane, myControlTitlePane, 
-				myCommandTitlePane, myVariableTitlePane, myLanguageTitlePane, myHelpTitlePane);
+				myCommandTitlePane, myVariableTitlePane, myHelpTitlePane);
 		
 		ScrollPane sp = new ScrollPane();
 		sp.setContent(accordion);

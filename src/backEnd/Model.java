@@ -6,9 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
+
 import commands.templates.Command;
+
 import frontEnd.View;
 
 
@@ -20,10 +23,7 @@ public class Model {
     private VariableManager myVariableManager;
     private TurtleManager myTurtleManager;
     private HashMap<String, Command> myCommandsList;
-    private DoubleProperty backgroundIndex;
-
-    // public static final Dimension CANVAS_DIMENSIONS = new Dimension(657,
-    // 524);
+    private DoubleProperty backgroundIndex = new SimpleDoubleProperty();
 
     public Model (Parser parser) {
         myVariableManager = new VariableManager();
@@ -36,7 +36,6 @@ public class Model {
         myTurtleManager = new TurtleManager(view.getCanvasWidth(), view.getCanvasHeight());
         myTurtleManager.addObserver(view);
         myTurtleManager.updateActiveTurtleList(Arrays.asList(1.0));
-        // myTurtle.bindProperties(view);
     }
 
     /**
@@ -81,11 +80,6 @@ public class Model {
 
     public Map<String, Command> getCommandsMap () {
         return myCommandsList;
-    }
-
-    public void changeLanguage (String language) {
-        myParser.changeLanguage(language);
-
     }
     
     public DoubleProperty getBackgroundIndex () {

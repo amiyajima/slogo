@@ -1,15 +1,15 @@
 package backEnd;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
-import backEnd.turtle.TurtleManager;
+
 import commands.CommandFactory;
 import commands.templates.Command;
 import commands.variable_commands.ToCommand;
+
 import exceptions.InvalidInputException;
 
 
@@ -108,9 +108,5 @@ public class Parser {
             throw new InvalidInputException("error in parser");
         }
         return c;
-    }
-    
-    public void changeLanguage(String language) {
-    	myFactory.changeLanguage(language);
     }
 }
