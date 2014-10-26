@@ -33,10 +33,10 @@ public class Model {
     private TurtleManager myTurtleManager;
     private HashMap<String, Command> myCommandsList;
     private DoubleProperty myBackgroundIndex = new SimpleDoubleProperty();
-    private IntegerProperty myPaletteIndex;
-    private IntegerProperty myPaletteRed;
-    private IntegerProperty myPaletteBlue;
-    private IntegerProperty myPaletteGreen;
+    private int myPaletteIndex;
+    private int myPaletteRed;
+    private int myPaletteBlue;
+    private int myPaletteGreen;
 
     /**
      * Constructor for model. Initializes the variable manager, commandList,
@@ -48,10 +48,6 @@ public class Model {
         myParser = parser;
         myCommandsList = new HashMap<String, Command>();
         myBackgroundIndex = new SimpleDoubleProperty(INITIAL_BACKGROUND_INDEX);
-        myPaletteIndex = new SimpleIntegerProperty();
-        myPaletteRed = new SimpleIntegerProperty();
-        myPaletteBlue = new SimpleIntegerProperty();
-        myPaletteGreen = new SimpleIntegerProperty();
     }
 
     /**
@@ -132,13 +128,13 @@ public class Model {
     
     
     public void setPaletteArguments(int index, int red, int green, int blue) {
-        myPaletteIndex.set(index);
-        myPaletteRed.set(red);
-        myPaletteGreen.set(green);
-        myPaletteBlue.set(blue);
+        myPaletteIndex = index;
+        myPaletteRed = red;
+        myPaletteGreen = green;
+        myPaletteBlue = blue;
     }
     
-    public List<IntegerProperty> getPaletteArguments() {
+    public List<Integer> getPaletteArguments() {
         return Arrays.asList(myPaletteIndex,
             myPaletteRed,
             myPaletteGreen,
