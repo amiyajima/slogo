@@ -39,6 +39,7 @@ public class TurtleView {
 	private DoubleProperty myOrientation;
 	private BooleanProperty penDown;
 	private BooleanProperty linesCleared;
+	private BooleanProperty myVisibility;
 	
 	private DoubleProperty myStampCount;
 	
@@ -46,7 +47,6 @@ public class TurtleView {
 		myImageView = imageView;
 		myDrawer = new SimpleDrawer();
 		myPenColor = Color.BLACK;
-//		myLocation = new Point2D(boundingWidth/2, boundingHeight/2);
 		myXPosition = new SimpleDoubleProperty(boundingWidth/2);
 		myYPosition = new SimpleDoubleProperty(boundingHeight/2);
 		double initialX = boundingWidth/2 - getImage().getWidth()/2;
@@ -62,6 +62,7 @@ public class TurtleView {
 		myStamps = new Group();
 		penDown = new SimpleBooleanProperty(true);
 		linesCleared = new SimpleBooleanProperty(false);
+		myVisibility = new SimpleBooleanProperty(true);
 		addListeners();
 		bindProperties(tProps);
 	}
@@ -170,6 +171,14 @@ public class TurtleView {
 				}
 			}
 		});
+		myVisibility.addListener(new ChangeListener<Object>() {
+			@Override
+			public void changed(ObservableValue<? extends Object> observable,
+					Object oldValue, Object newValue) {
+				// TODO Auto-generated method stub
+				myImageView.setVisible(myVisibility.get());
+			}
+		});
 	}
 	
 	private boolean facingHorizontal() {
@@ -189,6 +198,6 @@ public class TurtleView {
 		myOrientation.bindBidirectional(tProps.getOrientation());
 		penDown.bindBidirectional(tProps.getIsPenDown());
 		linesCleared.bindBidirectional(tProps.getLinesCleared());
-		
+		myVisibility.bindBidirectional(tProps.getVisibility());
 	}
 }
