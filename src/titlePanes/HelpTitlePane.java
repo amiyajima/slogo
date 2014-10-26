@@ -1,14 +1,8 @@
 package titlePanes;
 
-import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TitledPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-import javafx.stage.Stage;
 import backEnd.Controller;
 
 public class HelpTitlePane extends TitledPane {
@@ -24,7 +18,6 @@ public class HelpTitlePane extends TitledPane {
 	}
 
 	private void setupHyperlink(Controller contr) {
-		// TODO Auto-generated method stub
 		Hyperlink link = new Hyperlink();
 //		WebView browser = new WebView();
 //		WebEngine webEngine = new WebEngine();

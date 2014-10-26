@@ -44,4 +44,10 @@ public class ScriptPanel extends Pane {
 		}
 	}
 
+	public void addTextToScript(String command) {
+		String text = myTextArea.getText();
+		text += " " + command;
+		myTextArea.setText(text);
+	}
+
 }

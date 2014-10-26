@@ -82,6 +82,10 @@ public class View extends VBox implements Observer {
 		mySidePanel.addToHistory(script);
 	}
 	
+	public void addTextToScript(String command) {
+		myScriptPanel.addTextToScript(command);
+	}
+	
 	public void setupVariableMap(Map<String, Double> varMap) {
 		mySidePanel.setupVariableMap(varMap);
 	}
