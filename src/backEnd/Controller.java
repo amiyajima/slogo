@@ -17,7 +17,7 @@ public class Controller {
 		myView.addControllerAndSetupGui(this);
 		
 		myModel.setupTurtleManager(view);
-//		myView.bindToModelProperties(myModel.getBackgroundIndex()); //to set up later
+		myView.bindToModelProperties(myModel.getBackgroundIndex()); //to set up later
 	}
 
 	public void runScript (String script) {

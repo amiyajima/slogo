@@ -38,7 +38,7 @@ public class Model {
         myVariableManager = new VariableManager();
         myParser = parser;
         myCommandsList = new HashMap<String, Command>();
-        backgroundIndex.set(INITIAL_BACKGROUND_INDEX);
+        backgroundIndex = new SimpleDoubleProperty(INITIAL_BACKGROUND_INDEX);
     }
 
     public void setupTurtleManager (View view) {

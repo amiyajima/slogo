@@ -123,9 +123,8 @@ public class CommandFactory {
                 catch (InvocationTargetException e) {
                     throw new InvalidInputException("%s is an invalid input", type);
                 }
-                if (newCommand instanceof TurtleCommand) {
-                    newCommand.initializeCommand(model);
-                }
+                
+                newCommand.initializeCommand(model);
                 return newCommand;
             }
             catch (InstantiationException e) {

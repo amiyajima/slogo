@@ -1,7 +1,5 @@
 package main;
 
-import java.io.File;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
@@ -13,7 +11,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import backEnd.Parser;
 
@@ -114,29 +111,13 @@ public class MasterWindow extends Application {
 
 	private Menu buildEditMenu() {
 		Menu menu = new Menu("Edit");
-		menu.getItems().addAll(buildImageChooserMenuItem(), buildLanguageChooserMenuItem());
+		menu.getItems().addAll(buildLanguageChooserMenuItem());
 		return menu;
 	}
 
 	private MenuItem buildNewWorkspaceMenuItem() {
 		MenuItem menu = new MenuItem("New Workspace");
 		menu.setOnAction(event -> buildWorkspace());
-		return menu;
-	}
-
-	private MenuItem buildImageChooserMenuItem() {
-
-		MenuItem menu = new MenuItem("Change Turtle Image");
-
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Upload Image");
-		fileChooser.getExtensionFilters().addAll(
-				new FileChooser.ExtensionFilter("All Images", "*.*"),
-				new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-				new FileChooser.ExtensionFilter("PNG", "*.png"));
-
-		menu.setOnAction(event -> turtleImageFileChooser(fileChooser));
-
 		return menu;
 	}
 	
@@ -158,13 +139,6 @@ public class MasterWindow extends Application {
 	
 	private void setLanguage(String s) {
 		ResourceFinder.setLanguage(s);
-	}
-	
-	private void turtleImageFileChooser(FileChooser fileChooser) {
-		File file = fileChooser.showOpenDialog(myStage);
-		if (file != null) {
-			//myController.changeTurtleImage(file);
-		}
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -118,4 +119,7 @@ public class View extends VBox implements Observer {
 		myCanvas.toggleGridLines();
 	}
 	
+	public void bindToModelProperties (DoubleProperty backgroundIndex) {
+		myCanvas.bindToModelProperties(backgroundIndex);
+	}
 }

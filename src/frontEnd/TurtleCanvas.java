@@ -2,9 +2,12 @@ package frontEnd;
 
 import java.io.File;
 import java.util.Observable;
+import java.util.ResourceBundle;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,6 +24,10 @@ public class TurtleCanvas extends Group {
 	private Rectangle myBackground;
 	private Group myGridLines;
 	private TurtleView turtleView;
+	
+	private DoubleProperty myBackgroundIndex;
+	
+	private ResourceBundle myColorResources;
 
 	public TurtleCanvas(double width, double height, double padding, Controller controller) {
 		super();
@@ -35,6 +42,12 @@ public class TurtleCanvas extends Group {
 		addBackground();
 		addGridLines();
 		addClipper();
+		
+		myBackgroundIndex = new SimpleDoubleProperty(0);
+		
+		myColorResources = ResourceBundle.getBundle("resources/PenColors");
+		
+		addListeners();
 	}
 	
 	//remove later - currently needed by Controller in changeXPos
@@ -132,5 +145,23 @@ public class TurtleCanvas extends Group {
 	
 	public double getBoundingHeight() {
 		return boundingHeight;
+	}
+	
+	public void bindToModelProperties(DoubleProperty backgroundIndex) {
+		System.out.println("backgroundIndex is: " + myBackgroundIndex);
+		myBackgroundIndex.bindBidirectional(backgroundIndex);
+		System.out.println("backgroundIndex is: " + myBackgroundIndex);
+	}
+	
+	private void addListeners() {
+		myBackgroundIndex.addListener(new ChangeListener<Object>() {
+			@Override
+			public void changed(ObservableValue<? extends Object> observable,
+					Object oldValue, Object newValue) {
+				String str = myColorResources.getString(myBackgroundIndex.getValue().intValue() + "");
+				Color c = Color.valueOf(str);
+				changeBackgroundColor(c);
+			}
+		});
 	}
 }
