@@ -1,12 +1,14 @@
 package backEnd;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Stack;
-
 import exceptions.InvalidPropertyFileException;
 
 public class VariableManager {
@@ -28,6 +30,25 @@ public class VariableManager {
     private void setInitialVarProperties () throws IOException {
         InputStream fileInput = getClass().getResourceAsStream("/resources/Variables.properties");
         myVariables.load(fileInput);
+    }
+    
+    public void setVarProperties(File f){
+        FileInputStream fileInput = null;
+        try {
+            fileInput = new FileInputStream(f);
+        }
+        catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        try {
+            myVariables.load(fileInput);
+        }
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println(myVariables);
     }
 
     public void pushVarProperties (Map<String, String> variableMap) throws IOException {

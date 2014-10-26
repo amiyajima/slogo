@@ -1,7 +1,6 @@
 package panels;
 
 import java.util.Map;
-
 import javafx.scene.control.Accordion;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
@@ -11,6 +10,7 @@ import titlePanes.ControlTitlePane;
 import titlePanes.DisplayTitlePane;
 import titlePanes.HelpTitlePane;
 import titlePanes.HistoryTitlePane;
+import titlePanes.LoadPropertiesTitlePane;
 import titlePanes.VariableTitlePane;
 import backEnd.Controller;
 
@@ -23,6 +23,7 @@ public class ParameterPanel extends Pane {
 	private VariableTitlePane myVariableTitlePane;
 	//private LanguageTitlePane myLanguageTitlePane;
 	private HelpTitlePane myHelpTitlePane;
+	private LoadPropertiesTitlePane myLoadPropertiesTitlePane;
 
 	public ParameterPanel(double width, double height, Controller controller) {
 				
@@ -38,8 +39,9 @@ public class ParameterPanel extends Pane {
 		myCommandTitlePane = new CommandTitlePane(controller);
 		myVariableTitlePane = new VariableTitlePane(controller);
 		myHelpTitlePane = new HelpTitlePane(controller);
+		myLoadPropertiesTitlePane = new LoadPropertiesTitlePane(controller);
 		accordion.getPanes().addAll(myDisplayTitlePane, myHistoryTitlePane, myControlTitlePane, 
-				myCommandTitlePane, myVariableTitlePane, myHelpTitlePane);
+				myCommandTitlePane, myVariableTitlePane, myHelpTitlePane, myLoadPropertiesTitlePane);
 		
 		ScrollPane sp = new ScrollPane();
 		sp.setContent(accordion);

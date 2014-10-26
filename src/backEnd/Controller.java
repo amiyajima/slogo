@@ -72,6 +72,10 @@ public class Controller {
 		myView.toggleGridLines();
 	}
 	
+	public void setVariableProperties(File f){
+	    myModel.setVariableProperties(f);
+	}
+	
 	private void buildMouseListener() {
 		myMouseListener = new EventHandler<MouseEvent>() {
 			@Override

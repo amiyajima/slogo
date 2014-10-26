@@ -1,17 +1,15 @@
 package backEnd;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
-
 import commands.templates.Command;
-
 import frontEnd.View;
 
 
@@ -81,13 +79,17 @@ public class Model {
     public Map<String, Command> getCommandsMap () {
         return myCommandsList;
     }
-    
+
     public DoubleProperty getBackgroundIndex () {
         return backgroundIndex;
     }
-    
+
     public void setBackgroundIndex (double index) {
         backgroundIndex.setValue(index);
+    }
+
+    public void setVariableProperties (File f) {
+        myVariableManager.setVarProperties(f);
     }
 
 }
