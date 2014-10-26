@@ -11,7 +11,7 @@ import titlePanes.ControlTitlePane;
 import titlePanes.DisplayTitlePane;
 import titlePanes.HelpTitlePane;
 import titlePanes.HistoryTitlePane;
-import titlePanes.LoadPropertiesTitlePane;
+import titlePanes.LoadVariablesTitlePane;
 import titlePanes.VariableTitlePane;
 import titlePanes.decorators.VScrollableDecorator;
 import backEnd.Controller;
@@ -25,7 +25,7 @@ public class ParameterPanel extends Pane {
     private CommandTitlePane myCommandTitlePane;
     private VariableTitlePane myVariableTitlePane;
     private HelpTitlePane myHelpTitlePane;
-    private LoadPropertiesTitlePane myLoadPropertiesTitlePane;
+    private LoadVariablesTitlePane myLoadPropertiesTitlePane;
 
     public ParameterPanel (double width, double height, Controller controller) {
 
@@ -64,7 +64,7 @@ public class ParameterPanel extends Pane {
         myCommandTitlePane = new CommandTitlePane(controller);
         myVariableTitlePane = new VariableTitlePane(controller);
         myHelpTitlePane = new HelpTitlePane(controller);
-        myLoadPropertiesTitlePane = new LoadPropertiesTitlePane(controller);
+        myLoadPropertiesTitlePane = new LoadVariablesTitlePane(controller);
     }
 
     private void addDecorations () {

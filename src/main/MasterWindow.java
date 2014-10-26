@@ -1,5 +1,7 @@
 package main;
 
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
@@ -54,6 +56,10 @@ public class MasterWindow extends Application {
 		myTabs.getTabs().add(tab);
 		myTabs.getSelectionModel().select(tab);
 	}
+	void saveWorkspacePreferences(File file) {
+		myCurrentWorkspace.writePropertiesToFile(file);
+	}
+	
 	private void tabChanged(Tab tab) {
 		if (tab.isSelected()) {
 			tab.getContent().requestFocus();

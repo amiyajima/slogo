@@ -1,10 +1,14 @@
 package main;
 
+import java.io.File;
+
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class MasterMenuBar extends MenuBar {
 	MasterWindow myMaster;
@@ -17,7 +21,7 @@ public class MasterMenuBar extends MenuBar {
 	}
 	private Menu buildFileMenu() {
 		Menu menu = new Menu("File");
-		menu.getItems().addAll(buildNewWorkspaceMenuItem());
+		menu.getItems().addAll(buildNewWorkspaceMenuItem(), buildSavePreferencesMenuItem());
 		return menu;
 	}
 	private Menu buildEditMenu() {
@@ -46,5 +50,22 @@ public class MasterMenuBar extends MenuBar {
 		MenuItem menu = new MenuItem("New Workspace");
 		menu.setOnAction(event -> myMaster.buildWorkspace());
 		return menu;
+	}
+	private MenuItem buildSavePreferencesMenuItem() {
+		MenuItem menu = new MenuItem("Save Workspace Preferences");
+		menu.setOnAction(event -> saveWorkspacePreferences());
+		return menu;
+	}
+	private void saveWorkspacePreferences() {
+		FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Properties");
+        fileChooser.getExtensionFilters().addAll(
+                                                 new FileChooser.ExtensionFilter("Properties Files",
+                                                                                 "*.properties*"));
+
+        Stage fileStage = new Stage();
+        File file = fileChooser.showSaveDialog(fileStage);
+        if (file != null) 
+            myMaster.saveWorkspacePreferences(file);
 	}
 }
