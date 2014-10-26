@@ -1,12 +1,14 @@
 package backEnd;
 
 import java.io.File;
+import java.util.ResourceBundle;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import main.ResourceFinder;
 import frontEnd.View;
 
 public class Controller {
@@ -42,14 +44,17 @@ public class Controller {
 		}
 	}
 	
-//	public void moveForward() {
-//		try {
-//			//myModel.moveForward();
-//			//myModel.runScript(commandList.getBaseBundleName("Foward"));
-//		} catch (Exception e) {
-//			System.out.println(e.toString());
-//		}
-//	}
+	/**
+	 * Called by keys and buttons
+	 * 
+	 * @param The base command that is being executed
+	 */
+	public void move10 (String direction) {
+		ResourceBundle commands = ResourceFinder.getMyLanguageResources();
+		String temp = commands.getString(direction);
+		String[] command = temp.split(",");
+		runScript(command[0] +" 10");
+	}
 
 	public void changeBackgroundColor (Color c) {
 		myView.changeBackgroundColor(c);
@@ -83,16 +88,18 @@ public class Controller {
 		myKeyListener = new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent keyEvent) {
+				
 				KeyCode key = keyEvent.getCode();
+				
 				try {
 					if (key.equals(KeyCode.W)) {
-						runScript("fd 10");
+						move10("Forward");
 					} else if (key.equals(KeyCode.S)) {
-						runScript("bk 10");
+						move10("Backward");
 					} else if (key.equals(KeyCode.D)) {
-						runScript("rt 15");
+						move10("Right");
 					} else if (key.equals(KeyCode.A)) {
-						runScript("lt 15");
+						move10("Left");
 					}
 				} catch (Exception e) {
 					System.out.println(e.toString());
