@@ -34,7 +34,7 @@ public class Controller {
 		buildMouseListener();
 		buildKeyListener();
 
-		myView.bindToModelProperties(myModel.getBackgroundIndex());
+		myView.bindToModelProperties(myModel.getBackgroundIndex(), myModel.getPaletteArguments());
 	}
 
 	public void runScript (String script) {

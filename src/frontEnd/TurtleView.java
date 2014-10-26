@@ -1,5 +1,8 @@
 package frontEnd;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.BooleanProperty;
@@ -45,10 +48,10 @@ public class TurtleView {
 	private DoubleProperty myPenSize;
 	private DoubleProperty myShapeIndex;
 	
-	private ResourceBundle myColorResources;
+	private Properties myColorProperties;
 	private ResourceBundle myImageResources;
 	
-	public TurtleView(TurtleProperties tProps, double boundingWidth, double boundingHeight, ImageView imageView) {
+	public TurtleView(TurtleProperties tProps, double boundingWidth, double boundingHeight, ImageView imageView, Properties cProps) throws IOException {
 		myImageView = imageView;
 		myDrawer = new SimpleDrawer();
 		myPenColor = Color.BLACK;
@@ -59,7 +62,7 @@ public class TurtleView {
 		myImageView.setX(initialX);
 		myImageView.setY(initialY);
 		
-		myColorResources = ResourceBundle.getBundle("resources/PenColors");
+		myColorProperties = cProps;
 		myImageResources = ResourceBundle.getBundle("resources/images/Images");
 		
 		myLineStartX = myXPosition.get();
@@ -207,7 +210,7 @@ public class TurtleView {
 			@Override
 			public void changed(ObservableValue<? extends Object> observable,
 					Object oldValue, Object newValue) {
-				String str = myColorResources.getString(myPenColorIndex.getValue().intValue() + "");
+				String str = myColorProperties.getProperty(myPenColorIndex.getValue().intValue() + "");
 				Color c = Color.valueOf(str);
 				changePenColor(c);
 			}
@@ -217,14 +220,12 @@ public class TurtleView {
 			public void changed(ObservableValue<? extends Object> observable,
 					Object oldValue, Object newValue) {
 				String str = myImageResources.getString(myShapeIndex.getValue().intValue() + "");
-				System.out.println("shape is: " + str);
 				setImage(new Image("/resources/images/" + str));
 			}
 		});
 	}
 	
 	private boolean facingHorizontal() {
-		// TODO Auto-generated method stub
 		if(Math.abs(myOrientation.get()%HALF_CIRCLE) == RIGHT_ORIENTATION) return true;
 		return false;
 	}
