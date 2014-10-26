@@ -108,4 +108,8 @@ public class Controller {
 		};
 	}
 
+	public void addTextToScript(String translatedCommand) {
+		myView.addTextToScript(translatedCommand);
+	}
+
 }
