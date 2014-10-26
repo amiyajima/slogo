@@ -55,7 +55,6 @@ public class TurtleManager extends Observable {
      *            id of the turtle
      */
     private void addNewTurtle (Double turtleId) {
-        System.out.println("Turtle created");
         Turtle newTurtle = new Turtle(Double.toString(turtleId), myCanvasWidth, myCanvasHeight);
         myTurtles.put(turtleId, newTurtle);
         setChanged();
@@ -92,8 +91,14 @@ public class TurtleManager extends Observable {
      */
     public void updateActiveTurtleList (List<Double> turtleIds) {
         List<Turtle> newActiveTurtles = createTurtleList(turtleIds);
+        for (Turtle t : myActiveTurtles) {
+            t.setIsActive(false);
+        }
+        
         myActiveTurtles.clear();
+        
         for (Turtle t : newActiveTurtles) {
+            t.setIsActive(true);
             myActiveTurtles.add(t);
         }
     }
@@ -106,6 +111,9 @@ public class TurtleManager extends Observable {
      * @param turtleNames
      */
     public void addTemporaryTurtleList (List<Double> turtleIds) {
+        for (Turtle t : myStoredTurtleLists.peek()) {
+            t.setIsActive(false);
+        }
         List<Turtle> turtleList = createTurtleList(turtleIds);
         myStoredTurtleLists.push(turtleList);
 
@@ -119,7 +127,6 @@ public class TurtleManager extends Observable {
      * @return list of turtles
      */
     public List<Turtle> getTurtleList () {
-        System.out.println(myStoredTurtleLists.size());
         return Collections.unmodifiableList(myStoredTurtleLists.peek());
     }
 
@@ -130,7 +137,13 @@ public class TurtleManager extends Observable {
      */
     public void updateStoredTurtleLists () {
         if (myStoredTurtleLists.size() > 1) {
-            myStoredTurtleLists.pop();
+            for (Turtle t : myStoredTurtleLists.pop()) {
+                t.setIsActive(false);
+            }
+        }
+        
+        for (Turtle t : myStoredTurtleLists.peek()) {
+            t.setIsActive(true);
         }
     }
     

@@ -6,7 +6,7 @@ Anna Miyajima, Brian Bolze, Eli Lichtenberg, Ethan Chang
 
 
 ####TIME SPENT: 
-___ Man Hours 
+300 Man Hours 
 
 ####ROLES:
 Anna: Backend with a focus on variable commands and the parser
@@ -40,10 +40,10 @@ When entering a double in a command, you must begin with 0. if the double is gre
 
 
 ####KNOWN ISSUES:
-
+Boundaries for canvas are offset around 20 pixels up and to the left.
 
 ####EXTRA FEATURES:
-None
+All back end basic extensions
 
 ####ASSIGNMENT IMPRESSIONS:
 Time consuming assignment which emphasizes the use of hierarchies and separating the front end from the 
