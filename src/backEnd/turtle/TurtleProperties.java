@@ -18,13 +18,16 @@ public class TurtleProperties {
 	private DoubleProperty myOrientation;
 	private BooleanProperty myPenState;
 	private BooleanProperty myLinesCleared;
+	private BooleanProperty myVisibility;
 	
 	public TurtleProperties (TurtlePoint position, DoubleProperty orientation, 
-	        BooleanProperty isPenDown, BooleanProperty linesCleared) {
+	        BooleanProperty isPenDown, BooleanProperty linesCleared, 
+	        BooleanProperty isVisible) {
 		myPosition = position;
 		myOrientation = orientation;
 		myPenState = isPenDown;
 		myLinesCleared = linesCleared;
+		myVisibility = isVisible;
 	}
 	
 	public DoubleProperty getXPosition () {
@@ -45,5 +48,9 @@ public class TurtleProperties {
 	
 	public BooleanProperty getLinesCleared () {
 		return myLinesCleared;
+	}
+	
+	public BooleanProperty getVisibility () {
+		return myVisibility;
 	}
 }

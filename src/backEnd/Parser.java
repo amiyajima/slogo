@@ -7,9 +7,9 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
-import backEnd.turtle.TurtleManager;
 import commands.CommandFactory;
 import commands.templates.Command;
+
 import exceptions.InvalidInputException;
 
 
@@ -105,5 +105,9 @@ public class Parser {
             throw new InvalidInputException("error in parser");
         }
         return c;
+    }
+    
+    public void changeLanguage(String language) {
+    	myFactory.changeLanguage(language);
     }
 }

@@ -18,6 +18,7 @@ public class Controller {
 		myView.addControllerAndSetupGui(this);
 		
 		myModel.setupTurtleManager(view);
+//		myView.bindToModelProperties(myModel.getBackgroundIndex()); //to set up later
 	}
 
 	public void runScript (String script) {
@@ -48,8 +49,8 @@ public class Controller {
 		myView.toggleGridLines();
 	}
 	
-	public void changeLanguage () {
-		//TODO
+	public void changeLanguage (String language) {
+		myModel.changeLanguage(language);
 	}
 
 }
