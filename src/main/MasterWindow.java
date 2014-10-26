@@ -15,7 +15,6 @@ import commands.CommandFactory;
 import frontEnd.Workspace;
 
 public class MasterWindow extends Application {
-	
 	private Stage myStage;
 	private Scene myScene;
 	private Parser myParser;
@@ -31,42 +30,30 @@ public class MasterWindow extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-	
 		myScene = new Scene(myRoot);
 		myStage = primaryStage;
 		myStage.setScene(myScene);
 		myStage.setTitle("SLogo");
-		
 		new ResourceFinder("English");
-		
 		myMenuBar = new MasterMenuBar(this);
 		myRoot.getChildren().addAll(myMenuBar, myTabs);
-		
 		myCommandFactory = new CommandFactory();
         myParser = new Parser(myCommandFactory);
-		
 		buildWorkspace();
-		
 		myStage.show();
 	}
 
 	void buildWorkspace() {
-		
 		myCurrentWorkspace = new Workspace(myParser);
 		setKeyListener();
 		setMouseListener();
-		
 		Tab tab = new Tab("Workspace " + (myTabs.getTabs().size() + 1));
-		
 		tab.setContent(myCurrentWorkspace);
 		tab.getContent().setFocusTraversable(true);
 		tab.setOnSelectionChanged(event -> tabChanged(tab));
-		
 		myTabs.getTabs().add(tab);
 		myTabs.getSelectionModel().select(tab);
-
 	}
-	
 	private void tabChanged(Tab tab) {
 		if (tab.isSelected()) {
 			tab.getContent().requestFocus();
@@ -74,13 +61,10 @@ public class MasterWindow extends Application {
 			setKeyListener();
 		}
 	}
-	
 	private void setKeyListener() {
 		myScene.setOnKeyReleased(myCurrentWorkspace.getKeyListener());
 	}
-	
 	private void setMouseListener() {
 		myScene.setOnMouseClicked(myCurrentWorkspace.getMouseListener());
 	}
-
 }

@@ -7,39 +7,24 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
 
 public class MasterMenuBar extends MenuBar {
-	
 	MasterWindow myMaster;
-
 	public MasterMenuBar(MasterWindow master) {
 		super();
-		
 		myMaster = master;
-		
 		Menu fileMenu = buildFileMenu();
 		Menu editMenu = buildEditMenu();
-
 		getMenus().addAll(fileMenu, editMenu);
-		
 	}
-	
 	private Menu buildFileMenu() {
 		Menu menu = new Menu("File");
 		menu.getItems().addAll(buildNewWorkspaceMenuItem());
 		return menu;
 	}
-
 	private Menu buildEditMenu() {
 		Menu menu = new Menu("Edit");
 		menu.getItems().addAll(buildLanguageChooserMenuItem());
 		return menu;
 	}
-
-	private MenuItem buildNewWorkspaceMenuItem() {
-		MenuItem menu = new MenuItem("New Workspace");
-		menu.setOnAction(event -> myMaster.buildWorkspace());
-		return menu;
-	}
-	
 	private Menu buildLanguageChooserMenuItem() {
 		Menu menu = new Menu("Change Language");
 
@@ -52,12 +37,14 @@ public class MasterMenuBar extends MenuBar {
 		    menu.getItems().add(itemEffect);
 		    itemEffect.setOnAction(event -> setLanguage((String) itemEffect.getUserData()));
 		}
-		
 		return menu;
 	}
-	
 	private void setLanguage(String s) {
 		ResourceFinder.setLanguage(s);
 	}
-	
+	private MenuItem buildNewWorkspaceMenuItem() {
+		MenuItem menu = new MenuItem("New Workspace");
+		menu.setOnAction(event -> myMaster.buildWorkspace());
+		return menu;
+	}
 }
