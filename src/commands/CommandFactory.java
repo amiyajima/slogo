@@ -4,12 +4,14 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.ResourceBundle;
+
 import backEnd.Model;
 import backEnd.VariableManager;
 import commands.templates.Command;
 import commands.templates.TurtleCommand;
 import commands.variable_commands.UserInputCommand;
 import commands.variable_commands.Variable;
+import exceptions.InvalidInputException;
 
 
 /**
@@ -138,7 +140,7 @@ public class CommandFactory {
                 return newCommand;
             }
             catch (InstantiationException e) {
-                e.printStackTrace();
+                throw new InvalidInputException("");
             }
             catch (IllegalAccessException e) {
                 e.printStackTrace();
