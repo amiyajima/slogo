@@ -7,6 +7,8 @@ import javafx.scene.layout.Pane;
 import backEnd.Controller;
 
 public class ScriptPanel extends Pane {
+	
+	private TextArea myTextArea;
 
 	public ScriptPanel(double width, double height, Controller controller) {
 		
@@ -14,24 +16,29 @@ public class ScriptPanel extends Pane {
 		hbox.setMinWidth(width);
 		hbox.setMinHeight(height);
 		
-		TextArea textArea = new TextArea();
-		textArea.setPromptText("Enter commands here");
+		myTextArea = new TextArea();
+		myTextArea.setPromptText("Enter commands here");
 		Button runButton = new Button("RUN");
 		
-		runButton.setOnAction(event -> handler(controller, textArea));
+		runButton.setOnAction(event -> handler(controller, myTextArea));
 		
-		textArea.setPrefSize(3.*width/4., height);
+		myTextArea.setPrefSize(3.*width/4., height);
 		runButton.setPrefSize(width/4., height);
 		
-		hbox.getChildren().addAll(textArea, runButton);
+		hbox.getChildren().addAll(myTextArea, runButton);
 		getChildren().add(hbox);
 
 	}
 	
+	public void printException(Exception e) {
+		myTextArea.setText(e.toString());
+	}
+	
 	private void handler(Controller c, TextArea t) {
 		try {
-			c.runScript(t.getText());
+			String text = t.getText();
 			t.clear();
+			c.runScript(text);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
