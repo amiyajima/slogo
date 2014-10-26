@@ -3,7 +3,12 @@ package commands.onechild;
 import backEnd.VariableManager;
 import commands.templates.OneChildCommand;
 
-
+/**
+ * Command to get a random number between 0 and the
+ * value of the first child.
+ * @author Ethan Chang
+ *
+ */
 public class RandomCommand extends OneChildCommand {
 
     public RandomCommand (VariableManager manager) {

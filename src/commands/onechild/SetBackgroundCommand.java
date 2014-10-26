@@ -4,6 +4,11 @@ import backEnd.Model;
 import backEnd.VariableManager;
 import commands.templates.OneChildCommand;
 
+/**
+ * Command to set the background color of the workspace
+ * @author Ethan Chang
+ *
+ */
 public class SetBackgroundCommand extends OneChildCommand {
     
     private Model myModel;

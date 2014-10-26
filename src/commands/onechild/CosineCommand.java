@@ -3,7 +3,11 @@ package commands.onechild;
 import backEnd.VariableManager;
 import commands.templates.OneChildCommand;
 
-
+/**
+ *Command to calculate the cosine of the first child
+ * @author Ethan Chang
+ *
+ */
 public class CosineCommand extends OneChildCommand {
 
     public CosineCommand (VariableManager manager) {

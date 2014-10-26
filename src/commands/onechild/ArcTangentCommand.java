@@ -3,7 +3,11 @@ package commands.onechild;
 import backEnd.VariableManager;
 import commands.templates.OneChildCommand;
 
-
+/**
+ * Command to calculate the arctangent of the only child
+ * @author Ethan Chang
+ *
+ */
 public class ArcTangentCommand extends OneChildCommand {
 
     public ArcTangentCommand (VariableManager manager) {
