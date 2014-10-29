@@ -1,7 +1,6 @@
 package panels;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javafx.scene.control.Accordion;
 import javafx.scene.control.ScrollPane;

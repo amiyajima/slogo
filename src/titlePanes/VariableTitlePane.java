@@ -2,11 +2,8 @@ package titlePanes;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 
-import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import backEnd.Controller;
@@ -14,7 +11,6 @@ import backEnd.Controller;
 public class VariableTitlePane extends TitledPane {
 	
 	private VBox myRoot;
-	@SuppressWarnings("unused")
 	private Properties myVarProps;
 	
 	public VariableTitlePane(Controller contr) throws IOException {
