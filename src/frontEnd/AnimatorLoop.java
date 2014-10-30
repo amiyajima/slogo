@@ -7,27 +7,30 @@ import javafx.util.Duration;
 
 class AnimatorLoop {
 	
-	private KeyFrame frame;
+	private static final double FRAMES_PER_SECOND = 60;
+	private static final double FRAME_LENGTH = 1000 / FRAMES_PER_SECOND;
+
+	private KeyFrame myFrame;
 	
-	/**
-	 * To be implemented later if we need to animate the turtle moving
-	 */
-	AnimatorLoop() {
-	}
-	
-	private EventHandler<ActionEvent> oneFrame = new EventHandler<ActionEvent>() {
+	private EventHandler<ActionEvent> myOneFrame = new EventHandler<ActionEvent>() {
 		@Override
-		public void handle(ActionEvent event) {
+		public void handle (ActionEvent event) {
 			update();
 		}
 	};
 	
-	KeyFrame start() {
-		frame = new KeyFrame(Duration.millis(1000 / 60), oneFrame);
-		return frame;
+	/**
+	 * To be implemented later if we need to animate the turtle moving
+	 */
+	AnimatorLoop () {
 	}
 	
-	private void update() { 
+	KeyFrame start () {
+		myFrame = new KeyFrame(Duration.millis(FRAME_LENGTH), myOneFrame);
+		return myFrame;
+	}
+	
+	private void update () { 
 	}
 
 }

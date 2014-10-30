@@ -50,6 +50,7 @@ public class Controller {
 				myView.printException(e);
 			}
 			myView.addToHistory(script);
+			myView.updateVariables();
 		}
 	}
 
