@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// ANNA MIYAJIMA
+
 package backEnd;
 
 import java.io.File;
@@ -9,8 +12,7 @@ import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Stack;
-import exceptions.InvalidPropertyFileException;
-import exceptions.UndefinedVariableException;
+import exceptions.FileInvalidException;
 
 
 /**
@@ -24,32 +26,19 @@ import exceptions.UndefinedVariableException;
  */
 public class VariableManager {
 
+    private File initialVarProperties = new File("src/resources/Variables.properties");
+    //InputStream initialVarProperties = getClass().getResourceAsStream("/resources/Variables.properties");
     private Properties myVariables;
     private Stack<Properties> myStoredVariables;
 
     public VariableManager () {
         myStoredVariables = new Stack<Properties>();
         myVariables = new Properties();
-        try {
-            setInitialVarProperties();
-        }
-        catch (IOException e) {
-            throw new InvalidPropertyFileException("Invalid property file loaded");
-        }
+        setVarProperties(initialVarProperties);
     }
 
     /**
-     * Sets variable properties file to default values
-     * 
-     * @throws IOException
-     */
-    private void setInitialVarProperties () throws IOException {
-        InputStream fileInput = getClass().getResourceAsStream("/resources/Variables.properties");
-        myVariables.load(fileInput);
-    }
-
-    /**
-     * Sets variable properties from a user defined file
+     * Sets variable properties from a file
      * 
      * @param f
      */
@@ -59,15 +48,48 @@ public class VariableManager {
             fileInput = new FileInputStream(f);
         }
         catch (FileNotFoundException e) {
-            throw new UndefinedVariableException("variable properties file invalid");
+            throw new FileInvalidException("variable properties file invalid");
         }
         try {
             myVariables.load(fileInput);
         }
         catch (IOException e) {
-            throw new UndefinedVariableException("variable properties file cannot load");
+            throw new FileInvalidException("variable properties file cannot load");
         }
-        System.out.println(myVariables);
+    }
+
+    /**
+     * Creates a new frame of variables to be defined and read
+     * Used in user defined commands and loops
+     * 
+     * @param variableMap
+     * @throws IOException
+     */
+    public void pushVarProperties (Map<String, String> variableMap) throws IOException {
+        Properties addToStack = new Properties();
+        for (Object s : myVariables.keySet()) {
+            addToStack.setProperty((String) s, (String) myVariables.get(s));
+        }
+        myStoredVariables.push(addToStack);
+        myVariables.clear();
+        myVariables.putAll(variableMap);
+        writeVarsToFile();
+    }
+
+    /**
+     * Pops off variable values from a previous frame of reference
+     * used to exit loops and user defined commands
+     * 
+     * @throws IOException
+     */
+    public void popVarProperties () throws IOException {
+        myVariables = myStoredVariables.pop();
+        writeVarsToFile();
+    }
+
+    private void writeVarsToFile () throws IOException {
+        FileOutputStream myFileOutput = new FileOutputStream("src/resources/Variables.properties");
+        myVariables.store(myFileOutput, "adding vars");
     }
 
     /**
@@ -102,37 +124,4 @@ public class VariableManager {
         return myVariables.containsKey(var);
     }
 
-    /**
-     * Creates a new frame of variables to be defined and read
-     * Used in user defined commands and loops
-     * 
-     * @param variableMap
-     * @throws IOException
-     */
-    public void pushVarProperties (Map<String, String> variableMap) throws IOException {
-        Properties addToStack = new Properties();
-        for (Object s : myVariables.keySet()) {
-            addToStack.setProperty((String)s, (String)myVariables.get(s));
-        }
-        myStoredVariables.push(addToStack);
-        myVariables.clear();
-        myVariables.putAll(variableMap);
-        writeVarsToFile();
-    }
-
-    /**
-     * Pops off variable values from a previous frame of reference
-     * used to exit loops and user defined commands
-     * 
-     * @throws IOException
-     */
-    public void popVarProperties () throws IOException {
-        myVariables = myStoredVariables.pop();
-        writeVarsToFile();
-    }
-
-    private void writeVarsToFile () throws IOException {
-        FileOutputStream myFileOutput = new FileOutputStream("src/resources/Variables.properties");
-        myVariables.store(myFileOutput, "adding vars");
-    }
 }

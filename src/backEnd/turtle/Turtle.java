@@ -1,6 +1,5 @@
 package backEnd.turtle;
 
-
 import java.util.Observable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
@@ -8,20 +7,21 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Point2D;
 
+
 /**
  * Hold all information and behaviors for the turtle in SLogo. The turtle
  * is capable of turning and moving, as well as hiding. It hold a pen which
  * it can raise and lower, altering when lines are drawn. It always begins at the
  * origin and can return home.
+ * 
  * @author Ethan Chang
  * @author Eli Lichtenberg
  *
  */
 public class Turtle extends Observable {
 
-
     public static final boolean INITIAL_VISIBILITY = true;
-	public static final double INITIAL_ORIENTATION = 0;
+    public static final double INITIAL_ORIENTATION = 0;
     public static final boolean INITIAL_PEN = true;
     public static final boolean INITIAL_CLEAR = false;
     public static final boolean INITIAL_ACTIVITY = true;
@@ -31,7 +31,7 @@ public class Turtle extends Observable {
     private BooleanProperty myPenDown;
     private TurtlePoint myPosition;
     private DoubleProperty myOrientation;
-    private double myCanvasWidth; 
+    private double myCanvasWidth;
     private double myCanvasHeight;
     private BooleanProperty myClearLines;
     private String myId;
@@ -70,23 +70,25 @@ public class Turtle extends Observable {
 
     /**
      * Moves the turtle unit by unit.
+     * 
      * @param distance how far the turtle needs to move.
      */
     public void moveTurtle (double distance) {
         int penState = isPenDown() ? 1 : 0;
         double direction = distance < 0 ? -1 : 1;
-        
+
         for (int i = 0; i < Math.abs(distance); i++) {
             movementHelper(direction, penState);
         }
-        
-        direction = distance - (int)distance;
+
+        direction = distance - (int) distance;
         movementHelper(direction, penState);
-        
+
     }
-    
+
     /**
-     * Calculates the change in x and y for each incremental move. 
+     * Calculates the change in x and y for each incremental move.
+     * 
      * @param direction whether going forward or backwards
      * @param penState whether the pen is up or down
      */
@@ -99,14 +101,16 @@ public class Turtle extends Observable {
 
     /**
      * Rotates the turtle's orientation by chang
+     * 
      * @param change factor the orientation changes
      */
     public void turnTurtle (double change) {
         setOrientation((getOrientation() + change) % DEGREES_IN_A_CIRCLE);
     }
-    
+
     /**
      * Retrieves the turtle's X value
+     * 
      * @return turtle's x-value
      */
     public Double getMyX () {
@@ -115,6 +119,7 @@ public class Turtle extends Observable {
 
     /**
      * Retrieves the turtle's Y value
+     * 
      * @return turtle's y-value
      */
     public Double getMyY () {
@@ -123,6 +128,7 @@ public class Turtle extends Observable {
 
     /**
      * Returns the turtle home (0,0)
+     * 
      * @return distance travelled to go ome
      */
     public Double goHome () {
@@ -135,10 +141,9 @@ public class Turtle extends Observable {
      * Clears the lines the turtle has drawn
      */
     public void clearMyLines () {
-    	myClearLines.set(true);
-    	myClearLines.set(false);
+        myClearLines.set(true);
+        myClearLines.set(false);
     }
-
 
     /**
      * Sets a stamp of the turtle on the canvas
@@ -146,16 +151,17 @@ public class Turtle extends Observable {
     public void setStamp () {
         myStampCount.set(myStampCount.getValue() + 1);
     }
-    
+
     /**
      * Remomves all stamps the turtle has drawn.
      */
     public void clearStamp () {
         myStampCount.set(INITIAL_STAMP_COUNT);
     }
-    
+
     /**
      * Goes to a specific location on the canvas
+     * 
      * @param x x-coordinate of the location
      * @param y y-coordinate of the location
      * @return
@@ -170,6 +176,7 @@ public class Turtle extends Observable {
     /**
      * Toggles if the pen is up or down. If the pen
      * is down the turtle can draw. If it isn't, it cannot.
+     * 
      * @param d
      */
     public void togglePen (double d) {
@@ -182,7 +189,8 @@ public class Turtle extends Observable {
     }
 
     /**
-     * Changes if the turtle is visible on the  canvas
+     * Changes if the turtle is visible on the canvas
+     * 
      * @param d whether turtle should be visible
      */
     public void toggleVisibility (double d) {
@@ -196,6 +204,7 @@ public class Turtle extends Observable {
 
     /**
      * return the turtle's current position
+     * 
      * @return
      */
     public TurtlePoint getPosition () {
@@ -204,6 +213,7 @@ public class Turtle extends Observable {
 
     /**
      * Sets the position for the turtle
+     * 
      * @param newPosition new position on canvs
      */
     public void setPosition (Point2D newPosition) {
@@ -212,6 +222,7 @@ public class Turtle extends Observable {
 
     /**
      * Get turtle's orientation
+     * 
      * @return the turtle's orientation
      */
     public double getOrientation () {
@@ -220,24 +231,25 @@ public class Turtle extends Observable {
 
     /**
      * Set the turtle's orientation
+     * 
      * @param newOrientation new orientation
      */
     public void setOrientation (Double newOrientation) {
         myOrientation.set(newOrientation);
     }
 
-    
     /**
      * Deals with edge cases when moving your turtle. If you go over the top
      * you'll continue from the bottom and if you go pass the left bounds, you'll
      * come out from the right
+     * 
      * @param deltaX Change in the turtle's x value
      * @param deltaY Change in the turtle's y value
      */
     protected void toroidalMovement (double deltaX, double deltaY) {
         double newX = myPosition.getX() + deltaX;
         double newY = myPosition.getY() + deltaY;
-         
+
         if (myPosition.getX() < 0) {
             togglePen(0);
             newX = myCanvasWidth;
@@ -246,7 +258,7 @@ public class Turtle extends Observable {
             togglePen(0);
             newX = 0;
         }
-        
+
         if (myPosition.getY() < 0) {
             togglePen(0);
             newY = myCanvasHeight;
@@ -260,6 +272,7 @@ public class Turtle extends Observable {
 
     /**
      * turn towards a specific point on the canvas
+     * 
      * @param x x-coordinate of point
      * @param y y-coordinate of point
      * @return degrees turned to face the point
@@ -280,6 +293,7 @@ public class Turtle extends Observable {
 
     /**
      * Checks if the pen is currently down
+     * 
      * @return pen's current state
      */
     public boolean isPenDown () {
@@ -288,60 +302,66 @@ public class Turtle extends Observable {
 
     /**
      * Check if the turtle is visible
+     * 
      * @return the turtle's visibility
      */
     public boolean isVisible () {
         return myVisibility.get();
     }
-    
+
     /**
      * Packages the properties needed in the front end to track the turtle
+     * 
      * @return TurtleProperties containing the necessary properties
      */
     public TurtleProperties getTurtleProperties () {
-    	TurtleProperties tProps = new 
-    	        TurtleProperties(myPosition, myOrientation, myPenDown, 
-    	        		myClearLines, myVisibility, myStampCount, myPen, 
-    	        		myShapeIndex, myActivity);
-    	return tProps;
+        TurtleProperties tProps = new
+                TurtleProperties(myPosition, myOrientation, myPenDown,
+                                 myClearLines, myVisibility, myStampCount, myPen,
+                                 myShapeIndex, myActivity);
+        return tProps;
     }
-    
+
     /**
      * Get the turtle's name
+     * 
      * @return turtle's name
      */
     public String getId () {
         return myId;
     }
-    
+
     /**
      * Get the turtle's pen
+     * 
      * @return
      */
     public Pen getPen () {
         return myPen;
     }
-    
+
     /**
      * Set the index of the shape the turtle will be using
+     * 
      * @param index index to be used
      */
     public void setShapeIndex (double index) {
         myShapeIndex.set(index);
     }
-    
+
     /**
      * Return the index the turtle is using as an image
+     * 
      * @return index used
      */
     public DoubleProperty getShapeIndex () {
         return myShapeIndex;
     }
-    
+
     public void setIsActive (boolean alive) {
         myActivity.set(alive);
     }
-    
+
     public BooleanProperty getIsActive () {
         return myActivity;
     }
