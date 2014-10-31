@@ -13,7 +13,6 @@ import frontEnd.View;
 
 /**
  * @author Brian Bolze
- *
  */
 public class Controller {
 

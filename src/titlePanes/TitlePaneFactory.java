@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Stack;
 
 import javafx.scene.control.TitledPane;
-import javafx.scene.shape.Rectangle;
 import backEnd.Controller;
 
 /*
@@ -16,10 +15,8 @@ import backEnd.Controller;
 public class TitlePaneFactory {
 
 	private Map<String, Class<?>> implementedTitlePanes;
-	private double MAX_HEIGHT;
 
-	public TitlePaneFactory(double maxHeight) {
-		MAX_HEIGHT = maxHeight;
+	public TitlePaneFactory() {
 		implementedTitlePanes = new HashMap<String, Class<?>>();
 		implementTitlePane("DisplayTitlePane", DisplayTitlePane.class);
 		implementTitlePane("HistoryTitlePane", HistoryTitlePane.class);
@@ -41,8 +38,6 @@ public class TitlePaneFactory {
 			Class<?> c = Class.forName("titlePanes." + type);
 			Constructor<?>[] constr = c.getDeclaredConstructors();
 			TitledPane pane = (TitledPane)constr[0].newInstance(contr);
-			pane.getContent().setClip(new Rectangle(MAX_HEIGHT, MAX_HEIGHT));
-			pane.getContent().maxHeight(MAX_HEIGHT);
 			return pane;
 		}
 	}

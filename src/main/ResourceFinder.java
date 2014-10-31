@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
  * by MasterWindow to set up and change languages, and by the CommandFactory and
  * others to get the names of the commands and more
  * 
- * 
  * @author brianbolze
  *
  */

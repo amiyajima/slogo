@@ -17,7 +17,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import backEnd.Controller;
 import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleProperties;
 
@@ -85,6 +84,14 @@ public class TurtleCanvas extends Group {
 	}
 	
 	/**
+	 * Returns String representing color of background of canvas.
+	 * @return Background color of canvas as String
+	 */
+	public String getBackgroundColor () {
+		return myBackground.getFill().toString();
+	}
+	
+	/**
 	 * Sets color of turtle's pen.
 	 * @param c Color to make pen
 	 */
@@ -120,7 +127,6 @@ public class TurtleCanvas extends Group {
 	}
 	
 	void update (Observable o, Object arg) throws IOException {
-		System.out.println("HERE!!!!!" + arg.toString());
 		if (arg instanceof Turtle) {
 			Turtle turtle = (Turtle)arg;
 			addTurtle(turtle);
@@ -224,12 +230,5 @@ public class TurtleCanvas extends Group {
 			}
 		});
 	}
-	
-	/**
-	 * Returns String representing color of background of canvas.
-	 * @return Background color of canvas as String
-	 */
-	public String getBackgroundColor () {
-		return myBackground.getFill().toString();
-	}
+
 }

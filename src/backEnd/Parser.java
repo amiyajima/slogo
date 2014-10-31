@@ -24,11 +24,11 @@ import exceptions.InvalidInputException;
  */
 public class Parser {
 
-    public static final String CONSTANT_REGEX = "-?[0-9]+\\.?[0-9]*";
-    public static final String VARIABLE_REGEX = ":[a-zA-Z]+";
-    public static final String COMMAND_REGEX = "[a-zA-Z_]+(\\?)?";
-    public static final String OPEN_BRACKET_REGEX = "\\[";
-    public static final String CLOSE_BRACKET_REGEX = "\\]";
+    private static final String CONSTANT_REGEX = "-?[0-9]+\\.?[0-9]*";
+    private static final String VARIABLE_REGEX = ":[a-zA-Z]+";
+    private static final String COMMAND_REGEX = "[a-zA-Z_]+(\\?)?";
+    private static final String OPEN_BRACKET_REGEX = "\\[";
+    private static final String CLOSE_BRACKET_REGEX = "\\]";
 
     private CommandFactory myFactory;
     private StringTokenizer myInstructions;
@@ -94,7 +94,7 @@ public class Parser {
      * @throws RuntimeException
      */
 
-    public Command makeTree (String commandName,
+    private Command makeTree (String commandName,
                              Model model,
                              VariableManager variableManager,
                              Map<String, Command> commandsmap) {

@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Stack;
+
 import exceptions.InvalidPropertyFileException;
 import exceptions.UndefinedVariableException;
 
@@ -19,7 +20,7 @@ import exceptions.UndefinedVariableException;
  * Also allows variable commands to set values in the properties object.
  * Writes variable values to the properties file.
  * 
- * @author annamiyajima
+ * @author Anna Miyajima
  *
  */
 public class VariableManager {

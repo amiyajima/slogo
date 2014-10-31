@@ -26,6 +26,8 @@ public class ParameterPanel extends Pane {
     private VariableTitlePane myVariableTitlePane;
     private HelpTitlePane myHelpTitlePane;
     private LoadVariablesTitlePane myLoadPropertiesTitlePane;
+    
+    private static final double ACCORDION_HEIGHT = 200;
 
     public ParameterPanel (double width, double height, Controller controller) throws IOException {
 
@@ -52,10 +54,10 @@ public class ParameterPanel extends Pane {
     public void addToHistory (String script) {
         myHistoryTitlePane.addToHistory(script);
     }
-
-//    public void setupVariableMap (Map<String, Double> varMap) {
-//        myVariableTitlePane.setupVariableMap(varMap);
-//    }
+    
+	public void updateVariables() throws IOException {
+		myVariableTitlePane.updateVariables();
+	}
 
     private void setupTitledPanes (Controller controller) throws IOException {
         myDisplayTitlePane = new DisplayTitlePane(controller);
@@ -68,14 +70,10 @@ public class ParameterPanel extends Pane {
     }
 
     private void addDecorations () {
-        double maxHeight = getMinHeight() - 200;
+        double maxHeight = getMinHeight() - ACCORDION_HEIGHT;
         new VScrollableDecorator(myHistoryTitlePane, maxHeight);
         new VScrollableDecorator(myVariableTitlePane, maxHeight);
         new VScrollableDecorator(myCommandTitlePane, maxHeight);
     }
-
-	public void updateVariables() throws IOException {
-		myVariableTitlePane.updateVariables();
-	}
 
 }

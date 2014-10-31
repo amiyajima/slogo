@@ -16,15 +16,23 @@ import commands.CommandFactory;
 
 import frontEnd.Workspace;
 
+/**
+ * Effectively the 'Main' class for our application. This sets up the global
+ * Parser and Command Factory and sets up the main window
+ * 
+ * @author Brian Bolze
+ *
+ */
 public class MasterWindow extends Application {
+
 	private Stage myStage;
 	private Scene myScene;
 	private Parser myParser;
 	private Workspace myCurrentWorkspace;
 	private CommandFactory myCommandFactory;
+	private MenuBar myMenuBar;
 	private Pane myRoot = new VBox();
 	private TabPane myTabs = new TabPane();
-	private MenuBar myMenuBar;
 
 	static public void main(String[] args) {
 		launch(args);
@@ -36,12 +44,15 @@ public class MasterWindow extends Application {
 		myStage = primaryStage;
 		myStage.setScene(myScene);
 		myStage.setTitle("SLogo");
+		
 		new ResourceFinder("English");
+		myCommandFactory = new CommandFactory();
+		myParser = new Parser(myCommandFactory);
 		myMenuBar = new MasterMenuBar(this);
 		myRoot.getChildren().addAll(myMenuBar, myTabs);
-		myCommandFactory = new CommandFactory();
-        myParser = new Parser(myCommandFactory);
+		
 		buildWorkspace();
+		
 		myStage.show();
 	}
 
@@ -56,13 +67,15 @@ public class MasterWindow extends Application {
 		myTabs.getTabs().add(tab);
 		myTabs.getSelectionModel().select(tab);
 	}
+
 	void saveWorkspacePreferences(File file) {
 		myCurrentWorkspace.savePropertiesToFile(file);
 	}
+
 	void loadWorkspacePreferences(File file) {
 		myCurrentWorkspace.loadPropertiesFromFile(file);
 	}
-	
+
 	private void tabChanged(Tab tab) {
 		if (tab.isSelected()) {
 			tab.getContent().requestFocus();
@@ -70,9 +83,11 @@ public class MasterWindow extends Application {
 			setKeyListener();
 		}
 	}
+
 	private void setKeyListener() {
 		myScene.setOnKeyReleased(myCurrentWorkspace.getKeyListener());
 	}
+
 	private void setMouseListener() {
 		myScene.setOnMouseClicked(myCurrentWorkspace.getMouseListener());
 	}

@@ -2,18 +2,19 @@ package titlePanes;
 
 import java.io.IOException;
 import java.io.InputStream;
-<<<<<<< HEAD
-=======
 import java.util.HashMap;
 import java.util.Map;
->>>>>>> 3fdacb16e9ed60e2a0606d7b14342a7349537081
 import java.util.Properties;
+import java.util.Set;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import backEnd.Controller;
 
+/**
+ * @author Eli Lichtenberg
+ */
 public class VariableTitlePane extends TitledPane {
 	
 	private VBox myRoot;
@@ -59,17 +60,4 @@ public class VariableTitlePane extends TitledPane {
 		}
 	}
 	
-	
-	
-//	public void setupVariableMap(Map<String, Double> varMap) {
-//		Set<String> variables = varMap.keySet();
-//		for(String varName : variables) {
-//			Label variable = new Label(varName + ": " + varMap.get(varName));
-//			myRoot.getChildren().add(variable);
-//		}
-//	}
-	
-//	private void addListeners() {
-//		varMap.addL
-//	}
 }
