@@ -27,15 +27,15 @@ import backEnd.Controller;
  */
 public class View extends VBox implements Observer {
 	
-	private static final double GUI_CONSTANT = .75;
+	private static final double GUI_LAYOUT_CONSTANT = .75;
 	private static final double PADDING = 20;
+	private double myWidth;
+	private double myHeight;
+	
 	@SuppressWarnings("unused")
 	private String myLanguage;
 	private Controller myController;
 	private TurtleCanvas myCanvas;
-	
-	private double myWidth;
-	private double myHeight;
 	
 	private ParameterPanel mySidePanel;
 	private ScriptPanel myScriptPanel;
@@ -119,44 +119,6 @@ public class View extends VBox implements Observer {
 		myScriptPanel.addTextToScript(command);
 	}
 	
-/////////////////  GUI SETUP  //////////////////
-	private void setupGui () {
-		
-		HBox hbox = new HBox();
-		hbox.setMinHeight(myHeight * GUI_CONSTANT);
-		hbox.setMinWidth(myWidth);
-		hbox.getChildren().addAll(buildCanvas(), buildSidePanel());
-		
-		getChildren().addAll(hbox, buildScriptPanel());
-	}
-	
-	private Node buildCanvas () {
-		try {
-			myCanvas = new TurtleCanvas(myWidth * GUI_CONSTANT, 
-					myHeight * GUI_CONSTANT, PADDING);
-		} 
-		catch (IOException e) {
-			printException(e);
-		}
-		return myCanvas;
-	}
-	
-	private Node buildSidePanel () {
-		try {
-			mySidePanel = new ParameterPanel(myWidth / 4., 
-					myHeight * GUI_CONSTANT, myController);
-		} 
-		catch (IOException e) {
-			printException(e);
-		}
-		return mySidePanel;
-	}
-	
-	private Node buildScriptPanel () {
-		myScriptPanel = new ScriptPanel(myWidth, myHeight / 4., myController);
-		return myScriptPanel;
-	}
-
 	/**
 	 * Changes background color of canvas.
 	 * @param c Color to change background of canvas
@@ -215,5 +177,43 @@ public class View extends VBox implements Observer {
 	 */
 	public String getBackgroundColor () {
 		return myCanvas.getBackgroundColor();
+	}
+	
+/////////////////  GUI SETUP  //////////////////
+	private void setupGui () {
+		
+		HBox hbox = new HBox();
+		hbox.setMinHeight(myHeight * GUI_LAYOUT_CONSTANT);
+		hbox.setMinWidth(myWidth);
+		hbox.getChildren().addAll(buildCanvas(), buildSidePanel());
+		
+		getChildren().addAll(hbox, buildScriptPanel());
+	}
+	
+	private Node buildCanvas () {
+		try {
+			myCanvas = new TurtleCanvas(myWidth * GUI_LAYOUT_CONSTANT, 
+					myHeight * GUI_LAYOUT_CONSTANT, PADDING);
+		} 
+		catch (IOException e) {
+			printException(e);
+		}
+		return myCanvas;
+	}
+	
+	private Node buildSidePanel () {
+		try {
+			mySidePanel = new ParameterPanel(myWidth / 4., 
+					myHeight * GUI_LAYOUT_CONSTANT, myController);
+		} 
+		catch (IOException e) {
+			printException(e);
+		}
+		return mySidePanel;
+	}
+	
+	private Node buildScriptPanel () {
+		myScriptPanel = new ScriptPanel(myWidth, myHeight / 4., myController);
+		return myScriptPanel;
 	}
 }

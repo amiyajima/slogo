@@ -18,6 +18,8 @@ public class ResourceFinder {
 	private static final String DEFAULT_LANGUAGE = "English";
 	private static final ResourceBundle MY_COMMAND_RESOURCES = ResourceBundle
 			.getBundle("resources/Commands");
+	private static final ResourceBundle MY_VARIABLE_RESOURCES = ResourceBundle
+			.getBundle("resources/Variables");
 	private static final ResourceBundle MY_POSSIBLE_LANGUAGES_RESOURCES = ResourceBundle
 			.getBundle("resources/languages/Languages");
 

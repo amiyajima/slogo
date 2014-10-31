@@ -9,9 +9,16 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import main.ResourceFinder;
+
+import commands.CommandFactory;
+
 import frontEnd.View;
 
 /**
+ * Controller class that simplifies communication between elements in the
+ * front-end, back-end, and from higher order classes such as Workspace and
+ * MasterWindow. 
+ * 
  * @author Brian Bolze
  */
 public class Controller {
@@ -21,7 +28,6 @@ public class Controller {
 	 * the stage
 	 */
 	public EventHandler<MouseEvent> myMouseListener;
-
 	public EventHandler<KeyEvent> myKeyListener;
 
 	private Model myModel;
@@ -63,6 +69,7 @@ public class Controller {
 		ResourceBundle commands = ResourceFinder.getMyLanguageResources();
 		String temp = commands.getString(direction);
 		String[] command = temp.split(",");
+		CommandFactory.buildCommand(command[0], myModel);
 		runScript(command[0] + " 10");
 	}
 
@@ -90,9 +97,7 @@ public class Controller {
 		myMouseListener = new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				// double x = event.getX();
-				// double y = event.getY();
-
+				// do nothing
 			}
 		};
 	}

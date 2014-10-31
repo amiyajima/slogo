@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import backEnd.turtle.Turtle;
 import backEnd.turtle.TurtleManager;
 
 import commands.templates.Command;
@@ -28,11 +28,11 @@ import frontEnd.View;
  *
  */
 public class Model {
+	
+    public VariableManager myVariableManager;
 
     public static final int INITIAL_BACKGROUND_INDEX = 0;
     private Parser myParser;
-    private Turtle myTurtle;
-    private VariableManager myVariableManager;
     private TurtleManager myTurtleManager;
     private HashMap<String, Command> myCommandsList;
     private DoubleProperty myBackgroundIndex = new SimpleDoubleProperty();
@@ -87,15 +87,6 @@ public class Model {
         }
         System.out.println("root commands are " + rootCommands);
         return 0;
-    }
-
-    /**
-     * Adds turtle observer to the view
-     * 
-     * @param view view for the workspace
-     */
-    public void setTurtleObserver (View view) {
-        myTurtle.addObserver(view);
     }
 
     /**

@@ -25,7 +25,7 @@ import exceptions.InvalidInputException;
  */
 public class CommandFactory {
 
-    private String myClassKey;
+    private static String myClassKey;
 
     public CommandFactory () {
 
@@ -39,7 +39,7 @@ public class CommandFactory {
      *        command type being checked
      * @return Return true if the command is valid
      */
-    private boolean checkLanguage (String type) {
+    private static boolean checkLanguage (String type) {
 
         ResourceBundle languageResources = ResourceFinder.getMyLanguageResources();
 
@@ -55,11 +55,11 @@ public class CommandFactory {
         return false;
     }
 
-    private boolean checkVar (String type) {
+    private static boolean checkVar (String type) {
         return type.startsWith(":");
     }
 
-    public boolean isNumeric (String str) {
+    public static boolean isNumeric (String str) {
         return str.matches("-?[0-9]+.?[0-9]*");
         // match a number with optional '-' and decimal.
     }
@@ -71,7 +71,7 @@ public class CommandFactory {
      * @param type
      * @return
      */
-    private String checkCaps (String type) {
+    private static String checkCaps (String type) {
         return type.toLowerCase();
     }
 
@@ -81,7 +81,7 @@ public class CommandFactory {
      * @param type
      * @return
      */
-    private boolean checkUserCommand (String type, Map<String, Command> commandsMap) {
+    private static boolean checkUserCommand (String type, Map<String, Command> commandsMap) {
         return commandsMap.containsKey(type);
     }
 
@@ -94,11 +94,13 @@ public class CommandFactory {
      *        Command being tested
      * @return Either the type of command requested, or an exception
      */
-    public Command buildCommand (String type,
-                                 Model model,
-                                 VariableManager variableManager) {
+    public static Command buildCommand (String type,
+                                 Model model) {
+    	
         Map<String, Command> commandsMap = model.getCommandsMap();
         type = checkCaps(type);
+        VariableManager variableManager = model.myVariableManager;
+        
         if (checkLanguage(type)) {
             try {
                 Class<?> newCommandClass = Class.forName(ResourceFinder.

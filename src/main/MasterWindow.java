@@ -25,11 +25,12 @@ import frontEnd.Workspace;
  */
 public class MasterWindow extends Application {
 
+	public static Parser myParser = new Parser();
+	public static CommandFactory myCommandFactory = new CommandFactory();
+	
 	private Stage myStage;
 	private Scene myScene;
-	private Parser myParser;
-	private Workspace myCurrentWorkspace;
-	private CommandFactory myCommandFactory;
+	public Workspace myCurrentWorkspace;
 	private MenuBar myMenuBar;
 	private Pane myRoot = new VBox();
 	private TabPane myTabs = new TabPane();
@@ -44,18 +45,23 @@ public class MasterWindow extends Application {
 		myStage = primaryStage;
 		myStage.setScene(myScene);
 		myStage.setTitle("SLogo");
-		
+
 		new ResourceFinder("English");
 		myCommandFactory = new CommandFactory();
-		myParser = new Parser(myCommandFactory);
+		myParser = new Parser();
 		myMenuBar = new MasterMenuBar(this);
 		myRoot.getChildren().addAll(myMenuBar, myTabs);
-		
+
 		buildWorkspace();
-		
+
 		myStage.show();
 	}
 
+	/**
+	 * Called by MasterMenuBar when a new tab is created. This sets the focus to
+	 * the new workspace and sets the mouse and key listeners to the appropriate
+	 * workspace
+	 */
 	void buildWorkspace() {
 		myCurrentWorkspace = new Workspace(myParser);
 		setKeyListener();

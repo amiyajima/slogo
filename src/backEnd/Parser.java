@@ -30,16 +30,13 @@ public class Parser {
     private static final String OPEN_BRACKET_REGEX = "\\[";
     private static final String CLOSE_BRACKET_REGEX = "\\]";
 
-    private CommandFactory myFactory;
     private StringTokenizer myInstructions;
-    private VariableManager myVariableManager;
 
     /**
      * Constructor for the parser
      */
 
-    public Parser (CommandFactory commandFactory) {
-        myFactory = commandFactory;
+    public Parser () {
     }
 
     /**
@@ -61,9 +58,9 @@ public class Parser {
 
         while (myInstructions.hasMoreTokens()) {
             Command createdCommand =
-                    makeTree(myInstructions.nextToken(), model, variableManager, commandsMap);
+                    makeTree(myInstructions.nextToken(), model, commandsMap);
             if (createdCommand instanceof ToCommand) {
-                Command nextToAdd = new ToCommand(myVariableManager, (ToCommand)createdCommand);
+                Command nextToAdd = new ToCommand(variableManager, (ToCommand)createdCommand);
                 commandsMap.put(nextToAdd.toString(), nextToAdd);
             }
             myRoots.add(createdCommand);
@@ -96,15 +93,14 @@ public class Parser {
 
     private Command makeTree (String commandName,
                              Model model,
-                             VariableManager variableManager,
                              Map<String, Command> commandsmap) {
         Map<String, Command> commandsMap = model.getCommandsMap();
         System.out.println(commandName);
-        Command c = myFactory.buildCommand(commandName, model, variableManager);
+        Command c = CommandFactory.buildCommand(commandName, model);
         if (Pattern.matches(OPEN_BRACKET_REGEX, commandName)) {
             String nextInstruction = myInstructions.nextToken();
             while (!(Pattern.matches(CLOSE_BRACKET_REGEX, nextInstruction))) {
-                c.addChild(makeTree(nextInstruction, model, variableManager, commandsMap));
+                c.addChild(makeTree(nextInstruction, model, commandsMap));
                 if (!myInstructions.hasMoreElements()) { 
                     throw new InvalidInputException("Open brackets must have a corresponding ']'"); 
                 }
@@ -119,7 +115,7 @@ public class Parser {
         else if (Pattern.matches(COMMAND_REGEX, commandName) ||
                  commandsMap.keySet().contains(commandName)) {
             while (c.getNumChildrenNeeded() > 0) {
-                c.addChild(makeTree(myInstructions.nextToken(), model, variableManager, commandsMap));
+                c.addChild(makeTree(myInstructions.nextToken(), model, commandsMap));
             }
         }
         else {
