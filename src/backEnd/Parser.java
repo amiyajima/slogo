@@ -53,7 +53,7 @@ public class Parser {
      * @return A list of commands to be sent to the ScriptManager
      */
 
-    List<Command> parseScript (String script, Model model, VariableManager variableManager) {
+    public List<Command> parseScript (String script, Model model, VariableManager variableManager) {
         Map<String, Command> commandsMap = model.getCommandsMap();
         List<Command> myRoots = new ArrayList<Command>();
         script = removeComments(script);

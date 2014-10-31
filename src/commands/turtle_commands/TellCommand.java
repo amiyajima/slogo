@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// Ethan Chang
+
 package commands.turtle_commands;
 
 import java.util.ArrayList;
@@ -5,7 +8,6 @@ import java.util.List;
 
 import backEnd.VariableManager;
 import backEnd.turtle.TurtleManager;
-
 import commands.templates.TurtleCommand;
 import commands.variable_commands.CommandsList;
 
@@ -15,7 +17,6 @@ import commands.variable_commands.CommandsList;
  *
  */
 public class TellCommand extends TurtleCommand {
-
     public static final int NUM_CHILDREN = 1;
 
     public TellCommand (VariableManager manager) {
@@ -32,18 +33,19 @@ public class TellCommand extends TurtleCommand {
             turtleNames.add(getValue());
         }
         getMyTurtleManager().updateActiveTurtleList(turtleNames);
-        System.out.println(getMyTurtleManager().getTurtleList());
         return getValue();
+    }
+
+
+
+    @Override
+    public String toString () {
+        return null;
     }
 
     @Override
     public void executeTurtleCommand (TurtleManager turtleManager) {
 
-    }
-
-    @Override
-    public String toString () {
-        return null;
     }
 
 }

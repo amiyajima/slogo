@@ -51,6 +51,11 @@ public class Model {
         myBackgroundIndex = new SimpleDoubleProperty(INITIAL_BACKGROUND_INDEX);
         myPalette = new SimpleStringProperty("");
     }
+    
+    //Added for junit testing
+    public void setTurtleManager(TurtleManager turtleManager) {
+        myTurtleManager = turtleManager;
+    }
 
     /**
      * Sets up the turtleManager by adding an observer to it so it can be tracked
@@ -77,7 +82,7 @@ public class Model {
      *         types of syntax errors.
      * 
      */
-    int runScript (String script) {
+    public int runScript (String script) {
 
         List<Command> rootCommands = myParser.parseScript(script, this,
                                                           myVariableManager);
@@ -85,7 +90,6 @@ public class Model {
         for (Command c : rootCommands) {
             c.execute();
         }
-        System.out.println("root commands are " + rootCommands);
         return 0;
     }
 

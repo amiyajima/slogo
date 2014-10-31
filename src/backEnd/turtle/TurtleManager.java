@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// Ethan Chang
+
 package backEnd.turtle;
 
 import java.util.ArrayList;
@@ -105,8 +108,8 @@ public class TurtleManager extends Observable {
 
     /**
      * Creates a list of temporary turtles for the ask command. After the
-     * command finishes, these commands should be forgotten, so we add them to
-     * the top of the stack.
+     * command finishes, this list should be forgotten, so we add them to
+     * the top of the stack to be popped upon completion
      * 
      * @param turtleNames
      */
