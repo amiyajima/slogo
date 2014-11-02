@@ -1,0 +1,10 @@
+<map id="frontEnd.TurtleView.changePenColor" name="frontEnd.TurtleView.changePenColor">
+<area shape="rect" id="node2" href="$dc/dcd/classfront_end_1_1_turtle_view.html#afe6f3f772a1a6b802fadd5a9189c32bc" title="frontEnd.TurtleView.addPen\lColorIndexListener" alt="" coords="257,5,452,46"/>
+<area shape="rect" id="node5" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a86f38e34d4034991241fdb889a7c4570" title="frontEnd.TurtleCanvas.change\lPenColor" alt="" coords="249,70,461,111"/>
+<area shape="rect" id="node3" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a8a128529e6c726fb58825bfa0794b239" title="frontEnd.TurtleView.addListeners" alt="" coords="510,12,738,39"/>
+<area shape="rect" id="node4" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a68db2241e0b2e23e1894492f87975e1b" title="frontEnd.TurtleView.TurtleView" alt="" coords="787,12,997,39"/>
+<area shape="rect" id="node6" href="$d8/d1f/classfront_end_1_1_view.html#a8a032e4ed880f3099ab4d04846221219" title="frontEnd.View.changePenColor" alt="" coords="516,77,732,104"/>
+<area shape="rect" id="node7" href="$d9/d49/classback_end_1_1_controller.html#a06c74a6c4bb360e826758f33e0dd1eb6" title="backEnd.Controller.change\lPenColor" alt="" coords="796,70,988,111"/>
+<area shape="rect" id="node8" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#a34e6959ea802f029e594f26b77b9e736" title="titlePanes.ControlTitlePane.make\lPenColorBox" alt="" coords="1046,70,1277,111"/>
+<area shape="rect" id="node9" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#ad9d4431a2657a30fedae46e0c9093867" title="titlePanes.ControlTitlePane.\lControlTitlePane" alt="" coords="1325,70,1520,111"/>
+</map>

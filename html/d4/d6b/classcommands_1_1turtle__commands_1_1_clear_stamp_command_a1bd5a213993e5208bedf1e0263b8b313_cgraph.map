@@ -1,0 +1,6 @@
+<map id="commands.turtle_commands.ClearStampCommand.execute" name="commands.turtle_commands.ClearStampCommand.execute">
+<area shape="rect" id="node2" href="$d4/d6b/classcommands_1_1turtle__commands_1_1_clear_stamp_command.html#a0a32655fe4d0658f7f2e5b61346111f0" title="commands.turtle_commands.\lClearStampCommand.executeTurtle\lCommand" alt="" coords="275,4,530,60"/>
+<area shape="rect" id="node4" href="$dc/d36/classcommands_1_1templates_1_1_turtle_command.html#ae4d2a640c2db20e624d831deed30484d" title="commands.templates.Turtle\lCommand.getMyTurtleManager" alt="" coords="291,83,514,125"/>
+<area shape="rect" id="node3" href="$d4/d07/classback_end_1_1turtle_1_1_turtle_manager.html#abd8e7545c1f29c7714bc7aaf59d3875b" title="backEnd.turtle.TurtleManager.get\lTurtleList" alt="" coords="580,11,812,53"/>
+<area shape="rect" id="node5" href="$d9/d98/classback_end_1_1_model.html#a1f54b1acaee5f2f608376ce454fa82f2" title="backEnd.Model.getTurtleManager" alt="" coords="579,91,813,117"/>
+</map>

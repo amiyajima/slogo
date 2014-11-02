@@ -1,0 +1,9 @@
+<map id="commands.turtle_commands.SetStrokeSize.execute" name="commands.turtle_commands.SetStrokeSize.execute">
+<area shape="rect" id="node2" href="$d7/d3f/classcommands_1_1turtle__commands_1_1_set_stroke_size.html#a5e847b0e5502b2f904eba65502f0a45d" title="commands.turtle_commands.\lSetStrokeSize.executeTurtleCommand" alt="" coords="269,11,539,53"/>
+<area shape="rect" id="node4" href="$d5/d62/classcommands_1_1templates_1_1_command.html#a97358158dd12c0a83a49df3c1e379790" title="commands.templates.Command.get\lValue" alt="" coords="587,70,845,111"/>
+<area shape="rect" id="node5" href="$d5/d62/classcommands_1_1templates_1_1_command.html#ae48716b79da0af7e6815fbe6fc113075" title="commands.templates.Command.get\lMyChildren" alt="" coords="275,129,533,170"/>
+<area shape="rect" id="node6" href="$dc/d36/classcommands_1_1templates_1_1_turtle_command.html#ae4d2a640c2db20e624d831deed30484d" title="commands.templates.Turtle\lCommand.getMyTurtleManager" alt="" coords="293,194,515,235"/>
+<area shape="rect" id="node8" href="$d5/d62/classcommands_1_1templates_1_1_command.html#a632193b631b368f6ffbc514865f062e5" title="commands.templates.Command.set\lValue" alt="" coords="275,259,533,301"/>
+<area shape="rect" id="node3" href="$d4/d07/classback_end_1_1turtle_1_1_turtle_manager.html#abd8e7545c1f29c7714bc7aaf59d3875b" title="backEnd.turtle.TurtleManager.get\lTurtleList" alt="" coords="600,5,832,46"/>
+<area shape="rect" id="node7" href="$d9/d98/classback_end_1_1_model.html#a1f54b1acaee5f2f608376ce454fa82f2" title="backEnd.Model.getTurtleManager" alt="" coords="599,201,833,228"/>
+</map>

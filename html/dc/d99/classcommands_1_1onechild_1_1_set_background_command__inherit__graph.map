@@ -1,0 +1,4 @@
+<map id="commands.onechild.SetBackgroundCommand" name="commands.onechild.SetBackgroundCommand">
+<area shape="rect" id="node2" href="$dc/d65/classcommands_1_1templates_1_1_one_child_command.html" title="commands.templates.OneChild\lCommand" alt="" coords="20,81,243,122"/>
+<area shape="rect" id="node3" href="$d5/d62/classcommands_1_1templates_1_1_command.html" title="commands.templates.Command" alt="" coords="15,5,248,32"/>
+</map>

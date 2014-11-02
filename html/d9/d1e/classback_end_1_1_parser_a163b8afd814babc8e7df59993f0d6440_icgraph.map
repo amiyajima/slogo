@@ -1,0 +1,13 @@
+<map id="backEnd.Parser.parseScript" name="backEnd.Parser.parseScript">
+<area shape="rect" id="node2" href="$d9/d98/classback_end_1_1_model.html#ade764fd1c85a48fabb9abf3dfe8b8ceb" title="backEnd.Model.runScript" alt="" coords="251,117,431,144"/>
+<area shape="rect" id="node3" href="$d9/d49/classback_end_1_1_controller.html#ad650f48d236eaf11c2d8591b04831900" title="backEnd.Controller.runScript" alt="" coords="480,117,683,144"/>
+<area shape="rect" id="node4" href="$de/d03/classpanels_1_1_script_panel.html#ae6ae56472ef1a975597bad69844662c6" title="panels.ScriptPanel.handler" alt="" coords="734,31,925,57"/>
+<area shape="rect" id="node6" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#af28eba60fefe51c70e763d51d9123ea3" title="titlePanes.ControlTitlePane.make\lLocationFields" alt="" coords="1265,190,1495,231"/>
+<area shape="rect" id="node8" href="$d9/d49/classback_end_1_1_controller.html#a3b0bbf0a084bb4fb63d118f66e7327b1" title="backEnd.Controller.move10" alt="" coords="731,117,928,144"/>
+<area shape="rect" id="node5" href="$de/d03/classpanels_1_1_script_panel.html#ac959f1785cff7409d857d3bea9b8ee63" title="panels.ScriptPanel.Script\lPanel" alt="" coords="1006,5,1186,46"/>
+<area shape="rect" id="node7" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#ad9d4431a2657a30fedae46e0c9093867" title="titlePanes.ControlTitlePane.\lControlTitlePane" alt="" coords="1544,158,1739,199"/>
+<area shape="rect" id="node9" href="$d9/d49/classback_end_1_1_controller.html#a7893477f39915a5169eb8da0dff60628" title="backEnd.Controller.build\lKeyListener" alt="" coords="1009,70,1183,111"/>
+<area shape="rect" id="node11" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#ae994c7b4dd988b30fc824e9e893b3ccf" title="titlePanes.ControlTitlePane.handle" alt="" coords="977,136,1215,163"/>
+<area shape="rect" id="node10" href="$d9/d49/classback_end_1_1_controller.html#a987136eaba0798749f393bac2a9a2400" title="backEnd.Controller.Controller" alt="" coords="1277,73,1483,100"/>
+<area shape="rect" id="node12" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#a974c75cbdf64007af637c8b19a26b215" title="titlePanes.ControlTitlePane.make\lButtons" alt="" coords="1265,125,1495,166"/>
+</map>

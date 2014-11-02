@@ -1,0 +1,20 @@
+<map id="frontEnd.TurtleView.addListeners" name="frontEnd.TurtleView.addListeners">
+<area shape="rect" id="node2" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a91ed67452c1a31ed4d0229e602219ae3" title="frontEnd.TurtleView.addActivity\lListener" alt="" coords="296,5,512,46"/>
+<area shape="rect" id="node3" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a053e7ad190616a1840cfd30c991a0d0b" title="frontEnd.TurtleView.addLines\lClearedListener" alt="" coords="303,70,505,111"/>
+<area shape="rect" id="node4" href="$dc/dcd/classfront_end_1_1_turtle_view.html#ae6b18a38136749fe91a54e12cd97bb07" title="frontEnd.TurtleView.addOrientation\lListener" alt="" coords="283,135,525,177"/>
+<area shape="rect" id="node5" href="$dc/dcd/classfront_end_1_1_turtle_view.html#afe6f3f772a1a6b802fadd5a9189c32bc" title="frontEnd.TurtleView.addPen\lColorIndexListener" alt="" coords="307,201,501,242"/>
+<area shape="rect" id="node7" href="$dc/dcd/classfront_end_1_1_turtle_view.html#afc9da118df25f14596f6a1efc368d5e4" title="frontEnd.TurtleView.addShape\lIndexListener" alt="" coords="299,266,509,307"/>
+<area shape="rect" id="node9" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a76bcc0f7c125450725ace12157f5fa98" title="frontEnd.TurtleView.addStamp\lCountListener" alt="" coords="297,331,511,373"/>
+<area shape="rect" id="node12" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a5ba22499944105adb8cd695ad94d2b15" title="frontEnd.TurtleView.addVisibility\lListener" alt="" coords="293,551,515,593"/>
+<area shape="rect" id="node13" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a9337ced43a44df7b4ee7352a0f812746" title="frontEnd.TurtleView.addXPosition\lListener" alt="" coords="290,405,518,446"/>
+<area shape="rect" id="node18" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a4bf2e008a42ea6ee574a53fe3f137425" title="frontEnd.TurtleView.addYPosition\lListener" alt="" coords="291,486,517,527"/>
+<area shape="rect" id="node6" href="$dc/dcd/classfront_end_1_1_turtle_view.html#ae388cacab199b191dbb44419e9574e86" title="frontEnd.TurtleView.change\lPenColor" alt="" coords="581,197,774,238"/>
+<area shape="rect" id="node8" href="$dc/dcd/classfront_end_1_1_turtle_view.html#af8d2b97ffef04e1b6ea796b9db58eed8" title="frontEnd.TurtleView.setImage" alt="" coords="574,263,781,289"/>
+<area shape="rect" id="node10" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a564510328fe07db1b07a46053edecf03" title="frontEnd.TurtleView.draw\lStamp" alt="" coords="589,314,765,355"/>
+<area shape="rect" id="node11" href="$dc/dcd/classfront_end_1_1_turtle_view.html#af43ab74822d93fd8adcef1a11fb1e930" title="frontEnd.TurtleView.getImage" alt="" coords="830,380,1037,407"/>
+<area shape="rect" id="node14" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a4e435f8e11193456725fa51f7c19ab24" title="frontEnd.TurtleView.setTurtleX" alt="" coords="573,380,781,407"/>
+<area shape="rect" id="node15" href="$dc/dcd/classfront_end_1_1_turtle_view.html#aa16863ff9139b631c8974950d00a2241" title="frontEnd.TurtleView.facing\lHorizontal" alt="" coords="585,431,769,473"/>
+<area shape="rect" id="node16" href="$dc/dcd/classfront_end_1_1_turtle_view.html#aee80ac929368e182c39dbd93e9ce6e9b" title="frontEnd.TurtleView.drawLine" alt="" coords="576,497,779,524"/>
+<area shape="rect" id="node17" href="$df/d96/interfacedrawer_1_1_drawer.html#a5d86e4bccd77ec6b33006bcc003d0315" title="drawer.Drawer.makeLine" alt="" coords="844,497,1023,524"/>
+<area shape="rect" id="node19" href="$dc/dcd/classfront_end_1_1_turtle_view.html#abac2050f00327a22b1bc5a669f70e2be" title="frontEnd.TurtleView.setTurtleY" alt="" coords="574,548,781,575"/>
+</map>

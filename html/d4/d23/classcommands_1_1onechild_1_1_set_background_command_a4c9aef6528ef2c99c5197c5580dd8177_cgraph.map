@@ -1,0 +1,6 @@
+<map id="commands.onechild.SetBackgroundCommand.execute" name="commands.onechild.SetBackgroundCommand.execute">
+<area shape="rect" id="node2" href="$d5/d62/classcommands_1_1templates_1_1_command.html#ae48716b79da0af7e6815fbe6fc113075" title="commands.templates.Command.get\lMyChildren" alt="" coords="307,5,565,46"/>
+<area shape="rect" id="node3" href="$d5/d62/classcommands_1_1templates_1_1_command.html#a97358158dd12c0a83a49df3c1e379790" title="commands.templates.Command.get\lValue" alt="" coords="307,70,565,111"/>
+<area shape="rect" id="node4" href="$d9/d98/classback_end_1_1_model.html#a1bfd22631fe2fc64e28a0595ac109cb7" title="backEnd.Model.setBackground\lIndex" alt="" coords="327,135,545,177"/>
+<area shape="rect" id="node5" href="$d5/d62/classcommands_1_1templates_1_1_command.html#a632193b631b368f6ffbc514865f062e5" title="commands.templates.Command.set\lValue" alt="" coords="307,201,565,242"/>
+</map>

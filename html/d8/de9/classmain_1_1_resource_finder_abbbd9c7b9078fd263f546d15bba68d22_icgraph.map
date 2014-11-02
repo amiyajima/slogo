@@ -1,0 +1,18 @@
+<map id="main.ResourceFinder.getMyLanguageResources" name="main.ResourceFinder.getMyLanguageResources">
+<area shape="rect" id="node2" href="$d5/d1d/classcommands_1_1_command_factory.html#acae1571442d9f8e040df95c8a2742d8d" title="commands.CommandFactory.check\lLanguage" alt="" coords="251,122,501,163"/>
+<area shape="rect" id="node12" href="$d9/d49/classback_end_1_1_controller.html#a3b0bbf0a084bb4fb63d118f66e7327b1" title="backEnd.Controller.move10" alt="" coords="1800,71,1997,97"/>
+<area shape="rect" id="node17" href="$da/d59/classtitle_panes_1_1_command_title_pane.html#a5ea67081716a74d0cc1b8343ccfacaca" title="titlePanes.CommandTitlePane.\lCommandTitlePane" alt="" coords="268,187,484,229"/>
+<area shape="rect" id="node3" href="$d5/d1d/classcommands_1_1_command_factory.html#ac77125dd466e3e01fce01fc527e7f815" title="commands.CommandFactory.build\lCommand" alt="" coords="549,122,792,163"/>
+<area shape="rect" id="node4" href="$d9/d1e/classback_end_1_1_parser.html#a653298ad53a1eea540beded2bb558ab4" title="backEnd.Parser.makeTree" alt="" coords="841,129,1026,156"/>
+<area shape="rect" id="node5" href="$d9/d1e/classback_end_1_1_parser.html#a163b8afd814babc8e7df59993f0d6440" title="backEnd.Parser.parseScript" alt="" coords="1075,129,1271,156"/>
+<area shape="rect" id="node6" href="$d9/d98/classback_end_1_1_model.html#ade764fd1c85a48fabb9abf3dfe8b8ceb" title="backEnd.Model.runScript" alt="" coords="1321,129,1501,156"/>
+<area shape="rect" id="node7" href="$d9/d49/classback_end_1_1_controller.html#ad650f48d236eaf11c2d8591b04831900" title="backEnd.Controller.runScript" alt="" coords="1549,129,1752,156"/>
+<area shape="rect" id="node8" href="$de/d03/classpanels_1_1_script_panel.html#ae6ae56472ef1a975597bad69844662c6" title="panels.ScriptPanel.handler" alt="" coords="1803,129,1994,156"/>
+<area shape="rect" id="node10" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#af28eba60fefe51c70e763d51d9123ea3" title="titlePanes.ControlTitlePane.make\lLocationFields" alt="" coords="2334,129,2565,170"/>
+<area shape="rect" id="node9" href="$de/d03/classpanels_1_1_script_panel.html#ac959f1785cff7409d857d3bea9b8ee63" title="panels.ScriptPanel.Script\lPanel" alt="" coords="2075,122,2255,163"/>
+<area shape="rect" id="node11" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#ad9d4431a2657a30fedae46e0c9093867" title="titlePanes.ControlTitlePane.\lControlTitlePane" alt="" coords="2613,97,2808,138"/>
+<area shape="rect" id="node13" href="$d9/d49/classback_end_1_1_controller.html#a7893477f39915a5169eb8da0dff60628" title="backEnd.Controller.build\lKeyListener" alt="" coords="2078,5,2253,46"/>
+<area shape="rect" id="node15" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#ae994c7b4dd988b30fc824e9e893b3ccf" title="titlePanes.ControlTitlePane.handle" alt="" coords="2046,71,2285,97"/>
+<area shape="rect" id="node14" href="$d9/d49/classback_end_1_1_controller.html#a987136eaba0798749f393bac2a9a2400" title="backEnd.Controller.Controller" alt="" coords="2346,12,2553,39"/>
+<area shape="rect" id="node16" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#a974c75cbdf64007af637c8b19a26b215" title="titlePanes.ControlTitlePane.make\lButtons" alt="" coords="2334,63,2565,105"/>
+</map>

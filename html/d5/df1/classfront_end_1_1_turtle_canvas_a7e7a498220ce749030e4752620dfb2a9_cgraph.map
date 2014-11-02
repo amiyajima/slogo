@@ -1,0 +1,10 @@
+<map id="frontEnd.TurtleCanvas.TurtleCanvas" name="frontEnd.TurtleCanvas.TurtleCanvas">
+<area shape="rect" id="node2" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a0c5ce5c37d373fa022bb529ca9eefccb" title="frontEnd.TurtleCanvas.add\lBackground" alt="" coords="253,5,443,46"/>
+<area shape="rect" id="node4" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#ac8f759ace719dd4f3b3d8b7d7505df81" title="frontEnd.TurtleCanvas.add\lClipper" alt="" coords="253,70,443,111"/>
+<area shape="rect" id="node5" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#acd196a90330de392e0361911c1a5b4fa" title="frontEnd.TurtleCanvas.add\lGridLines" alt="" coords="253,135,443,177"/>
+<area shape="rect" id="node6" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a8ab5458313c755c404d71497e81dae28" title="frontEnd.TurtleCanvas.add\lListeners" alt="" coords="253,201,443,242"/>
+<area shape="rect" id="node3" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a88469f1db4acc5ca629edfb136add1b7" title="frontEnd.TurtleCanvas.makeRect" alt="" coords="491,45,719,72"/>
+<area shape="rect" id="node7" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a96ff82f0946b3810df1db6ad9d3365ec" title="frontEnd.TurtleCanvas.add\lBackgroundIndexListener" alt="" coords="511,167,700,209"/>
+<area shape="rect" id="node9" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#ade5c8fb1ca856b53eaef699c0dfa3c53" title="frontEnd.TurtleCanvas.add\lPaletteListener" alt="" coords="511,233,700,274"/>
+<area shape="rect" id="node8" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a222a37326fc072937d76f29f5fe27bdc" title="frontEnd.TurtleCanvas.change\lBackgroundColor" alt="" coords="769,167,981,209"/>
+</map>

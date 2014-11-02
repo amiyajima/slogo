@@ -1,0 +1,5 @@
+<map id="frontEnd.TurtleCanvas.getBoundingWidth" name="frontEnd.TurtleCanvas.getBoundingWidth">
+<area shape="rect" id="node2" href="$d8/d1f/classfront_end_1_1_view.html#ac93be255ff8412cce583dab2ed555d3d" title="frontEnd.View.getCanvasWidth" alt="" coords="241,12,455,39"/>
+<area shape="rect" id="node3" href="$d9/d98/classback_end_1_1_model.html#a0c1150b8c4ffe07001a42b5d4cdacbd2" title="backEnd.Model.setupTurtle\lManager" alt="" coords="504,5,696,46"/>
+<area shape="rect" id="node4" href="$d9/d49/classback_end_1_1_controller.html#a987136eaba0798749f393bac2a9a2400" title="backEnd.Controller.Controller" alt="" coords="745,12,951,39"/>
+</map>

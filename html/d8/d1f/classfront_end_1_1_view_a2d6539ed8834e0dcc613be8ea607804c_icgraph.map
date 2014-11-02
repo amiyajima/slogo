@@ -1,0 +1,10 @@
+<map id="frontEnd.View.changeBackgroundColor" name="frontEnd.View.changeBackgroundColor">
+<area shape="rect" id="node2" href="$d9/d49/classback_end_1_1_controller.html#a8aca018fbe7bb8039c6d15bf40e8a5da" title="backEnd.Controller.change\lBackgroundColor" alt="" coords="305,5,497,46"/>
+<area shape="rect" id="node3" href="$d3/d21/classfront_end_1_1_workspace.html#aa58474f37d15d3aeabc3f2c465128897" title="frontEnd.Workspace.loadDisplay\lProperties" alt="" coords="289,70,514,111"/>
+<area shape="rect" id="node4" href="$d3/d21/classfront_end_1_1_workspace.html#a8c4cac9cc8769a62ea233aa2b8714100" title="frontEnd.Workspace.loadProperties\lFromFile" alt="" coords="563,70,807,111"/>
+<area shape="rect" id="node5" href="$d7/d6c/classmain_1_1_master_window.html#a4438aa75b2c8333790b6dbe970e233f8" title="main.MasterWindow.loadWorkspace\lPreferences" alt="" coords="857,70,1103,111"/>
+<area shape="rect" id="node6" href="$de/d44/classmain_1_1_master_menu_bar.html#a73c9d9af24d1ec86213ff7e56bafda6f" title="main.MasterMenuBar.loadWorkspace\lPreferences" alt="" coords="1153,70,1410,111"/>
+<area shape="rect" id="node7" href="$de/d44/classmain_1_1_master_menu_bar.html#a035108ff7b484d9883d62cef618156da" title="main.MasterMenuBar.build\lLoadPreferencesMenuItem" alt="" coords="1459,70,1653,111"/>
+<area shape="rect" id="node8" href="$de/d44/classmain_1_1_master_menu_bar.html#a8ac360f52791db57913d7a4303e18867" title="main.MasterMenuBar.build\lFileMenu" alt="" coords="1701,70,1893,111"/>
+<area shape="rect" id="node9" href="$de/d44/classmain_1_1_master_menu_bar.html#a1baeeae18c6cf1bb2c48541b48afe20c" title="main.MasterMenuBar.Master\lMenuBar" alt="" coords="1942,70,2149,111"/>
+</map>

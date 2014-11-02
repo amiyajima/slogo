@@ -1,0 +1,8 @@
+<map id="main.MasterMenuBar.loadWorkspacePreferences" name="main.MasterMenuBar.loadWorkspacePreferences">
+<area shape="rect" id="node2" href="$d7/d6c/classmain_1_1_master_window.html#a4438aa75b2c8333790b6dbe970e233f8" title="main.MasterWindow.loadWorkspace\lPreferences" alt="" coords="313,38,559,79"/>
+<area shape="rect" id="node3" href="$d3/d21/classfront_end_1_1_workspace.html#a8c4cac9cc8769a62ea233aa2b8714100" title="frontEnd.Workspace.loadProperties\lFromFile" alt="" coords="609,38,853,79"/>
+<area shape="rect" id="node4" href="$d3/d21/classfront_end_1_1_workspace.html#aa58474f37d15d3aeabc3f2c465128897" title="frontEnd.Workspace.loadDisplay\lProperties" alt="" coords="902,5,1127,46"/>
+<area shape="rect" id="node7" href="$d3/d21/classfront_end_1_1_workspace.html#a3212e0fc8e35130808c0ed6f7188593c" title="frontEnd.Workspace.print\lProps" alt="" coords="924,70,1105,111"/>
+<area shape="rect" id="node5" href="$d8/d1f/classfront_end_1_1_view.html#a2d6539ed8834e0dcc613be8ea607804c" title="frontEnd.View.changeBackground\lColor" alt="" coords="1176,5,1411,46"/>
+<area shape="rect" id="node6" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a222a37326fc072937d76f29f5fe27bdc" title="frontEnd.TurtleCanvas.change\lBackgroundColor" alt="" coords="1459,5,1671,46"/>
+</map>

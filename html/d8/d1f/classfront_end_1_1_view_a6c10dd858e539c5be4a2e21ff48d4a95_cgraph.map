@@ -1,0 +1,7 @@
+<map id="frontEnd.View.setupGui" name="frontEnd.View.setupGui">
+<area shape="rect" id="node2" href="$d8/d1f/classfront_end_1_1_view.html#a946cc1534c68b0490bdc3f8992a8fd44" title="frontEnd.View.buildCanvas" alt="" coords="232,5,421,32"/>
+<area shape="rect" id="node5" href="$d8/d1f/classfront_end_1_1_view.html#a43b22358810c0b28a2452990a7ce5fe0" title="frontEnd.View.buildScript\lPanel" alt="" coords="237,57,416,98"/>
+<area shape="rect" id="node6" href="$d8/d1f/classfront_end_1_1_view.html#ae8e12c48ecfa63eae481f2940df42ea3" title="frontEnd.View.buildSidePanel" alt="" coords="225,123,429,149"/>
+<area shape="rect" id="node3" href="$d8/d1f/classfront_end_1_1_view.html#a22669dd74ac845d66d5b59ddeba13b5e" title="frontEnd.View.printException" alt="" coords="477,64,680,91"/>
+<area shape="rect" id="node4" href="$de/d03/classpanels_1_1_script_panel.html#acf94d4284961d6d9eabc8af4db9abe87" title="panels.ScriptPanel.print\lException" alt="" coords="729,57,901,98"/>
+</map>

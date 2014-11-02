@@ -1,0 +1,8 @@
+<map id="frontEnd.View.addControllerAndSetupGui" name="frontEnd.View.addControllerAndSetupGui">
+<area shape="rect" id="node2" href="$d8/d1f/classfront_end_1_1_view.html#a6c10dd858e539c5be4a2e21ff48d4a95" title="frontEnd.View.setupGui" alt="" coords="254,56,423,83"/>
+<area shape="rect" id="node3" href="$d8/d1f/classfront_end_1_1_view.html#a946cc1534c68b0490bdc3f8992a8fd44" title="frontEnd.View.buildCanvas" alt="" coords="480,5,669,32"/>
+<area shape="rect" id="node6" href="$d8/d1f/classfront_end_1_1_view.html#ae8e12c48ecfa63eae481f2940df42ea3" title="frontEnd.View.buildSidePanel" alt="" coords="473,56,677,83"/>
+<area shape="rect" id="node7" href="$d8/d1f/classfront_end_1_1_view.html#a43b22358810c0b28a2452990a7ce5fe0" title="frontEnd.View.buildScript\lPanel" alt="" coords="485,107,664,149"/>
+<area shape="rect" id="node4" href="$d8/d1f/classfront_end_1_1_view.html#a22669dd74ac845d66d5b59ddeba13b5e" title="frontEnd.View.printException" alt="" coords="725,31,928,57"/>
+<area shape="rect" id="node5" href="$de/d03/classpanels_1_1_script_panel.html#acf94d4284961d6d9eabc8af4db9abe87" title="panels.ScriptPanel.print\lException" alt="" coords="977,23,1149,65"/>
+</map>

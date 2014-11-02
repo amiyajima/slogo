@@ -1,0 +1,9 @@
+<map id="backEnd.Model.setupTurtleManager" name="backEnd.Model.setupTurtleManager">
+<area shape="rect" id="node2" href="$d8/d1f/classfront_end_1_1_view.html#a5f864e2a9d6a4d2ce9ac88833d6e4c88" title="frontEnd.View.getCanvasHeight" alt="" coords="262,20,485,47"/>
+<area shape="rect" id="node4" href="$d8/d1f/classfront_end_1_1_view.html#ac93be255ff8412cce583dab2ed555d3d" title="frontEnd.View.getCanvasWidth" alt="" coords="266,77,481,104"/>
+<area shape="rect" id="node6" href="$d4/d07/classback_end_1_1turtle_1_1_turtle_manager.html#ac514debd7deab42db9d2f5337359ea6a" title="backEnd.turtle.TurtleManager.update\lActiveTurtleList" alt="" coords="245,131,501,173"/>
+<area shape="rect" id="node3" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a9fd25f94290ec11f35de8756e4f262d5" title="frontEnd.TurtleCanvas.get\lBoundingHeight" alt="" coords="583,5,769,46"/>
+<area shape="rect" id="node5" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a6ec2eaa226ff6aa7e998ec226902ac9f" title="frontEnd.TurtleCanvas.get\lBoundingWidth" alt="" coords="583,70,769,111"/>
+<area shape="rect" id="node7" href="$d4/d07/classback_end_1_1turtle_1_1_turtle_manager.html#a84ec440cfc5cbefdfab52c661599b956" title="backEnd.turtle.TurtleManager.create\lTurtleList" alt="" coords="550,135,802,177"/>
+<area shape="rect" id="node8" href="$d4/d07/classback_end_1_1turtle_1_1_turtle_manager.html#a7c50d7becc5092e99d3eff1d6fc2d1f6" title="backEnd.turtle.TurtleManager.add\lNewTurtle" alt="" coords="851,135,1085,177"/>
+</map>

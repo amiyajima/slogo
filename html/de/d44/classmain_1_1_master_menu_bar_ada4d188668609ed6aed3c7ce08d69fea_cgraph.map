@@ -1,0 +1,6 @@
+<map id="main.MasterMenuBar.buildLanguageChooserMenuItem" name="main.MasterMenuBar.buildLanguageChooserMenuItem">
+<area shape="rect" id="node2" href="$d8/de9/classmain_1_1_resource_finder.html#a0f4de9c5f13d6fafdd41a4c321dc2bf3" title="main.ResourceFinder.getPossible\lLanguages" alt="" coords="263,5,494,46"/>
+<area shape="rect" id="node3" href="$de/d44/classmain_1_1_master_menu_bar.html#a73a854a507abefec9cc1c19cee6a3721" title="main.MasterMenuBar.setLanguage" alt="" coords="256,71,501,97"/>
+<area shape="rect" id="node4" href="$d8/de9/classmain_1_1_resource_finder.html#ac263547def40ea1a80625e448fddc7a9" title="main.ResourceFinder.setLanguage" alt="" coords="549,71,789,97"/>
+<area shape="rect" id="node5" href="$d8/de9/classmain_1_1_resource_finder.html#a26e58d0569f1ceaa3c7f4262d7d53b7a" title="main.ResourceFinder.setMy\lLanguageResources" alt="" coords="837,63,1032,105"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="main.MasterWindow.start" name="main.MasterWindow.start">
+<area shape="rect" id="node2" href="$d7/d6c/classmain_1_1_master_window.html#afa6d7e233487e201b5da782358fd522f" title="main.MasterWindow.buildWorkspace" alt="" coords="237,40,488,67"/>
+<area shape="rect" id="node3" href="$d7/d6c/classmain_1_1_master_window.html#a791f641d5cb2a36b6ec1e9b5e1c0615a" title="main.MasterWindow.setKey\lListener" alt="" coords="827,5,1021,46"/>
+<area shape="rect" id="node5" href="$d7/d6c/classmain_1_1_master_window.html#a27163b7cb277c62142db5916aae078c0" title="main.MasterWindow.setMouse\lListener" alt="" coords="545,91,759,133"/>
+<area shape="rect" id="node7" href="$d7/d6c/classmain_1_1_master_window.html#abee1c5dad0269124eb93728730b4b3a8" title="main.MasterWindow.tabChanged" alt="" coords="537,40,767,67"/>
+<area shape="rect" id="node4" href="$d3/d21/classfront_end_1_1_workspace.html#af3ac2c0c8f0256e4a26281bacdfbc6b2" title="frontEnd.Workspace.getKey\lListener" alt="" coords="1080,5,1275,46"/>
+<area shape="rect" id="node6" href="$d3/d21/classfront_end_1_1_workspace.html#a6c55c52266ada6b68172fb5ff6204211" title="frontEnd.Workspace.getMouse\lListener" alt="" coords="817,91,1031,133"/>
+</map>

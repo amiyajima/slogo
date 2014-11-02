@@ -1,0 +1,6 @@
+<map id="titlePanes.CommandTitlePane.CommandTitlePane" name="titlePanes.CommandTitlePane.CommandTitlePane">
+<area shape="rect" id="node2" href="$d9/d49/classback_end_1_1_controller.html#a9bac47210a2b80f3d1ae6338283a09bc" title="backEnd.Controller.addText\lToScript" alt="" coords="271,5,465,46"/>
+<area shape="rect" id="node5" href="$d8/de9/classmain_1_1_resource_finder.html#abbbd9c7b9078fd263f546d15bba68d22" title="main.ResourceFinder.getMy\lLanguageResources" alt="" coords="270,70,466,111"/>
+<area shape="rect" id="node3" href="$d8/d1f/classfront_end_1_1_view.html#a6eecae39002da8aa43937c2e3ba0ac6f" title="frontEnd.View.addTextToScript" alt="" coords="515,12,725,39"/>
+<area shape="rect" id="node4" href="$de/d03/classpanels_1_1_script_panel.html#aa60477808a4f6f3dbb93a46a7b194f65" title="panels.ScriptPanel.addText\lToScript" alt="" coords="773,5,965,46"/>
+</map>

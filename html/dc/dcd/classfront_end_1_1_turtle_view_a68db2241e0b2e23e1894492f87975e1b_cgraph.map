@@ -1,0 +1,36 @@
+<map id="frontEnd.TurtleView.TurtleView" name="frontEnd.TurtleView.TurtleView">
+<area shape="rect" id="node2" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a8a128529e6c726fb58825bfa0794b239" title="frontEnd.TurtleView.addListeners" alt="" coords="265,307,493,333"/>
+<area shape="rect" id="node5" href="$dc/dcd/classfront_end_1_1_turtle_view.html#af43ab74822d93fd8adcef1a11fb1e930" title="frontEnd.TurtleView.getImage" alt="" coords="1091,355,1298,381"/>
+<area shape="rect" id="node21" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a786dafb4fc29738c24e51c8e2d5ef1e8" title="frontEnd.TurtleView.bind\lProperties" alt="" coords="292,906,465,947"/>
+<area shape="rect" id="node35" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a93f28841410613933ffd08b187782325" title="frontEnd.TurtleView.initialize\lBindableProperties" alt="" coords="280,971,477,1013"/>
+<area shape="rect" id="node3" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a9337ced43a44df7b4ee7352a0f812746" title="frontEnd.TurtleView.addXPosition\lListener" alt="" coords="549,135,777,177"/>
+<area shape="rect" id="node9" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a4bf2e008a42ea6ee574a53fe3f137425" title="frontEnd.TurtleView.addYPosition\lListener" alt="" coords="549,70,776,111"/>
+<area shape="rect" id="node11" href="$dc/dcd/classfront_end_1_1_turtle_view.html#ae6b18a38136749fe91a54e12cd97bb07" title="frontEnd.TurtleView.addOrientation\lListener" alt="" coords="542,201,783,242"/>
+<area shape="rect" id="node12" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a053e7ad190616a1840cfd30c991a0d0b" title="frontEnd.TurtleView.addLines\lClearedListener" alt="" coords="561,266,764,307"/>
+<area shape="rect" id="node13" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a5ba22499944105adb8cd695ad94d2b15" title="frontEnd.TurtleView.addVisibility\lListener" alt="" coords="552,331,773,373"/>
+<area shape="rect" id="node14" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a76bcc0f7c125450725ace12157f5fa98" title="frontEnd.TurtleView.addStamp\lCountListener" alt="" coords="556,527,769,569"/>
+<area shape="rect" id="node16" href="$dc/dcd/classfront_end_1_1_turtle_view.html#afe6f3f772a1a6b802fadd5a9189c32bc" title="frontEnd.TurtleView.addPen\lColorIndexListener" alt="" coords="565,397,760,438"/>
+<area shape="rect" id="node18" href="$dc/dcd/classfront_end_1_1_turtle_view.html#afc9da118df25f14596f6a1efc368d5e4" title="frontEnd.TurtleView.addShape\lIndexListener" alt="" coords="557,462,768,503"/>
+<area shape="rect" id="node20" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a91ed67452c1a31ed4d0229e602219ae3" title="frontEnd.TurtleView.addActivity\lListener" alt="" coords="555,5,771,46"/>
+<area shape="rect" id="node4" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a4e435f8e11193456725fa51f7c19ab24" title="frontEnd.TurtleView.setTurtleX" alt="" coords="833,179,1041,205"/>
+<area shape="rect" id="node6" href="$dc/dcd/classfront_end_1_1_turtle_view.html#aa16863ff9139b631c8974950d00a2241" title="frontEnd.TurtleView.facing\lHorizontal" alt="" coords="845,230,1029,271"/>
+<area shape="rect" id="node7" href="$dc/dcd/classfront_end_1_1_turtle_view.html#aee80ac929368e182c39dbd93e9ce6e9b" title="frontEnd.TurtleView.drawLine" alt="" coords="836,128,1039,155"/>
+<area shape="rect" id="node8" href="$df/d96/interfacedrawer_1_1_drawer.html#a5d86e4bccd77ec6b33006bcc003d0315" title="drawer.Drawer.makeLine" alt="" coords="1105,128,1284,155"/>
+<area shape="rect" id="node10" href="$dc/dcd/classfront_end_1_1_turtle_view.html#abac2050f00327a22b1bc5a669f70e2be" title="frontEnd.TurtleView.setTurtleY" alt="" coords="834,77,1041,104"/>
+<area shape="rect" id="node15" href="$dc/dcd/classfront_end_1_1_turtle_view.html#a564510328fe07db1b07a46053edecf03" title="frontEnd.TurtleView.draw\lStamp" alt="" coords="849,523,1025,565"/>
+<area shape="rect" id="node17" href="$dc/dcd/classfront_end_1_1_turtle_view.html#ae388cacab199b191dbb44419e9574e86" title="frontEnd.TurtleView.change\lPenColor" alt="" coords="841,397,1034,438"/>
+<area shape="rect" id="node19" href="$dc/dcd/classfront_end_1_1_turtle_view.html#af8d2b97ffef04e1b6ea796b9db58eed8" title="frontEnd.TurtleView.setImage" alt="" coords="834,469,1041,496"/>
+<area shape="rect" id="node22" href="$dd/d98/classback_end_1_1turtle_1_1_turtle_properties.html#aa8cf92a7f1534967d3e1a597b4d91b1b" title="backEnd.turtle.TurtleProperties.get\lXPosition" alt="" coords="541,1167,784,1209"/>
+<area shape="rect" id="node24" href="$dd/d98/classback_end_1_1turtle_1_1_turtle_properties.html#a897599812322db6073189c88a192eea3" title="backEnd.turtle.TurtleProperties.get\lYPosition" alt="" coords="541,1233,784,1274"/>
+<area shape="rect" id="node26" href="$dd/d98/classback_end_1_1turtle_1_1_turtle_properties.html#a09adedf2b4333b1fbc10d7406d0c5974" title="backEnd.turtle.TurtleProperties.get\lOrientation" alt="" coords="541,1298,784,1339"/>
+<area shape="rect" id="node27" href="$dd/d98/classback_end_1_1turtle_1_1_turtle_properties.html#a4ce7b5928dc4e0a92caf8f42b9f5e8e4" title="backEnd.turtle.TurtleProperties.get\lIsPenDown" alt="" coords="541,645,784,686"/>
+<area shape="rect" id="node28" href="$dd/d98/classback_end_1_1turtle_1_1_turtle_properties.html#a11577b92931e41f2cda751087ce353a9" title="backEnd.turtle.TurtleProperties.get\lLinesCleared" alt="" coords="541,710,784,751"/>
+<area shape="rect" id="node29" href="$dd/d98/classback_end_1_1turtle_1_1_turtle_properties.html#a4dd7cee842b46c21aa71d0965d6c389d" title="backEnd.turtle.TurtleProperties.get\lVisibility" alt="" coords="541,775,784,817"/>
+<area shape="rect" id="node30" href="$dd/d98/classback_end_1_1turtle_1_1_turtle_properties.html#ac5a8fb9741a62254526df94664357507" title="backEnd.turtle.TurtleProperties.get\lStampCount" alt="" coords="541,841,784,882"/>
+<area shape="rect" id="node31" href="$dd/d98/classback_end_1_1turtle_1_1_turtle_properties.html#a9556cab3d80da6af9c6a72736132e8af" title="backEnd.turtle.TurtleProperties.get\lPenColorIndex" alt="" coords="541,906,784,947"/>
+<area shape="rect" id="node32" href="$dd/d98/classback_end_1_1turtle_1_1_turtle_properties.html#a7c3d5001737c3c03c94a9bce97bd800e" title="backEnd.turtle.TurtleProperties.get\lPenSize" alt="" coords="541,971,784,1013"/>
+<area shape="rect" id="node33" href="$dd/d98/classback_end_1_1turtle_1_1_turtle_properties.html#a191499690c902bb5dbc8f1ed7e5373f9" title="backEnd.turtle.TurtleProperties.get\lShapeIndex" alt="" coords="541,1037,784,1078"/>
+<area shape="rect" id="node34" href="$dd/d98/classback_end_1_1turtle_1_1_turtle_properties.html#a88c373084e3eea7099baa8f3a7035b96" title="backEnd.turtle.TurtleProperties.get\lActivity" alt="" coords="541,1102,784,1143"/>
+<area shape="rect" id="node23" href="$de/d6c/classback_end_1_1turtle_1_1_turtle_point.html#aab69296ace249631f5145d1f939b674b" title="backEnd.turtle.TurtlePoint.get\lBindableX" alt="" coords="833,1167,1042,1209"/>
+<area shape="rect" id="node25" href="$de/d6c/classback_end_1_1turtle_1_1_turtle_point.html#a0ca1a9c836b28916daf2de5b6f0ecbf9" title="backEnd.turtle.TurtlePoint.get\lBindableY" alt="" coords="833,1233,1042,1274"/>
+</map>

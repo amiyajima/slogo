@@ -1,0 +1,9 @@
+<map id="frontEnd.View.getBackgroundColor" name="frontEnd.View.getBackgroundColor">
+<area shape="rect" id="node2" href="$d3/d21/classfront_end_1_1_workspace.html#a483993a49176099425a0eca9c8da73ca" title="frontEnd.Workspace.saveDisplay\lProperties" alt="" coords="265,5,493,46"/>
+<area shape="rect" id="node3" href="$d3/d21/classfront_end_1_1_workspace.html#a897ddb52dc6c71e7fce97d198343692d" title="frontEnd.Workspace.saveProperties\lToFile" alt="" coords="542,5,789,46"/>
+<area shape="rect" id="node4" href="$d7/d6c/classmain_1_1_master_window.html#a9caa01ef95b15769b285ffda84e8f56c" title="main.MasterWindow.saveWorkspace\lPreferences" alt="" coords="837,5,1088,46"/>
+<area shape="rect" id="node5" href="$de/d44/classmain_1_1_master_menu_bar.html#a249553b44a3e0ed097a3b350b7711f49" title="main.MasterMenuBar.saveWorkspace\lPreferences" alt="" coords="1137,5,1397,46"/>
+<area shape="rect" id="node6" href="$de/d44/classmain_1_1_master_menu_bar.html#acb0484fe23459ec4b49c4db8c09ee067" title="main.MasterMenuBar.build\lSavePreferencesMenuItem" alt="" coords="1445,5,1640,46"/>
+<area shape="rect" id="node7" href="$de/d44/classmain_1_1_master_menu_bar.html#a8ac360f52791db57913d7a4303e18867" title="main.MasterMenuBar.build\lFileMenu" alt="" coords="1688,5,1880,46"/>
+<area shape="rect" id="node8" href="$de/d44/classmain_1_1_master_menu_bar.html#a1baeeae18c6cf1bb2c48541b48afe20c" title="main.MasterMenuBar.Master\lMenuBar" alt="" coords="1929,5,2135,46"/>
+</map>

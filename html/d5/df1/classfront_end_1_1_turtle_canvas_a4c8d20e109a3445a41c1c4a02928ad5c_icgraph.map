@@ -1,0 +1,7 @@
+<map id="frontEnd.TurtleCanvas.changeTurtleImage" name="frontEnd.TurtleCanvas.changeTurtleImage">
+<area shape="rect" id="node2" href="$d8/d1f/classfront_end_1_1_view.html#ae7a2f6e6f22069bcaaf142dc37349dee" title="frontEnd.View.changeTurtle\lImage" alt="" coords="267,5,461,46"/>
+<area shape="rect" id="node3" href="$d9/d49/classback_end_1_1_controller.html#a2d6485b9fa7484fee3a041924554fb2a" title="backEnd.Controller.change\lTurtleImage" alt="" coords="509,5,701,46"/>
+<area shape="rect" id="node4" href="$dd/d67/classtitle_panes_1_1_display_title_pane.html#aceb12213a01d9cb060a64441ea46ed0f" title="titlePanes.DisplayTitlePane.openFile" alt="" coords="750,12,997,39"/>
+<area shape="rect" id="node5" href="$dd/d67/classtitle_panes_1_1_display_title_pane.html#a331ac295d6888c6c41f9ff49b1cea23d" title="titlePanes.DisplayTitlePane.make\lTurtleImageChooser" alt="" coords="1046,5,1277,46"/>
+<area shape="rect" id="node6" href="$dd/d67/classtitle_panes_1_1_display_title_pane.html#ad07a1fec588c0ef5745d90ee1039143c" title="titlePanes.DisplayTitlePane.\lDisplayTitlePane" alt="" coords="1325,5,1520,46"/>
+</map>

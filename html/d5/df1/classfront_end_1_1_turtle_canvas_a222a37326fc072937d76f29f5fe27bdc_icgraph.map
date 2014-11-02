@@ -1,0 +1,14 @@
+<map id="frontEnd.TurtleCanvas.changeBackgroundColor" name="frontEnd.TurtleCanvas.changeBackgroundColor">
+<area shape="rect" id="node2" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a96ff82f0946b3810df1db6ad9d3365ec" title="frontEnd.TurtleCanvas.add\lBackgroundIndexListener" alt="" coords="289,5,479,46"/>
+<area shape="rect" id="node5" href="$d8/d1f/classfront_end_1_1_view.html#a2d6539ed8834e0dcc613be8ea607804c" title="frontEnd.View.changeBackground\lColor" alt="" coords="267,70,501,111"/>
+<area shape="rect" id="node3" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a8ab5458313c755c404d71497e81dae28" title="frontEnd.TurtleCanvas.add\lListeners" alt="" coords="568,5,757,46"/>
+<area shape="rect" id="node4" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a7e7a498220ce749030e4752620dfb2a9" title="frontEnd.TurtleCanvas.Turtle\lCanvas" alt="" coords="847,5,1046,46"/>
+<area shape="rect" id="node6" href="$d9/d49/classback_end_1_1_controller.html#a8aca018fbe7bb8039c6d15bf40e8a5da" title="backEnd.Controller.change\lBackgroundColor" alt="" coords="567,70,759,111"/>
+<area shape="rect" id="node7" href="$d3/d21/classfront_end_1_1_workspace.html#aa58474f37d15d3aeabc3f2c465128897" title="frontEnd.Workspace.loadDisplay\lProperties" alt="" coords="550,135,775,177"/>
+<area shape="rect" id="node8" href="$d3/d21/classfront_end_1_1_workspace.html#a8c4cac9cc8769a62ea233aa2b8714100" title="frontEnd.Workspace.loadProperties\lFromFile" alt="" coords="825,135,1069,177"/>
+<area shape="rect" id="node9" href="$d7/d6c/classmain_1_1_master_window.html#a4438aa75b2c8333790b6dbe970e233f8" title="main.MasterWindow.loadWorkspace\lPreferences" alt="" coords="1118,135,1365,177"/>
+<area shape="rect" id="node10" href="$de/d44/classmain_1_1_master_menu_bar.html#a73c9d9af24d1ec86213ff7e56bafda6f" title="main.MasterMenuBar.loadWorkspace\lPreferences" alt="" coords="1414,135,1671,177"/>
+<area shape="rect" id="node11" href="$de/d44/classmain_1_1_master_menu_bar.html#a035108ff7b484d9883d62cef618156da" title="main.MasterMenuBar.build\lLoadPreferencesMenuItem" alt="" coords="1721,135,1914,177"/>
+<area shape="rect" id="node12" href="$de/d44/classmain_1_1_master_menu_bar.html#a8ac360f52791db57913d7a4303e18867" title="main.MasterMenuBar.build\lFileMenu" alt="" coords="1963,135,2155,177"/>
+<area shape="rect" id="node13" href="$de/d44/classmain_1_1_master_menu_bar.html#a1baeeae18c6cf1bb2c48541b48afe20c" title="main.MasterMenuBar.Master\lMenuBar" alt="" coords="2203,135,2410,177"/>
+</map>

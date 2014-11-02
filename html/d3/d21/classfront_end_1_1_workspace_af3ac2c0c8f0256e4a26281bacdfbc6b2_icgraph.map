@@ -1,0 +1,9 @@
+<map id="frontEnd.Workspace.getKeyListener" name="frontEnd.Workspace.getKeyListener">
+<area shape="rect" id="node2" href="$d7/d6c/classmain_1_1_master_window.html#a791f641d5cb2a36b6ec1e9b5e1c0615a" title="main.MasterWindow.setKey\lListener" alt="" coords="248,34,443,75"/>
+<area shape="rect" id="node3" href="$d7/d6c/classmain_1_1_master_window.html#afa6d7e233487e201b5da782358fd522f" title="main.MasterWindow.buildWorkspace" alt="" coords="771,41,1021,68"/>
+<area shape="rect" id="node8" href="$d7/d6c/classmain_1_1_master_window.html#abee1c5dad0269124eb93728730b4b3a8" title="main.MasterWindow.tabChanged" alt="" coords="491,67,722,93"/>
+<area shape="rect" id="node4" href="$de/d44/classmain_1_1_master_menu_bar.html#a05672abefed58f8f5e4a3704fca7f4e5" title="main.MasterMenuBar.build\lNewWorkspaceMenuItem" alt="" coords="1069,5,1261,46"/>
+<area shape="rect" id="node7" href="$d7/d6c/classmain_1_1_master_window.html#a929bc7bbd820aed32ae77e9b0362d30b" title="main.MasterWindow.start" alt="" coords="1074,71,1257,97"/>
+<area shape="rect" id="node5" href="$de/d44/classmain_1_1_master_menu_bar.html#a8ac360f52791db57913d7a4303e18867" title="main.MasterMenuBar.build\lFileMenu" alt="" coords="1309,5,1501,46"/>
+<area shape="rect" id="node6" href="$de/d44/classmain_1_1_master_menu_bar.html#a1baeeae18c6cf1bb2c48541b48afe20c" title="main.MasterMenuBar.Master\lMenuBar" alt="" coords="1550,5,1757,46"/>
+</map>

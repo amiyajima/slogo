@@ -1,0 +1,23 @@
+<map id="backEnd.Controller" name="backEnd.Controller">
+<area shape="rect" id="node23" href="$d8/d1f/classfront_end_1_1_view.html" title="frontEnd.View" alt="" coords="1952,552,2061,578"/>
+<area shape="rect" id="node2" href="$d9/d98/classback_end_1_1_model.html" title="backEnd.Model" alt="" coords="1243,1033,1362,1060"/>
+<area shape="rect" id="node39" href="$d5/df1/classfront_end_1_1_turtle_canvas.html" title="frontEnd.TurtleCanvas" alt="" coords="799,594,961,621"/>
+<area shape="rect" id="node17" href="$d8/d32/classback_end_1_1turtle_1_1_turtle.html" title="backEnd.turtle.Turtle" alt="" coords="804,1412,956,1438"/>
+<area shape="rect" id="node18" href="$dd/d87/classback_end_1_1turtle_1_1_pen.html" title="backEnd.turtle.Pen" alt="" coords="374,1412,517,1438"/>
+<area shape="rect" id="node20" href="$de/d6c/classback_end_1_1turtle_1_1_turtle_point.html" title="backEnd.turtle.TurtlePoint" alt="" coords="353,1462,537,1489"/>
+<area shape="rect" id="node41" href="$dc/dcd/classfront_end_1_1_turtle_view.html" title="frontEnd.TurtleView" alt="" coords="374,625,517,652"/>
+<area shape="rect" id="node6" href="$d9/d1e/classback_end_1_1_parser.html" title="backEnd.Parser" alt="" coords="820,1136,940,1162"/>
+<area shape="rect" id="node8" href="$d5/d1d/classcommands_1_1_command_factory.html" title="commands.CommandFactory" alt="" coords="340,1153,551,1180"/>
+<area shape="rect" id="node9" href="$d8/d6a/classback_end_1_1_variable_manager.html" title="backEnd.VariableManager" alt="" coords="352,869,539,896"/>
+<area shape="rect" id="node36" href="$d0/d8f/classtitle_panes_1_1_variable_title_pane.html" title="titlePanes.VariableTitlePane" alt="" coords="1205,400,1401,426"/>
+<area shape="rect" id="node12" href="$d4/d07/classback_end_1_1turtle_1_1_turtle_manager.html" title="backEnd.turtle.TurtleManager" alt="" coords="776,1001,984,1028"/>
+<area shape="rect" id="node35" href="$d1/dd4/classtitle_panes_1_1_help_title_pane.html" title="titlePanes.HelpTitlePane" alt="" coords="1215,74,1390,101"/>
+<area shape="rect" id="node38" href="$de/dff/classtitle_panes_1_1_history_title_pane.html" title="titlePanes.HistoryTitlePane" alt="" coords="1207,130,1398,157"/>
+<area shape="rect" id="node26" href="$de/d03/classpanels_1_1_script_panel.html" title="panels.ScriptPanel" alt="" coords="1653,501,1792,528"/>
+<area shape="rect" id="node29" href="$d8/dfc/classpanels_1_1_parameter_panel.html" title="panels.ParameterPanel" alt="" coords="1638,298,1807,325"/>
+<area shape="rect" id="node30" href="$da/d59/classtitle_panes_1_1_command_title_pane.html" title="titlePanes.CommandTitlePane" alt="" coords="1197,248,1409,274"/>
+<area shape="rect" id="node32" href="$da/d04/classtitle_panes_1_1_control_title_pane.html" title="titlePanes.ControlTitlePane" alt="" coords="1207,298,1398,325"/>
+<area shape="rect" id="node33" href="$dd/d67/classtitle_panes_1_1_display_title_pane.html" title="titlePanes.DisplayTitlePane" alt="" coords="1207,349,1398,376"/>
+<area shape="rect" id="node34" href="$d7/d28/classtitle_panes_1_1_load_variables_title_pane.html" title="titlePanes.LoadVariables\lTitlePane" alt="" coords="1214,182,1391,223"/>
+<area shape="rect" id="node44" href="$df/d96/interfacedrawer_1_1_drawer.html" title="drawer.Drawer" alt="" coords="26,698,139,725"/>
+</map>

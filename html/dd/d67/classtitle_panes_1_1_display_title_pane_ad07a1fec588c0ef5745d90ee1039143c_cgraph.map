@@ -1,0 +1,13 @@
+<map id="titlePanes.DisplayTitlePane.DisplayTitlePane" name="titlePanes.DisplayTitlePane.DisplayTitlePane">
+<area shape="rect" id="node2" href="$dd/d67/classtitle_panes_1_1_display_title_pane.html#a33c5ea499e7fcc2105a0fc0bab9d3081" title="titlePanes.DisplayTitlePane.make\lBackgroundColorBox" alt="" coords="249,5,479,46"/>
+<area shape="rect" id="node3" href="$dd/d67/classtitle_panes_1_1_display_title_pane.html#a0ba90533306c4265f16848eaced84c33" title="titlePanes.DisplayTitlePane.make\lGridLinesBox" alt="" coords="249,70,479,111"/>
+<area shape="rect" id="node7" href="$dd/d67/classtitle_panes_1_1_display_title_pane.html#a331ac295d6888c6c41f9ff49b1cea23d" title="titlePanes.DisplayTitlePane.make\lTurtleImageChooser" alt="" coords="249,135,479,177"/>
+<area shape="rect" id="node4" href="$d9/d49/classback_end_1_1_controller.html#a64526fc753c94df5ddc8527af8e50301" title="backEnd.Controller.toggle\lGridLines" alt="" coords="559,70,745,111"/>
+<area shape="rect" id="node5" href="$d8/d1f/classfront_end_1_1_view.html#a3b11e07ca0ec9c9f9a22583b736eb7b7" title="frontEnd.View.toggleGrid\lLines" alt="" coords="831,70,1009,111"/>
+<area shape="rect" id="node6" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a650ea975d84e53c9ccd1a612a286697f" title="frontEnd.TurtleCanvas.toggle\lGridLines" alt="" coords="1064,70,1269,111"/>
+<area shape="rect" id="node8" href="$dd/d67/classtitle_panes_1_1_display_title_pane.html#aceb12213a01d9cb060a64441ea46ed0f" title="titlePanes.DisplayTitlePane.openFile" alt="" coords="529,143,775,169"/>
+<area shape="rect" id="node9" href="$d9/d49/classback_end_1_1_controller.html#a2d6485b9fa7484fee3a041924554fb2a" title="backEnd.Controller.change\lTurtleImage" alt="" coords="824,135,1016,177"/>
+<area shape="rect" id="node10" href="$d8/d1f/classfront_end_1_1_view.html#ae7a2f6e6f22069bcaaf142dc37349dee" title="frontEnd.View.changeTurtle\lImage" alt="" coords="1070,135,1263,177"/>
+<area shape="rect" id="node11" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a4c8d20e109a3445a41c1c4a02928ad5c" title="frontEnd.TurtleCanvas.change\lTurtleImage" alt="" coords="1318,135,1530,177"/>
+<area shape="rect" id="node12" href="$dc/dcd/classfront_end_1_1_turtle_view.html#af8d2b97ffef04e1b6ea796b9db58eed8" title="frontEnd.TurtleView.setImage" alt="" coords="1579,143,1786,169"/>
+</map>

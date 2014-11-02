@@ -1,0 +1,6 @@
+<map id="titlePanes.DisplayTitlePane.openFile" name="titlePanes.DisplayTitlePane.openFile">
+<area shape="rect" id="node2" href="$d9/d49/classback_end_1_1_controller.html#a2d6485b9fa7484fee3a041924554fb2a" title="backEnd.Controller.change\lTurtleImage" alt="" coords="301,5,493,46"/>
+<area shape="rect" id="node3" href="$d8/d1f/classfront_end_1_1_view.html#ae7a2f6e6f22069bcaaf142dc37349dee" title="frontEnd.View.changeTurtle\lImage" alt="" coords="542,5,735,46"/>
+<area shape="rect" id="node4" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a4c8d20e109a3445a41c1c4a02928ad5c" title="frontEnd.TurtleCanvas.change\lTurtleImage" alt="" coords="785,5,997,46"/>
+<area shape="rect" id="node5" href="$dc/dcd/classfront_end_1_1_turtle_view.html#af8d2b97ffef04e1b6ea796b9db58eed8" title="frontEnd.TurtleView.setImage" alt="" coords="1046,12,1253,39"/>
+</map>

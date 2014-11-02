@@ -1,0 +1,10 @@
+<map id="backEnd.turtle.TurtlePoint.getY" name="backEnd.turtle.TurtlePoint.getY">
+<area shape="rect" id="node2" href="$de/d6c/classback_end_1_1turtle_1_1_turtle_point.html#a11df6da92a893391b9fbdd11ed06d143" title="backEnd.turtle.TurtlePoint.distance" alt="" coords="269,5,512,32"/>
+<area shape="rect" id="node3" href="$d8/d32/classback_end_1_1turtle_1_1_turtle.html#a510121fd47d3f5cd7ffe115fa266b447" title="backEnd.turtle.Turtle.getMyY" alt="" coords="289,56,492,83"/>
+<area shape="rect" id="node4" href="$de/d6c/classback_end_1_1turtle_1_1_turtle_point.html#ae0fca5256cb9f55c435077efdae54eb1" title="backEnd.turtle.TurtlePoint.set" alt="" coords="287,107,495,133"/>
+<area shape="rect" id="node5" href="$d8/d32/classback_end_1_1turtle_1_1_turtle.html#a4be1100fd698e6701dd14a9660d891f0" title="backEnd.turtle.Turtle.toroidal\lMovement" alt="" coords="289,158,493,199"/>
+<area shape="rect" id="node8" href="$d8/d32/classback_end_1_1turtle_1_1_turtle.html#a4547aed4983f4ef942df0e3376fc11b3" title="backEnd.turtle.Turtle.turn\lTowards" alt="" coords="299,223,482,265"/>
+<area shape="rect" id="node9" href="$d8/d32/classback_end_1_1turtle_1_1_turtle.html#a97c9503ec5b46e9b31a5d6255c7bb900" title="backEnd.turtle.Turtle.Turtle" alt="" coords="295,289,486,316"/>
+<area shape="rect" id="node6" href="$d8/d32/classback_end_1_1turtle_1_1_turtle.html#a52ebe2b7a75e91579e282a4061d5b421" title="backEnd.turtle.Turtle.movement\lHelper" alt="" coords="560,158,787,199"/>
+<area shape="rect" id="node7" href="$d8/d32/classback_end_1_1turtle_1_1_turtle.html#a5a93690c08c2a024ea6eaf75293f7111" title="backEnd.turtle.Turtle.move\lTurtle" alt="" coords="835,158,1027,199"/>
+</map>

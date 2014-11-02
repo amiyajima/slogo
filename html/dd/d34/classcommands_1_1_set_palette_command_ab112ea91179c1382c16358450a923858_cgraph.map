@@ -1,0 +1,4 @@
+<map id="commands.SetPaletteCommand.execute" name="commands.SetPaletteCommand.execute">
+<area shape="rect" id="node2" href="$d5/d62/classcommands_1_1templates_1_1_command.html#ae48716b79da0af7e6815fbe6fc113075" title="commands.templates.Command.get\lMyChildren" alt="" coords="341,5,600,46"/>
+<area shape="rect" id="node3" href="$d9/d98/classback_end_1_1_model.html#a380ae28221e627d436e52dd476c631b8" title="backEnd.Model.setPalette\lArguments" alt="" coords="377,70,564,111"/>
+</map>

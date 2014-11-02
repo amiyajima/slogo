@@ -1,0 +1,6 @@
+<map id="titlePanes.ControlTitlePane.makePenColorBox" name="titlePanes.ControlTitlePane.makePenColorBox">
+<area shape="rect" id="node2" href="$d9/d49/classback_end_1_1_controller.html#a06c74a6c4bb360e826758f33e0dd1eb6" title="backEnd.Controller.change\lPenColor" alt="" coords="285,5,477,46"/>
+<area shape="rect" id="node3" href="$d8/d1f/classfront_end_1_1_view.html#a8a032e4ed880f3099ab4d04846221219" title="frontEnd.View.changePenColor" alt="" coords="525,12,741,39"/>
+<area shape="rect" id="node4" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a86f38e34d4034991241fdb889a7c4570" title="frontEnd.TurtleCanvas.change\lPenColor" alt="" coords="790,5,1002,46"/>
+<area shape="rect" id="node5" href="$dc/dcd/classfront_end_1_1_turtle_view.html#ae388cacab199b191dbb44419e9574e86" title="frontEnd.TurtleView.change\lPenColor" alt="" coords="1051,5,1245,46"/>
+</map>

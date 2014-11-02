@@ -1,0 +1,10 @@
+<map id="commands.CommandFactory.buildCommand" name="commands.CommandFactory.buildCommand">
+<area shape="rect" id="node2" href="$d5/d1d/classcommands_1_1_command_factory.html#adcf456039b5d7285082f1e009f3d30b6" title="commands.CommandFactory.checkCaps" alt="" coords="300,5,583,32"/>
+<area shape="rect" id="node3" href="$d5/d1d/classcommands_1_1_command_factory.html#acae1571442d9f8e040df95c8a2742d8d" title="commands.CommandFactory.check\lLanguage" alt="" coords="316,57,567,98"/>
+<area shape="rect" id="node5" href="$d5/d1d/classcommands_1_1_command_factory.html#a9206a1ef0f863c61cb5c894da3133ef8" title="commands.CommandFactory.check\lUserCommand" alt="" coords="316,122,567,163"/>
+<area shape="rect" id="node6" href="$d5/d1d/classcommands_1_1_command_factory.html#a221a82baff222f4552a38b521efd78b6" title="commands.CommandFactory.checkVar" alt="" coords="306,188,577,215"/>
+<area shape="rect" id="node7" href="$d9/d98/classback_end_1_1_model.html#a6b39dd199a5957068c032bb023f4b613" title="backEnd.Model.getCommandsMap" alt="" coords="319,239,563,265"/>
+<area shape="rect" id="node8" href="$d5/d62/classcommands_1_1templates_1_1_command.html#a20741a5e32e24ff113701f7b2957e658" title="commands.templates.Command.initialize\lCommand" alt="" coords="297,290,586,331"/>
+<area shape="rect" id="node9" href="$d5/d1d/classcommands_1_1_command_factory.html#aa562012b61b9b1701eada2bea8caa1d8" title="commands.CommandFactory.is\lNumeric" alt="" coords="330,355,553,397"/>
+<area shape="rect" id="node4" href="$d8/de9/classmain_1_1_resource_finder.html#abbbd9c7b9078fd263f546d15bba68d22" title="main.ResourceFinder.getMy\lLanguageResources" alt="" coords="635,57,831,98"/>
+</map>

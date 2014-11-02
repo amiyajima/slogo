@@ -1,0 +1,6 @@
+<map id="commands.variable_commands.UserDefinedCommand.UserDefinedCommand" name="commands.variable_commands.UserDefinedCommand.UserDefinedCommand">
+<area shape="rect" id="node2" href="$d5/d62/classcommands_1_1templates_1_1_command.html#ae48716b79da0af7e6815fbe6fc113075" title="commands.templates.Command.get\lMyChildren" alt="" coords="377,5,636,46"/>
+<area shape="rect" id="node3" href="$d5/def/classcommands_1_1variable__commands_1_1_user_input_command.html#a0953b0ee9cfe2cba82553ac21bb18026" title="commands.variable_commands.\lUserInputCommand.getParameterList" alt="" coords="374,70,639,111"/>
+<area shape="rect" id="node4" href="$d5/d62/classcommands_1_1templates_1_1_command.html#ac62c003e82cf2518fc257f51c92bd93b" title="commands.templates.Command.get\lVariableManager" alt="" coords="377,135,636,177"/>
+<area shape="rect" id="node5" href="$d5/d62/classcommands_1_1templates_1_1_command.html#a33bda544b01bcac7892fcc146fc67107" title="commands.templates.Command.set\lNumChildren" alt="" coords="377,201,636,242"/>
+</map>

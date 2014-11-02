@@ -1,0 +1,9 @@
+<map id="backEnd.VariableManager.writeVarsToFile" name="backEnd.VariableManager.writeVarsToFile">
+<area shape="rect" id="node2" href="$d8/d6a/classback_end_1_1_variable_manager.html#a4e95d5d32265cdc2ad3a3c96bc248ef0" title="backEnd.VariableManager.addVar" alt="" coords="275,77,509,104"/>
+<area shape="rect" id="node5" href="$d8/d6a/classback_end_1_1_variable_manager.html#ab5a2479748c71a1a11734df41ffffbbc" title="backEnd.VariableManager.pop\lVarProperties" alt="" coords="285,201,499,242"/>
+<area shape="rect" id="node8" href="$d8/d6a/classback_end_1_1_variable_manager.html#a4a9b2d97f80304599d18d68700ea8b90" title="backEnd.VariableManager.push\lVarProperties" alt="" coords="281,135,503,177"/>
+<area shape="rect" id="node3" href="$da/d32/classcommands_1_1variable__commands_1_1_make_command.html#a9dfc6c7ab19bf5fddd2f77a8a57cf478" title="commands.variable_commands.\lMakeCommand.execute" alt="" coords="558,5,789,46"/>
+<area shape="rect" id="node4" href="$d5/d12/classcommands_1_1variable__commands_1_1_for_command.html#af6af8e22454fd04fe9c3f1d53025ac69" title="commands.variable_commands.\lForCommand.execute" alt="" coords="558,70,789,111"/>
+<area shape="rect" id="node6" href="$db/de1/classcommands_1_1variable__commands_1_1_do_times_command.html#a253ff97841bc0d124f96d90484e2dbe5" title="commands.variable_commands.\lDoTimesCommand.execute" alt="" coords="558,135,789,177"/>
+<area shape="rect" id="node7" href="$d4/d35/classcommands_1_1variable__commands_1_1_user_defined_command.html#a4e7e699bc6b996e652d21c012c2106aa" title="commands.variable_commands.\lUserDefinedCommand.execute" alt="" coords="558,201,789,242"/>
+</map>

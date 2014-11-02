@@ -1,0 +1,31 @@
+<map id="titlePanes.ControlTitlePane.makeButtons" name="titlePanes.ControlTitlePane.makeButtons">
+<area shape="rect" id="node2" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#ae994c7b4dd988b30fc824e9e893b3ccf" title="titlePanes.ControlTitlePane.handle" alt="" coords="287,73,526,99"/>
+<area shape="rect" id="node30" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#ac2c40167d5b56309c214d48cdd8b5cbf" title="titlePanes.ControlTitlePane.setSize" alt="" coords="285,123,528,150"/>
+<area shape="rect" id="node3" href="$d9/d49/classback_end_1_1_controller.html#a3b0bbf0a084bb4fb63d118f66e7327b1" title="backEnd.Controller.move10" alt="" coords="576,73,773,99"/>
+<area shape="rect" id="node4" href="$d8/de9/classmain_1_1_resource_finder.html#abbbd9c7b9078fd263f546d15bba68d22" title="main.ResourceFinder.getMy\lLanguageResources" alt="" coords="2553,117,2749,159"/>
+<area shape="rect" id="node5" href="$d9/d49/classback_end_1_1_controller.html#ad650f48d236eaf11c2d8591b04831900" title="backEnd.Controller.runScript" alt="" coords="821,141,1024,167"/>
+<area shape="rect" id="node6" href="$d8/d1f/classfront_end_1_1_view.html#a88014d18898a5c72ba7893e0d865a218" title="frontEnd.View.addToHistory" alt="" coords="1083,81,1277,107"/>
+<area shape="rect" id="node9" href="$d8/d1f/classfront_end_1_1_view.html#a22669dd74ac845d66d5b59ddeba13b5e" title="frontEnd.View.printException" alt="" coords="1344,195,1547,222"/>
+<area shape="rect" id="node11" href="$d9/d98/classback_end_1_1_model.html#ade764fd1c85a48fabb9abf3dfe8b8ceb" title="backEnd.Model.runScript" alt="" coords="1090,291,1270,318"/>
+<area shape="rect" id="node26" href="$d8/d1f/classfront_end_1_1_view.html#a59fa2dbe984da3217324979184d00559" title="frontEnd.View.updateVariables" alt="" coords="1073,141,1287,167"/>
+<area shape="rect" id="node7" href="$d8/dfc/classpanels_1_1_parameter_panel.html#a5f64bf2acdef3d7ca882a87ba8c78bf3" title="panels.ParameterPanel.add\lToHistory" alt="" coords="1347,64,1544,105"/>
+<area shape="rect" id="node8" href="$de/dff/classtitle_panes_1_1_history_title_pane.html#a14fe295c9a982a88b2f96e93758e021d" title="titlePanes.HistoryTitlePane.add\lToHistory" alt="" coords="1619,64,1837,105"/>
+<area shape="rect" id="node10" href="$de/d03/classpanels_1_1_script_panel.html#acf94d4284961d6d9eabc8af4db9abe87" title="panels.ScriptPanel.print\lException" alt="" coords="1642,195,1814,236"/>
+<area shape="rect" id="node12" href="$d9/d1e/classback_end_1_1_parser.html#a163b8afd814babc8e7df59993f0d6440" title="backEnd.Parser.parseScript" alt="" coords="1347,341,1543,367"/>
+<area shape="rect" id="node13" href="$d9/d98/classback_end_1_1_model.html#a6b39dd199a5957068c032bb023f4b613" title="backEnd.Model.getCommandsMap" alt="" coords="2237,419,2481,446"/>
+<area shape="rect" id="node14" href="$d9/d1e/classback_end_1_1_parser.html#a653298ad53a1eea540beded2bb558ab4" title="backEnd.Parser.makeTree" alt="" coords="1635,290,1821,317"/>
+<area shape="rect" id="node24" href="$d9/d1e/classback_end_1_1_parser.html#a71653c0a9d02d4b400e357b978260de6" title="backEnd.Parser.removeComments" alt="" coords="1607,341,1849,367"/>
+<area shape="rect" id="node25" href="$d5/d62/classcommands_1_1templates_1_1_command.html#aa1c27b6285999798be609159ee5c7a83" title="commands.templates.Command.to\lString" alt="" coords="1603,392,1853,433"/>
+<area shape="rect" id="node15" href="$d5/d62/classcommands_1_1templates_1_1_command.html#a9ab84f2a1491a7283311891b8a6082dc" title="commands.templates.Command.add\lChild" alt="" coords="1902,344,2165,385"/>
+<area shape="rect" id="node16" href="$d5/d1d/classcommands_1_1_command_factory.html#ac77125dd466e3e01fce01fc527e7f815" title="commands.CommandFactory.build\lCommand" alt="" coords="1912,213,2155,255"/>
+<area shape="rect" id="node23" href="$d5/d62/classcommands_1_1templates_1_1_command.html#a0ca025dffda489d73ba4b6c12c7118fe" title="commands.templates.Command.get\lNumChildrenNeeded" alt="" coords="1904,279,2163,320"/>
+<area shape="rect" id="node17" href="$d5/d1d/classcommands_1_1_command_factory.html#adcf456039b5d7285082f1e009f3d30b6" title="commands.CommandFactory.checkCaps" alt="" coords="2217,186,2500,213"/>
+<area shape="rect" id="node18" href="$d5/d1d/classcommands_1_1_command_factory.html#acae1571442d9f8e040df95c8a2742d8d" title="commands.CommandFactory.check\lLanguage" alt="" coords="2233,237,2484,279"/>
+<area shape="rect" id="node19" href="$d5/d1d/classcommands_1_1_command_factory.html#a9206a1ef0f863c61cb5c894da3133ef8" title="commands.CommandFactory.check\lUserCommand" alt="" coords="2233,303,2484,344"/>
+<area shape="rect" id="node20" href="$d5/d1d/classcommands_1_1_command_factory.html#a221a82baff222f4552a38b521efd78b6" title="commands.CommandFactory.checkVar" alt="" coords="2223,369,2494,395"/>
+<area shape="rect" id="node21" href="$d5/d62/classcommands_1_1templates_1_1_command.html#a20741a5e32e24ff113701f7b2957e658" title="commands.templates.Command.initialize\lCommand" alt="" coords="2214,55,2503,96"/>
+<area shape="rect" id="node22" href="$d5/d1d/classcommands_1_1_command_factory.html#aa562012b61b9b1701eada2bea8caa1d8" title="commands.CommandFactory.is\lNumeric" alt="" coords="2247,120,2470,161"/>
+<area shape="rect" id="node27" href="$d8/dfc/classpanels_1_1_parameter_panel.html#a0bf8e32fe635c48c8a057062e0534b62" title="panels.ParameterPanel.update\lVariables" alt="" coords="1336,129,1555,171"/>
+<area shape="rect" id="node28" href="$d0/d8f/classtitle_panes_1_1_variable_title_pane.html#a395dd58ae72e6111fce8e99be3c03842" title="titlePanes.VariableTitle\lPane.updateVariables" alt="" coords="1645,129,1811,171"/>
+<area shape="rect" id="node29" href="$d0/d8f/classtitle_panes_1_1_variable_title_pane.html#a007ec1abdc73761490261f283e07338e" title="titlePanes.VariableTitle\lPane.writeVariables" alt="" coords="1951,129,2116,171"/>
+</map>

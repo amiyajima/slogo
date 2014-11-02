@@ -1,0 +1,5 @@
+<map id="titlePanes.DisplayTitlePane.makeGridLinesBox" name="titlePanes.DisplayTitlePane.makeGridLinesBox">
+<area shape="rect" id="node2" href="$d9/d49/classback_end_1_1_controller.html#a64526fc753c94df5ddc8527af8e50301" title="backEnd.Controller.toggle\lGridLines" alt="" coords="286,5,471,46"/>
+<area shape="rect" id="node3" href="$d8/d1f/classfront_end_1_1_view.html#a3b11e07ca0ec9c9f9a22583b736eb7b7" title="frontEnd.View.toggleGrid\lLines" alt="" coords="520,5,699,46"/>
+<area shape="rect" id="node4" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a650ea975d84e53c9ccd1a612a286697f" title="frontEnd.TurtleCanvas.toggle\lGridLines" alt="" coords="747,5,952,46"/>
+</map>

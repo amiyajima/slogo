@@ -1,0 +1,5 @@
+<map id="commands.variable_commands.MakeCommand" name="commands.variable_commands.MakeCommand">
+<area shape="rect" id="node2" href="$d0/d45/classcommands_1_1templates_1_1_two_child_command.html" title="commands.templates.TwoChild\lCommand" alt="" coords="107,294,327,335"/>
+<area shape="rect" id="node3" href="$d5/d62/classcommands_1_1templates_1_1_command.html" title="commands.templates.Command" alt="" coords="95,203,328,229"/>
+<area shape="rect" id="node5" href="$d8/d6a/classback_end_1_1_variable_manager.html" title="backEnd.VariableManager" alt="" coords="253,104,440,131"/>
+</map>

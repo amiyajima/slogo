@@ -1,0 +1,6 @@
+<map id="exceptions.SLogoException" name="exceptions.SLogoException">
+<area shape="rect" id="node3" href="$d5/d09/classexceptions_1_1_invalid_input_exception.html" title="exceptions.InvalidInputException" alt="" coords="435,5,664,32"/>
+<area shape="rect" id="node4" href="$d5/d9e/classexceptions_1_1_invalid_property_file_exception.html" title="exceptions.InvalidProperty\lFileException" alt="" coords="455,57,644,98"/>
+<area shape="rect" id="node5" href="$d8/d6a/classexceptions_1_1_missing_parameters_exception.html" title="exceptions.MissingParameters\lException" alt="" coords="441,122,657,163"/>
+<area shape="rect" id="node6" href="$db/d28/classexceptions_1_1_undefined_variable_exception.html" title="exceptions.UndefinedVariable\lException" alt="" coords="444,187,655,229"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="backEnd.Controller.changeTurtleImage" name="backEnd.Controller.changeTurtleImage">
+<area shape="rect" id="node2" href="$d8/d1f/classfront_end_1_1_view.html#ae7a2f6e6f22069bcaaf142dc37349dee" title="frontEnd.View.changeTurtle\lImage" alt="" coords="246,5,439,46"/>
+<area shape="rect" id="node3" href="$d5/df1/classfront_end_1_1_turtle_canvas.html#a4c8d20e109a3445a41c1c4a02928ad5c" title="frontEnd.TurtleCanvas.change\lTurtleImage" alt="" coords="489,5,701,46"/>
+<area shape="rect" id="node4" href="$dc/dcd/classfront_end_1_1_turtle_view.html#af8d2b97ffef04e1b6ea796b9db58eed8" title="frontEnd.TurtleView.setImage" alt="" coords="750,12,957,39"/>
+</map>

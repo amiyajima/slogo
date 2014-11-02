@@ -1,0 +1,5 @@
+<map id="commands.onechild.ArcTangentCommand" name="commands.onechild.ArcTangentCommand">
+<area shape="rect" id="node2" href="$dc/d65/classcommands_1_1templates_1_1_one_child_command.html" title="commands.templates.OneChild\lCommand" alt="" coords="76,281,299,322"/>
+<area shape="rect" id="node3" href="$d5/d62/classcommands_1_1templates_1_1_command.html" title="commands.templates.Command" alt="" coords="71,203,304,229"/>
+<area shape="rect" id="node5" href="$d8/d6a/classback_end_1_1_variable_manager.html" title="backEnd.VariableManager" alt="" coords="233,104,420,131"/>
+</map>

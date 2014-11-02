@@ -1,0 +1,5 @@
+<map id="frontEnd.View.buildSidePanel" name="frontEnd.View.buildSidePanel">
+<area shape="rect" id="node2" href="$d8/d1f/classfront_end_1_1_view.html#a6c10dd858e539c5be4a2e21ff48d4a95" title="frontEnd.View.setupGui" alt="" coords="259,12,429,39"/>
+<area shape="rect" id="node3" href="$d8/d1f/classfront_end_1_1_view.html#a80f4d9369f1e36cebb6ab3fb9d19b8f6" title="frontEnd.View.addController\lAndSetupGui" alt="" coords="478,5,677,46"/>
+<area shape="rect" id="node4" href="$d9/d49/classback_end_1_1_controller.html#a987136eaba0798749f393bac2a9a2400" title="backEnd.Controller.Controller" alt="" coords="726,12,933,39"/>
+</map>
