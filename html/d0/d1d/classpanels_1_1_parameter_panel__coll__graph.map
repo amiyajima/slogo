@@ -1,0 +1,9 @@
+<map id="panels.ParameterPanel" name="panels.ParameterPanel">
+<area shape="rect" id="node3" href="$da/d59/classtitle_panes_1_1_command_title_pane.html" title="titlePanes.CommandTitlePane" alt="" coords="299,173,511,200"/>
+<area shape="rect" id="node5" href="$da/d04/classtitle_panes_1_1_control_title_pane.html" title="titlePanes.ControlTitlePane" alt="" coords="310,224,501,251"/>
+<area shape="rect" id="node6" href="$dd/d67/classtitle_panes_1_1_display_title_pane.html" title="titlePanes.DisplayTitlePane" alt="" coords="310,56,501,83"/>
+<area shape="rect" id="node7" href="$d7/d28/classtitle_panes_1_1_load_variables_title_pane.html" title="titlePanes.LoadVariables\lTitlePane" alt="" coords="317,107,494,149"/>
+<area shape="rect" id="node8" href="$d1/dd4/classtitle_panes_1_1_help_title_pane.html" title="titlePanes.HelpTitlePane" alt="" coords="318,275,493,301"/>
+<area shape="rect" id="node10" href="$d0/d8f/classtitle_panes_1_1_variable_title_pane.html" title="titlePanes.VariableTitlePane" alt="" coords="307,407,503,433"/>
+<area shape="rect" id="node13" href="$de/dff/classtitle_panes_1_1_history_title_pane.html" title="titlePanes.HistoryTitlePane" alt="" coords="310,325,501,352"/>
+</map>

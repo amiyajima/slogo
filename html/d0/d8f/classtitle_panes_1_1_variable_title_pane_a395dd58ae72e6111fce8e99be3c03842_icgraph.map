@@ -1,0 +1,14 @@
+<map id="titlePanes.VariableTitlePane.updateVariables" name="titlePanes.VariableTitlePane.updateVariables">
+<area shape="rect" id="node2" href="$d8/dfc/classpanels_1_1_parameter_panel.html#a0bf8e32fe635c48c8a057062e0534b62" title="panels.ParameterPanel.update\lVariables" alt="" coords="219,110,437,151"/>
+<area shape="rect" id="node3" href="$d8/d1f/classfront_end_1_1_view.html#a59fa2dbe984da3217324979184d00559" title="frontEnd.View.updateVariables" alt="" coords="486,117,701,144"/>
+<area shape="rect" id="node4" href="$d9/d49/classback_end_1_1_controller.html#ad650f48d236eaf11c2d8591b04831900" title="backEnd.Controller.runScript" alt="" coords="749,117,952,144"/>
+<area shape="rect" id="node5" href="$de/d03/classpanels_1_1_script_panel.html#ae6ae56472ef1a975597bad69844662c6" title="panels.ScriptPanel.handler" alt="" coords="1003,31,1194,57"/>
+<area shape="rect" id="node7" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#af28eba60fefe51c70e763d51d9123ea3" title="titlePanes.ControlTitlePane.make\lLocationFields" alt="" coords="1534,190,1765,231"/>
+<area shape="rect" id="node9" href="$d9/d49/classback_end_1_1_controller.html#a3b0bbf0a084bb4fb63d118f66e7327b1" title="backEnd.Controller.move10" alt="" coords="1000,117,1197,144"/>
+<area shape="rect" id="node6" href="$de/d03/classpanels_1_1_script_panel.html#ac959f1785cff7409d857d3bea9b8ee63" title="panels.ScriptPanel.Script\lPanel" alt="" coords="1275,5,1455,46"/>
+<area shape="rect" id="node8" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#ad9d4431a2657a30fedae46e0c9093867" title="titlePanes.ControlTitlePane.\lControlTitlePane" alt="" coords="1813,158,2008,199"/>
+<area shape="rect" id="node10" href="$d9/d49/classback_end_1_1_controller.html#a7893477f39915a5169eb8da0dff60628" title="backEnd.Controller.build\lKeyListener" alt="" coords="1278,70,1453,111"/>
+<area shape="rect" id="node12" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#ae994c7b4dd988b30fc824e9e893b3ccf" title="titlePanes.ControlTitlePane.handle" alt="" coords="1246,136,1485,163"/>
+<area shape="rect" id="node11" href="$d9/d49/classback_end_1_1_controller.html#a987136eaba0798749f393bac2a9a2400" title="backEnd.Controller.Controller" alt="" coords="1546,73,1753,100"/>
+<area shape="rect" id="node13" href="$da/d04/classtitle_panes_1_1_control_title_pane.html#a974c75cbdf64007af637c8b19a26b215" title="titlePanes.ControlTitlePane.make\lButtons" alt="" coords="1534,125,1765,166"/>
+</map>
